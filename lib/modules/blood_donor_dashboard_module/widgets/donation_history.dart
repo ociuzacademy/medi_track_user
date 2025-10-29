@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/modules/blood_donation_history_module/view/blood_donation_history_page.dart';
 import 'package:medi_track/modules/blood_donor_dashboard_module/widgets/blood_donation_history_item.dart';
 
 class DonationHistory extends StatelessWidget {
@@ -29,7 +30,7 @@ class DonationHistory extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  // Handle view all
+                  Navigator.push(context, BloodDonationHistoryPage.route());
                 },
                 child: Text(
                   'View All',

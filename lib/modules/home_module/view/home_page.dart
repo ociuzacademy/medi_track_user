@@ -19,7 +19,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0;
+  // Use ValueNotifier to manage the selected index reactively without setState
+  final ValueNotifier<int> _selectedIndex = ValueNotifier<int>(0);
 
   // Different content for each tab
   final List<Widget> _tabContents = [
@@ -28,20 +29,30 @@ class _HomePageState extends State<HomePage> {
   ];
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    _selectedIndex.value = index;
+  }
+
+  @override
+  void dispose() {
+    _selectedIndex.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
-      appBar: HomeAppBar(
-        currentIndex: _selectedIndex,
-        onProfileTap: () {
-          // Handle profile tap
-        },
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(kToolbarHeight),
+        child: ValueListenableBuilder<int>(
+          valueListenable: _selectedIndex,
+          builder: (context, selected, _) => HomeAppBar(
+            currentIndex: selected,
+            onProfileTap: () {
+              // Handle profile tap
+            },
+          ),
+        ),
       ),
       body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
@@ -70,11 +81,17 @@ class _HomePageState extends State<HomePage> {
               break;
           }
         },
-        child: _tabContents[_selectedIndex],
+        child: ValueListenableBuilder<int>(
+          valueListenable: _selectedIndex,
+          builder: (context, selected, _) => _tabContents[selected],
+        ),
       ),
-      bottomNavigationBar: BottomNavigation(
-        currentIndex: _selectedIndex,
-        onItemTapped: _onItemTapped,
+      bottomNavigationBar: ValueListenableBuilder<int>(
+        valueListenable: _selectedIndex,
+        builder: (context, selected, _) => BottomNavigation(
+          currentIndex: selected,
+          onItemTapped: _onItemTapped,
+        ),
       ),
     );
   }
