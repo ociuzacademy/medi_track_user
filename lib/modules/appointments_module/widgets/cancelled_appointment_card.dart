@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/modules/appointment_details_module/view/cancelled_appointments_details_page.dart';
 import 'package:medi_track/modules/appointments_module/models/appointment.dart';
-import 'package:medi_track/modules/appointments_module/utils/cancelled_appointment_card_helper.dart';
 
 class CancelledAppointmentCard extends StatelessWidget {
   final Appointment appointment;
@@ -132,34 +131,6 @@ class CancelledAppointmentCard extends StatelessWidget {
                         fontSize: 12,
                         fontWeight: FontWeight.w500,
                         color: const Color(0xFFFF3B30),
-                      ),
-                    ),
-                  ),
-
-                  // Rebook button
-                  SizedBox(
-                    height: 36,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        CancelledAppointmentCardHelper.handleRebook(
-                          context,
-                          appointment,
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF007AFF),
-                        foregroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                      ),
-                      child: Text(
-                        'Rebook',
-                        style: GoogleFonts.inter(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
                       ),
                     ),
                   ),
