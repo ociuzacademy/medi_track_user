@@ -15,12 +15,15 @@ class FeedbackStarRatingWidget extends StatelessWidget {
     return Row(
       children: List.generate(5, (index) {
         final isFilled = index < rating;
-        return Icon(
-          isFilled ? Icons.star : Icons.star_border,
-          color: isFilled
-              ? const Color(0xFFea2a33)
-              : (isDark ? const Color(0xFF4B5563) : const Color(0xFFD1D5DB)),
-          size: 20,
+        return Padding(
+          padding: const EdgeInsets.only(right: 4),
+          child: Icon(
+            isFilled ? Icons.star : Icons.star_border,
+            color: isFilled
+                ? const Color(0xFF13C8EC) // New primary color
+                : (isDark ? const Color(0xFF4B5563) : const Color(0xFFD1D5DB)),
+            size: 20,
+          ),
         );
       }),
     );

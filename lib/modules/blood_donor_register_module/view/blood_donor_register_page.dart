@@ -23,9 +23,9 @@ class BloodDonorRegisterPage extends StatelessWidget {
         title: Text(
           'Become a Blood Donor',
           style: GoogleFonts.lexend(
-            fontSize: 18,
+            fontSize: 20,
             fontWeight: FontWeight.bold,
-            letterSpacing: -0.015,
+            color: isDark ? Colors.white : const Color(0xFF1C1B1F),
           ),
         ),
         centerTitle: true,

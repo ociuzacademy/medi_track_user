@@ -6,7 +6,7 @@ import 'package:medi_track/modules/feedback_list_module/widgets/feedback_card.da
 class FeedbackListPage extends StatelessWidget {
   const FeedbackListPage({super.key});
 
-  static route() => MaterialPageRoute(builder: (_) => FeedbackListPage());
+  static route() => MaterialPageRoute(builder: (_) => const FeedbackListPage());
 
   @override
   Widget build(BuildContext context) {
@@ -52,16 +52,17 @@ class FeedbackListPage extends StatelessWidget {
             fontSize: 28,
             fontWeight: FontWeight.bold,
             letterSpacing: -0.015,
+            color: isDark ? Colors.white : const Color(0xFF181111),
           ),
         ),
         backgroundColor: isDark
-            ? const Color(0xFF211111)
-            : const Color(0xFFf8f6f6),
+            ? const Color(0xFF101F22)
+            : const Color(0xFFF6F8F8),
         elevation: 0,
       ),
       backgroundColor: isDark
-          ? const Color(0xFF211111)
-          : const Color(0xFFf8f6f6),
+          ? const Color(0xFF101F22)
+          : const Color(0xFFF6F8F8),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(

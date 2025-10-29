@@ -19,14 +19,14 @@ class AttachedImagePreview extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF2a1a1a) : Colors.white,
+        color: isDark ? const Color(0xFF2A1A1A) : Colors.white,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
           color: isDark ? const Color(0xFF443333) : const Color(0xFFE0E0E0),
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
+            color: Colors.black.withOpacity(0.05),
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),
@@ -53,7 +53,7 @@ class AttachedImagePreview extends StatelessWidget {
                 onPressed: onRemove,
                 icon: const Icon(
                   Icons.close,
-                  color: Color(0xFFea2a33),
+                  color: Color(0xFF04798B),
                   size: 20,
                 ),
                 padding: EdgeInsets.zero,
@@ -82,7 +82,7 @@ class AttachedImagePreview extends StatelessWidget {
                       Icon(
                         Icons.error_outline,
                         color: isDark
-                            ? const Color(0xFFa08f8f)
+                            ? const Color(0xFFA08F8F)
                             : const Color(0xFF886364),
                         size: 48,
                       ),
@@ -92,7 +92,7 @@ class AttachedImagePreview extends StatelessWidget {
                         style: GoogleFonts.lexend(
                           fontSize: 14,
                           color: isDark
-                              ? const Color(0xFFa08f8f)
+                              ? const Color(0xFFA08F8F)
                               : const Color(0xFF886364),
                         ),
                       ),
@@ -107,7 +107,7 @@ class AttachedImagePreview extends StatelessWidget {
             'File: ${imageFile.path.split('/').last}',
             style: GoogleFonts.lexend(
               fontSize: 12,
-              color: isDark ? const Color(0xFFa08f8f) : const Color(0xFF886364),
+              color: isDark ? const Color(0xFFA08F8F) : const Color(0xFF886364),
             ),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,

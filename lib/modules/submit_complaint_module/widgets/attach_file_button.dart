@@ -9,6 +9,8 @@ class AttachFileButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return OutlinedButton(
       onPressed: onPressed,
       style: OutlinedButton.styleFrom(
@@ -20,6 +22,9 @@ class AttachFileButton extends StatelessWidget {
         ),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         padding: const EdgeInsets.symmetric(vertical: 14),
+        backgroundColor: isDark
+            ? const Color(0xFF00796B).withOpacity(0.1)
+            : null,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,

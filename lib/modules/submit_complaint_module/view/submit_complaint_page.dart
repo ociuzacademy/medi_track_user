@@ -78,16 +78,16 @@ class _SubmitComplaintPageState extends State<SubmitComplaintPage> {
         ),
         centerTitle: true,
         backgroundColor: isDark
-            ? const Color(0xFF211111)
-            : const Color(0xFFf8f6f6),
+            ? const Color(0xFF0F2023)
+            : const Color(0xFFF5F8F8),
         elevation: 1,
         foregroundColor: isDark
             ? const Color(0xFFE0E0E0)
             : const Color(0xFF333333),
       ),
       backgroundColor: isDark
-          ? const Color(0xFF211111)
-          : const Color(0xFFf8f6f6),
+          ? const Color(0xFF0F2023)
+          : const Color(0xFFF5F8F8),
       body: ValueListenableBuilder<bool>(
         valueListenable: _isSubmitting,
         builder: (context, isSubmitting, _) {
@@ -183,11 +183,11 @@ class _SubmitComplaintPageState extends State<SubmitComplaintPage> {
               // Loading Overlay
               if (isSubmitting)
                 Container(
-                  color: Colors.black.withValues(alpha: 0.5),
+                  color: Colors.black.withOpacity(0.5),
                   child: const Center(
                     child: CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(
-                        Color(0xFFea2a33),
+                        Color(0xFF04798B),
                       ),
                     ),
                   ),

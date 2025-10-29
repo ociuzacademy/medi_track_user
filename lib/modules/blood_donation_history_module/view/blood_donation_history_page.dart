@@ -1,5 +1,6 @@
 // pages/blood_donation_history_page.dart
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/modules/blood_donation_history_module/helper/blood_donation_history_data.dart';
 
 import 'package:medi_track/modules/blood_donation_history_module/models/blood_donation_history.dart';
@@ -40,9 +41,9 @@ class _BloodDonationHistoryPageState extends State<BloodDonationHistoryPage> {
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: const Text(
+        title: Text(
           'Blood Donation History',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: GoogleFonts.lexend(fontSize: 20, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         backgroundColor: isDark

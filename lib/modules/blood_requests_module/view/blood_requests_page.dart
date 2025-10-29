@@ -1,5 +1,6 @@
 // pages/blood_requests_page.dart
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/modules/blood_requests_module/models/blood_request.dart';
 import 'package:medi_track/modules/blood_requests_module/widgets/blood_request_card.dart';
 import 'package:medi_track/modules/blood_requests_module/widgets/date_header.dart';
@@ -81,9 +82,9 @@ class _BloodRequestsPageState extends State<BloodRequestsPage> {
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: const Text(
+        title: Text(
           'Blood Requests',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+          style: GoogleFonts.lexend(fontSize: 20, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         backgroundColor: isDark

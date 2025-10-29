@@ -1,5 +1,6 @@
 // pages/blood_request_notifications_page.dart
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/modules/blood_requests_notifications_module/models/blood_request_notification.dart';
 import 'package:medi_track/modules/blood_requests_notifications_module/utils/blood_request_notifications_helper.dart'; // Fixed import
 import 'package:medi_track/modules/blood_requests_notifications_module/widgets/confirmation_dialog.dart';
@@ -83,8 +84,8 @@ class _BloodRequestNotificationsPageState
         ),
         title: Text(
           'Blood Request Notifications',
-          style: TextStyle(
-            fontSize: 28,
+          style: GoogleFonts.lexend(
+            fontSize: 20,
             fontWeight: FontWeight.bold,
             color: isDark ? Colors.white : const Color(0xFF1C1B1F),
           ),

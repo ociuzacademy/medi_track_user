@@ -28,7 +28,7 @@ class ComplaintSubjectField extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withValues(alpha: 0.05),
+                color: Colors.black.withOpacity(0.05),
                 blurRadius: 4,
                 offset: const Offset(0, 2),
               ),
@@ -41,11 +41,11 @@ class ComplaintSubjectField extends StatelessWidget {
               hintStyle: GoogleFonts.lexend(
                 fontSize: 16,
                 color: isDark
-                    ? const Color(0xFFa08f8f)
+                    ? const Color(0xFFA08F8F)
                     : const Color(0xFF886364),
               ),
               filled: true,
-              fillColor: isDark ? const Color(0xFF2a1a1a) : Colors.white,
+              fillColor: isDark ? const Color(0xFF2A1A1A) : Colors.white,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
                 borderSide: BorderSide(
@@ -64,8 +64,8 @@ class ComplaintSubjectField extends StatelessWidget {
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide(
-                  color: const Color(0xFFea2a33).withValues(alpha: 0.5),
+                borderSide: const BorderSide(
+                  color: Color(0xFF04798B),
                   width: 2,
                 ),
               ),

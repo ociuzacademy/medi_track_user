@@ -18,11 +18,11 @@ class FeedbackCard extends StatelessWidget {
       width: double.infinity,
       constraints: const BoxConstraints(minWidth: 288),
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF211111) : Colors.white,
+        color: isDark ? const Color(0xFF101F22) : Colors.white,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
+            color: Colors.black.withOpacity(0.05),
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),
@@ -121,7 +121,7 @@ class FeedbackCard extends StatelessWidget {
                     Navigator.push(context, FeedbackDetailsPage.route());
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFea2a33),
+                    backgroundColor: const Color(0xFF13C8EC), // New primary color
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(
                       vertical: 10,

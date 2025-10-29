@@ -55,7 +55,7 @@ class ActionButtons extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: isSubmitting ? null : onSubmit,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFFea2a33),
+                  backgroundColor: const Color(0xFF04798B),
                   foregroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
@@ -126,7 +126,7 @@ class ActionButtons extends StatelessWidget {
             child: ElevatedButton(
               onPressed: isSubmitting ? null : onSubmit,
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFea2a33),
+                backgroundColor: const Color(0xFF04798B),
                 foregroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
