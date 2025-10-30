@@ -47,13 +47,13 @@ class _BloodDonationHistoryPageState extends State<BloodDonationHistoryPage> {
         ),
         centerTitle: true,
         backgroundColor: isDark
-            ? const Color(0xFF221010)
-            : const Color(0xFFF8F6F6),
+            ? const Color(0xFF101022)
+            : const Color(0xFFF6F6F8),
         elevation: 0,
       ),
       backgroundColor: isDark
-          ? const Color(0xFF221010)
-          : const Color(0xFFF8F6F6),
+          ? const Color(0xFF101022)
+          : const Color(0xFFF6F6F8),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -95,7 +95,7 @@ class _BloodDonationHistoryPageState extends State<BloodDonationHistoryPage> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () =>
             _bloodDonationHistoryHelper.addExternalDonation(context),
-        backgroundColor: const Color(0xFFEC1313),
+        backgroundColor: const Color(0xFF1565C0),
         foregroundColor: Colors.white,
         elevation: 4,
         icon: const Icon(Icons.add),

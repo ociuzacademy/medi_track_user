@@ -23,7 +23,7 @@ class InfoItem extends StatelessWidget {
         Icon(
           icon,
           size: 20,
-          color: const Color(0xFFEC1313), // Primary color
+          color: const Color(0xFF2196F3), // Blue primary color
         ),
         const SizedBox(width: 8),
         Column(

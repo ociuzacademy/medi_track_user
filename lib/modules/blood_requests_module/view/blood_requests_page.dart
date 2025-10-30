@@ -1,7 +1,9 @@
 // pages/blood_requests_page.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/modules/blood_requests_module/helper/blood_request_data.dart';
 import 'package:medi_track/modules/blood_requests_module/models/blood_request.dart';
+import 'package:medi_track/modules/blood_requests_module/utils/blood_request_helper.dart';
 import 'package:medi_track/modules/blood_requests_module/widgets/blood_request_card.dart';
 import 'package:medi_track/modules/blood_requests_module/widgets/date_header.dart';
 import 'package:medi_track/modules/blood_requests_module/widgets/empty_state.dart';
@@ -18,41 +20,20 @@ class BloodRequestsPage extends StatefulWidget {
 }
 
 class _BloodRequestsPageState extends State<BloodRequestsPage> {
-  // Use ValueNotifiers instead of State fields
+  late final BloodRequestHelper _bloodRequestHelper;
+
   late final ValueNotifier<List<BloodRequest>> _bloodRequests;
   late final ValueNotifier<bool> _isLoading;
 
   @override
   void initState() {
     super.initState();
-    _bloodRequests = ValueNotifier<List<BloodRequest>>([
-      BloodRequest(
-        id: '1',
-        patientName: 'Eleanor Vance',
-        bloodGroup: 'A+',
-        unitsRequired: 2,
-        urgency: Urgency.high,
-        requestTime: DateTime.now().subtract(const Duration(hours: 2)),
-      ),
-      BloodRequest(
-        id: '2',
-        patientName: 'Marcus Holloway',
-        bloodGroup: 'O-',
-        unitsRequired: 1,
-        urgency: Urgency.medium,
-        requestTime: DateTime.now().subtract(const Duration(hours: 4)),
-      ),
-      BloodRequest(
-        id: '3',
-        patientName: 'Javier Esposito',
-        bloodGroup: 'B+',
-        unitsRequired: 3,
-        urgency: Urgency.low,
-        requestTime: DateTime.now().subtract(const Duration(days: 1, hours: 3)),
-      ),
-    ]);
+    _bloodRequests = ValueNotifier<List<BloodRequest>>(
+      BloodRequestData.bloodRequests,
+    );
 
     _isLoading = ValueNotifier<bool>(false);
+    _bloodRequestHelper = BloodRequestHelper(isLoading: _isLoading);
   }
 
   @override
@@ -60,15 +41,6 @@ class _BloodRequestsPageState extends State<BloodRequestsPage> {
     _bloodRequests.dispose();
     _isLoading.dispose();
     super.dispose();
-  }
-
-  Future<void> _refreshData() async {
-    _isLoading.value = true;
-
-    // Simulate API call
-    await Future.delayed(const Duration(seconds: 2));
-
-    _isLoading.value = false;
   }
 
   @override
@@ -88,8 +60,8 @@ class _BloodRequestsPageState extends State<BloodRequestsPage> {
         ),
         centerTitle: true,
         backgroundColor: isDark
-            ? const Color(0xFF221010)
-            : const Color(0xFFF8F6F6),
+            ? const Color(0xFF0F1A2A)
+            : const Color(0xFFF0F4F8),
         elevation: 0,
         actions: [
           IconButton(
@@ -101,10 +73,10 @@ class _BloodRequestsPageState extends State<BloodRequestsPage> {
         ],
       ),
       backgroundColor: isDark
-          ? const Color(0xFF221010)
-          : const Color(0xFFF8F6F6),
+          ? const Color(0xFF0F1A2A)
+          : const Color(0xFFF0F4F8),
       body: RefreshIndicator(
-        onRefresh: _refreshData,
+        onRefresh: _bloodRequestHelper.refreshData,
         child: CustomScrollView(
           slivers: [
             // Pull to refresh indicator

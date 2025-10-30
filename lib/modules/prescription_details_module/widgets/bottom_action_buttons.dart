@@ -1,6 +1,7 @@
 // bottom_action_buttons.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/modules/appointment_module/view/appointment_page.dart';
 
 class BottomActionButtons extends StatelessWidget {
   const BottomActionButtons({super.key});
@@ -67,7 +68,7 @@ class BottomActionButtons extends StatelessWidget {
               height: 48,
               child: ElevatedButton(
                 onPressed: () {
-                  // Handle book follow-up
+                  Navigator.push(context, AppointmentPage.route());
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(

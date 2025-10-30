@@ -1,3 +1,4 @@
+// utils/update_donation_record_helper.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -50,7 +51,7 @@ class UpdateDonationRecordHelper {
         return Theme(
           data: Theme.of(context).copyWith(
             colorScheme: ColorScheme.light(
-              primary: const Color(0xFFEC1313),
+              primary: const Color(0xFF2196F3), // Updated to blue
               onPrimary: Colors.white,
               onSurface: Theme.of(context).brightness == Brightness.dark
                   ? Colors.black
@@ -58,7 +59,7 @@ class UpdateDonationRecordHelper {
             ),
             textButtonTheme: TextButtonThemeData(
               style: TextButton.styleFrom(
-                foregroundColor: const Color(0xFFEC1313),
+                foregroundColor: const Color(0xFF2196F3), // Updated to blue
               ),
             ),
           ),

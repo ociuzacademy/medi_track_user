@@ -55,24 +55,24 @@ class CustomTextFormField extends StatelessWidget {
               color: isDark ? const Color(0xFF9CA3AF) : const Color(0xFF896161),
             ),
             filled: true,
-            fillColor: isDark ? const Color(0xFF374151) : Colors.white,
+            fillColor: isDark ? const Color(0xFF1A1F2A) : Colors.white,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide(
                 color: isDark
-                    ? const Color(0xFF4B5563)
+                    ? const Color(0xFF2D3748)
                     : const Color(0xFFE6DBDB),
               ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(color: Color(0xFFEC1313), width: 2),
+              borderSide: const BorderSide(color: Color(0xFF2196F3), width: 2),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide(
                 color: isDark
-                    ? const Color(0xFF4B5563)
+                    ? const Color(0xFF2D3748)
                     : const Color(0xFFE6DBDB),
               ),
             ),

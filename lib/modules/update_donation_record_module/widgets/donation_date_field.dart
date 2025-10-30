@@ -30,11 +30,11 @@ class DonationDateField extends StatelessWidget {
           child: Container(
             height: 56,
             decoration: BoxDecoration(
-              color: isDark ? const Color(0xFF374151) : Colors.white,
+              color: isDark ? const Color(0xFF1A1F2A) : Colors.white,
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
                 color: isDark
-                    ? const Color(0xFF4B5563)
+                    ? const Color(0xFF2D3748)
                     : const Color(0xFFE6DBDB),
               ),
             ),

@@ -18,10 +18,10 @@ class NoDonationsEmptyState extends StatelessWidget {
               width: 96,
               height: 96,
               decoration: BoxDecoration(
-                color: const Color(0xFFEC1313).withAlpha(25),
+                color: const Color(0xFF1565C0).withAlpha(25),
                 shape: BoxShape.circle,
               ),
-              child: const Icon(Icons.add, size: 48, color: Color(0xFFEC1313)),
+              child: const Icon(Icons.add, size: 48, color: Color(0xFF1565C0)),
             ),
             const SizedBox(height: 24),
             Text(

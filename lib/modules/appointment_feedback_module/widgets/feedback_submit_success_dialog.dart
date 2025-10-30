@@ -1,9 +1,10 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// feedback_submit_success_dialog.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class FeedbackSubmitSuccessDialog extends StatelessWidget {
   final VoidCallback closeSuccessDialog;
+
   const FeedbackSubmitSuccessDialog({
     super.key,
     required this.closeSuccessDialog,

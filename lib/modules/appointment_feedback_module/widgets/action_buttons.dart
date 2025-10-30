@@ -5,11 +5,13 @@ import 'package:google_fonts/google_fonts.dart';
 class ActionButtons extends StatelessWidget {
   final VoidCallback onSubmit;
   final VoidCallback onSkip;
+  final bool isSubmitting;
 
   const ActionButtons({
     super.key,
     required this.onSubmit,
     required this.onSkip,
+    required this.isSubmitting,
   });
 
   @override
@@ -21,7 +23,7 @@ class ActionButtons extends StatelessWidget {
           width: double.infinity,
           height: 48,
           child: ElevatedButton(
-            onPressed: onSubmit,
+            onPressed: isSubmitting ? null : onSubmit,
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xFF05c7a7),
               foregroundColor: Colors.white,
@@ -30,13 +32,22 @@ class ActionButtons extends StatelessWidget {
               ),
               elevation: 4,
             ),
-            child: Text(
-              'Submit Feedback',
-              style: GoogleFonts.lexend(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            child: isSubmitting
+                ? const SizedBox(
+                    width: 20,
+                    height: 20,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                    ),
+                  )
+                : Text(
+                    'Submit Feedback',
+                    style: GoogleFonts.lexend(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
           ),
         ),
 
@@ -47,7 +58,7 @@ class ActionButtons extends StatelessWidget {
           width: double.infinity,
           height: 48,
           child: TextButton(
-            onPressed: onSkip,
+            onPressed: isSubmitting ? null : onSkip,
             style: TextButton.styleFrom(
               foregroundColor: const Color(0xFF05c7a7),
               shape: RoundedRectangleBorder(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/modules/blood_donor_register_module/utils/blood_information_card_helper.dart';
 import 'package:provider/provider.dart';
 
 import 'package:medi_track/modules/blood_donor_register_module/providers/donor_form_provider.dart';
@@ -136,7 +137,9 @@ class BloodInformationSection extends StatelessWidget {
                   const SizedBox(height: 8),
                   GestureDetector(
                     onTap: () {
-                      _showDatePicker(context);
+                      BloodInformationCardHelper.showLastDonationDatePicker(
+                        context,
+                      );
                     },
                     child: Container(
                       height: 56,
@@ -199,30 +202,7 @@ class BloodInformationSection extends StatelessWidget {
                       ),
                     ),
                   ),
-                ],
-              ),
-
-              const SizedBox(height: 16),
-
-              // Willing to Donate Regularly
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Willing to Donate Regularly?',
-                    style: GoogleFonts.lexend(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: isDark
-                          ? const Color(0xFFE5E7EB)
-                          : const Color(0xFF111418),
-                    ),
-                  ),
-                  Switch(
-                    value: donorFormProvider.willingToDonateRegularly,
-                    onChanged: donorFormProvider.setWillingToDonateRegularly,
-                    activeColor: const Color(0xFF2A75C1),
-                  ),
+                  const SizedBox(height: 16),
                 ],
               ),
             ],
@@ -230,25 +210,5 @@ class BloodInformationSection extends StatelessWidget {
         );
       },
     );
-  }
-
-  void _showDatePicker(BuildContext context) {
-    final donorFormProvider = Provider.of<DonorFormProvider>(
-      context,
-      listen: false,
-    );
-
-    showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime.now(),
-    ).then((selectedDate) {
-      if (selectedDate != null) {
-        final formattedDate =
-            '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}';
-        donorFormProvider.setLastDonationDate(formattedDate);
-      }
-    });
   }
 }

@@ -85,12 +85,10 @@ class AppointmentProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  // Check if booking is valid
   bool get isBookingValid {
     return _selectedDepartment != null &&
         _selectedDate != null &&
-        _selectedDoctorId != null &&
-        _symptoms.isNotEmpty;
+        _selectedDoctorId != null;
   }
 
   // Confirm booking
@@ -103,7 +101,7 @@ class AppointmentProvider with ChangeNotifier {
         builder: (context) => AlertDialog(
           title: const Text('Booking Confirmed'),
           content: Text(
-            'Your appointment with ${selectedDoctor!['name']} has been confirmed. Approximate token number: $expectedToken',
+            'Your appointment with ${selectedDoctor!['name']} has been confirmed. Approximate token number: $expectedToken${_symptoms.isNotEmpty ? '\n\nSymptoms: $_symptoms' : ''}',
           ),
           actions: [
             TextButton(

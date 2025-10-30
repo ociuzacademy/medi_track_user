@@ -8,6 +8,7 @@ import 'package:medi_track/modules/prescription_details_module/widgets/doctor_de
 import 'package:medi_track/modules/prescription_details_module/widgets/doctors_notes_card.dart';
 import 'package:medi_track/modules/prescription_details_module/widgets/medicines_section.dart';
 import 'package:medi_track/modules/prescription_details_module/widgets/patient_details_card.dart';
+import 'package:medi_track/modules/prescription_details_module/widgets/symptoms_card.dart'; // Add this import
 
 class PrescriptionDetailsPage extends StatelessWidget {
   const PrescriptionDetailsPage({super.key});
@@ -75,6 +76,11 @@ class PrescriptionDetailsPage extends StatelessWidget {
 
                 // Patient Details Card
                 const PatientDetailsCard(),
+
+                const SizedBox(height: 16),
+
+                // Symptoms Card - NEW SECTION ADDED
+                const SymptomsCard(),
 
                 const SizedBox(height: 16),
 

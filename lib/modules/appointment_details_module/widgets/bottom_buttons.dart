@@ -20,64 +20,29 @@ class BottomButtons extends StatelessWidget {
           ),
         ),
       ),
-      child: Column(
-        children: [
-          // Rebook Appointment Button
-          SizedBox(
-            width: double.infinity,
-            height: 48,
-            child: ElevatedButton(
-              onPressed: () {
-                // Handle rebook appointment
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF04798b),
-                foregroundColor: Colors.white,
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-              child: Text(
-                'Rebook Appointment',
-                style: GoogleFonts.lexend(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 0.015,
-                ),
-              ),
+      child: // Back to My Appointments Button
+      SizedBox(
+        width: double.infinity,
+        height: 48,
+        child: TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          style: TextButton.styleFrom(
+            foregroundColor: isDark ? Colors.white : const Color(0xFF111718),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
             ),
           ),
-
-          const SizedBox(height: 12),
-
-          // Back to My Appointments Button
-          SizedBox(
-            width: double.infinity,
-            height: 48,
-            child: TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              style: TextButton.styleFrom(
-                foregroundColor: isDark
-                    ? Colors.white
-                    : const Color(0xFF111718),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-              child: Text(
-                'Back to My Appointments',
-                style: GoogleFonts.lexend(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 0.015,
-                ),
-              ),
+          child: Text(
+            'Back to My Appointments',
+            style: GoogleFonts.lexend(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 0.015,
             ),
           ),
-        ],
+        ),
       ),
     );
   }

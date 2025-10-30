@@ -42,13 +42,13 @@ class _UpdateDonationRecordPageState extends State<UpdateDonationRecordPage> {
           ),
           centerTitle: true,
           backgroundColor: isDark
-              ? const Color(0xFF221010)
-              : const Color(0xFFF8F6F6),
+              ? const Color(0xFF0F1A2A)
+              : const Color(0xFFF0F4F8),
           elevation: 0,
         ),
         backgroundColor: isDark
-            ? const Color(0xFF221010)
-            : const Color(0xFFF8F6F6),
+            ? const Color(0xFF0F1A2A)
+            : const Color(0xFFF0F4F8),
         body: Consumer<DonationFormProvider>(
           builder: (context, provider, child) {
             return Stack(
@@ -120,8 +120,8 @@ class _UpdateDonationRecordPageState extends State<UpdateDonationRecordPage> {
                           vertical: 16,
                         ),
                         color: isDark
-                            ? const Color(0xFF221010)
-                            : const Color(0xFFF8F6F6),
+                            ? const Color(0xFF0F1A2A)
+                            : const Color(0xFFF0F4F8),
                         child: Column(
                           children: [
                             SizedBox(
@@ -138,7 +138,7 @@ class _UpdateDonationRecordPageState extends State<UpdateDonationRecordPage> {
                                       }
                                     : null,
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: const Color(0xFFEC1313),
+                                  backgroundColor: const Color(0xFF2196F3),
                                   foregroundColor: Colors.white,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(12),
@@ -176,9 +176,9 @@ class _UpdateDonationRecordPageState extends State<UpdateDonationRecordPage> {
                                   Navigator.of(context).pop();
                                 },
                                 style: OutlinedButton.styleFrom(
-                                  foregroundColor: const Color(0xFFEC1313),
+                                  foregroundColor: const Color(0xFF2196F3),
                                   side: const BorderSide(
-                                    color: Color(0xFFEC1313),
+                                    color: Color(0xFF2196F3),
                                   ),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(12),

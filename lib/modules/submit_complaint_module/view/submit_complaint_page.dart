@@ -1,10 +1,10 @@
 // submit_complaint_page.dart
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:medi_track/modules/submit_complaint_module/utils/submit_complaint_helper.dart';
+import 'package:provider/provider.dart';
 
+import 'package:medi_track/modules/submit_complaint_module/providers/complaint_form_provider.dart';
+import 'package:medi_track/modules/submit_complaint_module/utils/submit_complaint_helper.dart';
 import 'package:medi_track/modules/submit_complaint_module/widgets/action_buttons.dart';
 import 'package:medi_track/modules/submit_complaint_module/widgets/attach_file_button.dart';
 import 'package:medi_track/modules/submit_complaint_module/widgets/attached_image_preview.dart';
@@ -26,175 +26,154 @@ class SubmitComplaintPage extends StatefulWidget {
 class _SubmitComplaintPageState extends State<SubmitComplaintPage> {
   late final SubmitComplaintHelper _submitComplaintHelper;
 
-  final TextEditingController _subjectController = TextEditingController();
-  final TextEditingController _descriptionController = TextEditingController();
-
-  // ValueNotifiers for state management
-  final ValueNotifier<String?> _selectedCategory = ValueNotifier<String?>(null);
-  final ValueNotifier<File?> _attachedImage = ValueNotifier<File?>(null);
-  final ValueNotifier<bool> _isSubmitting = ValueNotifier<bool>(false);
-
   @override
   void initState() {
     super.initState();
-    _submitComplaintHelper = SubmitComplaintHelper(
-      context: context,
-      subjectController: _subjectController,
-      descriptionController: _descriptionController,
-      selectedCategory: _selectedCategory,
-      attachedImage: _attachedImage,
-      isSubmitting: _isSubmitting,
-    );
-  }
-
-  @override
-  void dispose() {
-    _subjectController.dispose();
-    _descriptionController.dispose();
-    _selectedCategory.dispose();
-    _attachedImage.dispose();
-    _isSubmitting.dispose();
-    super.dispose();
+    _submitComplaintHelper = SubmitComplaintHelper();
   }
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        title: Text(
-          'Submit Complaint',
-          style: GoogleFonts.lexend(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            letterSpacing: -0.015,
-            color: isDark ? const Color(0xFFE0E0E0) : const Color(0xFF333333),
+    return ChangeNotifierProvider(
+      create: (_) => ComplaintFormProvider(),
+      child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () => Navigator.of(context).pop(),
           ),
+          title: Text(
+            'Submit Complaint',
+            style: GoogleFonts.lexend(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              letterSpacing: -0.015,
+              color: isDark ? const Color(0xFFE0E0E0) : const Color(0xFF333333),
+            ),
+          ),
+          centerTitle: true,
+          backgroundColor: isDark
+              ? const Color(0xFF0F2023)
+              : const Color(0xFFF5F8F8),
+          elevation: 1,
+          foregroundColor: isDark
+              ? const Color(0xFFE0E0E0)
+              : const Color(0xFF333333),
         ),
-        centerTitle: true,
         backgroundColor: isDark
             ? const Color(0xFF0F2023)
             : const Color(0xFFF5F8F8),
-        elevation: 1,
-        foregroundColor: isDark
-            ? const Color(0xFFE0E0E0)
-            : const Color(0xFF333333),
-      ),
-      backgroundColor: isDark
-          ? const Color(0xFF0F2023)
-          : const Color(0xFFF5F8F8),
-      body: ValueListenableBuilder<bool>(
-        valueListenable: _isSubmitting,
-        builder: (context, isSubmitting, _) {
-          return Stack(
-            children: [
-              // Main Content
-              SingleChildScrollView(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  children: [
-                    // Form Container
-                    Container(
-                      constraints: const BoxConstraints(maxWidth: 400),
-                      child: Column(
-                        children: [
-                          // Full Name Field (Read-only)
-                          ReadOnlyField(label: 'Full Name', value: 'Jane Doe'),
+        body: Consumer<ComplaintFormProvider>(
+          builder: (context, provider, _) {
+            return Stack(
+              children: [
+                // Main Content
+                SingleChildScrollView(
+                  padding: const EdgeInsets.all(16),
+                  child: Form(
+                    key: provider.formKey,
+                    child: Column(
+                      children: [
+                        // Form Container
+                        Container(
+                          constraints: const BoxConstraints(maxWidth: 400),
+                          child: Column(
+                            children: [
+                              // Full Name Field (Read-only)
+                              ReadOnlyField(
+                                label: 'Full Name',
+                                value: 'Jane Doe',
+                              ),
 
-                          const SizedBox(height: 16),
+                              const SizedBox(height: 16),
 
-                          // Email or Phone Number Field (Read-only)
-                          ReadOnlyField(
-                            label: 'Email or Phone Number',
-                            value: 'jane.doe@email.com',
-                          ),
+                              // Email or Phone Number Field (Read-only)
+                              ReadOnlyField(
+                                label: 'Email or Phone Number',
+                                value: 'jane.doe@email.com',
+                              ),
 
-                          const SizedBox(height: 16),
+                              const SizedBox(height: 16),
 
-                          // Complaint Category Dropdown
-                          ValueListenableBuilder<String?>(
-                            valueListenable: _selectedCategory,
-                            builder: (context, selectedCategory, _) {
-                              return ComplaintCategoryDropdown(
-                                selectedCategory: selectedCategory,
+                              // Complaint Category Dropdown
+                              ComplaintCategoryDropdown(
+                                selectedCategory: provider.selectedCategory,
                                 onCategoryChanged: (category) {
-                                  _selectedCategory.value = category;
+                                  provider.selectedCategory = category;
                                 },
-                              );
-                            },
-                          ),
+                                validator: provider.validateCategory,
+                              ),
 
-                          const SizedBox(height: 16),
+                              const SizedBox(height: 16),
 
-                          // Subject/Title Field
-                          ComplaintSubjectField(controller: _subjectController),
+                              // Subject/Title Field
+                              ComplaintSubjectField(
+                                controller: provider.subjectController,
+                                validator: provider.validateSubject,
+                              ),
 
-                          const SizedBox(height: 16),
+                              const SizedBox(height: 16),
 
-                          // Complaint Description Text Area
-                          ComplaintDescriptionField(
-                            controller: _descriptionController,
-                          ),
+                              // Complaint Description Text Area
+                              ComplaintDescriptionField(
+                                controller: provider.descriptionController,
+                                validator: provider.validateDescription,
+                              ),
 
-                          const SizedBox(height: 16),
+                              const SizedBox(height: 16),
 
-                          // Attach File Button
-                          AttachFileButton(
-                            onPressed: _submitComplaintHelper.pickImage,
-                          ),
+                              // Attach File Button
+                              AttachFileButton(
+                                onPressed: () => _submitComplaintHelper
+                                    .pickImage(provider, context),
+                              ),
 
-                          // Attached Image Preview
-                          ValueListenableBuilder<File?>(
-                            valueListenable: _attachedImage,
-                            builder: (context, attachedImage, _) {
-                              return attachedImage != null
+                              // Attached Image Preview
+                              provider.attachedImage != null
                                   ? Padding(
                                       padding: const EdgeInsets.only(top: 16),
                                       child: AttachedImagePreview(
-                                        imageFile: attachedImage,
-                                        onRemove:
-                                            _submitComplaintHelper.removeImage,
+                                        imageFile: provider.attachedImage!,
+                                        onRemove: () => provider.removeImage(),
                                       ),
                                     )
-                                  : const SizedBox.shrink();
-                            },
+                                  : const SizedBox.shrink(),
+
+                              const SizedBox(height: 24),
+
+                              // Action Buttons
+                              ActionButtons(
+                                onReset: () => provider.resetForm(),
+                                onSubmit: () => _submitComplaintHelper
+                                    .submitComplaint(provider, context),
+                                isSubmitting: provider.isSubmitting,
+                              ),
+                            ],
                           ),
-
-                          const SizedBox(height: 24),
-
-                          // Action Buttons
-                          ActionButtons(
-                            onReset: _submitComplaintHelper.resetForm,
-                            onSubmit: _submitComplaintHelper.submitComplaint,
-                            isSubmitting: isSubmitting,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              // Loading Overlay
-              if (isSubmitting)
-                Container(
-                  color: Colors.black.withValues(alpha: 0.5),
-                  child: const Center(
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        Color(0xFF04798B),
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-            ],
-          );
-        },
+
+                // Loading Overlay
+                if (provider.isSubmitting)
+                  Container(
+                    color: Colors.black.withValues(alpha: 0.5),
+                    child: const Center(
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          Color(0xFF04798B),
+                        ),
+                      ),
+                    ),
+                  ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }

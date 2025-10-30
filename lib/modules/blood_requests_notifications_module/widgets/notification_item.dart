@@ -1,5 +1,4 @@
-// widgets/notification_card.dart
-
+// widgets/notification_item.dart
 import 'package:flutter/material.dart';
 
 class NotificationItem extends StatelessWidget {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medi_track/modules/update_donation_record_module/view/update_donation_record_page.dart';
 
 class BloodDonationHistoryHelper {
   const BloodDonationHistoryHelper();
@@ -19,8 +20,11 @@ class BloodDonationHistoryHelper {
           ElevatedButton(
             onPressed: () {
               Navigator.of(context).pop();
-              // Add donation logic here
+              Navigator.push(context, UpdateDonationRecordPage.route());
             },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFF1565C0),
+            ),
             child: const Text('Add'),
           ),
         ],

@@ -41,6 +41,39 @@ class BloodRequest {
 enum Urgency { high, medium, low }
 
 extension UrgencyExtension on Urgency {
+  Color get color {
+    switch (this) {
+      case Urgency.high:
+        return const Color(0xFFF44336); // Keep red for high urgency
+      case Urgency.medium:
+        return const Color(0xFFFF9800); // Orange for medium
+      case Urgency.low:
+        return const Color(0xFF2196F3); // Blue for low
+    }
+  }
+
+  Color get backgroundColor {
+    switch (this) {
+      case Urgency.high:
+        return const Color(0xFFFFEBEE);
+      case Urgency.medium:
+        return const Color(0xFFFFF3E0);
+      case Urgency.low:
+        return const Color(0xFFE3F2FD);
+    }
+  }
+
+  Color get darkBackgroundColor {
+    switch (this) {
+      case Urgency.high:
+        return const Color(0xFF2A1A1A);
+      case Urgency.medium:
+        return const Color(0xFF2A241A);
+      case Urgency.low:
+        return const Color(0xFF1A2A2A);
+    }
+  }
+
   String get displayName {
     switch (this) {
       case Urgency.high:
@@ -49,39 +82,6 @@ extension UrgencyExtension on Urgency {
         return 'Medium Urgency';
       case Urgency.low:
         return 'Low Urgency';
-    }
-  }
-
-  Color get color {
-    switch (this) {
-      case Urgency.high:
-        return Colors.red;
-      case Urgency.medium:
-        return Colors.amber;
-      case Urgency.low:
-        return Colors.green;
-    }
-  }
-
-  Color get backgroundColor {
-    switch (this) {
-      case Urgency.high:
-        return Colors.red.shade100;
-      case Urgency.medium:
-        return Colors.amber.shade100;
-      case Urgency.low:
-        return Colors.green.shade100;
-    }
-  }
-
-  Color get darkBackgroundColor {
-    switch (this) {
-      case Urgency.high:
-        return Colors.red.shade900.withValues(alpha: 0.4);
-      case Urgency.medium:
-        return Colors.amber.shade900.withValues(alpha: 0.4);
-      case Urgency.low:
-        return Colors.green.shade900.withValues(alpha: 0.4);
     }
   }
 }

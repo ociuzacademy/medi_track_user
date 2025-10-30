@@ -5,16 +5,19 @@ import 'package:google_fonts/google_fonts.dart';
 class ComplaintCategoryDropdown extends StatelessWidget {
   final String? selectedCategory;
   final ValueChanged<String?> onCategoryChanged;
+  final String? Function(String?)? validator;
 
   const ComplaintCategoryDropdown({
     super.key,
     required this.selectedCategory,
     required this.onCategoryChanged,
+    this.validator,
   });
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final errorText = validator?.call(selectedCategory);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,10 +34,14 @@ class ComplaintCategoryDropdown extends StatelessWidget {
         Container(
           height: 56,
           decoration: BoxDecoration(
-            color: isDark ? const Color(0xFF2A1A1A) : Colors.white,
+            color: isDark ? const Color(0x0DFFFFFF) : const Color(0x0D000000),
             borderRadius: BorderRadius.circular(8),
             border: Border.all(
-              color: isDark ? const Color(0xFF443333) : const Color(0xFFE0E0E0),
+              color: errorText != null
+                  ? Colors.red
+                  : isDark
+                  ? const Color(0xFF443333)
+                  : const Color(0xFFE0E0E0),
             ),
             boxShadow: [
               BoxShadow(
@@ -69,6 +76,7 @@ class ComplaintCategoryDropdown extends StatelessWidget {
                     focusedBorder: InputBorder.none,
                     errorBorder: InputBorder.none,
                     disabledBorder: InputBorder.none,
+                    errorStyle: TextStyle(height: 0, fontSize: 0),
                   ),
                   style: GoogleFonts.lexend(
                     fontSize: 16,
@@ -77,13 +85,13 @@ class ComplaintCategoryDropdown extends StatelessWidget {
                         : const Color(0xFF333333),
                   ),
                   dropdownColor: isDark
-                      ? const Color(0xFF2A1A1A)
-                      : Colors.white,
+                      ? const Color(0xFF1A2A2A)
+                      : const Color(0xFFF8F8F8),
                   icon: Icon(
                     Icons.arrow_drop_down,
                     color: isDark
-                        ? const Color(0xFFA08F8F)
-                        : const Color(0xFF886364),
+                        ? const Color(0xFFE0E0E0)
+                        : const Color(0xFF333333),
                   ),
                   items: const [
                     DropdownMenuItem(
@@ -109,6 +117,13 @@ class ComplaintCategoryDropdown extends StatelessWidget {
             ],
           ),
         ),
+        if (errorText != null) ...[
+          const SizedBox(height: 4),
+          Text(
+            errorText,
+            style: GoogleFonts.lexend(fontSize: 12, color: Colors.red),
+          ),
+        ],
       ],
     );
   }

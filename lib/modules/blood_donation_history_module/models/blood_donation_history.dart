@@ -57,9 +57,9 @@ extension DonationStatusExtension on DonationStatus {
   Color get color {
     switch (this) {
       case DonationStatus.successful:
-        return const Color(0xFF16A34A);
+        return const Color.fromARGB(255, 70, 236, 131);
       case DonationStatus.pending:
-        return const Color(0xFFEA580C);
+        return const Color.fromARGB(255, 255, 131, 82);
     }
   }
 

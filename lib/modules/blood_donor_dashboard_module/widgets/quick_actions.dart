@@ -37,7 +37,7 @@ class QuickActions extends StatelessWidget {
             children: [
               DonorDashboardActionItem(
                 icon: Icons.edit_note,
-                title: 'Update Donor Information',
+                title: 'Update Donation Record',
                 isDark: isDark,
                 onTap: () {
                   Navigator.push(context, UpdateDonationRecordPage.route());

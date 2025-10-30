@@ -29,6 +29,10 @@ class _RescheduledAppointmentsPageState
   @override
   void initState() {
     super.initState();
+    _rescheduledAppointmentsHelper = RescheduledAppointmentsHelper(
+      context: context,
+      appointments: _appointments,
+    );
   }
 
   @override

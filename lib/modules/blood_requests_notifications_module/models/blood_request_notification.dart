@@ -64,22 +64,22 @@ extension UrgencyExtension on Urgency {
   Color get color {
     switch (this) {
       case Urgency.high:
-        return const Color(0xFFD93B3B);
+        return const Color(0xFFF44336); // Keep red for high urgency
       case Urgency.medium:
-        return const Color(0xFFFFA726);
+        return const Color(0xFFFF9800); // Orange for medium
       case Urgency.low:
-        return const Color(0xFF66BB6A);
+        return const Color(0xFF2196F3); // Blue for low
     }
   }
 
   Color get backgroundColor {
     switch (this) {
       case Urgency.high:
-        return const Color(0xFFD93B3B).withValues(alpha: 0.2);
+        return const Color(0xFFF44336).withValues(alpha: 0.2);
       case Urgency.medium:
-        return const Color(0xFFFFA726).withValues(alpha: 0.2);
+        return const Color(0xFFFF9800).withValues(alpha: 0.2);
       case Urgency.low:
-        return const Color(0xFF66BB6A).withValues(alpha: 0.2);
+        return const Color(0xFF2196F3).withValues(alpha: 0.2);
     }
   }
 }

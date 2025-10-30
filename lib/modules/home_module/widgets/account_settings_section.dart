@@ -45,21 +45,13 @@ class AccountSettingsSection extends StatelessWidget {
             ),
           ),
 
-          // Settings Items
-          ProfileSettingItem(
-            icon: Icons.lock,
-            title: 'Change Password',
-            onTap: () {
-              // Handle change password
-            },
-            isFirst: true,
-          ),
           ProfileSettingItem(
             icon: Icons.notifications,
             title: 'Manage Notifications',
             onTap: () {
               Navigator.push(context, RescheduledAppointmentsPage.route());
             },
+            isFirst: true,
           ),
           ProfileSettingItem(
             icon: Icons.report,

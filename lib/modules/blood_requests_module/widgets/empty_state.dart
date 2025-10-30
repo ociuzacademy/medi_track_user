@@ -18,13 +18,13 @@ class EmptyState extends StatelessWidget {
               width: 96,
               height: 96,
               decoration: BoxDecoration(
-                color: const Color(0xFFEC1313).withValues(alpha: 0.1),
+                color: const Color(0xFF2196F3).withValues(alpha: 0.1),
                 shape: BoxShape.circle,
               ),
               child: const Icon(
                 Icons.checklist,
                 size: 48,
-                color: Color(0xFFEC1313),
+                color: Color(0xFF2196F3),
               ),
             ),
             const SizedBox(height: 16),

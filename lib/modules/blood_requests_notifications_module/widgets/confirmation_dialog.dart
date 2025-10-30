@@ -23,7 +23,7 @@ class ConfirmationDialog extends StatelessWidget {
         width: mediaQuery.size.width,
         padding: const EdgeInsets.all(24),
         decoration: BoxDecoration(
-          color: isDark ? const Color(0xFF3E2B2B) : Colors.white,
+          color: isDark ? const Color(0xFF1A1F2A) : Colors.white,
           borderRadius: BorderRadius.circular(12),
         ),
         child: Column(
@@ -65,7 +65,7 @@ class ConfirmationDialog extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
-                      color: const Color(0xFFD93B3B),
+                      color: const Color(0xFF2196F3),
                     ),
                   ),
                 ),
@@ -73,7 +73,7 @@ class ConfirmationDialog extends StatelessWidget {
                 ElevatedButton(
                   onPressed: onYes,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFD93B3B),
+                    backgroundColor: const Color(0xFF2196F3),
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(
                       horizontal: 24,

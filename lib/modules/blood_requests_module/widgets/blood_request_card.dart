@@ -15,10 +15,10 @@ class BloodRequestCard extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF1A1A1A) : Colors.white,
+        color: isDark ? const Color(0xFF1A1F2A) : Colors.white,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: isDark ? const Color(0xFF404040) : const Color(0xFFE5E5E5),
+          color: isDark ? const Color(0xFF2D3748) : const Color(0xFFE2E8F0),
           width: 1,
         ),
         boxShadow: [
@@ -54,6 +54,17 @@ class BloodRequestCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // Patient name
+                Text(
+                  request.patientName,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: isDark ? Colors.white : Colors.black,
+                  ),
+                ),
+                const SizedBox(height: 12),
+
                 // Blood group and units required in a row
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

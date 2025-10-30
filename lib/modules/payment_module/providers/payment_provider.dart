@@ -17,7 +17,7 @@ class PaymentProvider with ChangeNotifier {
 
   // Payment details
   final String appointmentDetails = 'Cardiology Consultation';
-  final double totalAmount = 3999.00;
+  final double totalAmount = 100.00;
 
   // Getters
   PaymentMethod get selectedPaymentMethod => _selectedPaymentMethod;

@@ -60,17 +60,30 @@ class PatientInfoSection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 16),
-        // Symptoms Text Field
+        // Symptoms Text Field (Optional)
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Reason for Visit / Symptoms',
-              style: GoogleFonts.inter(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: isDark ? Colors.white : const Color(0xFF111518),
-              ),
+            Row(
+              children: [
+                Text(
+                  'Reason for Visit / Symptoms',
+                  style: GoogleFonts.inter(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: isDark ? Colors.white : const Color(0xFF111518),
+                  ),
+                ),
+                const SizedBox(width: 4),
+                Text(
+                  '(Optional)',
+                  style: GoogleFonts.inter(
+                    fontSize: 14,
+                    color: (isDark ? Colors.white : const Color(0xFF111518))
+                        .withValues(alpha: 0.6),
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 8),
             Container(
@@ -90,7 +103,7 @@ class PatientInfoSection extends StatelessWidget {
                 },
                 maxLines: 4,
                 decoration: InputDecoration(
-                  hintText: 'e.g. Chest pain, annual check-up...',
+                  hintText: 'e.g. Chest pain, annual check-up... (Optional)',
                   hintStyle: GoogleFonts.inter(
                     color: (isDark ? Colors.white : const Color(0xFF111518))
                         .withValues(alpha: 0.5),

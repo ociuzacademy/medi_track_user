@@ -28,10 +28,10 @@ class DonationTypeDropdown extends StatelessWidget {
         Container(
           height: 56,
           decoration: BoxDecoration(
-            color: isDark ? const Color(0xFF374151) : Colors.white,
+            color: isDark ? const Color(0xFF1A1F2A) : Colors.white,
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
-              color: isDark ? const Color(0xFF4B5563) : const Color(0xFFE6DBDB),
+              color: isDark ? const Color(0xFF2D3748) : const Color(0xFFE6DBDB),
             ),
           ),
           child: Padding(
@@ -50,7 +50,7 @@ class DonationTypeDropdown extends StatelessWidget {
                   fontSize: 16,
                   color: isDark ? Colors.white : const Color(0xFF181111),
                 ),
-                dropdownColor: isDark ? const Color(0xFF374151) : Colors.white,
+                dropdownColor: isDark ? const Color(0xFF1A1F2A) : Colors.white,
                 onChanged: (DonationType? newValue) {
                   if (newValue != null) {
                     provider.updateDonationType(newValue);

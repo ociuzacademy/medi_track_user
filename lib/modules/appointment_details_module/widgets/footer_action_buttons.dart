@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/modules/appointment_feedback_module/view/appointment_feedback_page.dart';
+import 'package:medi_track/modules/appointment_module/view/appointment_page.dart';
 
 class FooterActionButtons extends StatelessWidget {
   const FooterActionButtons({super.key});
@@ -98,7 +99,7 @@ class FooterActionButtons extends StatelessWidget {
             height: 48,
             child: ElevatedButton(
               onPressed: () {
-                // Handle book follow-up
+                Navigator.push(context, AppointmentPage.route());
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF007C91),

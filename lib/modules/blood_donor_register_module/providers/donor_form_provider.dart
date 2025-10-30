@@ -4,7 +4,6 @@ class DonorFormProvider with ChangeNotifier {
   // Form state
   String? _selectedBloodGroup;
   String? _lastDonationDate;
-  bool _willingToDonateRegularly = false;
   bool _underMedication = false;
   bool _recentIllness = true;
   bool _confirmationChecked = false;
@@ -18,7 +17,6 @@ class DonorFormProvider with ChangeNotifier {
   // Getters
   String? get selectedBloodGroup => _selectedBloodGroup;
   String? get lastDonationDate => _lastDonationDate;
-  bool get willingToDonateRegularly => _willingToDonateRegularly;
   bool get underMedication => _underMedication;
   bool get recentIllness => _recentIllness;
   bool get confirmationChecked => _confirmationChecked;
@@ -35,11 +33,6 @@ class DonorFormProvider with ChangeNotifier {
 
   void setLastDonationDate(String? value) {
     _lastDonationDate = value;
-    notifyListeners();
-  }
-
-  void setWillingToDonateRegularly(bool value) {
-    _willingToDonateRegularly = value;
     notifyListeners();
   }
 
@@ -93,7 +86,6 @@ class DonorFormProvider with ChangeNotifier {
   void resetForm() {
     _selectedBloodGroup = null;
     _lastDonationDate = null;
-    _willingToDonateRegularly = false;
     _underMedication = false;
     _recentIllness = true;
     _confirmationChecked = false;

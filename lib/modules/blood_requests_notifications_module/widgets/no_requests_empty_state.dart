@@ -15,10 +15,10 @@ class NoRequestsEmptyState extends StatelessWidget {
         decoration: BoxDecoration(
           color: isDark
               ? Colors.white.withValues(alpha: 0.05)
-              : const Color(0xFFF8F6F6),
+              : const Color(0xFFF0F4F8),
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: isDark ? const Color(0xFF6B7280) : const Color(0xFFD1D5DB),
+            color: isDark ? const Color(0xFF2D3748) : const Color(0xFFE2E8F0),
             style: BorderStyle.solid,
             width: 1,
           ),
@@ -31,13 +31,13 @@ class NoRequestsEmptyState extends StatelessWidget {
               width: 64,
               height: 64,
               decoration: BoxDecoration(
-                color: const Color(0xFFD93B3B).withValues(alpha: 0.1),
+                color: const Color(0xFF2196F3).withValues(alpha: 0.1),
                 shape: BoxShape.circle,
               ),
               child: const Icon(
                 Icons.notifications_off,
                 size: 32,
-                color: Color(0xFFD93B3B),
+                color: Color(0xFF2196F3),
               ),
             ),
             const SizedBox(height: 16),

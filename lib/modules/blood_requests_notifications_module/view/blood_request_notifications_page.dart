@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/modules/blood_requests_notifications_module/models/blood_request_notification.dart';
-import 'package:medi_track/modules/blood_requests_notifications_module/utils/blood_request_notifications_helper.dart'; // Fixed import
+import 'package:medi_track/modules/blood_requests_notifications_module/utils/blood_request_notifications_helper.dart';
 import 'package:medi_track/modules/blood_requests_notifications_module/widgets/confirmation_dialog.dart';
 import 'package:medi_track/modules/blood_requests_notifications_module/widgets/no_requests_empty_state.dart';
 import 'package:medi_track/modules/blood_requests_notifications_module/widgets/notification_card.dart';
@@ -24,8 +24,7 @@ class _BloodRequestNotificationsPageState
   late final ValueNotifier<List<BloodRequestNotification>> _notifications;
   late final ValueNotifier<BloodRequestNotification?> _selectedNotification;
   late final ValueNotifier<bool> _showConfirmationDialog;
-  late final BloodRequestNotificationsHelper
-  _bloodRequestNotificationsHelper; // Fixed class name
+  late final BloodRequestNotificationsHelper _bloodRequestNotificationsHelper;
 
   @override
   void initState() {
@@ -91,13 +90,13 @@ class _BloodRequestNotificationsPageState
           ),
         ),
         backgroundColor: isDark
-            ? const Color(0xFF221010)
-            : const Color(0xFFF8F6F6),
+            ? const Color(0xFF0F1A2A)
+            : const Color(0xFFF0F4F8),
         elevation: 0,
       ),
       backgroundColor: isDark
-          ? const Color(0xFF221010)
-          : const Color(0xFFF8F6F6),
+          ? const Color(0xFF0F1A2A)
+          : const Color(0xFFF0F4F8),
       body: Stack(
         children: [
           Padding(

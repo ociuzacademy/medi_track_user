@@ -1,7 +1,5 @@
 // utils/blood_request_notifications_helper.dart
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-
 import 'package:medi_track/modules/blood_requests_notifications_module/models/blood_request_notification.dart';
 
 class BloodRequestNotificationsHelper {

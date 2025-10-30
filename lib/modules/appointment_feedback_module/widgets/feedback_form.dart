@@ -3,26 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:medi_track/modules/appointment_feedback_module/widgets/comments_section.dart';
 import 'package:medi_track/modules/appointment_feedback_module/widgets/rating_section.dart';
 import 'package:medi_track/modules/appointment_feedback_module/widgets/slider_section.dart';
+import 'package:medi_track/modules/appointment_feedback_module/providers/feedback_provider.dart';
 
 class FeedbackForm extends StatelessWidget {
-  final int overallRating;
-  final ValueChanged<int> onRatingChanged;
-  final double doctorInteraction;
-  final ValueChanged<double> onDoctorInteractionChanged;
-  final double hospitalService;
-  final ValueChanged<double> onHospitalServiceChanged;
-  final TextEditingController commentsController;
+  final FeedbackProvider feedbackProvider;
 
-  const FeedbackForm({
-    super.key,
-    required this.overallRating,
-    required this.onRatingChanged,
-    required this.doctorInteraction,
-    required this.onDoctorInteractionChanged,
-    required this.hospitalService,
-    required this.onHospitalServiceChanged,
-    required this.commentsController,
-  });
+  const FeedbackForm({super.key, required this.feedbackProvider});
 
   @override
   Widget build(BuildContext context) {
@@ -47,8 +33,8 @@ class FeedbackForm extends StatelessWidget {
         children: [
           // Overall Rating
           RatingSection(
-            overallRating: overallRating,
-            onRatingChanged: onRatingChanged,
+            overallRating: feedbackProvider.overallRating,
+            onRatingChanged: feedbackProvider.setOverallRating,
             context: context,
           ),
 
@@ -58,8 +44,8 @@ class FeedbackForm extends StatelessWidget {
           SliderSection(
             context: context,
             label: 'How was the interaction with the doctor?',
-            value: doctorInteraction,
-            onChanged: onDoctorInteractionChanged,
+            value: feedbackProvider.doctorInteraction,
+            onChanged: feedbackProvider.setDoctorInteraction,
           ),
 
           const SizedBox(height: 24),
@@ -68,15 +54,15 @@ class FeedbackForm extends StatelessWidget {
           SliderSection(
             context: context,
             label: 'How was the hospital service and waiting experience?',
-            value: hospitalService,
-            onChanged: onHospitalServiceChanged,
+            value: feedbackProvider.hospitalService,
+            onChanged: feedbackProvider.setHospitalService,
           ),
 
           const SizedBox(height: 24),
 
           // Additional Comments
           CommentsSection(
-            commentsController: commentsController,
+            commentsController: feedbackProvider.commentsController,
             context: context,
           ),
         ],

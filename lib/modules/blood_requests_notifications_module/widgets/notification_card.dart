@@ -20,7 +20,7 @@ class NotificationCard extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF2C1F1F) : Colors.white,
+        color: isDark ? const Color(0xFF1A1F2A) : Colors.white,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
@@ -88,7 +88,7 @@ class NotificationCard extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: onAccept,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFFD93B3B),
+                  backgroundColor: const Color(0xFF2196F3),
                   foregroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),

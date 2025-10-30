@@ -4,8 +4,13 @@ import 'package:google_fonts/google_fonts.dart';
 
 class ComplaintDescriptionField extends StatelessWidget {
   final TextEditingController controller;
+  final String? Function(String?)? validator;
 
-  const ComplaintDescriptionField({super.key, required this.controller});
+  const ComplaintDescriptionField({
+    super.key,
+    required this.controller,
+    this.validator,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +30,11 @@ class ComplaintDescriptionField extends StatelessWidget {
         const SizedBox(height: 8),
         Container(
           decoration: BoxDecoration(
+            color: isDark ? const Color(0x0DFFFFFF) : const Color(0x0D000000),
             borderRadius: BorderRadius.circular(8),
+            border: Border.all(
+              color: isDark ? const Color(0xFF443333) : const Color(0xFFE0E0E0),
+            ),
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withValues(alpha: 0.05),
@@ -34,47 +43,33 @@ class ComplaintDescriptionField extends StatelessWidget {
               ),
             ],
           ),
-          child: TextField(
-            controller: controller,
-            maxLines: 6,
-            decoration: InputDecoration(
-              hintText: 'Please provide as much detail as possible...',
-              hintStyle: GoogleFonts.lexend(
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: TextFormField(
+              controller: controller,
+              validator: validator,
+              maxLines: 6,
+              decoration: InputDecoration(
+                hintText: 'Please provide as much detail as possible...',
+                hintStyle: GoogleFonts.lexend(
+                  fontSize: 16,
+                  color: isDark
+                      ? const Color(0xFFA08F8F)
+                      : const Color(0xFF886364),
+                ),
+                border: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                focusedBorder: InputBorder.none,
+                errorBorder: InputBorder.none,
+                disabledBorder: InputBorder.none,
+                errorStyle: const TextStyle(fontSize: 12, height: 0.8),
+              ),
+              style: GoogleFonts.lexend(
                 fontSize: 16,
                 color: isDark
-                    ? const Color(0xFFA08F8F)
-                    : const Color(0xFF886364),
+                    ? const Color(0xFFE0E0E0)
+                    : const Color(0xFF333333),
               ),
-              filled: true,
-              fillColor: isDark ? const Color(0xFF2A1A1A) : Colors.white,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide(
-                  color: isDark
-                      ? const Color(0xFF443333)
-                      : const Color(0xFFE0E0E0),
-                ),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide(
-                  color: isDark
-                      ? const Color(0xFF443333)
-                      : const Color(0xFFE0E0E0),
-                ),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: const BorderSide(
-                  color: Color(0xFF04798B),
-                  width: 2,
-                ),
-              ),
-              contentPadding: const EdgeInsets.all(16),
-            ),
-            style: GoogleFonts.lexend(
-              fontSize: 16,
-              color: isDark ? const Color(0xFFE0E0E0) : const Color(0xFF333333),
             ),
           ),
         ),
