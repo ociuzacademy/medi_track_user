@@ -26,7 +26,6 @@ class AppointmentBookingProvider with ChangeNotifier {
   List<Department>? _departments;
 
   List<AvailableDoctor>? _doctors;
-  int? _expectedToken;
 
   // Getters
   Department? get selectedDepartment => _selectedDepartment;
@@ -35,7 +34,6 @@ class AppointmentBookingProvider with ChangeNotifier {
   String get symptoms => _symptoms;
   List<Department>? get departments => _departments;
   List<AvailableDoctor>? get doctors => _doctors;
-  int? get expectedToken => _expectedToken;
 
   // Setters
   void setDepartments(List<Department>? departments) {
@@ -90,9 +88,8 @@ class AppointmentBookingProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void setExpectedToken(int? expectedToken) {
-    _expectedToken = expectedToken;
-    notifyListeners();
+  bool get shouldGetExpectedToken {
+    return _selectedDoctor != null && _selectedDate != null;
   }
 
   bool get isBookingValid {
@@ -111,7 +108,7 @@ class AppointmentBookingProvider with ChangeNotifier {
         builder: (context) => AlertDialog(
           title: const Text('Booking Confirmed'),
           content: Text(
-            'Your appointment with ${selectedDoctor!.name} has been confirmed. Approximate token number: $expectedToken${_symptoms.isNotEmpty ? '\n\nSymptoms: $_symptoms' : ''}',
+            'Your appointment with ${selectedDoctor!.name} has been confirmed.${_symptoms.isNotEmpty ? '\n\nSymptoms: $_symptoms' : ''}',
           ),
           actions: [
             TextButton(

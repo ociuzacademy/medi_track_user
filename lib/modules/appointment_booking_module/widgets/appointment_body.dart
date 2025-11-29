@@ -47,18 +47,6 @@ class AppointmentBody extends StatelessWidget {
                 }
               },
             ),
-            BlocListener<ExpectedTokenCubit, ExpectedTokenState>(
-              listener: (context, state) {
-                switch (state) {
-                  case ExpectedTokenSuccess(:final expectedToken):
-                    appointmentProvider.setExpectedToken(
-                      expectedToken.expectedTokenNumber,
-                    );
-                    break;
-                  default:
-                }
-              },
-            ),
           ],
           child: const SingleChildScrollView(
             padding: EdgeInsets.symmetric(horizontal: 16),

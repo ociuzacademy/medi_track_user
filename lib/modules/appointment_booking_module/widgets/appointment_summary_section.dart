@@ -1,5 +1,7 @@
 // appointment_summary_section.dart
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medi_track/core/export/bloc_export.dart';
 import 'package:medi_track/modules/appointment_booking_module/utils/appointment_summary_section_helper.dart';
 import 'package:medi_track/modules/appointment_booking_module/widgets/appointment_summary_row.dart';
 import 'package:medi_track/modules/appointment_booking_module/widgets/dashed_divider_widget.dart';
@@ -50,39 +52,79 @@ class AppointmentSummarySection extends StatelessWidget {
           ),
           child: Column(
             children: [
-              // Token Number
-              appointmentBookingProvider.expectedToken != null
-                  ? Padding(
-                      padding: const EdgeInsets.only(bottom: 12),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Expected Token No.',
-                            style: GoogleFonts.inter(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
-                              color: isDark
-                                  ? Colors.white
-                                  : const Color(0xFF111518),
-                            ),
+              if (appointmentBookingProvider.shouldGetExpectedToken)
+                BlocBuilder<ExpectedTokenCubit, ExpectedTokenState>(
+                  builder: (context, state) {
+                    switch (state) {
+                      case ExpectedTokenInitial():
+                        return const SizedBox.shrink();
+                      case ExpectedTokenLoading():
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 12),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Expected Token No.',
+                                style: GoogleFonts.inter(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600,
+                                  color: isDark
+                                      ? Colors.white
+                                      : const Color(0xFF111518),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 24,
+                                height: 24,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                ),
+                              ),
+                            ],
                           ),
-                          Text(
-                            appointmentBookingProvider.expectedToken.toString(),
-                            style: GoogleFonts.inter(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: theme.colorScheme.primary,
-                            ),
+                        );
+                      case ExpectedTokenSuccess(:final expectedToken):
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 12),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Expected Token No.',
+                                style: GoogleFonts.inter(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600,
+                                  color: isDark
+                                      ? Colors.white
+                                      : const Color(0xFF111518),
+                                ),
+                              ),
+                              Text(
+                                expectedToken.expectedTokenNumber.toString(),
+                                style: GoogleFonts.inter(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
+                                  color: theme.colorScheme.primary,
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                    )
-                  : const SizedBox.shrink(),
-              // Divider - Using custom dashed line
-              appointmentBookingProvider.expectedToken != null
-                  ? DashedDividerWidget(isDark: isDark)
-                  : const SizedBox.shrink(),
+                        );
+                      case ExpectedTokenError():
+                        return const SizedBox.shrink();
+                    }
+                  },
+                ),
+              // Divider - Using BlocBuilder to conditionally show
+              if (appointmentBookingProvider.shouldGetExpectedToken)
+                BlocBuilder<ExpectedTokenCubit, ExpectedTokenState>(
+                  builder: (context, state) {
+                    return state is ExpectedTokenSuccess
+                        ? DashedDividerWidget(isDark: isDark)
+                        : const SizedBox.shrink();
+                  },
+                ),
               const SizedBox(height: 12),
               // Appointment Details
               Column(
