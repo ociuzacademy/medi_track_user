@@ -28,10 +28,6 @@ class AppointmentBookingProvider with ChangeNotifier {
   List<AvailableDoctor>? _doctors;
   int? _expectedToken;
 
-  // Patient information
-  final String patientName = 'John Doe';
-  final String patientId = 'MED123456';
-
   // Getters
   Department? get selectedDepartment => _selectedDepartment;
   DateTime? get selectedDate => _selectedDate;

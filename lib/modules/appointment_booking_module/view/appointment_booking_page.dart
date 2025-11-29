@@ -27,6 +27,7 @@ class _AppointmentBookingPageState extends State<AppointmentBookingPage> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _appointmentBookingHelper.showDepartments();
+      _appointmentBookingHelper.showUserProfile();
     });
   }
 

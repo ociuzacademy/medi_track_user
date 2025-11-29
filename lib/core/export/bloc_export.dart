@@ -3,3 +3,4 @@ export 'package:medi_track/modules/register_module/bloc/user_register_bloc.dart'
 export 'package:medi_track/modules/appointment_booking_module/cubit/departments/departments_cubit.dart';
 export 'package:medi_track/modules/appointment_booking_module/cubit/available_doctors/available_doctors_cubit.dart';
 export 'package:medi_track/modules/appointment_booking_module/cubit/expected_token/expected_token_cubit.dart';
+export 'package:medi_track/core/cubit/user_profile/user_profile_cubit.dart';

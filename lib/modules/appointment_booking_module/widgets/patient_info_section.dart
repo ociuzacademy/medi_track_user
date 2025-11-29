@@ -1,5 +1,7 @@
 // patient_info_section.dart
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medi_track/core/export/bloc_export.dart';
 import 'package:medi_track/modules/appointment_booking_module/widgets/patient_info_row.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,9 +12,8 @@ class PatientInfoSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appointmentBookingProvider = Provider.of<AppointmentBookingProvider>(
-      context,
-    );
+    final AppointmentBookingProvider appointmentBookingProvider =
+        Provider.of<AppointmentBookingProvider>(context);
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
 
@@ -45,20 +46,44 @@ class PatientInfoSection extends StatelessWidget {
               ).withValues(alpha: isDark ? 0.3 : 0.5),
             ),
           ),
-          child: Column(
-            children: [
-              PatientInfoRow(
-                label: 'Patient Name',
-                value: appointmentBookingProvider.patientName,
-                isDark: isDark,
-              ),
-              const SizedBox(height: 12),
-              PatientInfoRow(
-                label: 'Patient ID',
-                value: appointmentBookingProvider.patientId,
-                isDark: isDark,
-              ),
-            ],
+          child: BlocBuilder<UserProfileCubit, UserProfileState>(
+            builder: (context, state) {
+              switch (state) {
+                case UserProfileInitial():
+                  return const SizedBox.shrink();
+                case UserProfileLoading():
+                  return const Center(child: CircularProgressIndicator());
+                case UserProfileSuccess():
+                  return Column(
+                    children: [
+                      PatientInfoRow(
+                        label: 'Patient Name',
+                        value: state.userProfile.username,
+                        isDark: isDark,
+                      ),
+                      const SizedBox(height: 12),
+                      PatientInfoRow(
+                        label: 'Patient ID',
+                        value: '#${state.userProfile.id}',
+                        isDark: isDark,
+                      ),
+                    ],
+                  );
+                case UserProfileError(:final message):
+                  return Center(
+                    child: Text(
+                      'Error: $message',
+                      style: GoogleFonts.inter(
+                        color: isDark
+                            ? Colors.red.shade200
+                            : Colors.red.shade700,
+                        fontSize: 16,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  );
+              }
+            },
           ),
         ),
         const SizedBox(height: 16),
