@@ -26,23 +26,23 @@ class AppointmentDetails extends StatelessWidget {
       ),
       child: Column(
         children: [
-          RescheduledAppointmentDetailRow(
+          const RescheduledAppointmentDetailRow(
             label: 'Old Appointment',
             value: '15 Oct 2023, 10:00 AM',
             isStrikethrough: true,
             isFirst: true,
           ),
-          RescheduledAppointmentDetailRow(
+          const RescheduledAppointmentDetailRow(
             label: 'New Appointment',
             value: '16 Oct 2023, 11:30 AM',
             isHighlighted: true,
           ),
-          RescheduledAppointmentDetailRow(
+          const RescheduledAppointmentDetailRow(
             label: 'Appointment Token',
             value: 'APT-785K2G',
           ),
           StatusRow(context: context),
-          RescheduledAppointmentDetailRow(
+          const RescheduledAppointmentDetailRow(
             label: 'Symptoms Provided',
             value: 'Chest pain and shortness of breath.',
           ),

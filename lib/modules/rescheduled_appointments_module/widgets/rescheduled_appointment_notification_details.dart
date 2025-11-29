@@ -55,10 +55,10 @@ class RescheduledAppointmentNotificationDetails extends StatelessWidget {
           // Rescheduled appointment
           Row(
             children: [
-              Icon(
+              const Icon(
                 Icons.event_repeat,
                 size: 16,
-                color: const Color(0xFF137FEC),
+                color: Color(0xFF137FEC),
               ),
               const SizedBox(width: 8),
               Expanded(

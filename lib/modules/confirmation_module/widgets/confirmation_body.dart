@@ -12,37 +12,37 @@ class ConfirmationBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
         Expanded(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.all(16),
+            padding: EdgeInsets.all(16),
             child: Column(
               children: [
                 // Success Icon and Message
-                const ConfirmationHeader(),
+                ConfirmationHeader(),
 
-                const SizedBox(height: 24),
+                SizedBox(height: 24),
 
                 // Appointment Details Card
-                const AppointmentDetailsCard(),
+                AppointmentDetailsCard(),
 
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
 
                 // Notification Reminder
-                const NotificationReminder(),
+                NotificationReminder(),
 
-                const SizedBox(height: 32),
+                SizedBox(height: 32),
 
                 // Action Buttons
-                const ActionButtons(),
+                ActionButtons(),
               ],
             ),
           ),
         ),
 
         // Footer
-        const ConfirmationFooter(),
+        ConfirmationFooter(),
       ],
     );
   }

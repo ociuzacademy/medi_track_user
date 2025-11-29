@@ -29,7 +29,7 @@ class _SubmitComplaintPageState extends State<SubmitComplaintPage> {
   @override
   void initState() {
     super.initState();
-    _submitComplaintHelper = SubmitComplaintHelper();
+    _submitComplaintHelper = const SubmitComplaintHelper();
   }
 
   @override
@@ -82,7 +82,7 @@ class _SubmitComplaintPageState extends State<SubmitComplaintPage> {
                           child: Column(
                             children: [
                               // Full Name Field (Read-only)
-                              ReadOnlyField(
+                              const ReadOnlyField(
                                 label: 'Full Name',
                                 value: 'Jane Doe',
                               ),
@@ -90,7 +90,7 @@ class _SubmitComplaintPageState extends State<SubmitComplaintPage> {
                               const SizedBox(height: 16),
 
                               // Email or Phone Number Field (Read-only)
-                              ReadOnlyField(
+                              const ReadOnlyField(
                                 label: 'Email or Phone Number',
                                 value: 'jane.doe@email.com',
                               ),

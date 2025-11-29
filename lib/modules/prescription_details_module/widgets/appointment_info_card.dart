@@ -37,7 +37,7 @@ class AppointmentInfoCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          AppointmentPrescriptionDetailRow(
+          const AppointmentPrescriptionDetailRow(
             icon: Icons.calendar_today,
             label: 'Date & Time',
             value: '12 August 2024, 10:30 AM',

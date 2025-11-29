@@ -6,7 +6,8 @@ import 'package:medi_track/modules/feedback_list_module/widgets/feedback_card.da
 class FeedbackListPage extends StatelessWidget {
   const FeedbackListPage({super.key});
 
-  static route() => MaterialPageRoute(builder: (_) => const FeedbackListPage());
+  static MaterialPageRoute route() =>
+      MaterialPageRoute(builder: (_) => const FeedbackListPage());
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class FeedbackListPage extends StatelessWidget {
 
     // Sample feedback data
     final feedbackList = [
-      FeedbackItem(
+      const FeedbackItem(
         doctorName: 'Dr. Emily Carter',
         specialty: 'Cardiology',
         date: 'Oct 26, 2023',
@@ -22,7 +23,7 @@ class FeedbackListPage extends StatelessWidget {
         review:
             'A very attentive and thorough consultation. Dr. Carter explained everything clearly and put my mind at ease. The best experience I\'ve had.',
       ),
-      FeedbackItem(
+      const FeedbackItem(
         doctorName: 'Dr. Ben Adams',
         specialty: 'Dermatology',
         date: 'Sep 15, 2023',
@@ -30,7 +31,7 @@ class FeedbackListPage extends StatelessWidget {
         review:
             'The appointment felt a bit rushed, and I didn\'t get to ask all of my questions. The advice was helpful though.',
       ),
-      FeedbackItem(
+      const FeedbackItem(
         doctorName: 'Dr. Sarah Jenkins',
         specialty: 'Pediatrics',
         date: 'Aug 02, 2023',

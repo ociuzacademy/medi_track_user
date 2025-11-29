@@ -35,9 +35,9 @@ class SymptomsCard extends StatelessWidget {
                   color: const Color(0xFF05c7a7).withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: Icon(
+                child: const Icon(
                   Icons.health_and_safety,
-                  color: const Color(0xFF05c7a7),
+                  color: Color(0xFF05c7a7),
                   size: 18,
                 ),
               ),

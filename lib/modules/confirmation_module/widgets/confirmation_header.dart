@@ -15,8 +15,8 @@ class ConfirmationHeader extends StatelessWidget {
         Container(
           width: 96,
           height: 96,
-          decoration: BoxDecoration(
-            color: const Color(0xFF4CAF50),
+          decoration: const BoxDecoration(
+            color: Color(0xFF4CAF50),
             shape: BoxShape.circle,
           ),
           child: const Icon(Icons.check, color: Colors.white, size: 48),

@@ -16,7 +16,7 @@ class RegisterServices {
   }) async {
     try {
       var request = http.MultipartRequest(
-        "POST",
+        'POST',
         Uri.parse(AppUrls.userRegisterUrl),
       );
 
@@ -37,13 +37,13 @@ class RegisterServices {
         'image',
         imageStream,
         imageLength,
-        filename: registerDetails.image.path.split("/").last,
+        filename: registerDetails.image.path.split('/').last,
       );
       request.files.add(multipartFile);
 
       // Send request
       final resp = await request.send().timeout(
-        Duration(minutes: AppConstants.requestTimeoutminutes),
+        const Duration(minutes: AppConstants.requestTimeoutminutes),
         onTimeout: () {
           throw TimeoutException(
             'Request timed out after ${AppConstants.requestTimeoutminutes} minute.',

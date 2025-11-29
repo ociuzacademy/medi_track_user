@@ -29,9 +29,9 @@ class AppointmentsTabBar extends StatelessWidget
         unselectedLabelColor: isDark
             ? const Color(0xFF9CA3AF)
             : const Color(0xFF6B7280),
-        indicator: UnderlineTabIndicator(
-          borderSide: const BorderSide(width: 3, color: Color(0xFF007AFF)),
-          insets: const EdgeInsets.symmetric(horizontal: 0),
+        indicator: const UnderlineTabIndicator(
+          borderSide: BorderSide(width: 3, color: Color(0xFF007AFF)),
+          insets: EdgeInsets.symmetric(horizontal: 0),
         ),
         tabs: [
           Tab(

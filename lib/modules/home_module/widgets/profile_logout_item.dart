@@ -20,7 +20,7 @@ class ProfileLogoutItem extends StatelessWidget {
       ),
       child: ListTile(
         onTap: onLogoutButtonClick,
-        leading: Icon(Icons.logout, color: const Color(0xFFD0021B), size: 24),
+        leading: const Icon(Icons.logout, color: Color(0xFFD0021B), size: 24),
         title: Text(
           'Logout',
           style: GoogleFonts.lexend(

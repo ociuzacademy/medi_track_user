@@ -89,16 +89,16 @@ class ImagePickerSection extends StatelessWidget {
           child: Wrap(
             children: [
               ListTile(
-                leading: Icon(Icons.photo_library),
-                title: Text('Choose from Gallery'),
+                leading: const Icon(Icons.photo_library),
+                title: const Text('Choose from Gallery'),
                 onTap: () {
                   registerProvider.pickImage(ImageSource.gallery);
                   Navigator.of(context).pop();
                 },
               ),
               ListTile(
-                leading: Icon(Icons.photo_camera),
-                title: Text('Take a Picture'),
+                leading: const Icon(Icons.photo_camera),
+                title: const Text('Take a Picture'),
                 onTap: () {
                   registerProvider.pickImage(ImageSource.camera);
                   Navigator.of(context).pop();
@@ -106,8 +106,8 @@ class ImagePickerSection extends StatelessWidget {
               ),
               if (registerProvider.pickedImage != null)
                 ListTile(
-                  leading: Icon(Icons.delete, color: Colors.red),
-                  title: Text(
+                  leading: const Icon(Icons.delete, color: Colors.red),
+                  title: const Text(
                     'Remove Photo',
                     style: TextStyle(color: Colors.red),
                   ),

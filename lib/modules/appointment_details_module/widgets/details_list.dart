@@ -14,16 +14,16 @@ class DetailsList extends StatelessWidget {
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
       child: Column(
         children: [
-          CancelledAppointmentDetailRow(label: 'Token Number', value: 'A-123'),
-          CancelledAppointmentDetailRow(
+          const CancelledAppointmentDetailRow(label: 'Token Number', value: 'A-123'),
+          const CancelledAppointmentDetailRow(
             label: 'Original Date',
             value: 'Oct 25, 2024',
           ),
-          CancelledAppointmentDetailRow(
+          const CancelledAppointmentDetailRow(
             label: 'Original Time',
             value: '10:30 AM',
           ),
-          CancelledAppointmentDetailRow(
+          const CancelledAppointmentDetailRow(
             label: 'Reason for Cancellation',
             value: 'Doctor Unavailable',
           ),

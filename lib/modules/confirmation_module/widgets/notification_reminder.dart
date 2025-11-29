@@ -23,8 +23,8 @@ class NotificationReminder extends StatelessWidget {
           Container(
             width: 40,
             height: 40,
-            decoration: BoxDecoration(
-              color: const Color(0xFF2196F3),
+            decoration: const BoxDecoration(
+              color: Color(0xFF2196F3),
               shape: BoxShape.circle,
             ),
             child: const Icon(

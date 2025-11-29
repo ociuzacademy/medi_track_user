@@ -26,7 +26,7 @@ class WarningBanner extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(Icons.warning, color: const Color(0xFFFFC107), size: 28),
+          const Icon(Icons.warning, color: Color(0xFFFFC107), size: 28),
           const SizedBox(width: 16),
           Expanded(
             child: Column(

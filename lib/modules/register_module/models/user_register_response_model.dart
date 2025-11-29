@@ -33,15 +33,15 @@ class UserRegisterResponseModel {
 
   factory UserRegisterResponseModel.fromJson(Map<String, dynamic> json) =>
       UserRegisterResponseModel(
-        status: json["status"],
-        message: json["message"],
-        data: Data.fromJson(json["data"]),
+        status: json['status'],
+        message: json['message'],
+        data: Data.fromJson(json['data']),
       );
 
   Map<String, dynamic> toJson() => {
-    "status": status,
-    "message": message,
-    "data": data.toJson(),
+    'status': status,
+    'message': message,
+    'data': data.toJson(),
   };
 }
 
@@ -95,29 +95,29 @@ class Data {
   );
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    id: json["id"],
-    username: json["username"],
-    email: json["email"],
-    address: json["address"],
-    password: json["password"],
-    phone: json["phone"],
-    image: json["image"],
-    gender: json["gender"],
-    birthDate: DateTime.parse(json["birth_date"]),
-    bloodGroup: json["blood_group"],
+    id: json['id'],
+    username: json['username'],
+    email: json['email'],
+    address: json['address'],
+    password: json['password'],
+    phone: json['phone'],
+    image: json['image'],
+    gender: json['gender'],
+    birthDate: DateTime.parse(json['birth_date']),
+    bloodGroup: json['blood_group'],
   );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "username": username,
-    "email": email,
-    "address": address,
-    "password": password,
-    "phone": phone,
-    "image": image,
-    "gender": gender,
-    "birth_date":
+    'id': id,
+    'username': username,
+    'email': email,
+    'address': address,
+    'password': password,
+    'phone': phone,
+    'image': image,
+    'gender': gender,
+    'birth_date':
         "${birthDate.year.toString().padLeft(4, '0')}-${birthDate.month.toString().padLeft(2, '0')}-${birthDate.day.toString().padLeft(2, '0')}",
-    "blood_group": bloodGroup,
+    'blood_group': bloodGroup,
   };
 }

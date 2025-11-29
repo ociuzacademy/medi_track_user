@@ -16,7 +16,7 @@ class UpdateDonationRecordPage extends StatefulWidget {
   State<UpdateDonationRecordPage> createState() =>
       _UpdateDonationRecordPageState();
 
-  static route() =>
+  static MaterialPageRoute route() =>
       MaterialPageRoute(builder: (_) => const UpdateDonationRecordPage());
 }
 

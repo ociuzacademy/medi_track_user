@@ -11,7 +11,7 @@ class RescheduledTab extends StatelessWidget {
 
     return ListView(
       padding: const EdgeInsets.all(16),
-      children: [
+      children: const [
         RescheduledAppointmentCard(
           doctorName: 'Dr. Emily Carter',
           department: 'Cardiology',
@@ -21,7 +21,7 @@ class RescheduledTab extends StatelessWidget {
           newDateTime: 'October 30, 2023, 11:00 AM',
           icon: Icons.medical_services,
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         RescheduledAppointmentCard(
           doctorName: 'Dr. Ben Miller',
           department: 'Dermatology',

@@ -15,7 +15,7 @@ class BloodRequestsPage extends StatefulWidget {
   @override
   State<BloodRequestsPage> createState() => _BloodRequestsPageState();
 
-  static route() =>
+  static MaterialPageRoute route() =>
       MaterialPageRoute(builder: (_) => const BloodRequestsPage());
 }
 

@@ -1,13 +1,14 @@
 // department_dropdown.dart
 import 'package:flutter/material.dart';
+import 'package:medi_track/modules/appointment_booking_module/models/departments_model.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/modules/appointment_booking_module/providers/appointment_booking_provider.dart';
 
 class DepartmentDropdown extends StatelessWidget {
   final ThemeData theme;
-  final String? selectedDepartment;
-  final Function(String?) onDepartmentSelected;
+  final Department? selectedDepartment;
+  final Function(Department?) onDepartmentSelected;
 
   const DepartmentDropdown({
     super.key,
@@ -46,41 +47,58 @@ class DepartmentDropdown extends StatelessWidget {
           ),
           child: Stack(
             children: [
-              DropdownButtonFormField<String>(
-                value: selectedDepartment,
-                items: appointmentBookingProvider.departments.map((department) {
-                  return DropdownMenuItem<String>(
-                    value: department['value'],
-                    child: Text(
-                      department['label']!,
-                      style: GoogleFonts.inter(
-                        color: isDark ? Colors.white : const Color(0xFF111518),
-                      ),
-                    ),
-                  );
-                }).toList(),
-                onChanged: onDepartmentSelected,
-                decoration: const InputDecoration(
-                  border: InputBorder.none,
-                  focusedBorder: InputBorder.none,
-                  enabledBorder: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(horizontal: 16),
+              if (appointmentBookingProvider.departments == null)
+                const Center(
+                  child: SizedBox(
+                    height: 24,
+                    width: 24,
+                    child: CircularProgressIndicator(strokeWidth: 2),
+                  ),
+                )
+              else
+                DropdownButtonFormField<Department>(
+                  isExpanded: true,
+                  value: selectedDepartment,
+                  items:
+                      appointmentBookingProvider.departments?.map((department) {
+                        return DropdownMenuItem<Department>(
+                          value: department,
+                          child: Text(
+                            department.department,
+                            style: GoogleFonts.inter(
+                              color: isDark
+                                  ? Colors.white
+                                  : const Color(0xFF111518),
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                          ),
+                        );
+                      }).toList() ??
+                      [],
+                  onChanged: onDepartmentSelected,
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
+                    focusedBorder: InputBorder.none,
+                    enabledBorder: InputBorder.none,
+                    contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                  ),
+                  icon: const SizedBox(),
+                  style: GoogleFonts.inter(
+                    fontSize: 16,
+                    color: isDark ? Colors.white : const Color(0xFF111518),
+                  ),
                 ),
-                icon: const SizedBox(),
-                style: GoogleFonts.inter(
-                  fontSize: 16,
-                  color: isDark ? Colors.white : const Color(0xFF111518),
+              if (appointmentBookingProvider.departments != null)
+                Positioned(
+                  right: 16,
+                  top: 0,
+                  bottom: 0,
+                  child: Icon(
+                    Icons.arrow_drop_down,
+                    color: theme.colorScheme.primary,
+                  ),
                 ),
-              ),
-              Positioned(
-                right: 16,
-                top: 0,
-                bottom: 0,
-                child: Icon(
-                  Icons.arrow_drop_down,
-                  color: theme.colorScheme.primary,
-                ),
-              ),
             ],
           ),
         ),

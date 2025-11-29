@@ -44,16 +44,16 @@ class PersonalInfoSection extends StatelessWidget {
           ),
 
           // Personal Info Items
-          PersonalInfoRow(label: 'Full Name', value: 'Jane Doe', isFirst: true),
-          PersonalInfoRow(label: 'Date of Birth', value: '01-Jan-1990'),
-          PersonalInfoRow(label: 'Gender', value: 'Female'),
-          PersonalInfoRow(label: 'Phone Number', value: '+1 (123) 456-7890'),
-          PersonalInfoRow(
+          const PersonalInfoRow(label: 'Full Name', value: 'Jane Doe', isFirst: true),
+          const PersonalInfoRow(label: 'Date of Birth', value: '01-Jan-1990'),
+          const PersonalInfoRow(label: 'Gender', value: 'Female'),
+          const PersonalInfoRow(label: 'Phone Number', value: '+1 (123) 456-7890'),
+          const PersonalInfoRow(
             label: 'Email Address',
             value: 'jane.doe@example.com',
           ),
-          PersonalInfoRow(label: 'Blood Group', value: 'O+'),
-          PersonalInfoRow(
+          const PersonalInfoRow(label: 'Blood Group', value: 'O+'),
+          const PersonalInfoRow(
             label: 'Address',
             value: '123 Wellness Ave, Health City',
           ),

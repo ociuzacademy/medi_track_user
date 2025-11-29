@@ -10,7 +10,8 @@ import 'package:medi_track/modules/login_module/widgets/login_logo.dart';
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
-  static route() => MaterialPageRoute(builder: (_) => LoginPage());
+  static MaterialPageRoute route() =>
+      MaterialPageRoute(builder: (_) => const LoginPage());
 
   @override
   Widget build(BuildContext context) {

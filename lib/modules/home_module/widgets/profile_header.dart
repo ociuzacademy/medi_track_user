@@ -30,9 +30,9 @@ class ProfileHeader extends StatelessWidget {
               Container(
                 width: 128,
                 height: 128,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
-                  image: const DecorationImage(
+                  image: DecorationImage(
                     image: NetworkImage(
                       'https://lh3.googleusercontent.com/aida-public/AB6AXuBYSRmPxc4bDK4Xi9IXHBJJA_F6lRaSdHa-i6vZQ7T4p1QqvdnIzppojMXZkNJrGzE7mRs1lWJdnWJavrH7f8WBAwmx69nBFyXD_DZEWOl5oV7psfedP6eHvjRtissrB6Lhl-tZhVHoLqG7K_rmRoi2oX8bML_dmt3ext2xE8aAVP0H_NKK2XrVaqqDG1ot7Rq3RKvdIzHDnirJswtw13HXs58QKGtmeX57UMeDmPLq7MBE2fd6hPgw9w5Xi73fJ9-45bh7joGdtRVF',
                     ),

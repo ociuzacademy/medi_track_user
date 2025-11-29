@@ -41,27 +41,27 @@ class UpcomingAppointmentDetailsPage extends StatelessWidget {
       backgroundColor: isDark
           ? const Color(0xFF0f2023)
           : const Color(0xFFF8FAFB),
-      body: Column(
+      body: const Column(
         children: [
           Expanded(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.all(16),
               child: Column(
                 children: [
                   // Live Status Card
-                  const LiveStatusCard(),
+                  LiveStatusCard(),
 
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16),
 
                   // Doctor Info Card
-                  const DoctorInfoCard(),
+                  DoctorInfoCard(),
                 ],
               ),
             ),
           ),
 
           // Footer Buttons
-          const FooterButtons(),
+          FooterButtons(),
         ],
       ),
     );

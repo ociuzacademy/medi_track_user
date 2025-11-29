@@ -42,9 +42,9 @@ class LiveStatusCard extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.sensors,
-                      color: const Color(0xFF04798b),
+                      color: Color(0xFF04798b),
                       size: 20,
                     ),
                     const SizedBox(width: 8),

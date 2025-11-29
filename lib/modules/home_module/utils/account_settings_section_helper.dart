@@ -43,7 +43,7 @@ class AccountSettingsSectionHelper {
             TextButton(
               onPressed: () {
                 final AuthBloc authBloc = context.read<AuthBloc>();
-                authBloc.add(AuthEvent.userLoggingOut());
+                authBloc.add(const AuthEvent.userLoggingOut());
               },
               style: TextButton.styleFrom(
                 foregroundColor: const Color(0xFFD0021B),

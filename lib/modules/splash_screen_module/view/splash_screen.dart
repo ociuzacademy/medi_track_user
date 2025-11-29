@@ -72,12 +72,12 @@ class _SplashScreenState extends State<SplashScreen>
         PageRouteBuilder(
           pageBuilder: (context, animation, secondaryAnimation) {
             if (widget.isFirstLaunch) {
-              return OnboardingScreen();
+              return const OnboardingScreen();
             } else {
               if (widget.isLoggedIn) {
-                return HomePage();
+                return const HomePage();
               } else {
-                return LoginPage();
+                return const LoginPage();
               }
             }
           },

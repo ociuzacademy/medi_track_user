@@ -1,6 +1,8 @@
 // appointment_page.dart
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medi_track/core/export/bloc_export.dart';
 import 'package:medi_track/modules/appointment_booking_module/providers/appointment_booking_provider.dart';
 import 'package:medi_track/modules/appointment_booking_module/widgets/appointment_form_section.dart';
 import 'package:medi_track/modules/appointment_booking_module/widgets/appointment_summary_section.dart';
@@ -17,32 +19,44 @@ class AppointmentBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<AppointmentBookingProvider>(
       builder: (context, appointmentProvider, child) {
-        return SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Header Description
-              HeaderDescriptionWidget(),
+        return BlocListener<DepartmentsCubit, DepartmentsState>(
+          listener: (context, state) {
+            switch (state) {
+              case DepartmentsSuccess(:final departments):
+                appointmentProvider.setDepartments(departments.departments);
+                break;
 
-              // Form Section
-              const AppointmentFormSection(),
+              default:
+                break;
+            }
+          },
+          child: const SingleChildScrollView(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Header Description
+                HeaderDescriptionWidget(),
 
-              // Available Doctors
-              const AvailableDoctorsSection(),
+                // Form Section
+                AppointmentFormSection(),
 
-              // Patient Information
-              const PatientInfoSection(),
+                // Available Doctors
+                AvailableDoctorsSection(),
 
-              // Appointment Summary
-              const AppointmentSummarySection(),
+                // Patient Information
+                PatientInfoSection(),
 
-              // Spacer
-              const SizedBox(height: 80),
+                // Appointment Summary
+                AppointmentSummarySection(),
 
-              // Confirm Button
-              const ConfirmButtonSection(),
-            ],
+                // Spacer
+                SizedBox(height: 80),
+
+                // Confirm Button
+                ConfirmButtonSection(),
+              ],
+            ),
           ),
         );
       },

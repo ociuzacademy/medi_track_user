@@ -14,7 +14,7 @@ class BloodRequestNotificationsPage extends StatefulWidget {
   State<BloodRequestNotificationsPage> createState() =>
       _BloodRequestNotificationsPageState();
 
-  static route() =>
+  static MaterialPageRoute route() =>
       MaterialPageRoute(builder: (_) => const BloodRequestNotificationsPage());
 }
 

@@ -10,8 +10,8 @@ import 'package:medi_track/modules/blood_donor_dashboard_module/widgets/quick_ac
 class BloodDonorDashboardPage extends StatelessWidget {
   const BloodDonorDashboardPage({super.key});
 
-  static route() =>
-      MaterialPageRoute(builder: (_) => BloodDonorDashboardPage());
+  static MaterialPageRoute route() =>
+      MaterialPageRoute(builder: (_) => const BloodDonorDashboardPage());
 
   @override
   Widget build(BuildContext context) {
@@ -45,30 +45,30 @@ class BloodDonorDashboardPage extends StatelessWidget {
         ],
       ),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
 
             // Donor Profile Card
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: DonorProfileCard(),
             ),
 
             // Active Blood Requests
-            const ActiveBloodRequests(),
+            ActiveBloodRequests(),
 
             // Notifications
-            const NotificationsSection(),
+            NotificationsSection(),
 
             // Donation History
-            const DonationHistory(),
+            DonationHistory(),
 
             // Quick Actions
-            const QuickActions(),
+            QuickActions(),
 
-            const SizedBox(height: 24),
+            SizedBox(height: 24),
           ],
         ),
       ),

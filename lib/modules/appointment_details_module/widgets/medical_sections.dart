@@ -67,7 +67,7 @@ class MedicalSections extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               // Medicine List
-              Column(
+              const Column(
                 children: [
                   MedicineItem(
                     medicineName: 'Metoprolol',
@@ -76,7 +76,7 @@ class MedicalSections extends StatelessWidget {
                     duration: '30 days',
                     instructions: 'Take in the morning with food',
                   ),
-                  const SizedBox(height: 12),
+                  SizedBox(height: 12),
                   MedicineItem(
                     medicineName: 'Aspirin',
                     dosage: '81mg',
@@ -84,7 +84,7 @@ class MedicalSections extends StatelessWidget {
                     duration: '30 days',
                     instructions: 'Take after breakfast',
                   ),
-                  const SizedBox(height: 12),
+                  SizedBox(height: 12),
                   MedicineItem(
                     medicineName: 'Atorvastatin',
                     dosage: '20mg',

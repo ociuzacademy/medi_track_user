@@ -23,9 +23,9 @@ class StatusChips extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(
+                const Icon(
                   Icons.check_circle,
-                  color: const Color(0xFF4CAF50),
+                  color: Color(0xFF4CAF50),
                   size: 18,
                 ),
                 const SizedBox(width: 4),
@@ -51,9 +51,9 @@ class StatusChips extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(
+                const Icon(
                   Icons.credit_card,
-                  color: const Color(0xFF4CAF50),
+                  color: Color(0xFF4CAF50),
                   size: 18,
                 ),
                 const SizedBox(width: 4),

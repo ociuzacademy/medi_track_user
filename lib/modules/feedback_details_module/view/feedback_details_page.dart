@@ -6,7 +6,8 @@ import 'package:medi_track/modules/feedback_details_module/widgets/feedback_deta
 class FeedbackDetailsPage extends StatelessWidget {
   const FeedbackDetailsPage({super.key});
 
-  static route() => MaterialPageRoute(builder: (_) => FeedbackDetailsPage());
+  static MaterialPageRoute route() =>
+      MaterialPageRoute(builder: (_) => const FeedbackDetailsPage());
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +39,9 @@ class FeedbackDetailsPage extends StatelessWidget {
       body: Column(
         children: [
           // Main Content
-          Expanded(
+          const Expanded(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.all(16),
               child: Column(
                 children: [
                   // Doctor Info Card
@@ -53,10 +54,10 @@ class FeedbackDetailsPage extends StatelessWidget {
                         'https://lh3.googleusercontent.com/aida-public/AB6AXuDk-5FSbAVLBsU2AUEqAiavX4-itCwWKZiCGmgEvmSM-t7hddkjUK0IcmHiYkYarvEgsiNu1BuF7J3qw2wCsiVH3Gzsp0Uu96TqfxbmICpy_icIht_W8T-DI1xdZDYNMaY0mMrsmNrrNDxbHbvQlW-nvbehZ5OJ5dy_diJ43pmd715HlD3ExiHpMhxB2nXAvbK-4IxKHC-irnlpwG5a-atp6TwEyCDUu4HweghiRly8wrUWmAaIyx0u7TqwEM0wnxBOS9RNOywKyfaV',
                   ),
 
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16),
 
                   // Feedback Details Card
-                  const FeedbackDetailsCard(
+                  FeedbackDetailsCard(
                     overallRating: 4,
                     doctorInteraction: 100,
                     waitingExperience: 60,

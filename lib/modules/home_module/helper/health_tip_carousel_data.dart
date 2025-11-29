@@ -1,7 +1,7 @@
 import 'package:medi_track/modules/home_module/models/health_tip.dart';
 
 class HealthTipCarouselData {
-  static final List<HealthTip> healthTips = const [
+  static const List<HealthTip> healthTips = [
     HealthTip(
       imageUrl:
           'https://lh3.googleusercontent.com/aida-public/AB6AXuASgBRwqzhjpIKMtvdHQfCzYXb9mc7uxLYBxrL2yYNO8G3bxn1iSq73m2U-Mf6Mz-XsPRxah1ogm9w5KcwjAz39VVdKj1mSKiKYFdOXd0tQpEeNcYaCGoKtJs1bmZJqz0p-LXLQb4ZqIxzAe95Yduy_DO_93LOym2OdyyBgOuuz8H5F4Ckqb4VeeoTqrLA79Fz5JMK5ky1wDekxuMK7_4XLO2sXcKPXqAWCaq46GI-icYXB1TQu7fQxU7ptDapFMllIqxkpkZ5a5Af9',

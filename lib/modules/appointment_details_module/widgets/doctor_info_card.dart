@@ -39,9 +39,9 @@ class DoctorInfoCard extends StatelessWidget {
                     color: const Color(0xFF04798b).withValues(alpha: 0.1),
                     shape: BoxShape.circle,
                   ),
-                  child: Icon(
+                  child: const Icon(
                     Icons.person,
-                    color: const Color(0xFF04798b),
+                    color: Color(0xFF04798b),
                     size: 32,
                   ),
                 ),
@@ -128,7 +128,7 @@ class DoctorInfoCard extends StatelessWidget {
           // Appointment Details
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: Column(
+            child: const Column(
               children: [
                 DoctorInfoDetailRow(
                   icon: Icons.medical_services,

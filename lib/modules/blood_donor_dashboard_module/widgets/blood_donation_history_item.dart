@@ -46,9 +46,9 @@ class BloodDonationHistoryItem extends StatelessWidget {
                   color: const Color(0xFF137fec).withValues(alpha: 0.1),
                   shape: BoxShape.circle,
                 ),
-                child: Icon(
+                child: const Icon(
                   Icons.history,
-                  color: const Color(0xFF137fec),
+                  color: Color(0xFF137fec),
                   size: 24,
                 ),
               ),

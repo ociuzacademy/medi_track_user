@@ -23,7 +23,8 @@ class RegisterPage extends StatefulWidget {
   @override
   State<RegisterPage> createState() => _RegisterPageState();
 
-  static route() => MaterialPageRoute(builder: (_) => RegisterPage());
+  static MaterialPageRoute route() =>
+      MaterialPageRoute(builder: (_) => const RegisterPage());
 }
 
 class _RegisterPageState extends State<RegisterPage> {
@@ -80,7 +81,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         HeaderSection(theme: theme),
 
                         // Image Picker Section
-                        ImagePickerSection(),
+                        const ImagePickerSection(),
 
                         // Form Section
                         RegisterFormSection(formKey: _formKey),

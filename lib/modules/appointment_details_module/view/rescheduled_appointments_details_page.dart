@@ -44,37 +44,37 @@ class RescheduledAppointmentDetailsPage extends StatelessWidget {
       backgroundColor: isDark
           ? const Color(0xFF0f2023)
           : const Color(0xFFf5f8f8),
-      body: Column(
+      body: const Column(
         children: [
           Expanded(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.all(16),
               child: Column(
                 children: [
                   // Warning Banner
-                  const WarningBanner(),
+                  WarningBanner(),
 
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16),
 
                   // Action Buttons
-                  const ActionButtons(),
+                  ActionButtons(),
 
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16),
 
                   // Doctor Card
-                  const RescheduledDoctorCard(),
+                  RescheduledDoctorCard(),
 
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16),
 
                   // Appointment Details
-                  const AppointmentDetails(),
+                  AppointmentDetails(),
                 ],
               ),
             ),
           ),
 
           // Footer Button
-          const FooterButton(),
+          FooterButton(),
         ],
       ),
     );

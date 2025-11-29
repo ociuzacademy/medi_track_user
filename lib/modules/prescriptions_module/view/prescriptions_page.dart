@@ -97,7 +97,7 @@ class _PrescriptionsPageState extends State<PrescriptionsPage> {
           // Prescriptions List or Empty State
           Expanded(
             child: _prescriptions.isNotEmpty
-                ? PrescriptionsList(prescriptions: _prescriptions)
+                ? const PrescriptionsList(prescriptions: _prescriptions)
                 : const EmptyPrescriptionsState(),
           ),
         ],

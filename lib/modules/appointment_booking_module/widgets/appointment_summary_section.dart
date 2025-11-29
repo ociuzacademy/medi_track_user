@@ -92,7 +92,7 @@ class AppointmentSummarySection extends StatelessWidget {
                   AppointmentSummaryRow(
                     label: 'Department',
                     value: AppointmentSummarySectionHelper.getDepartmentLabel(
-                      appointmentBookingProvider.selectedDepartment,
+                      appointmentBookingProvider.selectedDepartment?.department,
                       appointmentBookingProvider.departments,
                     ),
                     isDark: isDark,

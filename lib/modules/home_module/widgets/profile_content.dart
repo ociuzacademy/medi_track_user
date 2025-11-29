@@ -10,22 +10,22 @@ class ProfileContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(16),
+    return const SingleChildScrollView(
+      padding: EdgeInsets.all(16),
       child: Column(
         children: [
           // Profile Header
-          const ProfileHeader(),
+          ProfileHeader(),
 
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
 
           // Personal Information Section
-          const PersonalInfoSection(),
+          PersonalInfoSection(),
 
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
 
           // Account Settings Section
-          const AccountSettingsSection(),
+          AccountSettingsSection(),
         ],
       ),
     );

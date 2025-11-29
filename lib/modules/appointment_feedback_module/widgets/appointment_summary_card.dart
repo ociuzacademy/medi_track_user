@@ -37,23 +37,23 @@ class AppointmentSummaryCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          AppointmentFeedbackDetailRow(
+          const AppointmentFeedbackDetailRow(
             icon: Icons.person,
             title: 'Dr. Jane Doe',
             subtitle: 'Cardiologist',
             showDivider: true,
           ),
-          AppointmentFeedbackDetailRow(
+          const AppointmentFeedbackDetailRow(
             icon: Icons.local_hospital,
             title: 'Cardiology Department',
             showDivider: true,
           ),
-          AppointmentFeedbackDetailRow(
+          const AppointmentFeedbackDetailRow(
             icon: Icons.calendar_today,
             title: 'Nov 15, 2023, 10:30 AM',
             showDivider: true,
           ),
-          AppointmentFeedbackDetailRow(
+          const AppointmentFeedbackDetailRow(
             icon: Icons.confirmation_number,
             title: 'Token: C-12',
           ),

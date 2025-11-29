@@ -25,8 +25,8 @@ class MedicinesSection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 8),
-        Column(
-          children: const [
+        const Column(
+          children: [
             MedicineCard(
               medicineName: 'Paracetamol 500mg',
               dosage: '1 tablet, 3 times a day',

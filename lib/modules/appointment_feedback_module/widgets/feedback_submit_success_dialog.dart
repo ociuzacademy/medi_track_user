@@ -43,9 +43,9 @@ class FeedbackSubmitSuccessDialog extends StatelessWidget {
                       : const Color(0xFFD1FAE5),
                   shape: BoxShape.circle,
                 ),
-                child: Icon(
+                child: const Icon(
                   Icons.check_circle,
-                  color: const Color(0xFF10B981),
+                  color: Color(0xFF10B981),
                   size: 36,
                 ),
               ),

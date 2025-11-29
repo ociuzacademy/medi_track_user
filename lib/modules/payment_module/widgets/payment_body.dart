@@ -15,33 +15,33 @@ class PaymentBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<PaymentProvider>(
       builder: (context, paymentProvider, child) {
-        return Column(
+        return const Column(
           children: [
             Expanded(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.all(16),
+                padding: EdgeInsets.all(16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // Payment Summary
-                    const PaymentSummarySection(),
+                    PaymentSummarySection(),
 
-                    const SizedBox(height: 24),
+                    SizedBox(height: 24),
 
                     // Payment Method
-                    const PaymentMethodSection(),
+                    PaymentMethodSection(),
 
-                    const SizedBox(height: 24),
+                    SizedBox(height: 24),
 
                     // Payment Details (Card or UPI)
-                    const PaymentDetailsSection(),
+                    PaymentDetailsSection(),
                   ],
                 ),
               ),
             ),
 
             // Footer with Secure Note and Pay Button
-            const PaymentFooterSection(),
+            PaymentFooterSection(),
           ],
         );
       },

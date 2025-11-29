@@ -60,12 +60,12 @@ class ConfirmationDialog extends StatelessWidget {
                       vertical: 10,
                     ),
                   ),
-                  child: Text(
+                  child: const Text(
                     'No',
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
-                      color: const Color(0xFF2196F3),
+                      color: Color(0xFF2196F3),
                     ),
                   ),
                 ),

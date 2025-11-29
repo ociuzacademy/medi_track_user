@@ -13,7 +13,7 @@ class RescheduledAppointmentsPage extends StatefulWidget {
   State<RescheduledAppointmentsPage> createState() =>
       _RescheduledAppointmentsPageState();
 
-  static route() =>
+  static MaterialPageRoute route() =>
       MaterialPageRoute(builder: (_) => const RescheduledAppointmentsPage());
 }
 

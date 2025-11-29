@@ -76,9 +76,9 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
             child: Container(
               width: screenSize.width * 0.1,
               height: screenSize.width * 0.1,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
-                image: const DecorationImage(
+                image: DecorationImage(
                   image: NetworkImage(
                     'https://lh3.googleusercontent.com/aida-public/AB6AXuAEb4sZMGsrUmmldqVeE01N2morjvFIgYy5WdeajLqvVT0MJSO4MpCWC9TiGJAgsds1SmoUQEHsjzdRVQ7dvGLawyb0fx5zHCXzcpUl7af72pO-h79Ow5s4JnQeQKz-6Sx7vJzFBj-p5w62RKwitKk9p3ouepbO6wcGAOKPa6AvnlvFCKQO1G0kgEAEbmgtgIeCrvcpK83wpVhDHCEq4jXebWgBfbDTLIYHWX7MzPGGGYjMjlhXY99i8kCFoTxLtvTq4SDqF7wweXuj',
                   ),

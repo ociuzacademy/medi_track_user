@@ -15,7 +15,7 @@ class BloodDonationHistoryPage extends StatefulWidget {
   State<BloodDonationHistoryPage> createState() =>
       _BloodDonationHistoryPageState();
 
-  static route() =>
+  static MaterialPageRoute route() =>
       MaterialPageRoute(builder: (_) => const BloodDonationHistoryPage());
 }
 
@@ -27,7 +27,7 @@ class _BloodDonationHistoryPageState extends State<BloodDonationHistoryPage> {
   @override
   void initState() {
     super.initState();
-    _bloodDonationHistoryHelper = BloodDonationHistoryHelper();
+    _bloodDonationHistoryHelper = const BloodDonationHistoryHelper();
   }
 
   @override

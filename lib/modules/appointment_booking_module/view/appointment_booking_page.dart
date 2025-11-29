@@ -1,6 +1,7 @@
 // appointment_page.dart
 import 'package:flutter/material.dart';
 import 'package:medi_track/modules/appointment_booking_module/providers/appointment_booking_provider.dart';
+import 'package:medi_track/modules/appointment_booking_module/utils/appointment_booking_helper.dart';
 import 'package:medi_track/modules/appointment_booking_module/widgets/appointment_body.dart';
 import 'package:provider/provider.dart';
 
@@ -15,6 +16,18 @@ class AppointmentBookingPage extends StatefulWidget {
 }
 
 class _AppointmentBookingPageState extends State<AppointmentBookingPage> {
+  late final AppointmentBookingHelper _appointmentBookingHelper;
+
+  @override
+  void initState() {
+    super.initState();
+    _appointmentBookingHelper = AppointmentBookingHelper(context: context);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _appointmentBookingHelper.showDepartments();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(

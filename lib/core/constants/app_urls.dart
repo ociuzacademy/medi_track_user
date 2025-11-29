@@ -5,5 +5,5 @@ class AppUrls {
   static const String loginUrl = '$userUrl/login/';
   static const String userRegisterUrl = '$userUrl/user_registration/';
 
-  static const String departmentsUrl = '$baseUrl/departments/';
+  static const String departmentsUrl = '$userUrl/departments/';
 }

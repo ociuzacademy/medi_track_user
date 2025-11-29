@@ -51,7 +51,7 @@ class HeaderCard extends StatelessWidget {
         color: const Color(0xFFD9534F).withValues(alpha: 0.1),
         shape: BoxShape.circle,
       ),
-      child: Icon(Icons.bloodtype, color: const Color(0xFFD9534F), size: 32),
+      child: const Icon(Icons.bloodtype, color: Color(0xFFD9534F), size: 32),
     );
   }
 

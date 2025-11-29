@@ -8,7 +8,8 @@ import 'package:medi_track/modules/blood_donor_register_module/widgets/blood_don
 class BloodDonorRegisterPage extends StatelessWidget {
   const BloodDonorRegisterPage({super.key});
 
-  static route() => MaterialPageRoute(builder: (_) => BloodDonorRegisterPage());
+  static MaterialPageRoute route() =>
+      MaterialPageRoute(builder: (_) => const BloodDonorRegisterPage());
 
   @override
   Widget build(BuildContext context) {

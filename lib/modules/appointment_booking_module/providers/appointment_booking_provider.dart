@@ -1,22 +1,17 @@
 // appointment_provider.dart
 import 'package:flutter/material.dart';
 import 'package:medi_track/core/widgets/snackbars/custom_snackbar.dart';
+import 'package:medi_track/modules/appointment_booking_module/models/departments_model.dart';
 import 'package:medi_track/modules/payment_module/view/payment_page.dart';
 
 class AppointmentBookingProvider with ChangeNotifier {
   // Form state
-  String? _selectedDepartment;
+  Department? _selectedDepartment;
   DateTime? _selectedDate;
   String? _selectedDoctorId;
   String _symptoms = '';
 
-  // Mock data
-  final List<Map<String, String>> _departments = [
-    {'value': 'cardiology', 'label': 'Cardiology'},
-    {'value': 'pediatrics', 'label': 'Pediatrics'},
-    {'value': 'neurology', 'label': 'Neurology'},
-    {'value': 'orthopedics', 'label': 'Orthopedics'},
-  ];
+  List<Department>? _departments;
 
   final List<Map<String, dynamic>> _doctors = [
     {
@@ -48,11 +43,11 @@ class AppointmentBookingProvider with ChangeNotifier {
   final int expectedToken = 24;
 
   // Getters
-  String? get selectedDepartment => _selectedDepartment;
+  Department? get selectedDepartment => _selectedDepartment;
   DateTime? get selectedDate => _selectedDate;
   String? get selectedDoctorId => _selectedDoctorId;
   String get symptoms => _symptoms;
-  List<Map<String, String>> get departments => _departments;
+  List<Department>? get departments => _departments;
   List<Map<String, dynamic>> get doctors => _doctors;
 
   // Get selected doctor
@@ -65,7 +60,12 @@ class AppointmentBookingProvider with ChangeNotifier {
   }
 
   // Setters
-  void setSelectedDepartment(String? department) {
+  void setDepartments(List<Department>? departments) {
+    _departments = departments;
+    notifyListeners();
+  }
+
+  void setSelectedDepartment(Department? department) {
     _selectedDepartment = department;
     notifyListeners();
   }

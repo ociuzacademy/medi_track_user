@@ -222,12 +222,12 @@ _$UserRegisteringCopyWith<_UserRegistering> get copyWith => __$UserRegisteringCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserRegistering&&const DeepCollectionEquality().equals(other.registerDetails, registerDetails));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserRegistering&&(identical(other.registerDetails, registerDetails) || other.registerDetails == registerDetails));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(registerDetails));
+int get hashCode => Object.hash(runtimeType,registerDetails);
 
 @override
 String toString() {
@@ -259,9 +259,9 @@ class __$UserRegisteringCopyWithImpl<$Res>
 
 /// Create a copy of UserRegisterEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? registerDetails = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? registerDetails = null,}) {
   return _then(_UserRegistering(
-freezed == registerDetails ? _self.registerDetails : registerDetails // ignore: cast_nullable_to_non_nullable
+null == registerDetails ? _self.registerDetails : registerDetails // ignore: cast_nullable_to_non_nullable
 as RegisterDetails,
   ));
 }
@@ -590,12 +590,12 @@ $UserRegisterSuccessCopyWith<UserRegisterSuccess> get copyWith => _$UserRegister
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserRegisterSuccess&&const DeepCollectionEquality().equals(other.response, response));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserRegisterSuccess&&(identical(other.response, response) || other.response == response));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(response));
+int get hashCode => Object.hash(runtimeType,response);
 
 @override
 String toString() {
@@ -627,9 +627,9 @@ class _$UserRegisterSuccessCopyWithImpl<$Res>
 
 /// Create a copy of UserRegisterState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? response = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? response = null,}) {
   return _then(UserRegisterSuccess(
-freezed == response ? _self.response : response // ignore: cast_nullable_to_non_nullable
+null == response ? _self.response : response // ignore: cast_nullable_to_non_nullable
 as UserRegisterResponseModel,
   ));
 }

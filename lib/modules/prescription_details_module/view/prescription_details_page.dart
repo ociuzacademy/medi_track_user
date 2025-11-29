@@ -52,11 +52,11 @@ class PrescriptionDetailsPage extends StatelessWidget {
       backgroundColor: isDark
           ? const Color(0xFF0f2320)
           : const Color(0xFFf5f8f8),
-      body: Stack(
+      body: const Stack(
         children: [
           // Main Content
           SingleChildScrollView(
-            padding: const EdgeInsets.only(
+            padding: EdgeInsets.only(
               top: 16,
               left: 16,
               right: 16,
@@ -65,41 +65,41 @@ class PrescriptionDetailsPage extends StatelessWidget {
             child: Column(
               children: [
                 // Doctor Details Card
-                const DoctorDetailsCard(),
+                DoctorDetailsCard(),
 
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
 
                 // Appointment Info Card
-                const AppointmentInfoCard(),
+                AppointmentInfoCard(),
 
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
 
                 // Patient Details Card
-                const PatientDetailsCard(),
+                PatientDetailsCard(),
 
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
 
                 // Symptoms Card - NEW SECTION ADDED
-                const SymptomsCard(),
+                SymptomsCard(),
 
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
 
                 // Medicines Section
-                const MedicinesSection(),
+                MedicinesSection(),
 
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
 
                 // Doctor's Notes
-                const DoctorsNotesCard(),
+                DoctorsNotesCard(),
 
                 // Extra space for bottom buttons
-                const SizedBox(height: 100),
+                SizedBox(height: 100),
               ],
             ),
           ),
 
           // Bottom Action Buttons
-          const BottomActionButtons(),
+          BottomActionButtons(),
         ],
       ),
     );

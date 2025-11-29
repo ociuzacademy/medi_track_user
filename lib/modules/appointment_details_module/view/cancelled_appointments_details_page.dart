@@ -62,20 +62,20 @@ class CancelledAppointmentDetailsPage extends StatelessWidget {
                       ],
                     ),
                     padding: const EdgeInsets.all(24),
-                    child: Column(
+                    child: const Column(
                       children: [
                         // Status Header
-                        const StatusHeader(),
+                        StatusHeader(),
 
-                        const SizedBox(height: 24),
+                        SizedBox(height: 24),
 
                         // Doctor Card
-                        const DoctorCard(),
+                        DoctorCard(),
 
-                        const SizedBox(height: 24),
+                        SizedBox(height: 24),
 
                         // Details List
-                        const DetailsList(),
+                        DetailsList(),
                       ],
                     ),
                   ),

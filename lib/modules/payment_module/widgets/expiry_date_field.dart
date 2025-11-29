@@ -52,7 +52,7 @@ class _ExpiryDateInputFormatter extends TextInputFormatter {
       if (oldValue.text.endsWith('/') && newValue.text.length == 2) {
         return TextEditingValue(
           text: newValue.text.substring(0, 1),
-          selection: TextSelection.collapsed(offset: 1),
+          selection: const TextSelection.collapsed(offset: 1),
         );
       }
       return newValue;

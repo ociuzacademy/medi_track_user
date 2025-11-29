@@ -9,24 +9,24 @@ import 'package:medi_track/core/constants/app_constants.dart';
 import 'package:medi_track/core/constants/app_urls.dart';
 import 'package:medi_track/modules/login_module/models/login_response_model.dart';
 
-class Login {
+class LoginServices {
   static Future<LoginResponseModel> userLogin({
     required String email,
     required String password,
   }) async {
     try {
-      Map<String, dynamic> params = {"email": email, "password": password};
+      Map<String, dynamic> params = {'email': email, 'password': password};
 
       final resp = await http
           .post(
             Uri.parse(AppUrls.loginUrl),
             body: jsonEncode(params),
             headers: <String, String>{
-              "Content-Type": "application/json; charset=utf-8",
+              'Content-Type': 'application/json; charset=utf-8',
             },
           )
           .timeout(
-            Duration(seconds: AppConstants.requestTimeoutSeconds),
+            const Duration(seconds: AppConstants.requestTimeoutSeconds),
             onTimeout: () {
               throw TimeoutException(
                 'Request timed out after ${AppConstants.requestTimeoutSeconds} seconds',

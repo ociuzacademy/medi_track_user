@@ -10,7 +10,7 @@ class AppointmentDetailsList extends StatelessWidget {
     // Removed unused variables - they were declared but never used
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Column(
+      child: const Column(
         children: [
           // Department
           CompletedAppointmentDetailRow(
