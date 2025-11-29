@@ -1,7 +1,7 @@
 // action_buttons.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:medi_track/modules/appointments_module/view/appointments_page.dart';
+import 'package:medi_track/modules/user_appointments_module/view/user_appointments_page.dart';
 import 'package:medi_track/modules/home_module/view/home_page.dart';
 
 class ActionButtons extends StatelessWidget {
@@ -20,7 +20,10 @@ class ActionButtons extends StatelessWidget {
             height: 54,
             child: ElevatedButton(
               onPressed: () {
-                Navigator.pushReplacement(context, AppointmentsPage.route());
+                Navigator.pushReplacement(
+                  context,
+                  UserAppointmentsPage.route(),
+                );
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF2196F3),

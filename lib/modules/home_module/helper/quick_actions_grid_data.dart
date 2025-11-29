@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:medi_track/modules/appointment_module/view/appointment_page.dart';
-import 'package:medi_track/modules/appointments_module/view/appointments_page.dart';
+import 'package:medi_track/modules/appointment_booking_module/view/appointment_booking_page.dart';
+import 'package:medi_track/modules/user_appointments_module/view/user_appointments_page.dart';
 import 'package:medi_track/modules/blood_donor_dashboard_module/view/blood_donor_dashboard_page.dart';
 import 'package:medi_track/modules/feedback_list_module/view/feedback_list_page.dart';
 import 'package:medi_track/modules/home_module/models/quick_action.dart';
@@ -14,7 +14,7 @@ class QuickActionsGridData {
         title: 'Book Doctor',
         isPrimary: true,
         onClick: () {
-          Navigator.push(context, AppointmentPage.route());
+          Navigator.push(context, AppointmentBookingPage.route());
         },
       ),
       QuickAction(
@@ -46,7 +46,7 @@ class QuickActionsGridData {
         title: 'Appointments',
         isPrimary: false,
         onClick: () {
-          Navigator.push(context, AppointmentsPage.route());
+          Navigator.push(context, UserAppointmentsPage.route());
         },
       ),
     ];
