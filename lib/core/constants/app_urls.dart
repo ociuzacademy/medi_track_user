@@ -7,4 +7,5 @@ class AppUrls {
 
   static const String departmentsUrl = '$userUrl/departments/';
   static const String availableDoctorsUrl = '$userUrl/available_doctors/';
+  static const String expectedTokenUrl = '$userUrl/expected_token/';
 }

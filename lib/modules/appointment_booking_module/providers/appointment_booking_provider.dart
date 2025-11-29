@@ -6,11 +6,16 @@ import 'package:medi_track/modules/appointment_booking_module/models/departments
 import 'package:medi_track/modules/payment_module/view/payment_page.dart';
 
 import 'package:medi_track/modules/appointment_booking_module/cubit/available_doctors/available_doctors_cubit.dart';
+import 'package:medi_track/modules/appointment_booking_module/cubit/expected_token/expected_token_cubit.dart';
 
 class AppointmentBookingProvider with ChangeNotifier {
   final AvailableDoctorsCubit availableDoctorsCubit;
+  final ExpectedTokenCubit expectedTokenCubit;
 
-  AppointmentBookingProvider({required this.availableDoctorsCubit});
+  AppointmentBookingProvider({
+    required this.availableDoctorsCubit,
+    required this.expectedTokenCubit,
+  });
 
   // Form state
   Department? _selectedDepartment;
@@ -21,11 +26,11 @@ class AppointmentBookingProvider with ChangeNotifier {
   List<Department>? _departments;
 
   List<AvailableDoctor>? _doctors;
+  int? _expectedToken;
 
   // Patient information
   final String patientName = 'John Doe';
   final String patientId = 'MED123456';
-  final int expectedToken = 24;
 
   // Getters
   Department? get selectedDepartment => _selectedDepartment;
@@ -34,6 +39,7 @@ class AppointmentBookingProvider with ChangeNotifier {
   String get symptoms => _symptoms;
   List<Department>? get departments => _departments;
   List<AvailableDoctor>? get doctors => _doctors;
+  int? get expectedToken => _expectedToken;
 
   // Setters
   void setDepartments(List<Department>? departments) {
@@ -50,6 +56,7 @@ class AppointmentBookingProvider with ChangeNotifier {
   void setSelectedDate(DateTime? date) {
     _selectedDate = date;
     _checkAndFetchDoctors();
+    _checkAndFetchExpectedToken();
     notifyListeners();
   }
 
@@ -62,6 +69,15 @@ class AppointmentBookingProvider with ChangeNotifier {
     }
   }
 
+  void _checkAndFetchExpectedToken() {
+    if (_selectedDoctor != null && _selectedDate != null) {
+      expectedTokenCubit.getExpectedToken(
+        doctorId: _selectedDoctor!.id,
+        date: _selectedDate!,
+      );
+    }
+  }
+
   void setDoctors(List<AvailableDoctor>? doctors) {
     _doctors = doctors;
     notifyListeners();
@@ -69,11 +85,17 @@ class AppointmentBookingProvider with ChangeNotifier {
 
   void setSelectedDoctor(AvailableDoctor? doctor) {
     _selectedDoctor = doctor;
+    _checkAndFetchExpectedToken();
     notifyListeners();
   }
 
   void setSymptoms(String symptoms) {
     _symptoms = symptoms;
+    notifyListeners();
+  }
+
+  void setExpectedToken(int? expectedToken) {
+    _expectedToken = expectedToken;
     notifyListeners();
   }
 

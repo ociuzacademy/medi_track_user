@@ -51,32 +51,38 @@ class AppointmentSummarySection extends StatelessWidget {
           child: Column(
             children: [
               // Token Number
-              Padding(
-                padding: const EdgeInsets.only(bottom: 12),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Expected Token No.',
-                      style: GoogleFonts.inter(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        color: isDark ? Colors.white : const Color(0xFF111518),
+              appointmentBookingProvider.expectedToken != null
+                  ? Padding(
+                      padding: const EdgeInsets.only(bottom: 12),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Expected Token No.',
+                            style: GoogleFonts.inter(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                              color: isDark
+                                  ? Colors.white
+                                  : const Color(0xFF111518),
+                            ),
+                          ),
+                          Text(
+                            appointmentBookingProvider.expectedToken.toString(),
+                            style: GoogleFonts.inter(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: theme.colorScheme.primary,
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    Text(
-                      appointmentBookingProvider.expectedToken.toString(),
-                      style: GoogleFonts.inter(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: theme.colorScheme.primary,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+                    )
+                  : const SizedBox.shrink(),
               // Divider - Using custom dashed line
-              DashedDividerWidget(isDark: isDark),
+              appointmentBookingProvider.expectedToken != null
+                  ? DashedDividerWidget(isDark: isDark)
+                  : const SizedBox.shrink(),
               const SizedBox(height: 12),
               // Appointment Details
               Column(
