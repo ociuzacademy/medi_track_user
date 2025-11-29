@@ -4,6 +4,7 @@ import 'package:medi_track/modules/appointment_booking_module/providers/appointm
 import 'package:medi_track/modules/appointment_booking_module/utils/appointment_booking_helper.dart';
 import 'package:medi_track/modules/appointment_booking_module/widgets/appointment_body.dart';
 import 'package:provider/provider.dart';
+import 'package:medi_track/modules/appointment_booking_module/cubit/available_doctors/available_doctors_cubit.dart';
 
 class AppointmentBookingPage extends StatefulWidget {
   const AppointmentBookingPage({super.key});
@@ -31,7 +32,9 @@ class _AppointmentBookingPageState extends State<AppointmentBookingPage> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => AppointmentBookingProvider(),
+      create: (context) => AppointmentBookingProvider(
+        availableDoctorsCubit: context.read<AvailableDoctorsCubit>(),
+      ),
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(

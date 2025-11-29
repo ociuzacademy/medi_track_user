@@ -84,7 +84,7 @@ class AppointmentSummarySection extends StatelessWidget {
                   AppointmentSummaryRow(
                     label: 'Doctor',
                     value:
-                        appointmentBookingProvider.selectedDoctor?['name'] ??
+                        appointmentBookingProvider.selectedDoctor?.name ??
                         'Not selected',
                     isDark: isDark,
                   ),

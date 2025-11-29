@@ -1,10 +1,14 @@
 // available_doctors_section.dart
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_urls.dart';
+
+import 'package:medi_track/modules/appointment_booking_module/models/available_doctors_model.dart';
 
 class DoctorCard extends StatelessWidget {
-  final Map<String, dynamic> doctor;
+  final AvailableDoctor doctor;
   final bool isSelected;
   final VoidCallback onTap;
 
@@ -44,7 +48,9 @@ class DoctorCard extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                  image: NetworkImage(doctor['imageUrl']),
+                  image: CachedNetworkImageProvider(
+                    '${AppUrls.baseUrl}${doctor.image}',
+                  ),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -56,7 +62,7 @@ class DoctorCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    doctor['name'],
+                    doctor.name,
                     style: GoogleFonts.inter(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
@@ -65,7 +71,7 @@ class DoctorCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    doctor['specialization'],
+                    doctor.qualification,
                     style: GoogleFonts.inter(
                       fontSize: 14,
                       color: (isDark ? Colors.white : const Color(0xFF111518))

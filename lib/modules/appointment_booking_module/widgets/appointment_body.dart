@@ -19,17 +19,35 @@ class AppointmentBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<AppointmentBookingProvider>(
       builder: (context, appointmentProvider, child) {
-        return BlocListener<DepartmentsCubit, DepartmentsState>(
-          listener: (context, state) {
-            switch (state) {
-              case DepartmentsSuccess(:final departments):
-                appointmentProvider.setDepartments(departments.departments);
-                break;
+        return MultiBlocListener(
+          listeners: [
+            BlocListener<DepartmentsCubit, DepartmentsState>(
+              listener: (context, state) {
+                switch (state) {
+                  case DepartmentsSuccess(:final departments):
+                    appointmentProvider.setDepartments(departments.departments);
+                    break;
 
-              default:
-                break;
-            }
-          },
+                  default:
+                    break;
+                }
+              },
+            ),
+            BlocListener<AvailableDoctorsCubit, AvailableDoctorsState>(
+              listener: (context, state) {
+                switch (state) {
+                  case AvailableDoctorsSuccess(:final availableDoctors):
+                    appointmentProvider.setDoctors(
+                      availableDoctors.availableDoctors,
+                    );
+                    break;
+
+                  default:
+                    break;
+                }
+              },
+            ),
+          ],
           child: const SingleChildScrollView(
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: Column(

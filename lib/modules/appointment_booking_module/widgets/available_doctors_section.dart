@@ -31,19 +31,68 @@ class AvailableDoctorsSection extends StatelessWidget {
             ),
           ),
         ),
-        Column(
-          children: appointmentBookingProvider.doctors.map((doctor) {
-            final isSelected =
-                appointmentBookingProvider.selectedDoctorId == doctor['id'];
-            return DoctorCard(
-              doctor: doctor,
-              isSelected: isSelected,
-              onTap: () {
-                appointmentBookingProvider.setSelectedDoctor(doctor['id']);
-              },
-            );
-          }).toList(),
-        ),
+        (appointmentBookingProvider.doctors == null ||
+                appointmentBookingProvider.doctors!.isEmpty)
+            ? Container(
+                padding: const EdgeInsets.all(24),
+                decoration: BoxDecoration(
+                  color: theme.brightness == Brightness.dark
+                      ? const Color(0xFF101a22)
+                      : Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: theme.brightness == Brightness.dark
+                        ? const Color(0xFF374151)
+                        : const Color(0xFFdbe1e6),
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.medical_services_outlined,
+                      size: 48,
+                      color: theme.colorScheme.primary.withValues(alpha: 0.5),
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      'No doctors available',
+                      style: GoogleFonts.inter(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        color: theme.brightness == Brightness.dark
+                            ? Colors.white
+                            : const Color(0xFF111518),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Please select a department and date to view available doctors',
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.inter(
+                        fontSize: 14,
+                        color:
+                            (theme.brightness == Brightness.dark
+                                    ? Colors.white
+                                    : const Color(0xFF111518))
+                                .withValues(alpha: 0.7),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            : Column(
+                children: appointmentBookingProvider.doctors!.map((doctor) {
+                  final isSelected =
+                      appointmentBookingProvider.selectedDoctor == doctor;
+                  return DoctorCard(
+                    doctor: doctor,
+                    isSelected: isSelected,
+                    onTap: () {
+                      appointmentBookingProvider.setSelectedDoctor(doctor);
+                    },
+                  );
+                }).toList(),
+              ),
       ],
     );
   }
