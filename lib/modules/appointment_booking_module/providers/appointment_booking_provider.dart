@@ -25,15 +25,12 @@ class AppointmentBookingProvider with ChangeNotifier {
 
   List<Department>? _departments;
 
-  List<AvailableDoctor>? _doctors;
-
   // Getters
   Department? get selectedDepartment => _selectedDepartment;
   DateTime? get selectedDate => _selectedDate;
   AvailableDoctor? get selectedDoctor => _selectedDoctor;
   String get symptoms => _symptoms;
   List<Department>? get departments => _departments;
-  List<AvailableDoctor>? get doctors => _doctors;
 
   // Setters
   void setDepartments(List<Department>? departments) {
@@ -70,11 +67,6 @@ class AppointmentBookingProvider with ChangeNotifier {
         date: _selectedDate!,
       );
     }
-  }
-
-  void setDoctors(List<AvailableDoctor>? doctors) {
-    _doctors = doctors;
-    notifyListeners();
   }
 
   void setSelectedDoctor(AvailableDoctor? doctor) {

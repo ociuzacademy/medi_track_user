@@ -33,20 +33,6 @@ class AppointmentBody extends StatelessWidget {
                 }
               },
             ),
-            BlocListener<AvailableDoctorsCubit, AvailableDoctorsState>(
-              listener: (context, state) {
-                switch (state) {
-                  case AvailableDoctorsSuccess(:final availableDoctors):
-                    appointmentProvider.setDoctors(
-                      availableDoctors.availableDoctors,
-                    );
-                    break;
-
-                  default:
-                    break;
-                }
-              },
-            ),
           ],
           child: const SingleChildScrollView(
             padding: EdgeInsets.symmetric(horizontal: 16),
