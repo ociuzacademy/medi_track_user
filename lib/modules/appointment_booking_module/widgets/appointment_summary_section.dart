@@ -1,8 +1,6 @@
-// appointment_summary_section.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medi_track/core/export/bloc_export.dart';
-import 'package:medi_track/modules/appointment_booking_module/utils/appointment_summary_section_helper.dart';
 import 'package:medi_track/modules/appointment_booking_module/widgets/appointment_summary_row.dart';
 import 'package:medi_track/modules/appointment_booking_module/widgets/dashed_divider_widget.dart';
 import 'package:provider/provider.dart';
@@ -139,10 +137,11 @@ class AppointmentSummarySection extends StatelessWidget {
                   const SizedBox(height: 8),
                   AppointmentSummaryRow(
                     label: 'Department',
-                    value: AppointmentSummarySectionHelper.getDepartmentLabel(
-                      appointmentBookingProvider.selectedDepartment?.department,
-                      appointmentBookingProvider.departments,
-                    ),
+                    value:
+                        appointmentBookingProvider
+                            .selectedDepartment
+                            ?.department ??
+                        'Not selected',
                     isDark: isDark,
                   ),
                   const SizedBox(height: 8),

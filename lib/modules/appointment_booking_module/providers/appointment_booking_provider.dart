@@ -23,20 +23,13 @@ class AppointmentBookingProvider with ChangeNotifier {
   AvailableDoctor? _selectedDoctor;
   String _symptoms = '';
 
-  List<Department>? _departments;
-
   // Getters
   Department? get selectedDepartment => _selectedDepartment;
   DateTime? get selectedDate => _selectedDate;
   AvailableDoctor? get selectedDoctor => _selectedDoctor;
   String get symptoms => _symptoms;
-  List<Department>? get departments => _departments;
 
   // Setters
-  void setDepartments(List<Department>? departments) {
-    _departments = departments;
-    notifyListeners();
-  }
 
   void setSelectedDepartment(Department? department) {
     _selectedDepartment = department;
