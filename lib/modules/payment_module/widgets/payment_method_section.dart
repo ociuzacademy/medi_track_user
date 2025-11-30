@@ -1,5 +1,7 @@
 // payment_method_section.dart
 import 'package:flutter/material.dart';
+import 'package:medi_track/modules/payment_module/enums/payment_method.dart';
+import 'package:medi_track/modules/payment_module/widgets/payment_method_button.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/modules/payment_module/providers/payment_provider.dart';
@@ -35,7 +37,7 @@ class PaymentMethodSection extends StatelessWidget {
           child: Row(
             children: [
               Expanded(
-                child: _PaymentMethodButton(
+                child: PaymentMethodButton(
                   label: 'Card',
                   isSelected:
                       paymentProvider.selectedPaymentMethod ==
@@ -46,7 +48,7 @@ class PaymentMethodSection extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: _PaymentMethodButton(
+                child: PaymentMethodButton(
                   label: 'UPI',
                   isSelected:
                       paymentProvider.selectedPaymentMethod ==
@@ -60,48 +62,6 @@ class PaymentMethodSection extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class _PaymentMethodButton extends StatelessWidget {
-  final String label;
-  final bool isSelected;
-  final VoidCallback onTap;
-  final bool isDark;
-
-  const _PaymentMethodButton({
-    required this.label,
-    required this.isSelected,
-    required this.onTap,
-    required this.isDark,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
-        decoration: BoxDecoration(
-          color: isSelected ? const Color(0xFF13c8ec) : Colors.transparent,
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Center(
-          child: Text(
-            label,
-            style: GoogleFonts.inter(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-              color: isSelected
-                  ? Colors.white
-                  : (isDark
-                        ? const Color(0xFF9ca3af)
-                        : const Color(0xFF618389)),
-            ),
-          ),
-        ),
-      ),
     );
   }
 }

@@ -1,16 +1,15 @@
 // payment_summary_section.dart
 import 'package:flutter/material.dart';
 import 'package:medi_track/modules/payment_module/widgets/payment_summaryrow.dart';
-import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:medi_track/modules/payment_module/providers/payment_provider.dart';
 
 class PaymentSummarySection extends StatelessWidget {
-  const PaymentSummarySection({super.key});
+  const PaymentSummarySection({super.key, required this.appointmentDetails});
+
+  final String appointmentDetails;
 
   @override
   Widget build(BuildContext context) {
-    final paymentProvider = Provider.of<PaymentProvider>(context);
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
 
@@ -37,7 +36,7 @@ class PaymentSummarySection extends StatelessWidget {
             children: [
               PaymentSummaryrow(
                 label: 'Appointment Details',
-                value: paymentProvider.appointmentDetails,
+                value: appointmentDetails,
                 isDark: isDark,
                 isBold: false,
               ),
@@ -51,7 +50,7 @@ class PaymentSummarySection extends StatelessWidget {
               const SizedBox(height: 8),
               PaymentSummaryrow(
                 label: 'Total Amount',
-                value: '₹${paymentProvider.totalAmount.toStringAsFixed(2)}',
+                value: '₹100',
                 isDark: isDark,
                 isBold: true,
               ),

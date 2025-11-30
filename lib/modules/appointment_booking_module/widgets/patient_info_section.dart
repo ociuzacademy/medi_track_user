@@ -125,9 +125,7 @@ class PatientInfoSection extends StatelessWidget {
                 ),
               ),
               child: TextField(
-                onChanged: (value) {
-                  appointmentBookingProvider.setSymptoms(value);
-                },
+                controller: appointmentBookingProvider.symptomsController,
                 maxLines: 4,
                 decoration: InputDecoration(
                   hintText: 'e.g. Chest pain, annual check-up... (Optional)',

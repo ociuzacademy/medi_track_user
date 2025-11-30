@@ -23,6 +23,11 @@ class CardDetailsSection extends StatelessWidget {
           controller: paymentProvider.cardHolderNameController,
           isDark: isDark,
           autofocus: true,
+          inputFormatters: [
+            TextInputFormatter.withFunction((_, newValue) {
+              return newValue.copyWith(text: newValue.text.toUpperCase());
+            }),
+          ],
         ),
         const SizedBox(height: 16),
         CardInputField(

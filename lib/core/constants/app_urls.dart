@@ -10,4 +10,8 @@ class AppUrls {
   static const String departmentsUrl = '$userUrl/departments/';
   static const String availableDoctorsUrl = '$userUrl/available_doctors/';
   static const String expectedTokenUrl = '$userUrl/expected_token/';
+  static const String bookAppointmentUrl = '$userUrl/book_appointment/';
+  static const String appointmentDetailsUrl = '$userUrl/appointment_details/';
+  static const String cardPaymentUrl = '$userUrl/card_payment/';
+  static const String upiPaymentUrl = '$userUrl/upi_payment/';
 }

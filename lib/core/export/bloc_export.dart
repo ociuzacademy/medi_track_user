@@ -4,3 +4,6 @@ export 'package:medi_track/modules/appointment_booking_module/cubit/departments/
 export 'package:medi_track/modules/appointment_booking_module/cubit/available_doctors/available_doctors_cubit.dart';
 export 'package:medi_track/modules/appointment_booking_module/cubit/expected_token/expected_token_cubit.dart';
 export 'package:medi_track/core/cubit/user_profile/user_profile_cubit.dart';
+export 'package:medi_track/modules/appointment_booking_module/bloc/appointment_booking_bloc.dart';
+export 'package:medi_track/core/cubit/appointment_details/appointment_details_cubit.dart';
+export 'package:medi_track/modules/payment_module/bloc/payment_bloc.dart';

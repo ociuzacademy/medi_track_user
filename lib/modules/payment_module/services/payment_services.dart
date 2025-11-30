@@ -7,20 +7,24 @@ import 'package:http/http.dart' as http;
 import 'package:medi_track/core/constants/app_constants.dart';
 
 import 'package:medi_track/core/constants/app_urls.dart';
-import 'package:medi_track/core/models/appointment_details_model.dart';
-import 'package:medi_track/core/models/user_profile_model.dart';
+import 'package:medi_track/modules/payment_module/classes/card_payment_data.dart';
+import 'package:medi_track/modules/payment_module/classes/u_p_i_payment_data.dart';
+import 'package:medi_track/modules/payment_module/models/card_payment_response_model.dart';
+import 'package:medi_track/modules/payment_module/models/u_p_i_payment_response_model.dart';
 
-class AppServices {
-  static Future<UserProfileModel> getUserProfile({
-    required String userId,
+class PaymentServices {
+  static Future<CardPaymentResponseModel> makeCardPayment({
+    required CardPaymentData cardPaymentData,
   }) async {
     try {
-      final Map<String, dynamic> params = {'user_id': userId};
+      Map<String, dynamic> params = cardPaymentData.toJson();
+
       final resp = await http
-          .get(
-            Uri.parse(AppUrls.viewProfileUrl).replace(queryParameters: params),
+          .post(
+            Uri.parse(AppUrls.cardPaymentUrl),
+            body: jsonEncode(params),
             headers: <String, String>{
-              'Content-Type': 'application/x-www-form-urlencoded',
+              'Content-Type': 'application/json; charset=utf-8',
             },
           )
           .timeout(
@@ -34,16 +38,17 @@ class AppServices {
 
       if (resp.statusCode == 200) {
         final dynamic decoded = jsonDecode(resp.body);
-        final UserProfileModel response = UserProfileModel.fromJson(decoded);
+        final CardPaymentResponseModel response =
+            CardPaymentResponseModel.fromJson(decoded);
         return response;
       } else {
         final Map<String, dynamic> errorResponse = jsonDecode(resp.body);
         throw Exception(
-          'Failed to get user profile: ${errorResponse['message'] ?? 'Unknown error'}',
+          'Failed to make payment: ${errorResponse['message'] ?? 'Unknown error'}',
         );
       }
     } on TimeoutException catch (e) {
-      debugPrint('AppServices: Request timeout - $e');
+      debugPrint('PaymentServices: Request timeout - $e');
       throw Exception(
         'Request timeout. Please check your internet connection and try again.',
       );
@@ -58,20 +63,18 @@ class AppServices {
     }
   }
 
-  static Future<AppointmentDetailsModel> getAppointmentDetails({
-    required int appointmentId,
+  static Future<UPIPaymentResponseModel> makeUPIPayment({
+    required UPIPaymentData upiPaymentData,
   }) async {
     try {
-      final Map<String, dynamic> params = {
-        'appointment_id': appointmentId.toString(),
-      };
+      Map<String, dynamic> params = upiPaymentData.toJson();
+
       final resp = await http
-          .get(
-            Uri.parse(
-              AppUrls.appointmentDetailsUrl,
-            ).replace(queryParameters: params),
+          .post(
+            Uri.parse(AppUrls.upiPaymentUrl),
+            body: jsonEncode(params),
             headers: <String, String>{
-              'Content-Type': 'application/x-www-form-urlencoded',
+              'Content-Type': 'application/json; charset=utf-8',
             },
           )
           .timeout(
@@ -85,17 +88,17 @@ class AppServices {
 
       if (resp.statusCode == 200) {
         final dynamic decoded = jsonDecode(resp.body);
-        final AppointmentDetailsModel response =
-            AppointmentDetailsModel.fromJson(decoded);
+        final UPIPaymentResponseModel response =
+            UPIPaymentResponseModel.fromJson(decoded);
         return response;
       } else {
         final Map<String, dynamic> errorResponse = jsonDecode(resp.body);
         throw Exception(
-          'Failed to get appointment details: ${errorResponse['message'] ?? 'Unknown error'}',
+          'Failed to make payment: ${errorResponse['message'] ?? 'Unknown error'}',
         );
       }
     } on TimeoutException catch (e) {
-      debugPrint('AppServices: Request timeout - $e');
+      debugPrint('PaymentServices: Request timeout - $e');
       throw Exception(
         'Request timeout. Please check your internet connection and try again.',
       );

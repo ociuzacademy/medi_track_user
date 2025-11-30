@@ -11,37 +11,38 @@ import 'package:medi_track/modules/appointment_booking_module/widgets/patient_in
 import 'package:provider/provider.dart';
 
 class AppointmentBody extends StatelessWidget {
-  const AppointmentBody({super.key});
+  final VoidCallback onConfirm;
+  const AppointmentBody({super.key, required this.onConfirm});
 
   @override
   Widget build(BuildContext context) {
     return Consumer<AppointmentBookingProvider>(
       builder: (context, appointmentProvider, child) {
-        return const SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 16),
+        return SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Header Description
-              HeaderDescriptionWidget(),
+              const HeaderDescriptionWidget(),
 
               // Form Section
-              AppointmentFormSection(),
+              const AppointmentFormSection(),
 
               // Available Doctors
-              AvailableDoctorsSection(),
+              const AvailableDoctorsSection(),
 
               // Patient Information
-              PatientInfoSection(),
+              const PatientInfoSection(),
 
               // Appointment Summary
-              AppointmentSummarySection(),
+              const AppointmentSummarySection(),
 
               // Spacer
-              SizedBox(height: 80),
+              const SizedBox(height: 80),
 
               // Confirm Button
-              ConfirmButtonSection(),
+              ConfirmButtonSection(onConfirm: onConfirm),
             ],
           ),
         );

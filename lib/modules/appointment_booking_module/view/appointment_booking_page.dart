@@ -1,11 +1,14 @@
 // appointment_page.dart
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medi_track/core/export/bloc_export.dart';
+import 'package:medi_track/core/widgets/loaders/overlay_loader.dart';
+import 'package:medi_track/core/widgets/snackbars/custom_snackbar.dart';
 import 'package:medi_track/modules/appointment_booking_module/providers/appointment_booking_provider.dart';
 import 'package:medi_track/modules/appointment_booking_module/utils/appointment_booking_helper.dart';
 import 'package:medi_track/modules/appointment_booking_module/widgets/appointment_body.dart';
+import 'package:medi_track/modules/payment_module/view/payment_page.dart';
 import 'package:provider/provider.dart';
-import 'package:medi_track/modules/appointment_booking_module/cubit/available_doctors/available_doctors_cubit.dart';
-import 'package:medi_track/modules/appointment_booking_module/cubit/expected_token/expected_token_cubit.dart';
 
 class AppointmentBookingPage extends StatefulWidget {
   const AppointmentBookingPage({super.key});
@@ -23,11 +26,11 @@ class _AppointmentBookingPageState extends State<AppointmentBookingPage> {
   @override
   void initState() {
     super.initState();
-    _appointmentBookingHelper = AppointmentBookingHelper(context: context);
+    _appointmentBookingHelper = const AppointmentBookingHelper();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _appointmentBookingHelper.showDepartments();
-      _appointmentBookingHelper.showUserProfile();
+      _appointmentBookingHelper.showDepartments(context);
+      _appointmentBookingHelper.showUserProfile(context);
     });
   }
 
@@ -56,7 +59,39 @@ class _AppointmentBookingPageState extends State<AppointmentBookingPage> {
         backgroundColor: Theme.of(context).brightness == Brightness.dark
             ? const Color(0xFF101a22)
             : const Color(0xFFFFFFFF),
-        body: const AppointmentBody(),
+        body: BlocListener<AppointmentBookingBloc, AppointmentBookingState>(
+          listener: (context, state) {
+            switch (state) {
+              case AppointmentBookingLoading():
+                OverlayLoader.show(context, message: 'Booking Appointment...');
+                break;
+              case AppointmentBookingSuccess(response: final response):
+                OverlayLoader.hide();
+                CustomSnackbar.showSuccess(context, message: response.message);
+                Navigator.pushReplacement(
+                  context,
+                  PaymentPage.route(appointmentId: response.appointment.id),
+                );
+                break;
+              case AppointmentBookingError(message: final message):
+                OverlayLoader.hide();
+                CustomSnackbar.showError(context, message: message);
+                break;
+              default:
+                OverlayLoader.hide();
+                break;
+            }
+          },
+          child: Builder(
+            builder: (context) {
+              return AppointmentBody(
+                onConfirm: () {
+                  _appointmentBookingHelper.confirmBooking(context);
+                },
+              );
+            },
+          ),
+        ),
       ),
     );
   }

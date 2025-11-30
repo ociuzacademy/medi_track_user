@@ -1,5 +1,6 @@
 // payment_details_section.dart
 import 'package:flutter/material.dart';
+import 'package:medi_track/modules/payment_module/enums/payment_method.dart';
 import 'package:provider/provider.dart';
 import 'package:medi_track/modules/payment_module/providers/payment_provider.dart';
 import 'package:medi_track/modules/payment_module/widgets/card_details_section.dart';

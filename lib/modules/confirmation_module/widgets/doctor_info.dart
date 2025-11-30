@@ -1,29 +1,56 @@
 // appointment_details_card.dart
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_urls.dart';
 
 class DoctorInfo extends StatelessWidget {
-  const DoctorInfo({super.key, required this.isDark});
+  const DoctorInfo({
+    super.key,
+    required this.isDark,
+    required this.doctorName,
+    required this.department,
+    required this.avatarUrl,
+  });
 
   final bool isDark;
+  final String doctorName;
+  final String department;
+  final String avatarUrl;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         // Doctor Avatar
-        Container(
-          width: 64,
-          height: 64,
-          decoration: const BoxDecoration(
-            shape: BoxShape.circle,
-            image: DecorationImage(
-              image: NetworkImage(
-                'https://lh3.googleusercontent.com/aida-public/AB6AXuCj5Pw6gLKEJkgBjb0usZdLrlO144HvQpgai1BgLkgdu6kZgrgnAGGsCQP1i3v-UaSEGSrge4h8AuOIG5-jCwFM0GPup77BS22NmROwpHE9uhSDFGzySOv9RGxdLe_bdprtW5nE5o_YHstk1Y7kN9SS-kLiBFyXFKrHjJmgLmqHl2C8HGo6lhkQUjH_mGilcV23LF3vXNpV82IqbWqnsx7NtooYx9FX2cshEfMx3zOQqPmzOFkOYZt4MPF0y5kiKpiYHTmq0DSIVc36',
-              ),
-              fit: BoxFit.cover,
+        CachedNetworkImage(
+          imageUrl: '${AppUrls.baseUrl}$avatarUrl',
+          imageBuilder: (context, imageProvider) => Container(
+            width: 64,
+            height: 64,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
             ),
+          ),
+          placeholder: (context, url) => Container(
+            width: 64,
+            height: 64,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: isDark ? Colors.grey[800] : Colors.grey[200],
+            ),
+            child: const Center(child: CircularProgressIndicator()),
+          ),
+          errorWidget: (context, url, error) => Container(
+            width: 64,
+            height: 64,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: isDark ? Colors.grey[800] : Colors.grey[200],
+            ),
+            child: const Icon(Icons.person, color: Colors.grey),
           ),
         ),
 
@@ -35,7 +62,7 @@ class DoctorInfo extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Dr. Evelyn Reed',
+                'Dr. $doctorName',
                 style: GoogleFonts.poppins(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -44,7 +71,7 @@ class DoctorInfo extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                'Cardiology',
+                department,
                 style: GoogleFonts.inter(
                   fontSize: 16,
                   color: isDark

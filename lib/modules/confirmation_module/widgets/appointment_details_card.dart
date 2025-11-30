@@ -5,7 +5,22 @@ import 'package:medi_track/modules/confirmation_module/widgets/appointment_detai
 import 'package:medi_track/modules/confirmation_module/widgets/doctor_info.dart';
 
 class AppointmentDetailsCard extends StatelessWidget {
-  const AppointmentDetailsCard({super.key});
+  const AppointmentDetailsCard({
+    super.key,
+    required this.tokenNumber,
+    required this.date,
+    required this.status,
+    required this.doctorName,
+    required this.department,
+    required this.avatarUrl,
+  });
+
+  final int tokenNumber;
+  final DateTime date;
+  final String status;
+  final String doctorName;
+  final String department;
+  final String avatarUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +46,7 @@ class AppointmentDetailsCard extends StatelessWidget {
           children: [
             // Token Number
             Text(
-              'Your Token Number is 123',
+              'Your Token Number is #$tokenNumber',
               textAlign: TextAlign.center,
               style: GoogleFonts.poppins(
                 fontSize: 24,
@@ -43,7 +58,12 @@ class AppointmentDetailsCard extends StatelessWidget {
             const SizedBox(height: 16),
 
             // Doctor Info
-            DoctorInfo(isDark: isDark),
+            DoctorInfo(
+              isDark: isDark,
+              doctorName: doctorName,
+              department: department,
+              avatarUrl: avatarUrl,
+            ),
 
             const SizedBox(height: 16),
 
@@ -56,7 +76,11 @@ class AppointmentDetailsCard extends StatelessWidget {
             const SizedBox(height: 16),
 
             // Appointment Details
-            AppointmentDetailsColumn(isDark: isDark),
+            AppointmentDetailsColumn(
+              isDark: isDark,
+              date: date,
+              status: status,
+            ),
           ],
         ),
       ),

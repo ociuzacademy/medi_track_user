@@ -1,9 +1,12 @@
 // payment_provider.dart
 import 'package:flutter/material.dart';
-import 'package:medi_track/core/widgets/snackbars/custom_snackbar.dart';
-import 'package:medi_track/modules/confirmation_module/view/confirmation_page.dart';
+import 'package:medi_track/modules/payment_module/classes/card_payment_data.dart';
+import 'package:medi_track/modules/payment_module/classes/u_p_i_payment_data.dart';
+import 'package:medi_track/modules/payment_module/enums/payment_method.dart';
 
 class PaymentProvider with ChangeNotifier {
+  final int appointmentId;
+
   // Payment state
   PaymentMethod _selectedPaymentMethod = PaymentMethod.card;
 
@@ -15,9 +18,7 @@ class PaymentProvider with ChangeNotifier {
   final TextEditingController cvvController = TextEditingController();
   final TextEditingController upiIdController = TextEditingController();
 
-  // Payment details
-  final String appointmentDetails = 'Cardiology Consultation';
-  final double totalAmount = 100.00;
+  PaymentProvider({required this.appointmentId});
 
   // Getters
   PaymentMethod get selectedPaymentMethod => _selectedPaymentMethod;
@@ -48,31 +49,24 @@ class PaymentProvider with ChangeNotifier {
     return false;
   }
 
-  // Process payment
-  void processPayment(BuildContext context) {
-    FocusScope.of(context).unfocus();
-    if (!isFormValid) {
-      CustomSnackbar.showError(
-        context,
-        message: _selectedPaymentMethod == PaymentMethod.card
-            ? 'Please fill all card details'
-            : 'Please enter UPI ID',
-      );
-
-      return;
+  CardPaymentData? get cardPaymentData {
+    if (_selectedPaymentMethod != PaymentMethod.card || !isFormValid) {
+      return null;
     }
-
-    // Simulate payment processing
-    CustomSnackbar.showSuccess(
-      context,
-      message: 'Payment of ₹$totalAmount processed successfully!',
+    return CardPaymentData(
+      appointmentId: appointmentId,
+      cardholderName: cardHolderName,
+      cardNumber: cardNumber,
+      expiryDate: expiryDate,
+      cvv: cvv,
     );
+  }
 
-    // Navigate to confirmation page
-    Future.delayed(const Duration(seconds: 2), () {
-      if (!context.mounted) return;
-      Navigator.of(context).pushReplacement(ConfirmationPage.route());
-    });
+  UPIPaymentData? get upiPaymentData {
+    if (_selectedPaymentMethod != PaymentMethod.upi || !isFormValid) {
+      return null;
+    }
+    return UPIPaymentData(appointmentId: appointmentId, upiId: upiId);
   }
 
   @override
@@ -85,5 +79,3 @@ class PaymentProvider with ChangeNotifier {
     super.dispose();
   }
 }
-
-enum PaymentMethod { card, upi }

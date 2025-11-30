@@ -39,7 +39,7 @@ class NotificationReminder extends StatelessWidget {
           // Reminder Text
           Expanded(
             child: Text(
-              'You will be notified 30 minutes before your appointment.',
+              'You will be notified in the day of your appointment by email.',
               style: GoogleFonts.inter(
                 fontSize: 14,
                 color: isDark

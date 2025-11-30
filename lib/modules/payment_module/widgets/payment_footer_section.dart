@@ -1,5 +1,10 @@
 // payment_footer_section.dart
 import 'package:flutter/material.dart';
+import 'package:medi_track/core/widgets/snackbars/custom_snackbar.dart';
+import 'package:medi_track/modules/payment_module/classes/card_payment_data.dart';
+import 'package:medi_track/modules/payment_module/classes/u_p_i_payment_data.dart';
+import 'package:medi_track/modules/payment_module/enums/payment_method.dart';
+import 'package:medi_track/modules/payment_module/utils/payment_helper.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/modules/payment_module/providers/payment_provider.dart';
@@ -58,7 +63,36 @@ class PaymentFooterSection extends StatelessWidget {
             width: double.infinity,
             height: 48,
             child: ElevatedButton(
-              onPressed: () => paymentProvider.processPayment(context),
+              onPressed: () {
+                if (paymentProvider.isFormValid) {
+                  if (paymentProvider.selectedPaymentMethod ==
+                      PaymentMethod.card) {
+                    final CardPaymentData? cardPaymentData =
+                        paymentProvider.cardPaymentData;
+                    if (cardPaymentData != null) {
+                      PaymentHelper.processCardPayment(
+                        context,
+                        cardPaymentData,
+                      );
+                    }
+                  } else {
+                    final UPIPaymentData? upiPaymentData =
+                        paymentProvider.upiPaymentData;
+                    if (upiPaymentData != null) {
+                      PaymentHelper.processUPIPayment(context, upiPaymentData);
+                    }
+                  }
+                } else {
+                  CustomSnackbar.showError(
+                    context,
+                    message:
+                        paymentProvider.selectedPaymentMethod ==
+                            PaymentMethod.card
+                        ? 'Please fill all card details'
+                        : 'Please enter UPI ID',
+                  );
+                }
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF13c8ec),
                 foregroundColor: Colors.white,
@@ -69,7 +103,7 @@ class PaymentFooterSection extends StatelessWidget {
                 shadowColor: Colors.transparent,
               ),
               child: Text(
-                'Pay ₹${paymentProvider.totalAmount.toStringAsFixed(2)} Now',
+                'Pay ₹100 Now',
                 style: GoogleFonts.inter(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,

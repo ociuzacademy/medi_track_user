@@ -1,17 +1,13 @@
 // confirm_button_section.dart
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:medi_track/modules/appointment_booking_module/providers/appointment_booking_provider.dart';
 
 class ConfirmButtonSection extends StatelessWidget {
-  const ConfirmButtonSection({super.key});
+  final VoidCallback onConfirm;
+  const ConfirmButtonSection({super.key, required this.onConfirm});
 
   @override
   Widget build(BuildContext context) {
-    final appointmentBookingProvider = Provider.of<AppointmentBookingProvider>(
-      context,
-    );
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
 
@@ -49,8 +45,7 @@ class ConfirmButtonSection extends StatelessWidget {
               ],
             ),
             child: ElevatedButton(
-              onPressed: () =>
-                  appointmentBookingProvider.confirmBooking(context),
+              onPressed: onConfirm,
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.transparent,
                 shadowColor: Colors.transparent,
