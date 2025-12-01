@@ -32,12 +32,14 @@ class AppointmentBookingProvider with ChangeNotifier {
 
   void setSelectedDepartment(Department? department) {
     _selectedDepartment = department;
+    _selectedDoctor = null;
     _checkAndFetchDoctors();
     notifyListeners();
   }
 
   void setSelectedDate(DateTime? date) {
     _selectedDate = date;
+    _selectedDoctor = null;
     _checkAndFetchDoctors();
     _checkAndFetchExpectedToken();
     notifyListeners();
