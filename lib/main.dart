@@ -38,6 +38,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => PaymentBloc()),
         BlocProvider(create: (context) => AppointmentListCubit()),
         BlocProvider(create: (context) => CancelAppointmentBloc()),
+        BlocProvider(create: (context) => TokenStatusCubit()),
       ],
       child: MaterialApp(
         title: 'MediTrack',

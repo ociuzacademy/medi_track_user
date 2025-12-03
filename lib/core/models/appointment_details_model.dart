@@ -17,7 +17,10 @@ class AppointmentDetailsModel {
   final bool success;
   final Appointment appointment;
 
-  AppointmentDetailsModel({required this.success, required this.appointment});
+  const AppointmentDetailsModel({
+    required this.success,
+    required this.appointment,
+  });
 
   AppointmentDetailsModel copyWith({bool? success, Appointment? appointment}) =>
       AppointmentDetailsModel(
@@ -39,6 +42,7 @@ class AppointmentDetailsModel {
 
 class Appointment {
   final int id;
+  final int doctorId;
   final String userName;
   final String doctorName;
   final String doctorImage;
@@ -53,8 +57,9 @@ class Appointment {
   final DateTime createdAt;
   final DateTime updatedAt;
 
-  Appointment({
+  const Appointment({
     required this.id,
+    required this.doctorId,
     required this.userName,
     required this.doctorName,
     required this.doctorImage,
@@ -72,6 +77,7 @@ class Appointment {
 
   Appointment copyWith({
     int? id,
+    int? doctorId,
     String? userName,
     String? doctorName,
     String? doctorImage,
@@ -87,6 +93,7 @@ class Appointment {
     DateTime? updatedAt,
   }) => Appointment(
     id: id ?? this.id,
+    doctorId: doctorId ?? this.doctorId,
     userName: userName ?? this.userName,
     doctorName: doctorName ?? this.doctorName,
     doctorImage: doctorImage ?? this.doctorImage,
@@ -104,6 +111,7 @@ class Appointment {
 
   factory Appointment.fromJson(Map<String, dynamic> json) => Appointment(
     id: json['id'],
+    doctorId: json['doctor_id'],
     userName: json['user_name'],
     doctorName: json['doctor_name'],
     doctorImage: json['doctor_image'],
@@ -123,6 +131,7 @@ class Appointment {
 
   Map<String, dynamic> toJson() => {
     'id': id,
+    'doctor_id': doctorId,
     'user_name': userName,
     'doctor_name': doctorName,
     'doctor_image': doctorImage,

@@ -119,7 +119,12 @@ class _UpcomingAppointmentDetailsPageState
                       child: Column(
                         children: [
                           // Live Status Card
-                          if (isToday) const LiveStatusCard(),
+                          if (isToday)
+                            LiveStatusCard(
+                              doctorId: appointmentDetails.appointment.doctorId,
+                              tokenNumber:
+                                  appointmentDetails.appointment.tokenNumber,
+                            ),
 
                           const SizedBox(height: 16),
 
