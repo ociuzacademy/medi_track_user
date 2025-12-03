@@ -1,15 +1,32 @@
 // doctor_info_card.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+import 'package:medi_track/core/enums/payment_status.dart';
 import 'package:medi_track/modules/appointment_details_module/widgets/doctor_info_detail_row.dart';
 
 class DoctorInfoCard extends StatelessWidget {
-  const DoctorInfoCard({super.key});
+  final String doctorName;
+  final String doctorSpecialization;
+  final int token;
+  final DateTime appointmentDate;
+  final String symptoms;
+  final PaymentStatus paymentStatus;
+  const DoctorInfoCard({
+    super.key,
+    required this.doctorName,
+    required this.doctorSpecialization,
+    required this.token,
+    required this.appointmentDate,
+    required this.symptoms,
+    required this.paymentStatus,
+  });
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final screenWidth = MediaQuery.of(context).size.width;
+    final DateFormat dateFormat = DateFormat('dd MMM yyyy');
 
     return Container(
       width: screenWidth,
@@ -51,7 +68,7 @@ class DoctorInfoCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Dr. Evelyn Reed',
+                        doctorName,
                         style: GoogleFonts.lexend(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -63,7 +80,7 @@ class DoctorInfoCard extends StatelessWidget {
                       ),
                       const SizedBox(height: 2),
                       Text(
-                        'Cardiology',
+                        doctorSpecialization,
                         style: GoogleFonts.lexend(
                           fontSize: 14,
                           color: isDark
@@ -113,7 +130,9 @@ class DoctorInfoCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: Text(
-                    'Paid',
+                    paymentStatus == PaymentStatus.completed
+                        ? 'Paid'
+                        : 'Pending',
                     style: GoogleFonts.lexend(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
@@ -128,24 +147,24 @@ class DoctorInfoCard extends StatelessWidget {
           // Appointment Details
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: const Column(
+            child: Column(
               children: [
                 DoctorInfoDetailRow(
                   icon: Icons.medical_services,
                   label: 'Department',
-                  value: 'Cardiology',
+                  value: doctorSpecialization,
                   isFirst: true,
                 ),
                 DoctorInfoDetailRow(
                   icon: Icons.confirmation_number,
                   label: 'Your Token',
-                  value: 'A-124',
+                  value: token.toString(),
                   isBold: true,
                 ),
                 DoctorInfoDetailRow(
                   icon: Icons.calendar_today,
-                  label: 'Date & Time',
-                  value: 'Oct 26, 2023 at 10:30 AM',
+                  label: 'Date',
+                  value: dateFormat.format(appointmentDate),
                 ),
               ],
             ),
@@ -174,7 +193,7 @@ class DoctorInfoCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Patient reported experiencing chest pain, shortness of breath, and occasional dizziness over the last two weeks.',
+                  symptoms,
                   style: GoogleFonts.lexend(
                     fontSize: 14,
                     color: isDark

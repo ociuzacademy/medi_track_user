@@ -4,6 +4,9 @@
 
 import 'dart:convert';
 
+import 'package:medi_track/core/enums/appointment_status.dart';
+import 'package:medi_track/core/enums/payment_status.dart';
+
 AppointmentsModel appointmentsModelFromJson(String str) =>
     AppointmentsModel.fromJson(json.decode(str));
 
@@ -131,34 +134,4 @@ class Appointment {
     'cancellation_reason': cancellationReason,
     'created_at': createdAt.toIso8601String(),
   };
-}
-
-enum PaymentStatus {
-  pending('pending'),
-  completed('completed');
-
-  final String value;
-  const PaymentStatus(this.value);
-
-  factory PaymentStatus.fromString(String name) {
-    return PaymentStatus.values.firstWhere((e) => e.value == name);
-  }
-
-  String toJson() => value;
-}
-
-enum AppointmentStatus {
-  upcoming('upcoming'),
-  completed('completed'),
-  cancelled('cancelled'),
-  rescheduled('rescheduled');
-
-  final String value;
-  const AppointmentStatus(this.value);
-
-  factory AppointmentStatus.fromString(String name) {
-    return AppointmentStatus.values.firstWhere((e) => e.value == name);
-  }
-
-  String toJson() => value;
 }

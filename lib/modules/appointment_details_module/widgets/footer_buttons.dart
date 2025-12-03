@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class FooterButtons extends StatelessWidget {
-  const FooterButtons({super.key});
+  final VoidCallback onCancel;
+  const FooterButtons({super.key, required this.onCancel});
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +29,7 @@ class FooterButtons extends StatelessWidget {
             width: double.infinity,
             height: 48,
             child: OutlinedButton(
-              onPressed: () {
-                // Handle cancel appointment
-              },
+              onPressed: onCancel,
               style: OutlinedButton.styleFrom(
                 foregroundColor: const Color(0xFFE53935),
                 side: const BorderSide(color: Color(0xFFE53935)),

@@ -4,6 +4,9 @@
 
 import 'dart:convert';
 
+import 'package:medi_track/core/enums/appointment_status.dart';
+import 'package:medi_track/core/enums/payment_status.dart';
+
 AppointmentDetailsModel appointmentDetailsModelFromJson(String str) =>
     AppointmentDetailsModel.fromJson(json.decode(str));
 
@@ -43,8 +46,8 @@ class Appointment {
   final DateTime date;
   final int tokenNumber;
   final String symptoms;
-  final String paymentStatus;
-  final String status;
+  final PaymentStatus paymentStatus;
+  final AppointmentStatus status;
   final DateTime? rescheduledDate;
   final String? cancellationReason;
   final DateTime createdAt;
@@ -76,8 +79,8 @@ class Appointment {
     DateTime? date,
     int? tokenNumber,
     String? symptoms,
-    String? paymentStatus,
-    String? status,
+    PaymentStatus? paymentStatus,
+    AppointmentStatus? status,
     DateTime? rescheduledDate,
     String? cancellationReason,
     DateTime? createdAt,
@@ -108,8 +111,8 @@ class Appointment {
     date: DateTime.parse(json['date']),
     tokenNumber: json['token_number'],
     symptoms: json['symptoms'],
-    paymentStatus: json['payment_status'],
-    status: json['status'],
+    paymentStatus: PaymentStatus.fromString(json['payment_status']),
+    status: AppointmentStatus.fromString(json['status']),
     rescheduledDate: json['rescheduled_date'] != null
         ? DateTime.parse(json['rescheduled_date'])
         : null,
@@ -128,8 +131,8 @@ class Appointment {
         "${date.year.toString().padLeft(4, '0')}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}",
     'token_number': tokenNumber,
     'symptoms': symptoms,
-    'payment_status': paymentStatus,
-    'status': status,
+    'payment_status': paymentStatus.value,
+    'status': status.value,
     'rescheduled_date': rescheduledDate != null
         ? "${rescheduledDate!.year.toString().padLeft(4, '0')}-${rescheduledDate!.month.toString().padLeft(2, '0')}-${rescheduledDate!.day.toString().padLeft(2, '0')}"
         : null,

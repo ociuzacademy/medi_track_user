@@ -8,8 +8,13 @@ import 'package:medi_track/modules/user_appointments_module/cubit/appointment_li
 
 class CancellationBottomSheet extends StatefulWidget {
   final int appointmentId;
+  final bool isAppointmentDetails;
 
-  const CancellationBottomSheet({super.key, required this.appointmentId});
+  const CancellationBottomSheet({
+    super.key,
+    required this.appointmentId,
+    required this.isAppointmentDetails,
+  });
 
   @override
   State<CancellationBottomSheet> createState() =>
@@ -34,6 +39,9 @@ class _CancellationBottomSheetState extends State<CancellationBottomSheet> {
       listener: (context, state) {
         if (state is CancelAppointmentSuccess) {
           Navigator.pop(context);
+          if (widget.isAppointmentDetails) {
+            Navigator.pop(context);
+          }
           CustomSnackbar.showSuccess(context, message: state.response.message);
           // Refresh the appointment list
           context.read<AppointmentListCubit>().getUserAppointments();

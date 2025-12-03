@@ -1,16 +1,46 @@
 // appointment_details_page.dart
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/export/bloc_export.dart';
+import 'package:medi_track/modules/appointment_details_module/utils/upcoming_appointment_details_helper.dart';
 
 import 'package:medi_track/modules/appointment_details_module/widgets/doctor_info_card.dart';
 import 'package:medi_track/modules/appointment_details_module/widgets/footer_buttons.dart';
 import 'package:medi_track/modules/appointment_details_module/widgets/live_status_card.dart';
 
-class UpcomingAppointmentDetailsPage extends StatelessWidget {
-  const UpcomingAppointmentDetailsPage({super.key});
+class UpcomingAppointmentDetailsPage extends StatefulWidget {
+  final int appointmentId;
+  const UpcomingAppointmentDetailsPage({
+    super.key,
+    required this.appointmentId,
+  });
 
-  static Route route() =>
-      MaterialPageRoute(builder: (_) => const UpcomingAppointmentDetailsPage());
+  static Route route({required int appointmentId}) => MaterialPageRoute(
+    builder: (_) =>
+        UpcomingAppointmentDetailsPage(appointmentId: appointmentId),
+  );
+
+  @override
+  State<UpcomingAppointmentDetailsPage> createState() =>
+      _UpcomingAppointmentDetailsPageState();
+}
+
+class _UpcomingAppointmentDetailsPageState
+    extends State<UpcomingAppointmentDetailsPage> {
+  late final UpcomingAppointmentDetailsHelper _upcomingAppointmentDetailsHelper;
+
+  @override
+  void initState() {
+    super.initState();
+    _upcomingAppointmentDetailsHelper = UpcomingAppointmentDetailsHelper(
+      context: context,
+      appointmentId: widget.appointmentId,
+    );
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _upcomingAppointmentDetailsHelper.upcomingAppintmentDetailsInit();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,28 +71,87 @@ class UpcomingAppointmentDetailsPage extends StatelessWidget {
       backgroundColor: isDark
           ? const Color(0xFF0f2023)
           : const Color(0xFFF8FAFB),
-      body: const Column(
-        children: [
-          Expanded(
-            child: SingleChildScrollView(
-              padding: EdgeInsets.all(16),
-              child: Column(
+      body: BlocBuilder<AppointmentDetailsCubit, AppointmentDetailsState>(
+        builder: (context, state) {
+          switch (state) {
+            case AppointmentDetailsLoading():
+              return const Center(child: CircularProgressIndicator());
+            case AppointmentDetailsError(:final errorMessage):
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      errorMessage,
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.lexend(
+                        fontSize: Theme.of(
+                          context,
+                        ).textTheme.titleMedium?.fontSize,
+                        fontWeight: Theme.of(
+                          context,
+                        ).textTheme.titleMedium?.fontWeight,
+                        color: isDark ? Colors.white : const Color(0xFF212121),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    TextButton(
+                      onPressed: () => _upcomingAppointmentDetailsHelper
+                          .upcomingAppintmentDetailsInit(),
+                      child: const Text('Retry'),
+                    ),
+                  ],
+                ),
+              );
+
+            case AppointmentDetailsSuccess(:final appointmentDetails):
+              final bool isToday =
+                  appointmentDetails.appointment.date.year ==
+                      DateTime.now().year &&
+                  appointmentDetails.appointment.date.month ==
+                      DateTime.now().month &&
+                  appointmentDetails.appointment.date.day == DateTime.now().day;
+              return Column(
                 children: [
-                  // Live Status Card
-                  LiveStatusCard(),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        children: [
+                          // Live Status Card
+                          if (isToday) const LiveStatusCard(),
 
-                  SizedBox(height: 16),
+                          const SizedBox(height: 16),
 
-                  // Doctor Info Card
-                  DoctorInfoCard(),
+                          // Doctor Info Card
+                          DoctorInfoCard(
+                            doctorName:
+                                appointmentDetails.appointment.doctorName,
+                            doctorSpecialization:
+                                appointmentDetails.appointment.departmentName,
+                            token: appointmentDetails.appointment.tokenNumber,
+                            appointmentDate:
+                                appointmentDetails.appointment.date,
+                            symptoms: appointmentDetails.appointment.symptoms,
+                            paymentStatus:
+                                appointmentDetails.appointment.paymentStatus,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  // Footer Buttons
+                  FooterButtons(
+                    onCancel: _upcomingAppointmentDetailsHelper
+                        .showCancelConfirmation,
+                  ),
                 ],
-              ),
-            ),
-          ),
-
-          // Footer Buttons
-          FooterButtons(),
-        ],
+              );
+            default:
+              return const SizedBox.shrink();
+          }
+        },
       ),
     );
   }

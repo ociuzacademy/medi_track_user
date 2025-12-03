@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:medi_track/modules/user_appointments_module/widgets/cancellation_bottom_sheet.dart';
+import 'package:medi_track/core/widgets/cancellation_bottom_sheet.dart';
 
 class AppointmentCardHelper {
   static void showCancelConfirmation(BuildContext context, int appointmentId) {
@@ -9,8 +9,10 @@ class AppointmentCardHelper {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
       ),
-      builder: (context) =>
-          CancellationBottomSheet(appointmentId: appointmentId),
+      builder: (context) => CancellationBottomSheet(
+        appointmentId: appointmentId,
+        isAppointmentDetails: false,
+      ),
     );
   }
 }

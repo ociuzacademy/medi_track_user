@@ -1,5 +1,6 @@
 // appointment_card.dart
 import 'package:flutter/material.dart';
+import 'package:medi_track/core/enums/appointment_status.dart';
 import 'package:medi_track/modules/appointment_details_module/view/upcoming_appointment_details_page.dart';
 import 'package:medi_track/modules/user_appointments_module/models/appointments_model.dart';
 import 'package:medi_track/modules/user_appointments_module/widgets/appointment_cancel_button.dart';
@@ -17,7 +18,10 @@ class AppointmentCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, UpcomingAppointmentDetailsPage.route());
+        Navigator.push(
+          context,
+          UpcomingAppointmentDetailsPage.route(appointmentId: appointment.id),
+        );
       },
       child: Container(
         decoration: BoxDecoration(

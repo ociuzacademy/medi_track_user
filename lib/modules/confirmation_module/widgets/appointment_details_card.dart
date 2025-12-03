@@ -1,6 +1,7 @@
 // appointment_details_card.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/enums/appointment_status.dart';
 import 'package:medi_track/modules/confirmation_module/widgets/appointment_details_column.dart';
 import 'package:medi_track/modules/confirmation_module/widgets/doctor_info.dart';
 
@@ -17,7 +18,7 @@ class AppointmentDetailsCard extends StatelessWidget {
 
   final int tokenNumber;
   final DateTime date;
-  final String status;
+  final AppointmentStatus status;
   final String doctorName;
   final String department;
   final String avatarUrl;

@@ -1,6 +1,7 @@
 // appointments_page.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medi_track/core/enums/appointment_status.dart';
 import 'package:medi_track/modules/user_appointments_module/cubit/appointment_list_cubit.dart';
 import 'package:medi_track/modules/user_appointments_module/models/appointments_model.dart';
 import 'package:medi_track/modules/user_appointments_module/utils/user_appointments_helper.dart';
