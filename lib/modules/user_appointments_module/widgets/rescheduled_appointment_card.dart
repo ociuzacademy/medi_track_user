@@ -7,7 +7,6 @@ import 'package:medi_track/modules/appointment_details_module/view/rescheduled_a
 class RescheduledAppointmentCard extends StatelessWidget {
   final String doctorName;
   final String department;
-  final String hospital;
   final String tokenNumber;
   final String originalDateTime;
   final String newDateTime;
@@ -17,7 +16,6 @@ class RescheduledAppointmentCard extends StatelessWidget {
     super.key,
     required this.doctorName,
     required this.department,
-    required this.hospital,
     required this.tokenNumber,
     required this.originalDateTime,
     required this.newDateTime,
@@ -77,7 +75,7 @@ class RescheduledAppointmentCard extends StatelessWidget {
                             ),
                             const SizedBox(height: 2),
                             Text(
-                              '$department, $hospital',
+                              department,
                               style: GoogleFonts.inter(
                                 fontSize: 14,
                                 color: isDark

@@ -1,37 +1,48 @@
 // rescheduled_tab.dart
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:medi_track/modules/user_appointments_module/models/appointments_model.dart';
+import 'package:medi_track/modules/user_appointments_module/utils/user_appointments_helper.dart';
+import 'package:medi_track/modules/user_appointments_module/widgets/empty_appointments_state.dart';
 import 'package:medi_track/modules/user_appointments_module/widgets/rescheduled_appointment_card.dart';
 
 class RescheduledTab extends StatelessWidget {
-  const RescheduledTab({super.key});
+  const RescheduledTab({super.key, required this.appointments});
+  final List<Appointment> appointments;
 
   @override
   Widget build(BuildContext context) {
-    final _ = Theme.of(context).brightness == Brightness.dark;
+    if (appointments.isEmpty) {
+      return const EmptyAppointmentsState(
+        title: 'No rescheduled appointments',
+        description: 'Your rescheduled appointments will appear here.',
+      );
+    }
 
-    return ListView(
+    final DateFormat dateFormat = DateFormat('dd MMM yyyy, hh:mm a');
+
+    return ListView.separated(
       padding: const EdgeInsets.all(16),
-      children: const [
-        RescheduledAppointmentCard(
-          doctorName: 'Dr. Emily Carter',
-          department: 'Cardiology',
-          hospital: 'City General Hospital',
-          tokenNumber: 'T-123',
-          originalDateTime: 'October 26, 2023, 10:30 AM',
-          newDateTime: 'October 30, 2023, 11:00 AM',
-          icon: Icons.medical_services,
-        ),
-        SizedBox(height: 16),
-        RescheduledAppointmentCard(
-          doctorName: 'Dr. Ben Miller',
-          department: 'Dermatology',
-          hospital: 'City General Hospital',
-          tokenNumber: 'T-124',
-          originalDateTime: 'October 28, 2023, 11:00 AM',
-          newDateTime: 'November 2, 2023, 09:30 AM',
-          icon: Icons.face,
-        ),
-      ],
+      itemCount: appointments.length,
+      itemBuilder: (context, index) {
+        final appointment = appointments[index];
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 16),
+          child: RescheduledAppointmentCard(
+            doctorName: appointment.doctorName,
+            department: appointment.departmentName,
+            tokenNumber: appointment.tokenNumber.toString(),
+            originalDateTime: dateFormat.format(appointment.date),
+            newDateTime: appointment.rescheduledDate != null
+                ? dateFormat.format(appointment.rescheduledDate!)
+                : 'N/A',
+            icon: UserAppointmentsHelper.getIconForSpecialty(
+              appointment.departmentName,
+            ),
+          ),
+        );
+      },
+      separatorBuilder: (context, index) => const SizedBox(height: 16),
     );
   }
 }

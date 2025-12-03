@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:medi_track/modules/user_appointments_module/models/appointment.dart';
+import 'package:medi_track/modules/user_appointments_module/models/appointments_model.dart';
 
 class AppointmentCardSymptomsSection extends StatelessWidget {
   const AppointmentCardSymptomsSection({

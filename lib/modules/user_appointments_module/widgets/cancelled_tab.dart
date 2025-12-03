@@ -1,31 +1,17 @@
 // appointments_page.dart
 
 import 'package:flutter/material.dart';
-import 'package:medi_track/modules/user_appointments_module/models/appointment.dart';
-import 'package:medi_track/modules/user_appointments_module/utils/user_appointments_helper.dart';
+import 'package:medi_track/modules/user_appointments_module/models/appointments_model.dart';
 import 'package:medi_track/modules/user_appointments_module/widgets/cancelled_appointments_list.dart';
 import 'package:medi_track/modules/user_appointments_module/widgets/empty_appointments_state.dart';
 
 class CancelledTab extends StatelessWidget {
-  const CancelledTab({super.key});
+  const CancelledTab({super.key, required this.appointments});
+  final List<Appointment> appointments;
 
   @override
   Widget build(BuildContext context) {
-    final List<Appointment> cancelledAppointments = [
-      Appointment(
-        id: '4',
-        doctorName: 'Dr. Sarah Johnson',
-        specialty: 'Orthopedics',
-        hospital: 'City General Hospital',
-        date: 'October 20, 2023',
-        tokenNumber: 'T-118',
-        symptoms: '',
-        icon: UserAppointmentsHelper.getIconForSpecialty('Orthopedics'),
-        status: AppointmentStatus.cancelled,
-      ),
-    ];
-
-    if (cancelledAppointments.isEmpty) {
+    if (appointments.isEmpty) {
       return const EmptyAppointmentsState(
         title: 'No cancelled appointments',
         description: 'Your cancelled appointments will appear here.',
@@ -33,6 +19,6 @@ class CancelledTab extends StatelessWidget {
       );
     }
 
-    return CancelledAppointmentsList(appointments: cancelledAppointments);
+    return CancelledAppointmentsList(appointments: appointments);
   }
 }

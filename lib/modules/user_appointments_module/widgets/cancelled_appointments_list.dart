@@ -1,6 +1,6 @@
 // cancelled_appointments_list.dart
 import 'package:flutter/material.dart';
-import 'package:medi_track/modules/user_appointments_module/models/appointment.dart';
+import 'package:medi_track/modules/user_appointments_module/models/appointments_model.dart';
 import 'package:medi_track/modules/user_appointments_module/widgets/cancelled_appointment_card.dart';
 
 class CancelledAppointmentsList extends StatelessWidget {

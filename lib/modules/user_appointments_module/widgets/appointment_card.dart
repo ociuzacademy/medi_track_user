@@ -1,7 +1,7 @@
 // appointment_card.dart
 import 'package:flutter/material.dart';
 import 'package:medi_track/modules/appointment_details_module/view/upcoming_appointment_details_page.dart';
-import 'package:medi_track/modules/user_appointments_module/models/appointment.dart';
+import 'package:medi_track/modules/user_appointments_module/models/appointments_model.dart';
 import 'package:medi_track/modules/user_appointments_module/widgets/appointment_cancel_button.dart';
 import 'package:medi_track/modules/user_appointments_module/widgets/appointment_card_header.dart';
 import 'package:medi_track/modules/user_appointments_module/widgets/appointment_card_symptoms_section.dart';

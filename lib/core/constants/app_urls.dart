@@ -14,4 +14,6 @@ class AppUrls {
   static const String appointmentDetailsUrl = '$userUrl/appointment_details/';
   static const String cardPaymentUrl = '$userUrl/card_payment/';
   static const String upiPaymentUrl = '$userUrl/upi_payment/';
+
+  static const String appointmentsUrl = '$userUrl/appointments/';
 }

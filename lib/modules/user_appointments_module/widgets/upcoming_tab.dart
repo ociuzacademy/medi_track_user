@@ -1,42 +1,18 @@
 // appointments_page.dart
 
 import 'package:flutter/material.dart';
-import 'package:medi_track/modules/user_appointments_module/models/appointment.dart';
-import 'package:medi_track/modules/user_appointments_module/utils/user_appointments_helper.dart';
+import 'package:medi_track/modules/user_appointments_module/models/appointments_model.dart';
 import 'package:medi_track/modules/user_appointments_module/widgets/appointments_list.dart';
 import 'package:medi_track/modules/user_appointments_module/widgets/empty_appointments_state.dart';
 
 class UpcomingTab extends StatelessWidget {
-  const UpcomingTab({super.key});
+  const UpcomingTab({super.key, required this.appointments});
+
+  final List<Appointment> appointments;
 
   @override
   Widget build(BuildContext context) {
-    final List<Appointment> upcomingAppointments = [
-      Appointment(
-        id: '1',
-        doctorName: 'Dr. Emily Carter',
-        specialty: 'Cardiology',
-        hospital: 'City General Hospital',
-        date: 'October 26, 2023, 10:30 AM',
-        tokenNumber: 'T-123',
-        symptoms: 'Chest pain, shortness of breath',
-        icon: UserAppointmentsHelper.getIconForSpecialty('Cardiology'),
-        status: AppointmentStatus.upcoming,
-      ),
-      Appointment(
-        id: '2',
-        doctorName: 'Dr. Ben Miller',
-        specialty: 'Dermatology',
-        hospital: 'City General Hospital',
-        date: 'October 28, 2023, 11:00 AM',
-        tokenNumber: 'T-124',
-        symptoms: 'Skin rash and itching',
-        icon: UserAppointmentsHelper.getIconForSpecialty('Dermatology'),
-        status: AppointmentStatus.upcoming,
-      ),
-    ];
-
-    if (upcomingAppointments.isEmpty) {
+    if (appointments.isEmpty) {
       return const EmptyAppointmentsState(
         title: 'No upcoming appointments',
         description:
@@ -45,6 +21,6 @@ class UpcomingTab extends StatelessWidget {
       );
     }
 
-    return AppointmentsList(appointments: upcomingAppointments);
+    return AppointmentsList(appointments: appointments);
   }
 }

@@ -1,8 +1,9 @@
 // cancelled_appointment_card.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:medi_track/modules/appointment_details_module/view/cancelled_appointments_details_page.dart';
-import 'package:medi_track/modules/user_appointments_module/models/appointment.dart';
+import 'package:medi_track/modules/user_appointments_module/models/appointments_model.dart';
 
 class CancelledAppointmentCard extends StatelessWidget {
   final Appointment appointment;
@@ -12,6 +13,7 @@ class CancelledAppointmentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final DateFormat dateFormat = DateFormat('dd MMM yyyy');
 
     return GestureDetector(
       onTap: () {
@@ -58,7 +60,7 @@ class CancelledAppointmentCard extends StatelessWidget {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          '${appointment.specialty}, ${appointment.hospital}',
+                          appointment.departmentName,
                           style: GoogleFonts.inter(
                             fontSize: 14,
                             color: isDark
@@ -68,7 +70,7 @@ class CancelledAppointmentCard extends StatelessWidget {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          appointment.date,
+                          dateFormat.format(appointment.date),
                           style: GoogleFonts.inter(
                             fontSize: 14,
                             color: isDark
@@ -95,7 +97,7 @@ class CancelledAppointmentCard extends StatelessWidget {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        appointment.tokenNumber,
+                        appointment.tokenNumber.toString(),
                         style: GoogleFonts.inter(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,

@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:medi_track/modules/user_appointments_module/models/appointment.dart';
+import 'package:intl/intl.dart';
+import 'package:medi_track/modules/user_appointments_module/models/appointments_model.dart';
+import 'package:medi_track/modules/user_appointments_module/utils/user_appointments_helper.dart';
 
 class AppointmentCardHeader extends StatelessWidget {
   const AppointmentCardHeader({
@@ -16,6 +18,7 @@ class AppointmentCardHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final DateFormat dateFormat = DateFormat('dd MMM yyyy');
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -28,7 +31,9 @@ class AppointmentCardHeader extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
           ),
           child: Icon(
-            appointment.icon,
+            UserAppointmentsHelper.getIconForSpecialty(
+              appointment.departmentName.toLowerCase(),
+            ),
             color: const Color(0xFF007AFF),
             size: 28,
           ),
@@ -60,7 +65,7 @@ class AppointmentCardHeader extends StatelessWidget {
                         ),
                         const SizedBox(height: 2),
                         Text(
-                          '${appointment.specialty}, ${appointment.hospital}',
+                          appointment.departmentName,
                           style: GoogleFonts.inter(
                             fontSize: 14,
                             color: isDark
@@ -70,7 +75,7 @@ class AppointmentCardHeader extends StatelessWidget {
                         ),
                         const SizedBox(height: 2),
                         Text(
-                          appointment.date,
+                          dateFormat.format(appointment.date),
                           style: GoogleFonts.inter(
                             fontSize: 14,
                             color: isDark
@@ -96,7 +101,7 @@ class AppointmentCardHeader extends StatelessWidget {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        appointment.tokenNumber,
+                        appointment.tokenNumber.toString(),
                         style: GoogleFonts.inter(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
