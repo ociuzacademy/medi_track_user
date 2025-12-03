@@ -6,7 +6,15 @@ import 'package:medi_track/modules/appointment_details_module/widgets/cancelled_
 import 'package:medi_track/modules/appointment_details_module/widgets/refund_status_row.dart';
 
 class DetailsList extends StatelessWidget {
-  const DetailsList({super.key});
+  final int tokenNumber;
+  final String originalDate;
+  final String reasonForCancellation;
+  const DetailsList({
+    super.key,
+    required this.tokenNumber,
+    required this.originalDate,
+    required this.reasonForCancellation,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,18 +22,17 @@ class DetailsList extends StatelessWidget {
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
       child: Column(
         children: [
-          const CancelledAppointmentDetailRow(label: 'Token Number', value: 'A-123'),
-          const CancelledAppointmentDetailRow(
+          CancelledAppointmentDetailRow(
+            label: 'Token Number',
+            value: tokenNumber.toString(),
+          ),
+          CancelledAppointmentDetailRow(
             label: 'Original Date',
-            value: 'Oct 25, 2024',
+            value: originalDate,
           ),
-          const CancelledAppointmentDetailRow(
-            label: 'Original Time',
-            value: '10:30 AM',
-          ),
-          const CancelledAppointmentDetailRow(
+          CancelledAppointmentDetailRow(
             label: 'Reason for Cancellation',
-            value: 'Doctor Unavailable',
+            value: reasonForCancellation,
           ),
           RefundStatusRow(context: context),
         ],

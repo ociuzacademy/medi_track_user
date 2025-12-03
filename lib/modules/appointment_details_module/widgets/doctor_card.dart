@@ -1,9 +1,19 @@
 // doctor_card.dart
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_urls.dart';
 
 class DoctorCard extends StatelessWidget {
-  const DoctorCard({super.key});
+  final String doctorName;
+  final String department;
+  final String doctorImage;
+  const DoctorCard({
+    super.key,
+    required this.doctorName,
+    required this.department,
+    required this.doctorImage,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +36,9 @@ class DoctorCard extends StatelessWidget {
             height: 64,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(32),
-              image: const DecorationImage(
-                image: NetworkImage(
-                  'https://lh3.googleusercontent.com/aida-public/AB6AXuD3bjgV9iHQGegSOJa3Hm4pJFYCmtUUv3cwS-Ye4EnwXntUd6QuaRlhzRg_tnnBnM4u_bHVW1E5UIzFbRopLiJ1kXBWGfMnKpMGqklnccNDhIpAgdK0KDXzxb-0ajxCxQCda-4LRJUp7I6kGKv_ibLsTwzMjGqJ1Ckx_drxfZAc7minHaVc3VJLOrbOQYH836shJanemyiPnwrfCB2_wbVPaNApfImaiAz3jbQkNNgXaK6elf9cwE47q6ziA1hqa_McWeqCllwxrFvd',
+              image: DecorationImage(
+                image: CachedNetworkImageProvider(
+                  '${AppUrls.baseUrl}$doctorImage',
                 ),
                 fit: BoxFit.cover,
               ),
@@ -43,7 +53,7 @@ class DoctorCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Dr. Evelyn Reed',
+                  doctorName,
                   style: GoogleFonts.lexend(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -53,16 +63,7 @@ class DoctorCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  'Cardiologist',
-                  style: GoogleFonts.lexend(
-                    fontSize: 16,
-                    color: isDark
-                        ? const Color(0xFF9E9E9E)
-                        : const Color(0xFF5f868c),
-                  ),
-                ),
-                Text(
-                  'Cardiology Department',
+                  department,
                   style: GoogleFonts.lexend(
                     fontSize: 14,
                     color: isDark

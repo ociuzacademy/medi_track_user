@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:medi_track/modules/appointment_details_module/view/cancelled_appointments_details_page.dart';
+import 'package:medi_track/modules/appointment_details_module/view/cancelled_appointment_details_page.dart';
 import 'package:medi_track/modules/user_appointments_module/models/appointments_model.dart';
 
 class CancelledAppointmentCard extends StatelessWidget {
@@ -17,7 +17,10 @@ class CancelledAppointmentCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, CancelledAppointmentDetailsPage.route());
+        Navigator.push(
+          context,
+          CancelledAppointmentDetailsPage.route(appointmentId: appointment.id),
+        );
       },
       child: Container(
         decoration: BoxDecoration(
