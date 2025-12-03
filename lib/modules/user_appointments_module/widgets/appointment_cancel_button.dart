@@ -5,9 +5,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/modules/user_appointments_module/utils/appointment_card_helper.dart';
 
 class AppointmentCancelButton extends StatelessWidget {
-  const AppointmentCancelButton({super.key, required this.context});
+  const AppointmentCancelButton({
+    super.key,
+    required this.context,
+    required this.appointmentId,
+  });
 
   final BuildContext context;
+  final int appointmentId;
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +21,10 @@ class AppointmentCancelButton extends StatelessWidget {
       child: SizedBox(
         height: 36,
         child: ElevatedButton(
-          onPressed: () =>
-              AppointmentCardHelper.showCancelConfirmation(context),
+          onPressed: () => AppointmentCardHelper.showCancelConfirmation(
+            context,
+            appointmentId,
+          ),
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color(0xFFFF3B30),
             foregroundColor: Colors.white,

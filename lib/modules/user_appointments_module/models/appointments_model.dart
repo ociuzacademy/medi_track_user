@@ -15,7 +15,7 @@ class AppointmentsModel {
   final String user;
   final List<Appointment> appointments;
 
-  AppointmentsModel({
+  const AppointmentsModel({
     required this.success,
     required this.user,
     required this.appointments,
@@ -60,7 +60,7 @@ class Appointment {
   final String? cancellationReason;
   final DateTime createdAt;
 
-  Appointment({
+  const Appointment({
     required this.id,
     required this.doctorName,
     required this.departmentName,

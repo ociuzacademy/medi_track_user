@@ -53,7 +53,10 @@ class AppointmentCard extends StatelessWidget {
 
               // Cancel button (only for upcoming appointments)
               if (appointment.status == AppointmentStatus.upcoming)
-                AppointmentCancelButton(context: context),
+                AppointmentCancelButton(
+                  context: context,
+                  appointmentId: appointment.id,
+                ),
             ],
           ),
         ),
