@@ -12,20 +12,39 @@ class AppointmentFeedbackHelper {
   const AppointmentFeedbackHelper({required this.context});
 
   void submitFeedback(FeedbackProvider feedbackProvider) {
-    debugPrint('submitFeedback');
     final FeedbackData? feedbackData = feedbackProvider.feedbackData;
 
     if (feedbackData == null) {
-      debugPrint('feedbackData is null');
       CustomSnackbar.showError(
         context,
         message: 'Please fill in all the fields',
       );
       return;
     } else {
-      debugPrint('feedbackData is not null');
-      context.read<SubmitFeedbackBloc>().add(
-        SubmitFeedbackEvent.submittingFeedback(feedbackData: feedbackData),
+      showDialog(
+        context: context,
+        builder: (dialogContext) => AlertDialog(
+          title: const Text('Submit Feedback'),
+          content: const Text('Are you sure you want to submit this feedback?'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                context.read<SubmitFeedbackBloc>().add(
+                  SubmitFeedbackEvent.submittingFeedback(
+                    feedbackData: feedbackData,
+                  ),
+                );
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        ),
       );
     }
   }

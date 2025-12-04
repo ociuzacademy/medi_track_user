@@ -12,3 +12,4 @@ export 'package:medi_track/core/bloc/cancel_appointment/cancel_appointment_bloc.
 export 'package:medi_track/modules/appointment_details_module/cubit/token_status/token_status_cubit.dart';
 export 'package:medi_track/modules/appointment_details_module/cubit/appointment_prescription/appointment_prescription_cubit.dart';
 export 'package:medi_track/modules/appointment_feedback_module/bloc/submit_feedback_bloc.dart';
+export 'package:medi_track/modules/appointment_details_module/bloc/reschedule_task_bloc.dart';
