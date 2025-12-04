@@ -10,14 +10,12 @@ class MedicineItem extends StatelessWidget {
     required this.medicineName,
     required this.dosage,
     required this.frequency,
-    required this.duration,
     required this.instructions,
   });
 
   final String medicineName;
   final String dosage;
   final String frequency;
-  final String duration;
   final String instructions;
 
   @override
@@ -67,14 +65,8 @@ class MedicineItem extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 8),
-          // Frequency and Duration
-          Row(
-            children: [
-              MedicineDetailChip(icon: Icons.schedule, text: frequency),
-              const SizedBox(width: 8),
-              MedicineDetailChip(icon: Icons.calendar_today, text: duration),
-            ],
-          ),
+          // Frequency
+          MedicineDetailChip(icon: Icons.schedule, text: frequency),
           const SizedBox(height: 8),
           // Instructions
           Text(

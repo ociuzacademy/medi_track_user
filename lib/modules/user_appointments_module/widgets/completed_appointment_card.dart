@@ -18,7 +18,10 @@ class CompletedAppointmentCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, CompletedAppointmentDetailsPage.route());
+        Navigator.push(
+          context,
+          CompletedAppointmentDetailsPage.route(appointmentId: appointment.id),
+        );
       },
       child: Container(
         decoration: BoxDecoration(

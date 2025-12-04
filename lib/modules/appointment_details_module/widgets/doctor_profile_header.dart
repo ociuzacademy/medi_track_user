@@ -1,9 +1,19 @@
 // doctor_profile_header.dart
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_urls.dart';
 
 class DoctorProfileHeader extends StatelessWidget {
-  const DoctorProfileHeader({super.key});
+  final String doctorName;
+  final String doctorSpecialization;
+  final String doctorImage;
+  const DoctorProfileHeader({
+    super.key,
+    required this.doctorName,
+    required this.doctorSpecialization,
+    required this.doctorImage,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +29,9 @@ class DoctorProfileHeader extends StatelessWidget {
             height: 96,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(48),
-              image: const DecorationImage(
-                image: NetworkImage(
-                  'https://lh3.googleusercontent.com/aida-public/AB6AXuDliUNrm_XNxPRjrZRRl1mcXDZrVD8fgr0DauUvDK2HV_OKzyhOLvXw4xUlRCjv1MNKSlU4pVbcpEZQunghZS0ZQSXSANKIX2Ytl4OG7kY_vc4KzaZuVZ6BAsI1xHYIs2FpQQdxlm8k--5Wx01yhjh69nL_xbv4mskSMscZtb5yBGEj3lkK4ClIqDVt49Gg561BET2kedi4zwgw8sFcpfOzbIYc-u8tcY_z2uSjer0fKU6wAkLYmw22l5cRE8D6i1tcttEMdzJY0DVn',
+              image: DecorationImage(
+                image: CachedNetworkImageProvider(
+                  '${AppUrls.baseUrl}$doctorImage',
                 ),
                 fit: BoxFit.cover,
               ),
@@ -33,7 +43,7 @@ class DoctorProfileHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Dr. Evelyn Reed',
+                  doctorName,
                   style: GoogleFonts.lexend(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
@@ -43,7 +53,7 @@ class DoctorProfileHeader extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  'Cardiologist',
+                  doctorSpecialization,
                   style: GoogleFonts.lexend(
                     fontSize: 16,
                     color: isDark

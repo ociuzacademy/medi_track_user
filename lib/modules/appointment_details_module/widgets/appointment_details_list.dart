@@ -1,34 +1,44 @@
 // appointment_details_list.dart
 import 'package:flutter/material.dart';
 import 'package:medi_track/modules/appointment_details_module/widgets/completed_appointment_detail_row.dart';
+import 'package:intl/intl.dart';
 
 class AppointmentDetailsList extends StatelessWidget {
-  const AppointmentDetailsList({super.key});
+  final String department;
+  final int appointmentToken;
+  final DateTime dateTime;
+  const AppointmentDetailsList({
+    super.key,
+    required this.department,
+    required this.appointmentToken,
+    required this.dateTime,
+  });
 
   @override
   Widget build(BuildContext context) {
-    // Removed unused variables - they were declared but never used
+    final DateFormat dateFormat = DateFormat('dd MMM, yyyy');
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: const Column(
+      child: Column(
         children: [
           // Department
           CompletedAppointmentDetailRow(
             label: 'Department',
-            value: 'Cardiology',
+            value: department,
             isFirst: true,
           ),
 
           // Appointment Token
           CompletedAppointmentDetailRow(
             label: 'Appointment Token',
-            value: 'TKN-738920',
+            value: appointmentToken.toString(),
           ),
 
           // Date & Time
           CompletedAppointmentDetailRow(
-            label: 'Date & Time',
-            value: '24 Oct, 2024 | 10:30 AM',
+            label: 'Date',
+            value: dateFormat.format(dateTime),
           ),
         ],
       ),

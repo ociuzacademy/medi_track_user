@@ -9,4 +9,5 @@ export 'package:medi_track/core/cubit/appointment_details/appointment_details_cu
 export 'package:medi_track/modules/payment_module/bloc/payment_bloc.dart';
 export 'package:medi_track/modules/user_appointments_module/cubit/appointment_list_cubit.dart';
 export 'package:medi_track/core/bloc/cancel_appointment/cancel_appointment_bloc.dart';
-export 'package:medi_track/modules/appointment_details_module/cubit/token_status_cubit.dart';
+export 'package:medi_track/modules/appointment_details_module/cubit/token_status/token_status_cubit.dart';
+export 'package:medi_track/modules/appointment_details_module/cubit/appointment_prescription/appointment_prescription_cubit.dart';

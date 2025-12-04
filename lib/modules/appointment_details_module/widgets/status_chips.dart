@@ -1,9 +1,17 @@
 // status_chips.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/enums/appointment_status.dart';
+import 'package:medi_track/core/enums/payment_status.dart';
 
 class StatusChips extends StatelessWidget {
-  const StatusChips({super.key});
+  final AppointmentStatus status;
+  final PaymentStatus paymentStatus;
+  const StatusChips({
+    super.key,
+    required this.status,
+    required this.paymentStatus,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +38,7 @@ class StatusChips extends StatelessWidget {
                 ),
                 const SizedBox(width: 4),
                 Text(
-                  'Status: Completed',
+                  'Status: ${status.name.toUpperCase()}',
                   style: GoogleFonts.lexend(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
@@ -58,7 +66,7 @@ class StatusChips extends StatelessWidget {
                 ),
                 const SizedBox(width: 4),
                 Text(
-                  'Payment: Paid',
+                  'Payment: ${paymentStatus.name.toUpperCase()}',
                   style: GoogleFonts.lexend(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,

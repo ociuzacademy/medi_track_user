@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:medi_track/modules/appointment_details_module/cubit/token_status_cubit.dart';
+import 'package:medi_track/core/export/bloc_export.dart';
 import 'package:medi_track/modules/appointment_details_module/utils/live_status_card_helper.dart';
 
 class LiveStatusCard extends StatefulWidget {

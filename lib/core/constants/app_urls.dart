@@ -18,4 +18,6 @@ class AppUrls {
   static const String appointmentsUrl = '$userUrl/appointments/';
   static const String cancelAppointmentUrl = '$userUrl/cancel_appointment/';
   static const String tokenStatusUrl = '$userUrl/token_status/';
+  static const String appointmentPrescriptionUrl =
+      '$userUrl/appointment_prescription/';
 }
