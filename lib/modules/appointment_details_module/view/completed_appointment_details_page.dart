@@ -184,7 +184,7 @@ class _CompletedAppointmentDetailsPageState
                   ),
 
                   // Footer Action Buttons
-                  const FooterActionButtons(),
+                  FooterActionButtons(appointmentId: widget.appointmentId),
                 ],
               );
             default:

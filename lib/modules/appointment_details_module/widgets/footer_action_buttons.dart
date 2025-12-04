@@ -5,7 +5,8 @@ import 'package:medi_track/modules/appointment_feedback_module/view/appointment_
 import 'package:medi_track/modules/appointment_booking_module/view/appointment_booking_page.dart';
 
 class FooterActionButtons extends StatelessWidget {
-  const FooterActionButtons({super.key});
+  final int appointmentId;
+  const FooterActionButtons({super.key, required this.appointmentId});
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +65,10 @@ class FooterActionButtons extends StatelessWidget {
             height: 48,
             child: ElevatedButton(
               onPressed: () {
-                Navigator.push(context, AppointmentFeedbackPage.route());
+                Navigator.push(
+                  context,
+                  AppointmentFeedbackPage.route(appointmentId: appointmentId),
+                );
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF007C91),

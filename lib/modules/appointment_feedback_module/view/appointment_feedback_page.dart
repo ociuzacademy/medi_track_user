@@ -10,10 +10,12 @@ import 'package:medi_track/modules/appointment_feedback_module/widgets/feedback_
 import 'package:medi_track/modules/appointment_feedback_module/providers/feedback_provider.dart';
 
 class AppointmentFeedbackPage extends StatefulWidget {
-  const AppointmentFeedbackPage({super.key});
+  final int appointmentId;
+  const AppointmentFeedbackPage({super.key, required this.appointmentId});
 
-  static Route route() =>
-      MaterialPageRoute(builder: (_) => const AppointmentFeedbackPage());
+  static Route route({required int appointmentId}) => MaterialPageRoute(
+    builder: (_) => AppointmentFeedbackPage(appointmentId: appointmentId),
+  );
 
   @override
   State<AppointmentFeedbackPage> createState() =>
@@ -60,7 +62,9 @@ class _AppointmentFeedbackPageState extends State<AppointmentFeedbackPage> {
                   child: Column(
                     children: [
                       // Appointment Summary Card
-                      const AppointmentSummaryCard(),
+                      AppointmentSummaryCard(
+                        appointmentId: widget.appointmentId,
+                      ),
 
                       const SizedBox(height: 24),
 
