@@ -9,6 +9,10 @@ part 'available_doctors_cubit.freezed.dart';
 class AvailableDoctorsCubit extends Cubit<AvailableDoctorsState> {
   AvailableDoctorsCubit() : super(const AvailableDoctorsState.initial());
 
+  void reset() {
+    emit(const AvailableDoctorsState.initial());
+  }
+
   Future<void> getAvailableDoctors({
     required int departmentId,
     required DateTime date,

@@ -27,28 +27,33 @@ class ConfirmationBody extends StatelessWidget {
                 // Appointment Details Card
                 BlocBuilder<AppointmentDetailsCubit, AppointmentDetailsState>(
                   builder: (context, state) {
-                    return state.maybeWhen(
-                      loading: () =>
-                          const Center(child: CircularProgressIndicator()),
-                      success: (appointmentDetails) {
-                        final appointment = appointmentDetails.appointment;
+                    switch (state) {
+                      case AppointmentDetailsLoading _:
+                        return const Center(child: CircularProgressIndicator());
+                      case AppointmentDetailsSuccess(
+                        appointmentDetails: final appointmentDetails,
+                      ):
                         return AppointmentDetailsCard(
-                          tokenNumber: appointment.tokenNumber,
-                          date: appointment.date,
-                          status: appointment.status,
-                          doctorName: appointment.doctorName,
-                          department: appointment.departmentName,
-                          avatarUrl: appointment.doctorImage,
+                          tokenNumber:
+                              appointmentDetails.appointment.tokenNumber,
+                          date: appointmentDetails.appointment.date,
+                          status: appointmentDetails.appointment.status,
+                          doctorName: appointmentDetails.appointment.doctorName,
+                          department:
+                              appointmentDetails.appointment.departmentName,
+                          avatarUrl: appointmentDetails.appointment.doctorImage,
                         );
-                      },
-                      error: (errorMessage) =>
-                          Center(child: Text(errorMessage)),
-                      orElse: () => const SizedBox.shrink(),
-                    );
+                      case AppointmentDetailsError(
+                        errorMessage: final errorMessage,
+                      ):
+                        return Center(child: Text(errorMessage));
+                      default:
+                        return const SizedBox.shrink();
+                    }
                   },
                 ),
 
-                const SizedBox(height: 16),
+                const SizedBox(height: 24),
 
                 // Notification Reminder
                 const NotificationReminder(),

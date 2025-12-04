@@ -9,6 +9,10 @@ part 'expected_token_cubit.freezed.dart';
 class ExpectedTokenCubit extends Cubit<ExpectedTokenState> {
   ExpectedTokenCubit() : super(const ExpectedTokenState.initial());
 
+  void reset() {
+    emit(const ExpectedTokenState.initial());
+  }
+
   Future<void> getExpectedToken({
     required int doctorId,
     required DateTime date,

@@ -29,6 +29,10 @@ class _AppointmentBookingPageState extends State<AppointmentBookingPage> {
     _appointmentBookingHelper = const AppointmentBookingHelper();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      // Reset cubits to initial state to clear any stale data
+      context.read<AvailableDoctorsCubit>().reset();
+      context.read<ExpectedTokenCubit>().reset();
+
       _appointmentBookingHelper.showDepartments(context);
       _appointmentBookingHelper.showUserProfile(context);
     });

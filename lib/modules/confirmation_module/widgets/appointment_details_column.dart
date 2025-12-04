@@ -29,7 +29,7 @@ class AppointmentDetailsColumn extends StatelessWidget {
         const SizedBox(height: 12),
         AppointmentDetailRow(
           label: 'Status',
-          value: status.toString(),
+          value: status.value.toUpperCase(),
           isDark: isDark,
           isStatus: true,
         ),
