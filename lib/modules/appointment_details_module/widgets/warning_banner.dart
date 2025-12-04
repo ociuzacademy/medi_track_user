@@ -1,13 +1,16 @@
 // warning_banner.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class WarningBanner extends StatelessWidget {
-  const WarningBanner({super.key});
+  final DateTime rescheduledDate;
+  const WarningBanner({super.key, required this.rescheduledDate});
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final DateFormat dateFormat = DateFormat('dd MMM yyyy');
 
     return Container(
       decoration: BoxDecoration(
@@ -57,7 +60,7 @@ class WarningBanner extends StatelessWidget {
                             'Your appointment has been moved due to an emergency. The new schedule is ',
                       ),
                       TextSpan(
-                        text: '16 Oct, 11:30 AM',
+                        text: dateFormat.format(rescheduledDate),
                         style: GoogleFonts.lexend(
                           fontWeight: FontWeight.bold,
                           color: isDark

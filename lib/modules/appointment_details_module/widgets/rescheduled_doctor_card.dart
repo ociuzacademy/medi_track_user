@@ -1,9 +1,19 @@
 // rescheduled_doctor_card.dart
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_urls.dart';
 
 class RescheduledDoctorCard extends StatelessWidget {
-  const RescheduledDoctorCard({super.key});
+  final String doctorName;
+  final String department;
+  final String doctorImage;
+  const RescheduledDoctorCard({
+    super.key,
+    required this.doctorName,
+    required this.department,
+    required this.doctorImage,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +41,9 @@ class RescheduledDoctorCard extends StatelessWidget {
             height: 64,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(32),
-              image: const DecorationImage(
-                image: NetworkImage(
-                  'https://lh3.googleusercontent.com/aida-public/AB6AXuDAAM6NWhnuiImnfsG6pASpuBMqqstFXH62IimJ_eTDsXg9YVMK4imXHs3PdW_7Y-X5CAnSnkcTTxDpK7gESv5ReSm5cVHUxYQd4Bhmve-2UT-SnQ2y0ow2vXGVtb9rrwUvUTAMpKwbC1WkbVOxbOt9Frz0ePDNIETnCBwHZ7aH8iu_SAqUF8g50OZALKq0XBfbDb-AlKgQz1rJvJdpUcPMR4WCEklLkclWz7T45rSIKpfBLz8rb0far3WbSiHuSuATMnjc544IGLLg',
+              image: DecorationImage(
+                image: CachedNetworkImageProvider(
+                  '${AppUrls.baseUrl}$doctorImage',
                 ),
                 fit: BoxFit.cover,
               ),
@@ -48,7 +58,7 @@ class RescheduledDoctorCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Dr. Evelyn Reed',
+                  doctorName,
                   style: GoogleFonts.lexend(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
@@ -59,7 +69,7 @@ class RescheduledDoctorCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  'Cardiology, Heart & Vascular Institute',
+                  department,
                   style: GoogleFonts.lexend(
                     fontSize: 14,
                     color: isDark

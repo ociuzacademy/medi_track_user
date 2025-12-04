@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:medi_track/modules/appointment_details_module/view/completed_appointment_details_page.dart';
 import 'package:medi_track/modules/user_appointments_module/models/appointments_model.dart';
-import 'package:medi_track/modules/user_appointments_module/widgets/completed_appointment_action_button.dart';
 
 class CompletedAppointmentCard extends StatelessWidget {
   final Appointment appointment;
@@ -154,31 +153,6 @@ class CompletedAppointmentCard extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
-
-              const SizedBox(height: 16),
-
-              // Action buttons
-              Row(
-                children: [
-                  Expanded(
-                    child: CompletedAppointmentActionButton(
-                      text: 'View Prescription',
-                      onPressed: () {
-                        // Handle view prescription
-                      },
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: CompletedAppointmentActionButton(
-                      text: 'View Summary',
-                      onPressed: () {
-                        // Handle view summary
-                      },
-                    ),
-                  ),
-                ],
               ),
             ],
           ),

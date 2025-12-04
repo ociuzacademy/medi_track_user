@@ -1,19 +1,48 @@
 // rescheduled_appointment_details_page.dart
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:medi_track/core/export/bloc_export.dart';
+import 'package:medi_track/modules/appointment_details_module/utils/rescheduled_appointment_details_helper.dart';
 import 'package:medi_track/modules/appointment_details_module/widgets/action_buttons.dart';
 import 'package:medi_track/modules/appointment_details_module/widgets/appointment_details.dart';
 import 'package:medi_track/modules/appointment_details_module/widgets/footer_button.dart';
 import 'package:medi_track/modules/appointment_details_module/widgets/rescheduled_doctor_card.dart';
 import 'package:medi_track/modules/appointment_details_module/widgets/warning_banner.dart';
 
-class RescheduledAppointmentDetailsPage extends StatelessWidget {
-  const RescheduledAppointmentDetailsPage({super.key});
+class RescheduledAppointmentDetailsPage extends StatefulWidget {
+  final int appointmentId;
+  const RescheduledAppointmentDetailsPage({
+    super.key,
+    required this.appointmentId,
+  });
 
-  static Route route() => MaterialPageRoute(
-    builder: (_) => const RescheduledAppointmentDetailsPage(),
+  static Route route({required int appointmentId}) => MaterialPageRoute(
+    builder: (_) =>
+        RescheduledAppointmentDetailsPage(appointmentId: appointmentId),
   );
+
+  @override
+  State<RescheduledAppointmentDetailsPage> createState() =>
+      _RescheduledAppointmentDetailsPageState();
+}
+
+class _RescheduledAppointmentDetailsPageState
+    extends State<RescheduledAppointmentDetailsPage> {
+  late final RescheduledAppointmentDetailsHelper
+  _rescheduledAppointmentDetailsHelper;
+  @override
+  void initState() {
+    super.initState();
+    _rescheduledAppointmentDetailsHelper = RescheduledAppointmentDetailsHelper(
+      context: context,
+      appointmentId: widget.appointmentId,
+    );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _rescheduledAppointmentDetailsHelper.rescheduledAppointmentDetails();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,38 +73,94 @@ class RescheduledAppointmentDetailsPage extends StatelessWidget {
       backgroundColor: isDark
           ? const Color(0xFF0f2023)
           : const Color(0xFFf5f8f8),
-      body: const Column(
-        children: [
-          Expanded(
-            child: SingleChildScrollView(
-              padding: EdgeInsets.all(16),
-              child: Column(
+      body: BlocBuilder<AppointmentDetailsCubit, AppointmentDetailsState>(
+        builder: (context, state) {
+          switch (state) {
+            case AppointmentDetailsLoading _:
+              return const Center(child: CircularProgressIndicator());
+            case AppointmentDetailsError(:final errorMessage):
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      errorMessage,
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.lexend(
+                        fontSize: Theme.of(
+                          context,
+                        ).textTheme.titleMedium?.fontSize,
+                        fontWeight: Theme.of(
+                          context,
+                        ).textTheme.titleMedium?.fontWeight,
+                        color: isDark ? Colors.white : const Color(0xFF212121),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    TextButton(
+                      onPressed: () => _rescheduledAppointmentDetailsHelper
+                          .rescheduledAppointmentDetails(),
+                      child: const Text('Retry'),
+                    ),
+                  ],
+                ),
+              );
+            case AppointmentDetailsSuccess(:final appointmentDetails):
+              return Column(
                 children: [
-                  // Warning Banner
-                  WarningBanner(),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        children: [
+                          // Warning Banner
+                          WarningBanner(
+                            rescheduledDate:
+                                appointmentDetails.appointment.rescheduledDate!,
+                          ),
 
-                  SizedBox(height: 16),
+                          const SizedBox(height: 16),
 
-                  // Action Buttons
-                  ActionButtons(),
+                          // Action Buttons
+                          ActionButtons(onAccept: () {}, onReject: () {}),
 
-                  SizedBox(height: 16),
+                          const SizedBox(height: 16),
 
-                  // Doctor Card
-                  RescheduledDoctorCard(),
+                          // Doctor Card
+                          RescheduledDoctorCard(
+                            doctorName:
+                                appointmentDetails.appointment.doctorName,
+                            department:
+                                appointmentDetails.appointment.departmentName,
+                            doctorImage:
+                                appointmentDetails.appointment.doctorImage,
+                          ),
 
-                  SizedBox(height: 16),
+                          const SizedBox(height: 16),
 
-                  // Appointment Details
-                  AppointmentDetails(),
+                          // Appointment Details
+                          AppointmentDetails(
+                            oldAppointmentDate:
+                                appointmentDetails.appointment.date,
+                            newAppointmentDate:
+                                appointmentDetails.appointment.rescheduledDate!,
+                            appointmentToken:
+                                appointmentDetails.appointment.tokenNumber,
+                            symptoms: appointmentDetails.appointment.symptoms,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  // Footer Button
+                  const FooterButton(),
                 ],
-              ),
-            ),
-          ),
-
-          // Footer Button
-          FooterButton(),
-        ],
+              );
+            default:
+              return const SizedBox.shrink();
+          }
+        },
       ),
     );
   }

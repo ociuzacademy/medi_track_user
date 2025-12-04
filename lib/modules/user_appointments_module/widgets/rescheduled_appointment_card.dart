@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/modules/appointment_details_module/view/rescheduled_appointments_details_page.dart';
 
 class RescheduledAppointmentCard extends StatelessWidget {
+  final int appointmentId;
   final String doctorName;
   final String department;
   final String tokenNumber;
@@ -14,6 +15,7 @@ class RescheduledAppointmentCard extends StatelessWidget {
 
   const RescheduledAppointmentCard({
     super.key,
+    required this.appointmentId,
     required this.doctorName,
     required this.department,
     required this.tokenNumber,
@@ -28,7 +30,10 @@ class RescheduledAppointmentCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, RescheduledAppointmentDetailsPage.route());
+        Navigator.push(
+          context,
+          RescheduledAppointmentDetailsPage.route(appointmentId: appointmentId),
+        );
       },
       child: Container(
         decoration: BoxDecoration(
@@ -155,60 +160,6 @@ class RescheduledAppointmentCard extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                       color: isDark ? Colors.white : const Color(0xFF111518),
                     ),
-                  ),
-                  const SizedBox(height: 16),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: isDark
-                                ? const Color(0xFF374151)
-                                : const Color(0xFFE5E7EB),
-                            foregroundColor: isDark
-                                ? Colors.white
-                                : const Color(0xFF111518),
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            padding: const EdgeInsets.symmetric(vertical: 12),
-                          ),
-                          child: Text(
-                            'Cancel',
-                            style: GoogleFonts.inter(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 0.015,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF34C759),
-                            foregroundColor: Colors.white,
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            padding: const EdgeInsets.symmetric(vertical: 12),
-                          ),
-                          child: Text(
-                            'Accept',
-                            style: GoogleFonts.inter(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 0.015,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
                   ),
                 ],
               ),

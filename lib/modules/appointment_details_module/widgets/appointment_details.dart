@@ -1,15 +1,27 @@
 // appointment_details.dart
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:medi_track/modules/appointment_details_module/widgets/payment_row.dart';
 import 'package:medi_track/modules/appointment_details_module/widgets/rescheduled_appointment_detail_row.dart';
 import 'package:medi_track/modules/appointment_details_module/widgets/status_row.dart';
 
 class AppointmentDetails extends StatelessWidget {
-  const AppointmentDetails({super.key});
+  final DateTime oldAppointmentDate;
+  final DateTime newAppointmentDate;
+  final int appointmentToken;
+  final String symptoms;
+  const AppointmentDetails({
+    super.key,
+    required this.oldAppointmentDate,
+    required this.newAppointmentDate,
+    required this.appointmentToken,
+    required this.symptoms,
+  });
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final DateFormat dateFormat = DateFormat('dd MMM yyyy');
 
     return Container(
       decoration: BoxDecoration(
@@ -26,25 +38,25 @@ class AppointmentDetails extends StatelessWidget {
       ),
       child: Column(
         children: [
-          const RescheduledAppointmentDetailRow(
+          RescheduledAppointmentDetailRow(
             label: 'Old Appointment',
-            value: '15 Oct 2023, 10:00 AM',
+            value: dateFormat.format(oldAppointmentDate),
             isStrikethrough: true,
             isFirst: true,
           ),
-          const RescheduledAppointmentDetailRow(
+          RescheduledAppointmentDetailRow(
             label: 'New Appointment',
-            value: '16 Oct 2023, 11:30 AM',
+            value: dateFormat.format(newAppointmentDate),
             isHighlighted: true,
           ),
-          const RescheduledAppointmentDetailRow(
+          RescheduledAppointmentDetailRow(
             label: 'Appointment Token',
-            value: 'APT-785K2G',
+            value: 'APT-$appointmentToken',
           ),
           StatusRow(context: context),
-          const RescheduledAppointmentDetailRow(
+          RescheduledAppointmentDetailRow(
             label: 'Symptoms Provided',
-            value: 'Chest pain and shortness of breath.',
+            value: symptoms,
           ),
           PaymentRow(context: context),
         ],

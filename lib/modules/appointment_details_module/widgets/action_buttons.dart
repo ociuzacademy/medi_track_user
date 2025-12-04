@@ -3,7 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ActionButtons extends StatelessWidget {
-  const ActionButtons({super.key});
+  final VoidCallback onAccept;
+  final VoidCallback onReject;
+  const ActionButtons({
+    super.key,
+    required this.onAccept,
+    required this.onReject,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +26,7 @@ class ActionButtons extends StatelessWidget {
               child: SizedBox(
                 height: 48,
                 child: ElevatedButton(
-                  onPressed: () {
-                    // Handle accept action
-                  },
+                  onPressed: onAccept,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF04798b),
                     foregroundColor: Colors.white,
@@ -49,9 +53,7 @@ class ActionButtons extends StatelessWidget {
               child: SizedBox(
                 height: 48,
                 child: OutlinedButton(
-                  onPressed: () {
-                    // Handle reject action
-                  },
+                  onPressed: onReject,
                   style: OutlinedButton.styleFrom(
                     foregroundColor: const Color(0xFFE53935),
                     side: const BorderSide(color: Color(0xFFE53935)),
@@ -81,9 +83,7 @@ class ActionButtons extends StatelessWidget {
             width: double.infinity,
             height: 48,
             child: ElevatedButton(
-              onPressed: () {
-                // Handle accept action
-              },
+              onPressed: onAccept,
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF04798b),
                 foregroundColor: Colors.white,
@@ -107,9 +107,7 @@ class ActionButtons extends StatelessWidget {
             width: double.infinity,
             height: 48,
             child: OutlinedButton(
-              onPressed: () {
-                // Handle reject action
-              },
+              onPressed: onReject,
               style: OutlinedButton.styleFrom(
                 foregroundColor: const Color(0xFFE53935),
                 side: const BorderSide(color: Color(0xFFE53935)),

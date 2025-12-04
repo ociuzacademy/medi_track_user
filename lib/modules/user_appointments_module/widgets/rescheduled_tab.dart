@@ -29,6 +29,7 @@ class RescheduledTab extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.only(bottom: 16),
           child: RescheduledAppointmentCard(
+            appointmentId: appointment.id,
             doctorName: appointment.doctorName,
             department: appointment.departmentName,
             tokenNumber: appointment.tokenNumber.toString(),
