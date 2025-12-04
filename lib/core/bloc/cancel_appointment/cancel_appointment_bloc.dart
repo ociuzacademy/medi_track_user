@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:medi_track/core/classes/cancel_data.dart';
-import 'package:medi_track/core/models/appointment_cance_response_model.dart';
+import 'package:medi_track/core/models/appointment_cancel_response_model.dart';
 import 'package:medi_track/core/services/app_services.dart';
 
 part 'cancel_appointment_event.dart';

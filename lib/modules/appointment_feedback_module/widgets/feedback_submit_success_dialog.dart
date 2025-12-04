@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class FeedbackSubmitSuccessDialog extends StatelessWidget {
+  final String message;
   final VoidCallback closeSuccessDialog;
 
   const FeedbackSubmitSuccessDialog({
     super.key,
     required this.closeSuccessDialog,
+    required this.message,
   });
 
   @override
@@ -66,7 +68,7 @@ class FeedbackSubmitSuccessDialog extends StatelessWidget {
 
               // Message
               Text(
-                'Your feedback has been submitted successfully.',
+                message,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.lexend(
                   fontSize: 16,

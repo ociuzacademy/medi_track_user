@@ -8,7 +8,7 @@ import 'package:medi_track/core/classes/cancel_data.dart';
 import 'package:medi_track/core/constants/app_constants.dart';
 
 import 'package:medi_track/core/constants/app_urls.dart';
-import 'package:medi_track/core/models/appointment_cance_response_model.dart';
+import 'package:medi_track/core/models/appointment_cancel_response_model.dart';
 import 'package:medi_track/core/models/appointment_details_model.dart';
 import 'package:medi_track/core/models/user_profile_model.dart';
 

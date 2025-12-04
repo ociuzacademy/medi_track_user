@@ -1,23 +1,23 @@
 // feedback_provider.dart
 import 'package:flutter/material.dart';
-import 'package:medi_track/core/widgets/snackbars/custom_snackbar.dart';
+import 'package:medi_track/modules/appointment_feedback_module/classes/feedback_data.dart';
 
 class FeedbackProvider with ChangeNotifier {
+  final int appointmentId;
+
   // Form state
-  int _overallRating = 4;
-  double _doctorInteraction = 4.0;
-  double _hospitalService = 3.0;
+  int _overallRating = 0;
+  double _doctorInteraction = 1.0;
+  double _hospitalService = 1.0;
   final TextEditingController _commentsController = TextEditingController();
-  bool _showSuccessDialog = false;
-  bool _isSubmitting = false;
+
+  FeedbackProvider({required this.appointmentId});
 
   // Getters
   int get overallRating => _overallRating;
   double get doctorInteraction => _doctorInteraction;
   double get hospitalService => _hospitalService;
   TextEditingController get commentsController => _commentsController;
-  bool get showSuccessDialog => _showSuccessDialog;
-  bool get isSubmitting => _isSubmitting;
 
   // Setters
   void setOverallRating(int rating) {
@@ -35,52 +35,22 @@ class FeedbackProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void setShowSuccessDialog(bool value) {
-    _showSuccessDialog = value;
-    notifyListeners();
-  }
-
-  void setIsSubmitting(bool value) {
-    _isSubmitting = value;
-    notifyListeners();
-  }
-
   // Form validation
   bool get isFormValid {
-    return _overallRating > 0; // At least some rating is required
+    return _overallRating > 0 && _doctorInteraction > 0 && _hospitalService > 0;
   }
 
-  // Submit feedback
-  Future<void> submitFeedback(BuildContext context) async {
+  FeedbackData? get feedbackData {
     if (!isFormValid) {
-      CustomSnackbar.showError(
-        context,
-        message: 'Please provide at least an overall rating',
-      );
-
-      return;
+      return null;
     }
-
-    setIsSubmitting(true);
-
-    // Simulate API call
-    await Future.delayed(const Duration(seconds: 2));
-
-    setIsSubmitting(false);
-    setShowSuccessDialog(true);
-
-    // Print feedback data (in real app, send to API)
-    debugPrint('Feedback submitted:');
-    debugPrint('Overall Rating: $_overallRating');
-    debugPrint('Doctor Interaction: $_doctorInteraction');
-    debugPrint('Hospital Service: $_hospitalService');
-    debugPrint('Comments: ${_commentsController.text}');
-  }
-
-  // Close success dialog
-  void closeSuccessDialog(BuildContext context) {
-    setShowSuccessDialog(false);
-    Navigator.of(context).pop();
+    return FeedbackData(
+      appointmentId: appointmentId,
+      starRating: _overallRating,
+      doctorInteractionRating: _doctorInteraction,
+      hospitalServiceRating: _hospitalService,
+      comments: _commentsController.text.trim(),
+    );
   }
 
   // Reset form
@@ -89,8 +59,6 @@ class FeedbackProvider with ChangeNotifier {
     _doctorInteraction = 4.0;
     _hospitalService = 3.0;
     _commentsController.clear();
-    _showSuccessDialog = false;
-    _isSubmitting = false;
     notifyListeners();
   }
 

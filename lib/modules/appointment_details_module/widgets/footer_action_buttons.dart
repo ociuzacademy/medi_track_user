@@ -6,7 +6,12 @@ import 'package:medi_track/modules/appointment_booking_module/view/appointment_b
 
 class FooterActionButtons extends StatelessWidget {
   final int appointmentId;
-  const FooterActionButtons({super.key, required this.appointmentId});
+  final bool hasFeedback;
+  const FooterActionButtons({
+    super.key,
+    required this.appointmentId,
+    required this.hasFeedback,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -60,42 +65,51 @@ class FooterActionButtons extends StatelessWidget {
           const SizedBox(height: 12),
 
           // Provide Feedback Button
-          SizedBox(
-            width: double.infinity,
-            height: 48,
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  AppointmentFeedbackPage.route(appointmentId: appointmentId),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF007C91),
-                foregroundColor: Colors.white,
-                elevation: 2,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+          if (!hasFeedback)
+            SizedBox(
+              child: Column(
                 children: [
-                  const Icon(Icons.rate_review, size: 20),
-                  const SizedBox(width: 8),
-                  Text(
-                    'Provide Feedback',
-                    style: GoogleFonts.lexend(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                  SizedBox(
+                    width: double.infinity,
+                    height: 48,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          AppointmentFeedbackPage.route(
+                            appointmentId: appointmentId,
+                          ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF007C91),
+                        foregroundColor: Colors.white,
+                        elevation: 2,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(Icons.rate_review, size: 20),
+                          const SizedBox(width: 8),
+                          Text(
+                            'Provide Feedback',
+                            style: GoogleFonts.lexend(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
+
+                  const SizedBox(height: 12),
                 ],
               ),
             ),
-          ),
-
-          const SizedBox(height: 12),
 
           // Book Follow-Up Button
           SizedBox(

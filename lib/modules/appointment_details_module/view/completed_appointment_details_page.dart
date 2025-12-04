@@ -184,7 +184,10 @@ class _CompletedAppointmentDetailsPageState
                   ),
 
                   // Footer Action Buttons
-                  FooterActionButtons(appointmentId: widget.appointmentId),
+                  FooterActionButtons(
+                    appointmentId: widget.appointmentId,
+                    hasFeedback: appointmentDetails.hasFeedback,
+                  ),
                 ],
               );
             default:

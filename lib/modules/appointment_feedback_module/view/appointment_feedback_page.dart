@@ -1,12 +1,17 @@
 // appointment_feedback_page.dart
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/widgets/loaders/overlay_loader.dart';
+import 'package:medi_track/core/widgets/snackbars/custom_snackbar.dart';
+import 'package:medi_track/modules/appointment_feedback_module/bloc/submit_feedback_bloc.dart';
+import 'package:medi_track/modules/appointment_feedback_module/utils/appointment_feedback_helper.dart';
+import 'package:medi_track/modules/home_module/view/home_page.dart';
 import 'package:provider/provider.dart';
 
 import 'package:medi_track/modules/appointment_feedback_module/widgets/action_buttons.dart';
 import 'package:medi_track/modules/appointment_feedback_module/widgets/appointment_summary_card.dart';
 import 'package:medi_track/modules/appointment_feedback_module/widgets/feedback_form.dart';
-import 'package:medi_track/modules/appointment_feedback_module/widgets/feedback_submit_success_dialog.dart';
 import 'package:medi_track/modules/appointment_feedback_module/providers/feedback_provider.dart';
 
 class AppointmentFeedbackPage extends StatefulWidget {
@@ -23,12 +28,19 @@ class AppointmentFeedbackPage extends StatefulWidget {
 }
 
 class _AppointmentFeedbackPageState extends State<AppointmentFeedbackPage> {
+  late final AppointmentFeedbackHelper _appointmentFeedbackHelper;
+  @override
+  void initState() {
+    super.initState();
+    _appointmentFeedbackHelper = AppointmentFeedbackHelper(context: context);
+  }
+
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return ChangeNotifierProvider(
-      create: (_) => FeedbackProvider(),
+      create: (_) => FeedbackProvider(appointmentId: widget.appointmentId),
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -54,58 +66,62 @@ class _AppointmentFeedbackPageState extends State<AppointmentFeedbackPage> {
             : const Color(0xFFf5f8f8),
         body: Consumer<FeedbackProvider>(
           builder: (context, feedbackProvider, _) {
-            return Stack(
-              children: [
-                // Main Content
-                SingleChildScrollView(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    children: [
-                      // Appointment Summary Card
-                      AppointmentSummaryCard(
-                        appointmentId: widget.appointmentId,
+            return BlocListener<SubmitFeedbackBloc, SubmitFeedbackState>(
+              listener: (context, state) {
+                switch (state) {
+                  case SubmitFeedbackLoading _:
+                    OverlayLoader.show(
+                      context,
+                      message: 'Submitting Feedback...',
+                    );
+                    break;
+                  case SubmitFeedbackSuccess(:final response):
+                    OverlayLoader.hide();
+                    CustomSnackbar.showSuccess(
+                      context,
+                      message: response.message,
+                    );
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      HomePage.route(),
+                      (route) => false,
+                    );
+                    break;
+                  case SubmitFeedbackError(:final message):
+                    OverlayLoader.hide();
+                    CustomSnackbar.showError(context, message: message);
+                    break;
+                  default:
+                    OverlayLoader.hide();
+                    break;
+                }
+              },
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  children: [
+                    // Appointment Summary Card
+                    AppointmentSummaryCard(appointmentId: widget.appointmentId),
+
+                    const SizedBox(height: 24),
+
+                    // Feedback Form
+                    FeedbackForm(feedbackProvider: feedbackProvider),
+
+                    const SizedBox(height: 24),
+
+                    // Action Buttons
+                    ActionButtons(
+                      onSubmit: () => _appointmentFeedbackHelper.submitFeedback(
+                        feedbackProvider,
                       ),
-
-                      const SizedBox(height: 24),
-
-                      // Feedback Form
-                      FeedbackForm(feedbackProvider: feedbackProvider),
-
-                      const SizedBox(height: 24),
-
-                      // Action Buttons
-                      ActionButtons(
-                        onSubmit: () =>
-                            feedbackProvider.submitFeedback(context),
-                        onSkip: () => Navigator.of(context).pop(),
-                        isSubmitting: feedbackProvider.isSubmitting,
-                      ),
-
-                      const SizedBox(height: 32),
-                    ],
-                  ),
-                ),
-
-                // Loading Overlay
-                if (feedbackProvider.isSubmitting)
-                  Container(
-                    color: Colors.black.withValues(alpha: 0.5),
-                    child: const Center(
-                      child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                          Color(0xFF05c7a7),
-                        ),
-                      ),
+                      onSkip: () => Navigator.of(context).pop(),
                     ),
-                  ),
 
-                // Success Dialog Overlay
-                if (feedbackProvider.showSuccessDialog)
-                  FeedbackSubmitSuccessDialog(
-                    closeSuccessDialog: () =>
-                        feedbackProvider.closeSuccessDialog(context),
-                  ),
-              ],
+                    const SizedBox(height: 32),
+                  ],
+                ),
+              ),
             );
           },
         ),

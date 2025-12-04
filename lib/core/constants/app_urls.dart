@@ -20,4 +20,5 @@ class AppUrls {
   static const String tokenStatusUrl = '$userUrl/token_status/';
   static const String appointmentPrescriptionUrl =
       '$userUrl/appointment_prescription/';
+  static const String submitFeedbackUrl = '$userUrl/submit_feedback/';
 }

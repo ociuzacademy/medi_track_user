@@ -15,27 +15,35 @@ String appointmentDetailsModelToJson(AppointmentDetailsModel data) =>
 
 class AppointmentDetailsModel {
   final bool success;
+  final bool hasFeedback;
   final Appointment appointment;
 
   const AppointmentDetailsModel({
     required this.success,
+    required this.hasFeedback,
     required this.appointment,
   });
 
-  AppointmentDetailsModel copyWith({bool? success, Appointment? appointment}) =>
-      AppointmentDetailsModel(
-        success: success ?? this.success,
-        appointment: appointment ?? this.appointment,
-      );
+  AppointmentDetailsModel copyWith({
+    bool? success,
+    bool? hasFeedback,
+    Appointment? appointment,
+  }) => AppointmentDetailsModel(
+    success: success ?? this.success,
+    hasFeedback: hasFeedback ?? this.hasFeedback,
+    appointment: appointment ?? this.appointment,
+  );
 
   factory AppointmentDetailsModel.fromJson(Map<String, dynamic> json) =>
       AppointmentDetailsModel(
         success: json['success'],
+        hasFeedback: json['has_feedback'],
         appointment: Appointment.fromJson(json['appointment']),
       );
 
   Map<String, dynamic> toJson() => {
     'success': success,
+    'has_feedback': hasFeedback,
     'appointment': appointment.toJson(),
   };
 }
