@@ -1,18 +1,19 @@
 // prescription_card.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:medi_track/modules/prescription_details_module/view/prescription_details_page.dart';
-import 'package:medi_track/modules/prescriptions_module/models/prescription_data.dart';
+import 'package:medi_track/modules/prescriptions_module/models/prescription_list_model.dart';
 
 class PrescriptionCard extends StatelessWidget {
-  final PrescriptionData prescription;
+  final Prescription prescription;
 
   const PrescriptionCard({super.key, required this.prescription});
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-
+    final DateFormat dateFormat = DateFormat('dd/MM/yyyy');
     return Container(
       decoration: BoxDecoration(
         color: isDark ? const Color(0xFF1E293B) : Colors.white,
@@ -55,7 +56,7 @@ class PrescriptionCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
-                    prescription.status,
+                    'Completed',
                     style: GoogleFonts.lexend(
                       fontSize: 12,
                       fontWeight: FontWeight.w500,
@@ -70,9 +71,9 @@ class PrescriptionCard extends StatelessWidget {
 
             const SizedBox(height: 4),
 
-            // Specialty
+            // Department8
             Text(
-              prescription.specialty,
+              prescription.department,
               style: GoogleFonts.lexend(
                 fontSize: 14,
                 color: isDark
@@ -89,24 +90,11 @@ class PrescriptionCard extends StatelessWidget {
               color: isDark ? const Color(0xFF374151) : const Color(0xFFE5E7EB),
             ),
 
-            const SizedBox(height: 8),
+            const SizedBox(height: 12),
 
             // Date and Token
             Text(
-              'Date: ${prescription.date}, Token: ${prescription.token}',
-              style: GoogleFonts.lexend(
-                fontSize: 14,
-                color: isDark
-                    ? const Color(0xFF9CA3AF)
-                    : const Color(0xFF6B7280),
-              ),
-            ),
-
-            const SizedBox(height: 4),
-
-            // Description
-            Text(
-              prescription.description,
+              'Date: ${dateFormat.format(prescription.appointmentDate)}, Token: ${prescription.tokenNumber}',
               style: GoogleFonts.lexend(
                 fontSize: 14,
                 color: isDark
@@ -117,53 +105,26 @@ class PrescriptionCard extends StatelessWidget {
 
             const SizedBox(height: 12),
 
-            // Action Buttons
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // View Full Prescription Button
-                TextButton(
-                  onPressed: () {
-                    Navigator.push(context, PrescriptionDetailsPage.route());
-                  },
-                  style: TextButton.styleFrom(
-                    foregroundColor: const Color(0xFF04798b),
-                    padding: EdgeInsets.zero,
+            // View Prescription Details
+            TextButton(
+              onPressed: () {
+                Navigator.push(context, PrescriptionDetailsPage.route());
+              },
+              style: TextButton.styleFrom(
+                foregroundColor: const Color(0xFF04798b),
+                padding: EdgeInsets.zero,
+              ),
+              child: Row(
+                children: [
+                  Text(
+                    'View Full Prescription',
+                    style: GoogleFonts.lexend(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                  child: Row(
-                    children: [
-                      Text(
-                        'View Full Prescription',
-                        style: GoogleFonts.lexend(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
-                // Download Button
-                IconButton(
-                  onPressed: () {
-                    // Handle download
-                  },
-                  style: IconButton.styleFrom(
-                    backgroundColor: isDark
-                        ? const Color(0xFF374151)
-                        : const Color(0xFFF3F4F6),
-                    shape: const CircleBorder(),
-                    minimumSize: const Size(40, 40),
-                  ),
-                  icon: Icon(
-                    Icons.download,
-                    color: isDark
-                        ? const Color(0xFF9CA3AF)
-                        : const Color(0xFF6B7280),
-                    size: 20,
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),

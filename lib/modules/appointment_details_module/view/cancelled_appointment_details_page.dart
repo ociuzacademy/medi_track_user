@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:medi_track/core/cubit/appointment_details/appointment_details_cubit.dart';
+import 'package:medi_track/core/widgets/custom_error_widget.dart';
 import 'package:medi_track/modules/appointment_details_module/utils/cancelled_appointment_details_helper.dart';
 
 import 'package:medi_track/modules/appointment_details_module/widgets/bottom_buttons.dart';
@@ -78,27 +79,13 @@ class _CancelledAppointmentDetailsPageState
           return switch (state) {
             AppointmentDetailsInitial() || AppointmentDetailsLoading() =>
               const Center(child: CircularProgressIndicator()),
-            AppointmentDetailsError(errorMessage: final message) => Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    message,
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.lexend(
-                      fontSize: 16,
-                      color: isDark ? Colors.white : const Color(0xFF212121),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  TextButton(
-                    onPressed: () => _cancelledAppointmentDetailsHelper
-                        .cancelledAppintmentDetailsInit(),
-                    child: const Text('Retry'),
-                  ),
-                ],
+            AppointmentDetailsError(errorMessage: final message) =>
+              CustomErrorWidget(
+                errorMessage: message,
+                isDark: isDark,
+                onRetry: () => _cancelledAppointmentDetailsHelper
+                    .cancelledAppintmentDetailsInit(),
               ),
-            ),
             AppointmentDetailsSuccess(appointmentDetails: final details) =>
               Column(
                 children: [

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/core/export/bloc_export.dart';
+import 'package:medi_track/core/widgets/custom_error_widget.dart';
 import 'package:medi_track/core/widgets/loaders/overlay_loader.dart';
 import 'package:medi_track/core/widgets/snackbars/custom_snackbar.dart';
 import 'package:medi_track/modules/appointment_details_module/utils/rescheduled_appointment_details_helper.dart';
@@ -121,33 +122,11 @@ class _RescheduledAppointmentDetailsPageState
               case AppointmentDetailsLoading _:
                 return const Center(child: CircularProgressIndicator());
               case AppointmentDetailsError(:final errorMessage):
-                return Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        errorMessage,
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.lexend(
-                          fontSize: Theme.of(
-                            context,
-                          ).textTheme.titleMedium?.fontSize,
-                          fontWeight: Theme.of(
-                            context,
-                          ).textTheme.titleMedium?.fontWeight,
-                          color: isDark
-                              ? Colors.white
-                              : const Color(0xFF212121),
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      TextButton(
-                        onPressed: () => _rescheduledAppointmentDetailsHelper
-                            .rescheduledAppointmentDetails(),
-                        child: const Text('Retry'),
-                      ),
-                    ],
-                  ),
+                return CustomErrorWidget(
+                  errorMessage: errorMessage,
+                  isDark: isDark,
+                  onRetry: () => _rescheduledAppointmentDetailsHelper
+                      .rescheduledAppointmentDetails(),
                 );
               case AppointmentDetailsSuccess(:final appointmentDetails):
                 return Column(
