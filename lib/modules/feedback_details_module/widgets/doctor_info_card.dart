@@ -1,12 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:medi_track/modules/feedback_details_module/widgets/doctor_detail_row.dart';
 
 class DoctorInfoCard extends StatelessWidget {
   final String doctorName;
   final String specialty;
-  final String appointmentDate;
-  final String clinicLocation;
+  final DateTime appointmentDate;
   final String imageUrl;
 
   const DoctorInfoCard({
@@ -14,13 +15,13 @@ class DoctorInfoCard extends StatelessWidget {
     required this.doctorName,
     required this.specialty,
     required this.appointmentDate,
-    required this.clinicLocation,
     required this.imageUrl,
   });
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final DateFormat dateFormat = DateFormat('MMMM d, yyyy');
 
     return Container(
       width: double.infinity,
@@ -47,10 +48,8 @@ class DoctorInfoCard extends StatelessWidget {
                 height: 56,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(28),
-                  image: const DecorationImage(
-                    image: NetworkImage(
-                      'https://lh3.googleusercontent.com/aida-public/AB6AXuDk-5FSbAVLBsU2AUEqAiavX4-itCwWKZiCGmgEvmSM-t7hddkjUK0IcmHiYkYarvEgsiNu1BuF7J3qw2wCsiVH3Gzsp0Uu96TqfxbmICpy_icIht_W8T-DI1xdZDYNMaY0mMrsmNrrNDxbHbvQlW-nvbehZ5OJ5dy_diJ43pmd715HlD3ExiHpMhxB2nXAvbK-4IxKHC-irnlpwG5a-atp6TwEyCDUu4HweghiRly8wrUWmAaIyx0u7TqwEM0wnxBOS9RNOywKyfaV',
-                    ),
+                  image: DecorationImage(
+                    image: CachedNetworkImageProvider(imageUrl),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -97,24 +96,11 @@ class DoctorInfoCard extends StatelessWidget {
           ),
 
           // Appointment Details
-          Column(
-            children: [
-              // Appointment Date
-              DoctorDetailRow(
-                icon: Icons.calendar_today,
-                title: 'Appointment',
-                subtitle: appointmentDate,
-                isDark: isDark,
-              ),
-              const SizedBox(height: 16),
-              // Clinic Location
-              DoctorDetailRow(
-                icon: Icons.location_on,
-                title: 'Clinic',
-                subtitle: clinicLocation,
-                isDark: isDark,
-              ),
-            ],
+          DoctorDetailRow(
+            icon: Icons.calendar_today,
+            title: 'Appointment',
+            subtitle: dateFormat.format(appointmentDate),
+            isDark: isDark,
           ),
         ],
       ),

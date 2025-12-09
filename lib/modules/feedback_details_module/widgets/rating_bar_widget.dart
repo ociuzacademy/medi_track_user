@@ -1,12 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:medi_track/modules/feedback_details_module/utils/feedback_details_helper.dart';
 
 class RatingBarWidget extends StatelessWidget {
   final String label;
-  final int value;
+  final double value;
   final bool isDark;
+
   const RatingBarWidget({
     super.key,
     required this.label,
@@ -16,6 +16,9 @@ class RatingBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Convert from 0-5 scale to 0-100 scale for display
+    final displayValue = (value / 5.0) * 100.0;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -45,12 +48,9 @@ class RatingBarWidget extends StatelessWidget {
             Container(
               width: double.infinity,
               height: 8,
-              decoration: BoxDecoration(
-                color: const Color(0xFF4A90E2),
-                borderRadius: BorderRadius.circular(4),
-              ),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(4)),
               child: FractionallySizedBox(
-                widthFactor: value / 100,
+                widthFactor: displayValue / 100,
                 alignment: Alignment.centerLeft,
                 child: Container(
                   decoration: BoxDecoration(
@@ -60,11 +60,10 @@ class RatingBarWidget extends StatelessWidget {
                 ),
               ),
             ),
-            // Thumb indicator
+            // Thumb indicator - convert back from 0-100 to 0-5 for calculation
+            // Using MediaQuery to get the width and calculate percentage position
             Positioned(
-              left: FeedbackDetailsHelper.calculateThumbPosition(
-                value,
-              ), // Fixed: using double instead of string
+              left: MediaQuery.of(context).size.width * 0.7 * (value / 5.0) - 8,
               top: 0,
               bottom: 0,
               child: Container(
@@ -81,6 +80,16 @@ class RatingBarWidget extends StatelessWidget {
               ),
             ),
           ],
+        ),
+        const SizedBox(height: 4),
+        // Display the numeric value
+        Text(
+          '${value.toStringAsFixed(1)}/5',
+          style: GoogleFonts.lexend(
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+            color: isDark ? const Color(0xFF9CA3AF) : const Color(0xFF6B7280),
+          ),
         ),
       ],
     );

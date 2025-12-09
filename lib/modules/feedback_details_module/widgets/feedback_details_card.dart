@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:medi_track/modules/feedback_details_module/widgets/rating_bar_widget.dart';
 import 'package:medi_track/modules/feedback_details_module/widgets/star_rating_widget.dart';
 
 class FeedbackDetailsCard extends StatelessWidget {
   final int overallRating;
-  final int doctorInteraction;
-  final int waitingExperience;
-  final String submissionDate;
+  final double doctorInteraction;
+  final double waitingExperience;
+  final DateTime submissionDate;
   final String feedbackText;
 
   const FeedbackDetailsCard({
@@ -22,6 +23,7 @@ class FeedbackDetailsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final DateFormat dateFormat = DateFormat('MMMM d, yyyy');
 
     return Container(
       width: double.infinity,
@@ -95,14 +97,16 @@ class FeedbackDetailsCard extends StatelessWidget {
           // Rating Bars
           Column(
             children: [
-              // Doctor Interaction
+              // Doctor Interaction Rating
               RatingBarWidget(
                 label: 'Doctor Interaction',
                 value: doctorInteraction,
                 isDark: isDark,
               ),
-              const SizedBox(height: 20),
-              // Waiting Experience
+
+              const SizedBox(height: 16),
+
+              // Hospital Service Rating
               RatingBarWidget(
                 label: 'Hospital Service / Waiting Experience',
                 value: waitingExperience,
@@ -123,7 +127,7 @@ class FeedbackDetailsCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Submitted On: $submissionDate',
+                'Submitted On: ${dateFormat.format(submissionDate)}',
                 style: GoogleFonts.lexend(
                   fontSize: 12,
                   fontWeight: FontWeight.normal,

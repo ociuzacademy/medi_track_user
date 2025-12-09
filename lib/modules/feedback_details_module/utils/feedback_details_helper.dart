@@ -1,9 +1,24 @@
+import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medi_track/core/export/bloc_export.dart';
+
 class FeedbackDetailsHelper {
+  final BuildContext context;
+  final int feedbackId;
+
+  const FeedbackDetailsHelper({
+    required this.context,
+    required this.feedbackId,
+  });
+
+  void feedbackDetailsInit() {
+    final FeedbackDetailsCubit cubit = context.read<FeedbackDetailsCubit>();
+    cubit.getFeedbackDetails(feedbackId: feedbackId);
+  }
+
   // Helper method to calculate thumb position as double
-  static double calculateThumbPosition(int value) {
-    // Calculate position as percentage of total width, minus half thumb width for centering
-    final percentage = value / 100;
-    return (percentage * 100) -
-        8; // Subtract half of thumb width (16/2) for centering
+  static double calculateThumbPosition(double value) {
+    final percentage = value / 5.0;
+    return (percentage * 100) - 8;
   }
 }

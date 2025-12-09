@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart' hide Feedback;
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:medi_track/modules/feedback_details_module/view/feedback_details_page.dart';
 import 'package:medi_track/modules/feedback_list_module/models/user_feedback_list_model.dart';
 import 'package:medi_track/modules/feedback_list_module/widgets/feedback_star_rating_widget.dart';
@@ -13,6 +14,7 @@ class FeedbackCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final screenWidth = MediaQuery.of(context).size.width;
+    final DateFormat dateFormat = DateFormat('dd MMM yyyy');
 
     return Container(
       width: double.infinity,
@@ -72,7 +74,7 @@ class FeedbackCard extends StatelessWidget {
                 ),
                 const SizedBox(width: 16),
                 Text(
-                  feedback.appointmentDate.toString(),
+                  dateFormat.format(feedback.appointmentDate),
                   style: GoogleFonts.lexend(
                     fontSize: 14,
                     fontWeight: FontWeight.normal,
@@ -118,7 +120,12 @@ class FeedbackCard extends StatelessWidget {
                 constraints: const BoxConstraints(minWidth: 84, maxWidth: 480),
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context, FeedbackDetailsPage.route());
+                    Navigator.push(
+                      context,
+                      FeedbackDetailsPage.route(
+                        feedbackId: feedback.feedbackId,
+                      ),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(
