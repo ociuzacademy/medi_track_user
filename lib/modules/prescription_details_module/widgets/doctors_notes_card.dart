@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DoctorsNotesCard extends StatelessWidget {
-  const DoctorsNotesCard({super.key});
+  const DoctorsNotesCard({super.key, required this.notes});
+  final String notes;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,7 @@ class DoctorsNotesCard extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           Text(
-            'Patient advised to take complete rest for 3 days. Drink plenty of warm fluids and avoid cold beverages. Monitor temperature regularly. If symptoms persist after the course of medication, schedule a follow-up.',
+            notes,
             style: GoogleFonts.lexend(
               fontSize: 14,
               color: isDark ? const Color(0xFFD1D5DB) : const Color(0xFF6B7280),

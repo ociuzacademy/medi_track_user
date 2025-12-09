@@ -1,7 +1,6 @@
 // bottom_action_buttons.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:medi_track/modules/appointment_booking_module/view/appointment_booking_page.dart';
 
 class BottomActionButtons extends StatelessWidget {
   const BottomActionButtons({super.key});
@@ -56,35 +55,6 @@ class BottomActionButtons extends StatelessWidget {
                       ),
                     ),
                   ],
-                ),
-              ),
-            ),
-
-            const SizedBox(height: 12),
-
-            // Book Follow-up Button
-            SizedBox(
-              width: double.infinity,
-              height: 48,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context, AppointmentBookingPage.route());
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(
-                    0xFF05c7a7,
-                  ).withValues(alpha: 0.2),
-                  foregroundColor: const Color(0xFF05c7a7),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                child: Text(
-                  'Book Follow-up',
-                  style: GoogleFonts.lexend(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
                 ),
               ),
             ),

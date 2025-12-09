@@ -14,3 +14,4 @@ export 'package:medi_track/modules/appointment_details_module/cubit/appointment_
 export 'package:medi_track/modules/appointment_feedback_module/bloc/submit_feedback_bloc.dart';
 export 'package:medi_track/modules/appointment_details_module/bloc/reschedule_task_bloc.dart';
 export 'package:medi_track/modules/prescriptions_module/cubit/prescription_list_cubit.dart';
+export 'package:medi_track/modules/prescription_details_module/cubit/prescription_details_cubit.dart';

@@ -108,7 +108,10 @@ class PrescriptionCard extends StatelessWidget {
             // View Prescription Details
             TextButton(
               onPressed: () {
-                Navigator.push(context, PrescriptionDetailsPage.route());
+                Navigator.push(
+                  context,
+                  PrescriptionDetailsPage.route(prescription.id),
+                );
               },
               style: TextButton.styleFrom(
                 foregroundColor: const Color(0xFF04798b),

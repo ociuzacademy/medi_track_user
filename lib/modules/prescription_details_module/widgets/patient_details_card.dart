@@ -4,7 +4,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/modules/prescription_details_module/widgets/patient_detail_row.dart';
 
 class PatientDetailsCard extends StatelessWidget {
-  const PatientDetailsCard({super.key});
+  const PatientDetailsCard({
+    super.key,
+    required this.username,
+    required this.email,
+    required this.phoneNumber,
+  });
+  final String username;
+  final String email;
+  final String phoneNumber;
 
   @override
   Widget build(BuildContext context) {
@@ -40,21 +48,21 @@ class PatientDetailsCard extends StatelessWidget {
             context: context,
             icon: Icons.person,
             label: 'Patient Name',
-            value: 'Alex Johnson',
+            value: username,
           ),
           const SizedBox(height: 16),
           PatientDetailRow(
             context: context,
-            icon: Icons.cake,
-            label: 'Age',
-            value: '32 years',
+            icon: Icons.email,
+            label: 'Email',
+            value: email,
           ),
           const SizedBox(height: 16),
           PatientDetailRow(
             context: context,
             icon: Icons.phone,
-            label: 'Contact',
-            value: '+1 234 567 8900',
+            label: 'Phone Number',
+            value: phoneNumber.isEmpty ? 'Not provided' : phoneNumber,
           ),
         ],
       ),

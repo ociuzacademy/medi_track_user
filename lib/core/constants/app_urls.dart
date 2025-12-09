@@ -24,4 +24,5 @@ class AppUrls {
   static const String acceptRescheduleUrl = '$userUrl/accept-reschedule/';
   static const String rejectRescheduleUrl = '$userUrl/reject-reschedule/';
   static const String prescriptionsUrl = '$userUrl/prescriptions/';
+  static const String prescriptionDetailsUrl = '$userUrl/prescription_details/';
 }

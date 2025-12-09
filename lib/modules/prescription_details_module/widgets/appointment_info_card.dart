@@ -1,15 +1,23 @@
 // appointment_info_card.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:medi_track/modules/prescription_details_module/widgets/appointment_prescription_detail_row.dart';
 import 'package:medi_track/modules/prescription_details_module/widgets/appointment_token_row.dart';
 
 class AppointmentInfoCard extends StatelessWidget {
-  const AppointmentInfoCard({super.key});
+  const AppointmentInfoCard({
+    super.key,
+    required this.tokenNumber,
+    required this.date,
+  });
+  final int tokenNumber;
+  final DateTime date;
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final DateFormat formatter = DateFormat('dd MMM yyyy');
 
     return Container(
       decoration: BoxDecoration(
@@ -37,13 +45,13 @@ class AppointmentInfoCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          const AppointmentPrescriptionDetailRow(
+          AppointmentPrescriptionDetailRow(
             icon: Icons.calendar_today,
-            label: 'Date & Time',
-            value: '12 August 2024, 10:30 AM',
+            label: 'Date',
+            value: formatter.format(date),
           ),
           const SizedBox(height: 16),
-          AppointmentTokenRow(context: context),
+          AppointmentTokenRow(tokenNumber: tokenNumber),
         ],
       ),
     );

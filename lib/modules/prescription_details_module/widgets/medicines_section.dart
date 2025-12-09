@@ -1,10 +1,12 @@
 // medicines_section.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/modules/prescription_details_module/models/prescription_details_model.dart';
 import 'package:medi_track/modules/prescription_details_module/widgets/medicine_card.dart';
 
 class MedicinesSection extends StatelessWidget {
-  const MedicinesSection({super.key});
+  final List<Medicine> medicines;
+  const MedicinesSection({super.key, required this.medicines});
 
   @override
   Widget build(BuildContext context) {
@@ -25,20 +27,14 @@ class MedicinesSection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 8),
-        const Column(
-          children: [
-            MedicineCard(
-              medicineName: 'Paracetamol 500mg',
-              dosage: '1 tablet, 3 times a day',
-              instructions: 'For 5 days, after food',
-            ),
-            SizedBox(height: 12),
-            MedicineCard(
-              medicineName: 'Azithromycin 250mg',
-              dosage: '1 tablet, once a day',
-              instructions: 'For 3 days, before breakfast',
-            ),
-          ],
+        ListView.separated(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: medicines.length,
+          itemBuilder: (context, index) {
+            return MedicineCard(medicine: medicines[index]);
+          },
+          separatorBuilder: (context, index) => const SizedBox(height: 12),
         ),
       ],
     );

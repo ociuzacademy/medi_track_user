@@ -1,9 +1,18 @@
 // doctor_details_card.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/modules/prescription_details_module/widgets/doctor_detail_row.dart';
 
 class DoctorDetailsCard extends StatelessWidget {
-  const DoctorDetailsCard({super.key});
+  const DoctorDetailsCard({
+    super.key,
+    required this.name,
+    required this.specialization,
+    required this.email,
+  });
+  final String name;
+  final String specialization;
+  final String email;
 
   @override
   Widget build(BuildContext context) {
@@ -35,70 +44,21 @@ class DoctorDetailsCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          _buildDetailRow(
-            context: context,
+          DoctorDetailRow(
             icon: Icons.medical_information,
             label: 'Name',
-            value: 'Dr. Evelyn Reed',
+            value: name,
           ),
           const SizedBox(height: 16),
-          _buildDetailRow(
-            context: context,
+          DoctorDetailRow(
             icon: Icons.local_hospital,
-            label: 'Hospital',
-            value: 'MediTrack General Hospital',
+            label: 'Specialization',
+            value: specialization,
           ),
+          const SizedBox(height: 16),
+          DoctorDetailRow(icon: Icons.email, label: 'Email', value: email),
         ],
       ),
-    );
-  }
-
-  Widget _buildDetailRow({
-    required BuildContext context,
-    required IconData icon,
-    required String label,
-    required String value,
-  }) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
-    return Row(
-      children: [
-        Container(
-          width: 40,
-          height: 40,
-          decoration: BoxDecoration(
-            color: const Color(0xFF05c7a7).withValues(alpha: 0.1),
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Icon(icon, color: const Color(0xFF05c7a7), size: 20),
-        ),
-        const SizedBox(width: 16),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                label,
-                style: GoogleFonts.lexend(
-                  fontSize: 14,
-                  color: isDark
-                      ? const Color(0xFF9CA3AF)
-                      : const Color(0xFF6B7280),
-                ),
-              ),
-              const SizedBox(height: 2),
-              Text(
-                value,
-                style: GoogleFonts.lexend(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: isDark ? Colors.white : const Color(0xFF111827),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
     );
   }
 }
