@@ -1,13 +1,13 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Feedback;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/modules/feedback_details_module/view/feedback_details_page.dart';
-import 'package:medi_track/modules/feedback_list_module/models/feedback_item.dart';
+import 'package:medi_track/modules/feedback_list_module/models/user_feedback_list_model.dart';
 import 'package:medi_track/modules/feedback_list_module/widgets/feedback_star_rating_widget.dart';
 
 class FeedbackCard extends StatelessWidget {
-  final FeedbackItem feedbackItem;
+  final Feedback feedback;
 
-  const FeedbackCard({super.key, required this.feedbackItem});
+  const FeedbackCard({super.key, required this.feedback});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class FeedbackCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        feedbackItem.doctorName,
+                        feedback.doctor.name,
                         style: GoogleFonts.lexend(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -58,7 +58,7 @@ class FeedbackCard extends StatelessWidget {
                       ),
                       const SizedBox(height: 2),
                       Text(
-                        feedbackItem.specialty,
+                        feedback.doctor.specialization,
                         style: GoogleFonts.lexend(
                           fontSize: 16,
                           fontWeight: FontWeight.normal,
@@ -72,7 +72,7 @@ class FeedbackCard extends StatelessWidget {
                 ),
                 const SizedBox(width: 16),
                 Text(
-                  feedbackItem.date,
+                  feedback.appointmentDate.toString(),
                   style: GoogleFonts.lexend(
                     fontSize: 14,
                     fontWeight: FontWeight.normal,
@@ -88,7 +88,7 @@ class FeedbackCard extends StatelessWidget {
 
             // Star Rating
             FeedbackStarRatingWidget(
-              rating: feedbackItem.rating,
+              rating: feedback.starRating,
               isDark: isDark,
             ),
 
@@ -96,7 +96,7 @@ class FeedbackCard extends StatelessWidget {
 
             // Review Text
             Text(
-              feedbackItem.review,
+              feedback.comments,
               style: GoogleFonts.lexend(
                 fontSize: 16,
                 fontWeight: FontWeight.normal,

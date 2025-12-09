@@ -1,45 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:medi_track/modules/feedback_list_module/models/feedback_item.dart';
+import 'package:medi_track/core/export/bloc_export.dart';
+import 'package:medi_track/core/widgets/custom_error_widget.dart';
+import 'package:medi_track/modules/feedback_list_module/utils/feedback_list_helper.dart';
 import 'package:medi_track/modules/feedback_list_module/widgets/feedback_card.dart';
 
-class FeedbackListPage extends StatelessWidget {
+class FeedbackListPage extends StatefulWidget {
   const FeedbackListPage({super.key});
 
   static MaterialPageRoute route() =>
       MaterialPageRoute(builder: (_) => const FeedbackListPage());
 
   @override
+  State<FeedbackListPage> createState() => _FeedbackListPageState();
+}
+
+class _FeedbackListPageState extends State<FeedbackListPage> {
+  late final FeedbackListHelper _feedbackListHelper;
+  @override
+  void initState() {
+    super.initState();
+    _feedbackListHelper = FeedbackListHelper(context: context);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _feedbackListHelper.feedbakListInitial();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-
-    // Sample feedback data
-    final feedbackList = [
-      const FeedbackItem(
-        doctorName: 'Dr. Emily Carter',
-        specialty: 'Cardiology',
-        date: 'Oct 26, 2023',
-        rating: 5,
-        review:
-            'A very attentive and thorough consultation. Dr. Carter explained everything clearly and put my mind at ease. The best experience I\'ve had.',
-      ),
-      const FeedbackItem(
-        doctorName: 'Dr. Ben Adams',
-        specialty: 'Dermatology',
-        date: 'Sep 15, 2023',
-        rating: 3,
-        review:
-            'The appointment felt a bit rushed, and I didn\'t get to ask all of my questions. The advice was helpful though.',
-      ),
-      const FeedbackItem(
-        doctorName: 'Dr. Sarah Jenkins',
-        specialty: 'Pediatrics',
-        date: 'Aug 02, 2023',
-        rating: 5,
-        review:
-            'Excellent with my child, very patient and kind. Made the whole experience stress-free for us. Highly recommended!',
-      ),
-    ];
 
     return Scaffold(
       appBar: AppBar(
@@ -64,39 +54,58 @@ class FeedbackListPage extends StatelessWidget {
       backgroundColor: isDark
           ? const Color(0xFF101F22)
           : const Color(0xFFF6F8F8),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Subtitle
-            Padding(
-              padding: const EdgeInsets.only(bottom: 12),
-              child: Text(
-                'View and manage your feedback for past appointments.',
-                style: GoogleFonts.lexend(
-                  fontSize: 16,
-                  fontWeight: FontWeight.normal,
-                  color: isDark
-                      ? const Color(0xFF9CA3AF)
-                      : const Color(0xFF886364),
-                ),
-              ),
-            ),
-
-            // Feedback List
-            Column(
-              children: feedbackList
-                  .map(
-                    (feedback) => Padding(
-                      padding: const EdgeInsets.only(bottom: 16),
-                      child: FeedbackCard(feedbackItem: feedback),
+      body: BlocBuilder<FeedbackListCubit, FeedbackListState>(
+        builder: (context, state) {
+          switch (state) {
+            case FeedbackListLoading _:
+              return const Center(child: CircularProgressIndicator());
+            case FeedbackListError(message: final message):
+              return CustomErrorWidget(
+                errorMessage: message,
+                isDark: isDark,
+                onRetry: _feedbackListHelper.feedbakListInitial,
+              );
+            case FeedbackListSuccess(userFeedbackList: final userFeedbackList):
+              return SingleChildScrollView(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Subtitle
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 12),
+                      child: Text(
+                        'View and manage your feedback for past appointments.',
+                        style: GoogleFonts.lexend(
+                          fontSize: 16,
+                          fontWeight: FontWeight.normal,
+                          color: isDark
+                              ? const Color(0xFF9CA3AF)
+                              : const Color(0xFF886364),
+                        ),
+                      ),
                     ),
-                  )
-                  .toList(),
-            ),
-          ],
-        ),
+
+                    // Feedback List
+                    ListView.separated(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: userFeedbackList.feedback.length,
+                      itemBuilder: (context, index) {
+                        return FeedbackCard(
+                          feedback: userFeedbackList.feedback[index],
+                        );
+                      },
+                      separatorBuilder: (context, index) =>
+                          const SizedBox(height: 16),
+                    ),
+                  ],
+                ),
+              );
+            default:
+              return const SizedBox.shrink();
+          }
+        },
       ),
     );
   }
