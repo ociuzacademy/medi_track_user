@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:medi_track/modules/rescheduled_appointments_module/models/rescheduled_appointment.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class RescheduledAppointmentCardHeader extends StatelessWidget {
   const RescheduledAppointmentCardHeader({
@@ -51,7 +52,7 @@ class RescheduledAppointmentCardHeader extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 14,
                   color: isDark
-                      ? const Color(0xFF9CA3AF)
+                      ? AppColors.textTertiaryDark
                       : const Color(0xFF617589),
                 ),
               ),

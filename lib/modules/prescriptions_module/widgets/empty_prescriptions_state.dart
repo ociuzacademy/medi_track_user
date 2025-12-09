@@ -1,6 +1,7 @@
 // empty_prescriptions_state.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class EmptyPrescriptionsState extends StatelessWidget {
   const EmptyPrescriptionsState({super.key});
@@ -37,7 +38,7 @@ class EmptyPrescriptionsState extends StatelessWidget {
             style: GoogleFonts.lexend(
               fontSize: 20,
               fontWeight: FontWeight.bold,
-              color: isDark ? Colors.white : const Color(0xFF111827),
+              color: isDark ? Colors.white : AppColors.textPrimaryLight,
             ),
           ),
 
@@ -49,7 +50,7 @@ class EmptyPrescriptionsState extends StatelessWidget {
             textAlign: TextAlign.center,
             style: GoogleFonts.lexend(
               fontSize: 16,
-              color: isDark ? const Color(0xFF9CA3AF) : const Color(0xFF6B7280),
+              color: isDark ? AppColors.textTertiaryDark : AppColors.textTertiaryLight,
             ),
           ),
         ],

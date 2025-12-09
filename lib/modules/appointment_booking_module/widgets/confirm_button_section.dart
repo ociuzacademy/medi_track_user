@@ -1,6 +1,7 @@
 // confirm_button_section.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class ConfirmButtonSection extends StatelessWidget {
   final VoidCallback onConfirm;
@@ -15,7 +16,7 @@ class ConfirmButtonSection extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF101a22) : Colors.white,
+        color: isDark ? AppColors.backgroundDark : Colors.white,
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.1),
@@ -69,7 +70,7 @@ class ConfirmButtonSection extends StatelessWidget {
             textAlign: TextAlign.center,
             style: GoogleFonts.inter(
               fontSize: 12,
-              color: (isDark ? Colors.white : const Color(0xFF111518))
+              color: (isDark ? Colors.white : AppColors.textPrimaryLight)
                   .withValues(alpha: 0.6),
             ),
           ),

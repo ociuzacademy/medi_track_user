@@ -1,6 +1,7 @@
 // bottom_action_buttons.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class BottomActionButtons extends StatelessWidget {
   const BottomActionButtons({super.key});
@@ -21,7 +22,7 @@ class BottomActionButtons extends StatelessWidget {
               : Colors.white.withValues(alpha: 0.9),
           border: Border(
             top: BorderSide(
-              color: isDark ? const Color(0xFF374151) : const Color(0xFFE5E7EB),
+              color: isDark ? AppColors.borderDark : AppColors.borderLight,
             ),
           ),
         ),
@@ -71,8 +72,8 @@ class BottomActionButtons extends StatelessWidget {
                 },
                 style: TextButton.styleFrom(
                   foregroundColor: isDark
-                      ? const Color(0xFF9CA3AF)
-                      : const Color(0xFF6B7280),
+                      ? AppColors.textTertiaryDark
+                      : AppColors.textTertiaryLight,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),

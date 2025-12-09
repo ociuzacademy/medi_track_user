@@ -1,5 +1,6 @@
 // widgets/empty_state.dart
 import 'package:flutter/material.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class EmptyState extends StatelessWidget {
   const EmptyState({super.key});
@@ -44,8 +45,8 @@ class EmptyState extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 14,
                   color: isDark
-                      ? const Color(0xFF9CA3AF)
-                      : const Color(0xFF6B7280),
+                      ? AppColors.textTertiaryDark
+                      : AppColors.textTertiaryLight,
                 ),
               ),
             ),

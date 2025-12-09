@@ -1,6 +1,7 @@
 // confirmation_header.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class ConfirmationHeader extends StatelessWidget {
   const ConfirmationHeader({super.key});
@@ -31,7 +32,7 @@ class ConfirmationHeader extends StatelessWidget {
           style: GoogleFonts.poppins(
             fontSize: 28,
             fontWeight: FontWeight.bold,
-            color: isDark ? Colors.white : const Color(0xFF111518),
+            color: isDark ? Colors.white : AppColors.textPrimaryLight,
           ),
         ),
       ],

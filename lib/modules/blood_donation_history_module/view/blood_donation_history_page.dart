@@ -7,6 +7,7 @@ import 'package:medi_track/modules/blood_donation_history_module/models/blood_do
 import 'package:medi_track/modules/blood_donation_history_module/utils/blood_donation_history_helper.dart';
 import 'package:medi_track/modules/blood_donation_history_module/widgets/donation_history_card.dart';
 import 'package:medi_track/modules/blood_donation_history_module/widgets/no_donations_empty_state.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class BloodDonationHistoryPage extends StatefulWidget {
   const BloodDonationHistoryPage({super.key});
@@ -68,7 +69,7 @@ class _BloodDonationHistoryPageState extends State<BloodDonationHistoryPage> {
               style: TextStyle(
                 fontSize: 16,
                 color: isDark
-                    ? const Color(0xFF9CA3AF)
+                    ? AppColors.textTertiaryDark
                     : const Color(0xFF6B6B6B),
               ),
             ),

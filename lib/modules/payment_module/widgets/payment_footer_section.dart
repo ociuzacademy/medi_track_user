@@ -8,6 +8,7 @@ import 'package:medi_track/modules/payment_module/utils/payment_helper.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/modules/payment_module/providers/payment_provider.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class PaymentFooterSection extends StatelessWidget {
   const PaymentFooterSection({super.key});
@@ -25,7 +26,7 @@ class PaymentFooterSection extends StatelessWidget {
         color: isDark ? const Color(0xFF101f22) : Colors.white,
         border: Border(
           top: BorderSide(
-            color: isDark ? const Color(0xFF374151) : const Color(0xFFe5e7eb),
+            color: isDark ? AppColors.borderDark : const Color(0xFFe5e7eb),
           ),
         ),
       ),

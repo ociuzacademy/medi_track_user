@@ -1,6 +1,7 @@
 // footer_buttons.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class FooterButtons extends StatelessWidget {
   final VoidCallback onCancel;
@@ -18,7 +19,7 @@ class FooterButtons extends StatelessWidget {
         color: isDark ? const Color(0xFF0f2023) : const Color(0xFFF8FAFB),
         border: Border(
           top: BorderSide(
-            color: isDark ? const Color(0xFF37474F) : const Color(0xFFE0E0E0),
+            color: isDark ? const Color(0xFF37474F) : AppColors.textSecondaryDark,
           ),
         ),
       ),

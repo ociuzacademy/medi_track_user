@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 import 'package:medi_track/modules/user_appointments_module/utils/appointment_card_helper.dart';
 
 class AppointmentCancelButton extends StatelessWidget {
@@ -26,7 +27,7 @@ class AppointmentCancelButton extends StatelessWidget {
             appointmentId,
           ),
           style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFFFF3B30),
+            backgroundColor: AppColors.error,
             foregroundColor: Colors.white,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8),

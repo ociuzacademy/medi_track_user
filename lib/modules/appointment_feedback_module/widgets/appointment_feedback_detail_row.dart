@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class AppointmentFeedbackDetailRow extends StatelessWidget {
   final IconData icon;
@@ -64,8 +65,8 @@ class AppointmentFeedbackDetailRow extends StatelessWidget {
                         style: GoogleFonts.lexend(
                           fontSize: 14,
                           color: isDark
-                              ? const Color(0xFF9CA3AF)
-                              : const Color(0xFF6B7280),
+                              ? AppColors.textTertiaryDark
+                              : AppColors.textTertiaryLight,
                         ),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
@@ -80,7 +81,7 @@ class AppointmentFeedbackDetailRow extends StatelessWidget {
         if (showDivider)
           Container(
             height: 1,
-            color: isDark ? const Color(0xFF374151) : const Color(0xFFE5E7EB),
+            color: isDark ? AppColors.borderDark : AppColors.borderLight,
           ),
       ],
     );

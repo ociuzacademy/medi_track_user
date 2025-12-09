@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class HeaderCard extends StatelessWidget {
   const HeaderCard({super.key});
@@ -65,7 +66,7 @@ class HeaderCard extends StatelessWidget {
             fontSize: 18,
             fontWeight: FontWeight.bold,
             letterSpacing: -0.015,
-            color: isDark ? const Color(0xFFE5E7EB) : const Color(0xFF111418),
+            color: isDark ? AppColors.borderLight : const Color(0xFF111418),
           ),
         ),
         const SizedBox(height: 4),
@@ -73,7 +74,7 @@ class HeaderCard extends StatelessWidget {
           'Thank you for considering becoming a donor. Please provide the following details.',
           style: GoogleFonts.lexend(
             fontSize: 16,
-            color: isDark ? const Color(0xFF9CA3AF) : const Color(0xFF617589),
+            color: isDark ? AppColors.textTertiaryDark : const Color(0xFF617589),
             height: 1.5,
           ),
         ),

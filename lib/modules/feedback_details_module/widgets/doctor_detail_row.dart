@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class DoctorDetailRow extends StatelessWidget {
   const DoctorDetailRow({
@@ -23,7 +24,7 @@ class DoctorDetailRow extends StatelessWidget {
         Icon(
           icon,
           size: 20,
-          color: isDark ? const Color(0xFFBDBDBD) : const Color(0xFF757575),
+          color: isDark ? AppColors.textMutedDark : AppColors.textMutedLight,
         ),
         const SizedBox(width: 12),
         Expanded(
@@ -36,8 +37,8 @@ class DoctorDetailRow extends StatelessWidget {
                   fontSize: 14,
                   fontWeight: FontWeight.normal,
                   color: isDark
-                      ? const Color(0xFFBDBDBD)
-                      : const Color(0xFF757575),
+                      ? AppColors.textMutedDark
+                      : AppColors.textMutedLight,
                 ),
               ),
               const SizedBox(height: 2),
@@ -47,8 +48,8 @@ class DoctorDetailRow extends StatelessWidget {
                   fontSize: 14,
                   fontWeight: FontWeight.normal,
                   color: isDark
-                      ? const Color(0xFFE0E0E0)
-                      : const Color(0xFF333333),
+                      ? AppColors.textSecondaryDark
+                      : AppColors.textSecondaryLight,
                 ),
               ),
             ],

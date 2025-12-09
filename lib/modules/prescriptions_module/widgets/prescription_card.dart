@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:medi_track/modules/prescription_details_module/view/prescription_details_page.dart';
 import 'package:medi_track/modules/prescriptions_module/models/prescription_list_model.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class PrescriptionCard extends StatelessWidget {
   final Prescription prescription;
@@ -41,7 +42,7 @@ class PrescriptionCard extends StatelessWidget {
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                     letterSpacing: -0.015,
-                    color: isDark ? Colors.white : const Color(0xFF111827),
+                    color: isDark ? Colors.white : AppColors.textPrimaryLight,
                   ),
                 ),
                 Container(
@@ -77,8 +78,8 @@ class PrescriptionCard extends StatelessWidget {
               style: GoogleFonts.lexend(
                 fontSize: 14,
                 color: isDark
-                    ? const Color(0xFF9CA3AF)
-                    : const Color(0xFF6B7280),
+                    ? AppColors.textTertiaryDark
+                    : AppColors.textTertiaryLight,
               ),
             ),
 
@@ -87,7 +88,7 @@ class PrescriptionCard extends StatelessWidget {
             // Divider
             Container(
               height: 1,
-              color: isDark ? const Color(0xFF374151) : const Color(0xFFE5E7EB),
+              color: isDark ? AppColors.borderDark : AppColors.borderLight,
             ),
 
             const SizedBox(height: 12),
@@ -98,8 +99,8 @@ class PrescriptionCard extends StatelessWidget {
               style: GoogleFonts.lexend(
                 fontSize: 14,
                 color: isDark
-                    ? const Color(0xFF9CA3AF)
-                    : const Color(0xFF6B7280),
+                    ? AppColors.textTertiaryDark
+                    : AppColors.textTertiaryLight,
               ),
             ),
 

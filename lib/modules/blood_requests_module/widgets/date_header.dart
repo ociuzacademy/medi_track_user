@@ -1,5 +1,6 @@
 // widgets/date_header.dart
 import 'package:flutter/material.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class DateHeader extends StatelessWidget {
   final String text;
@@ -16,7 +17,7 @@ class DateHeader extends StatelessWidget {
         text,
         style: TextStyle(
           fontSize: 14,
-          color: isDark ? const Color(0xFF9CA3AF) : const Color(0xFF6B7280),
+          color: isDark ? AppColors.textTertiaryDark : AppColors.textTertiaryLight,
           fontWeight: FontWeight.normal,
         ),
       ),

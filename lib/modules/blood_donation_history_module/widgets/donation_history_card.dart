@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:medi_track/modules/blood_donation_history_module/widgets/donation_detail.dart';
 import 'package:medi_track/modules/blood_donation_history_module/models/blood_donation_history.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class DonationHistoryCard extends StatelessWidget {
   final BloodDonationHistory donation;
@@ -42,7 +43,7 @@ class DonationHistoryCard extends StatelessWidget {
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: isDark
-                        ? const Color(0xFFF3F4F6)
+                        ? AppColors.surfaceLight
                         : const Color(0xFF1A1A1A),
                   ),
                 ),

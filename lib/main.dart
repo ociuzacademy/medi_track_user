@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 import 'package:medi_track/core/export/bloc_export.dart';
 import 'package:medi_track/core/export/storage_export.dart';
 import 'package:medi_track/modules/splash_screen_module/view/splash_screen.dart';
@@ -53,7 +54,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color(0xFF13a4ec),
+            seedColor: AppColors.primaryAlt,
             brightness: Brightness.light,
           ),
           // Using Google Fonts for default text theme
@@ -62,7 +63,7 @@ class MyApp extends StatelessWidget {
         darkTheme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color(0xFF13a4ec),
+            seedColor: AppColors.primaryAlt,
             brightness: Brightness.dark,
           ),
           textTheme: GoogleFonts.interTextTheme(ThemeData.dark().textTheme),

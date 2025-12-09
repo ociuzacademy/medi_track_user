@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class SliderSection extends StatelessWidget {
   const SliderSection({
@@ -41,7 +42,7 @@ class SliderSection extends StatelessWidget {
           activeColor: const Color(0xFF05c7a7),
           inactiveColor: isDark
               ? const Color(0xFF4B5563)
-              : const Color(0xFFE5E7EB),
+              : AppColors.borderLight,
           onChanged: onChanged,
         ),
         const SizedBox(height: 4),
@@ -53,8 +54,8 @@ class SliderSection extends StatelessWidget {
               style: GoogleFonts.lexend(
                 fontSize: 12,
                 color: isDark
-                    ? const Color(0xFF9CA3AF)
-                    : const Color(0xFF6B7280),
+                    ? AppColors.textTertiaryDark
+                    : AppColors.textTertiaryLight,
               ),
             ),
             Text(
@@ -62,8 +63,8 @@ class SliderSection extends StatelessWidget {
               style: GoogleFonts.lexend(
                 fontSize: 12,
                 color: isDark
-                    ? const Color(0xFF9CA3AF)
-                    : const Color(0xFF6B7280),
+                    ? AppColors.textTertiaryDark
+                    : AppColors.textTertiaryLight,
               ),
             ),
           ],

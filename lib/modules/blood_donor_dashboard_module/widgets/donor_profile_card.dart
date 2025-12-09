@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class DonorProfileCard extends StatelessWidget {
   const DonorProfileCard({super.key});
@@ -65,8 +66,8 @@ class DonorProfileCard extends StatelessWidget {
                           fontSize: 16,
                           fontWeight: FontWeight.normal,
                           color: isDark
-                              ? const Color(0xFF9CA3AF)
-                              : const Color(0xFF6B7280),
+                              ? AppColors.textTertiaryDark
+                              : AppColors.textTertiaryLight,
                         ),
                       ),
                       const SizedBox(height: 4),
@@ -122,7 +123,7 @@ class DonorProfileCard extends StatelessWidget {
                             fontWeight: FontWeight.w500,
                             color: isDark
                                 ? const Color(0xFFD1D5DB)
-                                : const Color(0xFF6B7280),
+                                : AppColors.textTertiaryLight,
                           ),
                         ),
                         const SizedBox(height: 4),
@@ -160,7 +161,7 @@ class DonorProfileCard extends StatelessWidget {
                             fontWeight: FontWeight.w500,
                             color: isDark
                                 ? const Color(0xFFD1D5DB)
-                                : const Color(0xFF6B7280),
+                                : AppColors.textTertiaryLight,
                           ),
                         ),
                         const SizedBox(height: 4),
@@ -196,7 +197,7 @@ class DonorProfileCard extends StatelessWidget {
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
                         color: isDark
-                            ? const Color(0xFFE5E7EB)
+                            ? AppColors.borderLight
                             : const Color(0xFF111418),
                       ),
                     ),
@@ -216,8 +217,8 @@ class DonorProfileCard extends StatelessWidget {
                   height: 10,
                   decoration: BoxDecoration(
                     color: isDark
-                        ? const Color(0xFF374151)
-                        : const Color(0xFFE5E7EB),
+                        ? AppColors.borderDark
+                        : AppColors.borderLight,
                     borderRadius: BorderRadius.circular(5),
                   ),
                   child: FractionallySizedBox(

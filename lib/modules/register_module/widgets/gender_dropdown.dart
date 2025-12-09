@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/modules/register_module/typedefs/select_string.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class GenderDropdown extends StatelessWidget {
   final ThemeData theme;
@@ -32,7 +33,7 @@ class GenderDropdown extends StatelessWidget {
           style: GoogleFonts.inter(
             fontSize: 16,
             fontWeight: FontWeight.w500,
-            color: isDark ? Colors.white : const Color(0xFF333333),
+            color: isDark ? Colors.white : AppColors.textSecondaryLight,
           ),
         ),
         const SizedBox(height: 8),
@@ -53,8 +54,8 @@ class GenderDropdown extends StatelessWidget {
                       gender,
                       style: GoogleFonts.inter(
                         color: gender == 'Select Gender'
-                            ? const Color(0xFF6B7280)
-                            : (isDark ? Colors.white : const Color(0xFF333333)),
+                            ? AppColors.textTertiaryLight
+                            : (isDark ? Colors.white : AppColors.textSecondaryLight),
                       ),
                     ),
                   );

@@ -1,6 +1,7 @@
 // notification_reminder.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class NotificationReminder extends StatelessWidget {
   const NotificationReminder({super.key});
@@ -43,8 +44,8 @@ class NotificationReminder extends StatelessWidget {
               style: GoogleFonts.inter(
                 fontSize: 14,
                 color: isDark
-                    ? const Color(0xFFE5E7EB)
-                    : const Color(0xFF111518),
+                    ? AppColors.borderLight
+                    : AppColors.textPrimaryLight,
               ),
             ),
           ),

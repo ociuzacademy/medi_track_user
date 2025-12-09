@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/modules/register_module/widgets/multiline_field.dart';
 import 'package:medi_track/modules/register_module/widgets/single_line_field.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 typedef ValidateTextInput = String? Function(String? value)?;
 
@@ -37,7 +38,7 @@ class InputField extends StatelessWidget {
           style: GoogleFonts.inter(
             fontSize: 16,
             fontWeight: FontWeight.w500,
-            color: isDark ? Colors.white : const Color(0xFF333333),
+            color: isDark ? Colors.white : AppColors.textSecondaryLight,
           ),
         ),
         const SizedBox(height: 8),

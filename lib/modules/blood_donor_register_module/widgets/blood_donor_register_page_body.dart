@@ -8,6 +8,7 @@ import 'package:medi_track/modules/blood_donor_register_module/widgets/confirmat
 import 'package:medi_track/modules/blood_donor_register_module/widgets/header_card.dart';
 import 'package:medi_track/modules/blood_donor_register_module/widgets/health_eligibility_card.dart';
 import 'package:medi_track/modules/blood_donor_register_module/widgets/success_dialog.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class BloodDonorRegisterPageBody extends StatefulWidget {
   const BloodDonorRegisterPageBody({super.key});
@@ -45,7 +46,7 @@ class _BloodDonorRegisterPageBodyState
                   style: GoogleFonts.lexend(
                     fontSize: 14,
                     color: isDark
-                        ? const Color(0xFF9CA3AF)
+                        ? AppColors.textTertiaryDark
                         : const Color(0xFF617589),
                   ),
                 ),

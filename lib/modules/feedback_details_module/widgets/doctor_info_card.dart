@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 import 'package:medi_track/modules/feedback_details_module/widgets/doctor_detail_row.dart';
 
 class DoctorInfoCard extends StatelessWidget {
@@ -26,7 +27,7 @@ class DoctorInfoCard extends StatelessWidget {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF1A2A2D) : Colors.white,
+        color: isDark ? AppColors.cardDarkAlt : AppColors.cardLight,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
@@ -64,9 +65,7 @@ class DoctorInfoCard extends StatelessWidget {
                       style: GoogleFonts.lexend(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
-                        color: isDark
-                            ? const Color(0xFFE0E0E0)
-                            : const Color(0xFF333333),
+                        color: AppColors.textSecondary(context),
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -77,9 +76,7 @@ class DoctorInfoCard extends StatelessWidget {
                       style: GoogleFonts.lexend(
                         fontSize: 14,
                         fontWeight: FontWeight.normal,
-                        color: isDark
-                            ? const Color(0xFFBDBDBD)
-                            : const Color(0xFF757575),
+                        color: AppColors.textMuted(context),
                       ),
                     ),
                   ],
@@ -92,7 +89,7 @@ class DoctorInfoCard extends StatelessWidget {
           Container(
             margin: const EdgeInsets.symmetric(vertical: 20),
             height: 1,
-            color: isDark ? const Color(0xFF374151) : const Color(0xFFE5E7EB),
+            color: AppColors.divider(context),
           ),
 
           // Appointment Details

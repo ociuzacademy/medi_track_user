@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class RatingSection extends StatelessWidget {
   const RatingSection({
@@ -45,7 +46,7 @@ class RatingSection extends StatelessWidget {
                     color: isFilled
                         ? const Color(0xFF05c7a7)
                         : (isDark
-                              ? const Color(0xFF6B7280)
+                              ? AppColors.textTertiaryLight
                               : const Color(0xFFD1D5DB)),
                     size: 36,
                   ),

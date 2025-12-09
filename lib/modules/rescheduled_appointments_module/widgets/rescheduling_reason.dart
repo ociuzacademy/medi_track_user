@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:medi_track/modules/rescheduled_appointments_module/models/rescheduled_appointment.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class ReschedulingReason extends StatelessWidget {
   const ReschedulingReason({
@@ -20,7 +21,7 @@ class ReschedulingReason extends StatelessWidget {
       style: TextStyle(
         fontSize: 14,
         fontStyle: FontStyle.italic,
-        color: isDark ? const Color(0xFF9CA3AF) : const Color(0xFF617589),
+        color: isDark ? AppColors.textTertiaryDark : const Color(0xFF617589),
       ),
     );
   }

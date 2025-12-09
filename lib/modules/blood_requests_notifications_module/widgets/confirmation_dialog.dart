@@ -1,5 +1,6 @@
 // widgets/confirmation_dialog.dart
 import 'package:flutter/material.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class ConfirmationDialog extends StatelessWidget {
   final VoidCallback onYes;
@@ -44,7 +45,7 @@ class ConfirmationDialog extends StatelessWidget {
               style: TextStyle(
                 fontSize: 16,
                 color: isDark
-                    ? const Color(0xFF9CA3AF)
+                    ? AppColors.textTertiaryDark
                     : const Color(0xFF49454F),
               ),
             ),

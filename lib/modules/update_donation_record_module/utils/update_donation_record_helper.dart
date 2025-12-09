@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:medi_track/modules/update_donation_record_module/providers/donation_form_provider.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class UpdateDonationRecordHelper {
   static String? validateLocationName(String? value) {
@@ -55,7 +56,7 @@ class UpdateDonationRecordHelper {
               onPrimary: Colors.white,
               onSurface: Theme.of(context).brightness == Brightness.dark
                   ? Colors.black
-                  : const Color(0xFF181111),
+                  : AppColors.textPrimaryLight,
             ),
             textButtonTheme: TextButtonThemeData(
               style: TextButton.styleFrom(

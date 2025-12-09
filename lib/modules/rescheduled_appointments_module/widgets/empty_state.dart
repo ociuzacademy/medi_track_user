@@ -1,5 +1,6 @@
 // widgets/empty_state.dart
 import 'package:flutter/material.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class EmptyState extends StatelessWidget {
   final VoidCallback onRefresh;
@@ -47,7 +48,7 @@ class EmptyState extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 14,
                   color: isDark
-                      ? const Color(0xFF9CA3AF)
+                      ? AppColors.textTertiaryDark
                       : const Color(0xFF617589),
                 ),
               ),
@@ -59,8 +60,8 @@ class EmptyState extends StatelessWidget {
                 onPressed: onRefresh,
                 style: OutlinedButton.styleFrom(
                   backgroundColor: isDark
-                      ? const Color(0xFF374151)
-                      : const Color(0xFFF3F4F6),
+                      ? AppColors.borderDark
+                      : AppColors.surfaceLight,
                   foregroundColor: isDark
                       ? Colors.white
                       : const Color(0xFF111418),

@@ -12,6 +12,7 @@ import 'package:medi_track/modules/user_appointments_module/widgets/completed_ta
 import 'package:medi_track/modules/user_appointments_module/widgets/search_appointment_field.dart';
 import 'package:medi_track/modules/user_appointments_module/widgets/upcoming_tab.dart';
 import 'package:medi_track/modules/user_appointments_module/widgets/rescheduled_tab.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class UserAppointmentsPage extends StatefulWidget {
   const UserAppointmentsPage({super.key});
@@ -69,7 +70,7 @@ class _UserAppointmentsPageState extends State<UserAppointmentsPage>
         bottom: AppointmentsTabBar(tabController: _tabController),
       ),
       backgroundColor: Theme.of(context).brightness == Brightness.dark
-          ? const Color(0xFF101a22)
+          ? AppColors.backgroundDark
           : const Color(0xFFf5f7f8),
       body: BlocBuilder<AppointmentListCubit, AppointmentListState>(
         builder: (context, state) {

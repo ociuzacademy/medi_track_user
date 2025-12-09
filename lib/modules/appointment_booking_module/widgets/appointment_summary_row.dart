@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class AppointmentSummaryRow extends StatelessWidget {
   const AppointmentSummaryRow({
@@ -17,7 +18,7 @@ class AppointmentSummaryRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textColor = isDark ? Colors.white : const Color(0xFF111518);
+    final textColor = isDark ? Colors.white : AppColors.textPrimaryLight;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

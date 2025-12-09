@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/core/export/bloc_export.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class AccountSettingsSectionHelper {
   static void showLogoutConfirmation(BuildContext context) {
@@ -11,7 +12,7 @@ class AccountSettingsSectionHelper {
         final isDark = Theme.of(context).brightness == Brightness.dark;
 
         return AlertDialog(
-          backgroundColor: isDark ? const Color(0xFF1A2A2D) : Colors.white,
+          backgroundColor: isDark ? AppColors.cardDarkAlt : Colors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
@@ -19,7 +20,7 @@ class AccountSettingsSectionHelper {
             'Logout',
             style: GoogleFonts.lexend(
               fontWeight: FontWeight.bold,
-              color: isDark ? const Color(0xFFE0E0E0) : const Color(0xFF333333),
+              color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight,
             ),
           ),
           content: Text(

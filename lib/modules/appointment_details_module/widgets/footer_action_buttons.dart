@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/modules/appointment_feedback_module/view/appointment_feedback_page.dart';
 import 'package:medi_track/modules/appointment_booking_module/view/appointment_booking_page.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class FooterActionButtons extends StatelessWidget {
   final int appointmentId;
@@ -23,7 +24,7 @@ class FooterActionButtons extends StatelessWidget {
         color: isDark ? const Color(0xFF0f2023) : const Color(0xFFf5f8f8),
         border: Border(
           top: BorderSide(
-            color: isDark ? const Color(0xFF37474F) : const Color(0xFFE0E0E0),
+            color: isDark ? const Color(0xFF37474F) : AppColors.textSecondaryDark,
           ),
         ),
       ),

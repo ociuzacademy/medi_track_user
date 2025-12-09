@@ -1,6 +1,7 @@
 // prescription_search_bar.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class PrescriptionSearchBar extends StatelessWidget {
   final TextEditingController controller;
@@ -31,7 +32,7 @@ class PrescriptionSearchBar extends StatelessWidget {
             padding: const EdgeInsets.only(left: 16),
             child: Icon(
               Icons.search,
-              color: isDark ? const Color(0xFF9CA3AF) : const Color(0xFF6B7280),
+              color: isDark ? AppColors.textTertiaryDark : AppColors.textTertiaryLight,
               size: 20,
             ),
           ),
@@ -47,15 +48,15 @@ class PrescriptionSearchBar extends StatelessWidget {
                   hintStyle: GoogleFonts.lexend(
                     fontSize: 16,
                     color: isDark
-                        ? const Color(0xFF9CA3AF)
-                        : const Color(0xFF6B7280),
+                        ? AppColors.textTertiaryDark
+                        : AppColors.textTertiaryLight,
                   ),
                   border: InputBorder.none,
                   contentPadding: EdgeInsets.zero,
                 ),
                 style: GoogleFonts.lexend(
                   fontSize: 16,
-                  color: isDark ? Colors.white : const Color(0xFF111827),
+                  color: isDark ? Colors.white : AppColors.textPrimaryLight,
                 ),
               ),
             ),
@@ -66,7 +67,7 @@ class PrescriptionSearchBar extends StatelessWidget {
             padding: const EdgeInsets.only(right: 16),
             child: Icon(
               Icons.filter_list,
-              color: isDark ? const Color(0xFF9CA3AF) : const Color(0xFF6B7280),
+              color: isDark ? AppColors.textTertiaryDark : AppColors.textTertiaryLight,
               size: 20,
             ),
           ),

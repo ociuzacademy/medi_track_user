@@ -1,5 +1,6 @@
 // widgets/custom_text_form_field.dart
 import 'package:flutter/material.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final String label;
@@ -37,7 +38,7 @@ class CustomTextFormField extends StatelessWidget {
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w500,
-            color: isDark ? Colors.white : const Color(0xFF181111),
+            color: isDark ? Colors.white : AppColors.textPrimaryLight,
           ),
         ),
         const SizedBox(height: 8),
@@ -52,7 +53,7 @@ class CustomTextFormField extends StatelessWidget {
           decoration: InputDecoration(
             hintText: hintText,
             hintStyle: TextStyle(
-              color: isDark ? const Color(0xFF9CA3AF) : const Color(0xFF896161),
+              color: isDark ? AppColors.textTertiaryDark : const Color(0xFF896161),
             ),
             filled: true,
             fillColor: isDark ? const Color(0xFF1A1F2A) : Colors.white,
@@ -92,7 +93,7 @@ class CustomTextFormField extends StatelessWidget {
           ),
           style: TextStyle(
             fontSize: 16,
-            color: isDark ? Colors.white : const Color(0xFF181111),
+            color: isDark ? Colors.white : AppColors.textPrimaryLight,
           ),
         ),
       ],

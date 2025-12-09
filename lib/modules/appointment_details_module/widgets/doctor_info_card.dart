@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:medi_track/core/enums/payment_status.dart';
 import 'package:medi_track/modules/appointment_details_module/widgets/doctor_info_detail_row.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class DoctorInfoCard extends StatelessWidget {
   final String doctorName;
@@ -174,7 +175,7 @@ class DoctorInfoCard extends StatelessWidget {
           Container(
             margin: const EdgeInsets.symmetric(vertical: 16),
             height: 1,
-            color: isDark ? const Color(0xFF37474F) : const Color(0xFFE0E0E0),
+            color: isDark ? const Color(0xFF37474F) : AppColors.textSecondaryDark,
           ),
 
           // Symptoms Section

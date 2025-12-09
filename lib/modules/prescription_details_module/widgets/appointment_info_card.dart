@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:medi_track/modules/prescription_details_module/widgets/appointment_prescription_detail_row.dart';
 import 'package:medi_track/modules/prescription_details_module/widgets/appointment_token_row.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class AppointmentInfoCard extends StatelessWidget {
   const AppointmentInfoCard({
@@ -41,7 +42,7 @@ class AppointmentInfoCard extends StatelessWidget {
             style: GoogleFonts.lexend(
               fontSize: 16,
               fontWeight: FontWeight.bold,
-              color: isDark ? Colors.white : const Color(0xFF111827),
+              color: isDark ? Colors.white : AppColors.textPrimaryLight,
             ),
           ),
           const SizedBox(height: 16),

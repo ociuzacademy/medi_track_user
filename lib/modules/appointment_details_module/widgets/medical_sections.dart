@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/core/export/bloc_export.dart';
 import 'package:medi_track/modules/appointment_details_module/utils/medical_sections_helper.dart';
 import 'package:medi_track/modules/appointment_details_module/widgets/medicine_item.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class MedicalSections extends StatefulWidget {
   final int appointmentId;
@@ -110,7 +111,7 @@ class _MedicalSectionsState extends State<MedicalSections> {
                   height: 1,
                   color: isDark
                       ? const Color(0xFF37474F)
-                      : const Color(0xFFE0E0E0),
+                      : AppColors.textSecondaryDark,
                 ),
 
                 // Prescribed Medicines Section
@@ -166,7 +167,7 @@ class _MedicalSectionsState extends State<MedicalSections> {
                   height: 1,
                   color: isDark
                       ? const Color(0xFF37474F)
-                      : const Color(0xFFE0E0E0),
+                      : AppColors.textSecondaryDark,
                 ),
 
                 // Doctor's Notes Section

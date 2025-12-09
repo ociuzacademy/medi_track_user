@@ -8,6 +8,7 @@ import 'package:medi_track/modules/prescriptions_module/utils/prescriptions_help
 import 'package:medi_track/modules/prescriptions_module/widgets/empty_prescriptions_state.dart';
 import 'package:medi_track/modules/prescriptions_module/widgets/prescription_search_bar.dart';
 import 'package:medi_track/modules/prescriptions_module/widgets/prescriptions_list.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class PrescriptionsPage extends StatefulWidget {
   const PrescriptionsPage({super.key});
@@ -54,7 +55,7 @@ class _PrescriptionsPageState extends State<PrescriptionsPage> {
             fontSize: 18,
             fontWeight: FontWeight.bold,
             letterSpacing: -0.015,
-            color: isDark ? Colors.white : const Color(0xFF111827),
+            color: isDark ? Colors.white : AppColors.textPrimaryLight,
           ),
         ),
         centerTitle: true,
@@ -62,7 +63,7 @@ class _PrescriptionsPageState extends State<PrescriptionsPage> {
             ? const Color(0xFF0f2023)
             : const Color(0xFFf5f8f8),
         elevation: 0,
-        foregroundColor: isDark ? Colors.white : const Color(0xFF111827),
+        foregroundColor: isDark ? Colors.white : AppColors.textPrimaryLight,
       ),
       backgroundColor: isDark
           ? const Color(0xFF0f2023)

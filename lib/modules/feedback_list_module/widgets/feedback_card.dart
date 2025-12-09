@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart' hide Feedback;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 import 'package:medi_track/modules/feedback_details_module/view/feedback_details_page.dart';
 import 'package:medi_track/modules/feedback_list_module/models/user_feedback_list_model.dart';
 import 'package:medi_track/modules/feedback_list_module/widgets/feedback_star_rating_widget.dart';
@@ -20,7 +21,7 @@ class FeedbackCard extends StatelessWidget {
       width: double.infinity,
       constraints: const BoxConstraints(minWidth: 288),
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF101F22) : Colors.white,
+        color: isDark ? AppColors.backgroundDark : AppColors.cardLight,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
@@ -30,7 +31,7 @@ class FeedbackCard extends StatelessWidget {
           ),
         ],
         border: isDark
-            ? Border.all(color: const Color(0xFF374151), width: 1)
+            ? Border.all(color: AppColors.borderDark, width: 1)
             : null,
       ),
       child: Padding(
@@ -53,9 +54,7 @@ class FeedbackCard extends StatelessWidget {
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           letterSpacing: -0.015,
-                          color: isDark
-                              ? Colors.white
-                              : const Color(0xFF181111),
+                          color: AppColors.textPrimary(context),
                         ),
                       ),
                       const SizedBox(height: 2),
@@ -64,9 +63,7 @@ class FeedbackCard extends StatelessWidget {
                         style: GoogleFonts.lexend(
                           fontSize: 16,
                           fontWeight: FontWeight.normal,
-                          color: isDark
-                              ? const Color(0xFF9CA3AF)
-                              : const Color(0xFF886364),
+                          color: AppColors.textTertiary(context),
                         ),
                       ),
                     ],
@@ -78,9 +75,7 @@ class FeedbackCard extends StatelessWidget {
                   style: GoogleFonts.lexend(
                     fontSize: 14,
                     fontWeight: FontWeight.normal,
-                    color: isDark
-                        ? const Color(0xFF9CA3AF)
-                        : const Color(0xFF886364),
+                    color: AppColors.textTertiary(context),
                   ),
                 ),
               ],
@@ -102,9 +97,7 @@ class FeedbackCard extends StatelessWidget {
               style: GoogleFonts.lexend(
                 fontSize: 16,
                 fontWeight: FontWeight.normal,
-                color: isDark
-                    ? const Color(0xFF9CA3AF)
-                    : const Color(0xFF886364),
+                color: AppColors.textTertiary(context),
               ),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
@@ -128,9 +121,7 @@ class FeedbackCard extends StatelessWidget {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(
-                      0xFF13C8EC,
-                    ), // New primary color
+                    backgroundColor: AppColors.primaryAlt,
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(
                       vertical: 10,

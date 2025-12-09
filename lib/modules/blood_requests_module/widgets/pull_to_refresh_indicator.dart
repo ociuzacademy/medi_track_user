@@ -1,5 +1,6 @@
 // widgets/pull_to_refresh_indicator.dart
 import 'package:flutter/material.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class PullToRefreshIndicator extends StatelessWidget {
   const PullToRefreshIndicator({super.key});
@@ -16,14 +17,14 @@ class PullToRefreshIndicator extends StatelessWidget {
           Icon(
             Icons.sync,
             size: 20,
-            color: isDark ? const Color(0xFF9CA3AF) : const Color(0xFF6B7280),
+            color: isDark ? AppColors.textTertiaryDark : AppColors.textTertiaryLight,
           ),
           const SizedBox(width: 8),
           Text(
             'Pull to refresh',
             style: TextStyle(
               fontSize: 14,
-              color: isDark ? const Color(0xFF9CA3AF) : const Color(0xFF6B7280),
+              color: isDark ? AppColors.textTertiaryDark : AppColors.textTertiaryLight,
             ),
           ),
         ],

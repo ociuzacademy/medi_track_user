@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/core/enums/appointment_status.dart';
 import 'package:medi_track/modules/confirmation_module/widgets/appointment_details_column.dart';
 import 'package:medi_track/modules/confirmation_module/widgets/doctor_info.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class AppointmentDetailsCard extends StatelessWidget {
   const AppointmentDetailsCard({
@@ -71,7 +72,7 @@ class AppointmentDetailsCard extends StatelessWidget {
             // Divider
             Container(
               height: 1,
-              color: isDark ? const Color(0xFF374151) : const Color(0xFFE5E7EB),
+              color: isDark ? AppColors.borderDark : AppColors.borderLight,
             ),
 
             const SizedBox(height: 16),

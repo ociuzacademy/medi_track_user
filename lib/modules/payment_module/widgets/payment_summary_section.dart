@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:medi_track/modules/payment_module/widgets/payment_summaryrow.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class PaymentSummarySection extends StatelessWidget {
   const PaymentSummarySection({super.key, required this.appointmentDetails});
@@ -44,7 +45,7 @@ class PaymentSummarySection extends StatelessWidget {
               Container(
                 height: 1,
                 color: isDark
-                    ? const Color(0xFF374151)
+                    ? AppColors.borderDark
                     : const Color(0xFFf1f5f9),
               ),
               const SizedBox(height: 8),

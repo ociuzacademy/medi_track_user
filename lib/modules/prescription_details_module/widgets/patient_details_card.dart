@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/modules/prescription_details_module/widgets/patient_detail_row.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class PatientDetailsCard extends StatelessWidget {
   const PatientDetailsCard({
@@ -40,7 +41,7 @@ class PatientDetailsCard extends StatelessWidget {
             style: GoogleFonts.lexend(
               fontSize: 16,
               fontWeight: FontWeight.bold,
-              color: isDark ? Colors.white : const Color(0xFF111827),
+              color: isDark ? Colors.white : AppColors.textPrimaryLight,
             ),
           ),
           const SizedBox(height: 16),

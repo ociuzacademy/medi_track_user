@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:medi_track/modules/appointment_booking_module/providers/appointment_booking_provider.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class AppointmentSummarySection extends StatelessWidget {
   const AppointmentSummarySection({super.key});
@@ -29,7 +30,7 @@ class AppointmentSummarySection extends StatelessWidget {
             style: GoogleFonts.inter(
               fontSize: 22,
               fontWeight: FontWeight.bold,
-              color: isDark ? Colors.white : const Color(0xFF111518),
+              color: isDark ? Colors.white : AppColors.textPrimaryLight,
             ),
           ),
         ),
@@ -37,7 +38,7 @@ class AppointmentSummarySection extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: isDark ? const Color(0xFF101a22) : Colors.white,
+            color: isDark ? AppColors.backgroundDark : Colors.white,
             borderRadius: BorderRadius.circular(12),
             border: Border.all(color: theme.colorScheme.primary, width: 2),
             boxShadow: [
@@ -69,7 +70,7 @@ class AppointmentSummarySection extends StatelessWidget {
                                   fontWeight: FontWeight.w600,
                                   color: isDark
                                       ? Colors.white
-                                      : const Color(0xFF111518),
+                                      : AppColors.textPrimaryLight,
                                 ),
                               ),
                               const SizedBox(
@@ -95,7 +96,7 @@ class AppointmentSummarySection extends StatelessWidget {
                                   fontWeight: FontWeight.w600,
                                   color: isDark
                                       ? Colors.white
-                                      : const Color(0xFF111518),
+                                      : AppColors.textPrimaryLight,
                                 ),
                               ),
                               Text(

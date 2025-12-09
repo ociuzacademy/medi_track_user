@@ -9,6 +9,7 @@ import 'package:medi_track/modules/appointment_booking_module/utils/appointment_
 import 'package:medi_track/modules/appointment_booking_module/widgets/appointment_body.dart';
 import 'package:medi_track/modules/payment_module/view/payment_page.dart';
 import 'package:provider/provider.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class AppointmentBookingPage extends StatefulWidget {
   const AppointmentBookingPage({super.key});
@@ -61,7 +62,7 @@ class _AppointmentBookingPageState extends State<AppointmentBookingPage> {
           elevation: 0,
         ),
         backgroundColor: Theme.of(context).brightness == Brightness.dark
-            ? const Color(0xFF101a22)
+            ? AppColors.backgroundDark
             : const Color(0xFFFFFFFF),
         body: BlocListener<AppointmentBookingBloc, AppointmentBookingState>(
           listener: (context, state) {

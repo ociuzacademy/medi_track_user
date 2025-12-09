@@ -1,6 +1,7 @@
 // profile_header.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class ProfileHeader extends StatelessWidget {
   const ProfileHeader({super.key});
@@ -11,7 +12,7 @@ class ProfileHeader extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF1A2A2D) : Colors.white,
+        color: isDark ? AppColors.cardDarkAlt : Colors.white,
         borderRadius: BorderRadius.circular(8),
         boxShadow: [
           BoxShadow(
@@ -81,8 +82,8 @@ class ProfileHeader extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   letterSpacing: -0.015,
                   color: isDark
-                      ? const Color(0xFFE0E0E0)
-                      : const Color(0xFF333333),
+                      ? AppColors.textSecondaryDark
+                      : AppColors.textSecondaryLight,
                 ),
                 textAlign: TextAlign.center,
               ),

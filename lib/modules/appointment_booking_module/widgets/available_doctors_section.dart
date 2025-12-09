@@ -6,6 +6,7 @@ import 'package:medi_track/modules/appointment_booking_module/widgets/doctor_car
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/modules/appointment_booking_module/providers/appointment_booking_provider.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class AvailableDoctorsSection extends StatelessWidget {
   const AvailableDoctorsSection({super.key});
@@ -28,7 +29,7 @@ class AvailableDoctorsSection extends StatelessWidget {
             style: GoogleFonts.inter(
               fontSize: 22,
               fontWeight: FontWeight.bold,
-              color: isDark ? Colors.white : const Color(0xFF111518),
+              color: isDark ? Colors.white : AppColors.textPrimaryLight,
             ),
           ),
         ),
@@ -40,11 +41,11 @@ class AvailableDoctorsSection extends StatelessWidget {
                 return Container(
                   padding: const EdgeInsets.all(24),
                   decoration: BoxDecoration(
-                    color: isDark ? const Color(0xFF101a22) : Colors.white,
+                    color: isDark ? AppColors.backgroundDark : Colors.white,
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
                       color: isDark
-                          ? const Color(0xFF374151)
+                          ? AppColors.borderDark
                           : const Color(0xFFdbe1e6),
                     ),
                   ),
@@ -63,7 +64,7 @@ class AvailableDoctorsSection extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                           color: isDark
                               ? Colors.white
-                              : const Color(0xFF111518),
+                              : AppColors.textPrimaryLight,
                         ),
                       ),
                       const SizedBox(height: 8),
@@ -73,7 +74,7 @@ class AvailableDoctorsSection extends StatelessWidget {
                         style: GoogleFonts.inter(
                           fontSize: 14,
                           color:
-                              (isDark ? Colors.white : const Color(0xFF111518))
+                              (isDark ? Colors.white : AppColors.textPrimaryLight)
                                   .withValues(alpha: 0.7),
                         ),
                       ),
@@ -84,11 +85,11 @@ class AvailableDoctorsSection extends StatelessWidget {
                 return Container(
                   padding: const EdgeInsets.all(48),
                   decoration: BoxDecoration(
-                    color: isDark ? const Color(0xFF101a22) : Colors.white,
+                    color: isDark ? AppColors.backgroundDark : Colors.white,
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
                       color: isDark
-                          ? const Color(0xFF374151)
+                          ? AppColors.borderDark
                           : const Color(0xFFdbe1e6),
                     ),
                   ),
@@ -100,11 +101,11 @@ class AvailableDoctorsSection extends StatelessWidget {
                   return Container(
                     padding: const EdgeInsets.all(24),
                     decoration: BoxDecoration(
-                      color: isDark ? const Color(0xFF101a22) : Colors.white,
+                      color: isDark ? AppColors.backgroundDark : Colors.white,
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
                         color: isDark
-                            ? const Color(0xFF374151)
+                            ? AppColors.borderDark
                             : const Color(0xFFdbe1e6),
                       ),
                     ),
@@ -125,7 +126,7 @@ class AvailableDoctorsSection extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                             color: isDark
                                 ? Colors.white
-                                : const Color(0xFF111518),
+                                : AppColors.textPrimaryLight,
                           ),
                         ),
                         const SizedBox(height: 8),
@@ -137,7 +138,7 @@ class AvailableDoctorsSection extends StatelessWidget {
                             color:
                                 (isDark
                                         ? Colors.white
-                                        : const Color(0xFF111518))
+                                        : AppColors.textPrimaryLight)
                                     .withValues(alpha: 0.7),
                           ),
                         ),
@@ -163,11 +164,11 @@ class AvailableDoctorsSection extends StatelessWidget {
                 return Container(
                   padding: const EdgeInsets.all(24),
                   decoration: BoxDecoration(
-                    color: isDark ? const Color(0xFF101a22) : Colors.white,
+                    color: isDark ? AppColors.backgroundDark : Colors.white,
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
                       color: isDark
-                          ? const Color(0xFF374151)
+                          ? AppColors.borderDark
                           : const Color(0xFFdbe1e6),
                     ),
                   ),
@@ -186,7 +187,7 @@ class AvailableDoctorsSection extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                           color: isDark
                               ? Colors.white
-                              : const Color(0xFF111518),
+                              : AppColors.textPrimaryLight,
                         ),
                       ),
                       const SizedBox(height: 8),
@@ -196,7 +197,7 @@ class AvailableDoctorsSection extends StatelessWidget {
                         style: GoogleFonts.inter(
                           fontSize: 14,
                           color:
-                              (isDark ? Colors.white : const Color(0xFF111518))
+                              (isDark ? Colors.white : AppColors.textPrimaryLight)
                                   .withValues(alpha: 0.7),
                         ),
                       ),

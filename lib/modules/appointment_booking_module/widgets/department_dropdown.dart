@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medi_track/core/export/bloc_export.dart';
 import 'package:medi_track/modules/appointment_booking_module/models/departments_model.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class DepartmentDropdown extends StatelessWidget {
   final ThemeData theme;
@@ -29,17 +30,17 @@ class DepartmentDropdown extends StatelessWidget {
           style: GoogleFonts.inter(
             fontSize: 16,
             fontWeight: FontWeight.w500,
-            color: isDark ? Colors.white : const Color(0xFF111518),
+            color: isDark ? Colors.white : AppColors.textPrimaryLight,
           ),
         ),
         const SizedBox(height: 8),
         Container(
           height: 56,
           decoration: BoxDecoration(
-            color: isDark ? const Color(0xFF101a22) : Colors.white,
+            color: isDark ? AppColors.backgroundDark : Colors.white,
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
-              color: isDark ? const Color(0xFF374151) : const Color(0xFFdbe1e6),
+              color: isDark ? AppColors.borderDark : const Color(0xFFdbe1e6),
             ),
           ),
           child: BlocBuilder<DepartmentsCubit, DepartmentsState>(
@@ -68,7 +69,7 @@ class DepartmentDropdown extends StatelessWidget {
                               style: GoogleFonts.inter(
                                 color: isDark
                                     ? Colors.white
-                                    : const Color(0xFF111518),
+                                    : AppColors.textPrimaryLight,
                               ),
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
@@ -87,7 +88,7 @@ class DepartmentDropdown extends StatelessWidget {
                           fontSize: 16,
                           color: isDark
                               ? Colors.white
-                              : const Color(0xFF111518),
+                              : AppColors.textPrimaryLight,
                         ),
                       ),
                       Positioned(

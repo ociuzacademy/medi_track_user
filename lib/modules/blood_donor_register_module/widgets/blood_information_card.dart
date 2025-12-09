@@ -4,6 +4,7 @@ import 'package:medi_track/modules/blood_donor_register_module/utils/blood_infor
 import 'package:provider/provider.dart';
 
 import 'package:medi_track/modules/blood_donor_register_module/providers/donor_form_provider.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class BloodInformationSection extends StatelessWidget {
   const BloodInformationSection({super.key});
@@ -41,7 +42,7 @@ class BloodInformationSection extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     letterSpacing: -0.015,
                     color: isDark
-                        ? const Color(0xFFE5E7EB)
+                        ? AppColors.borderLight
                         : const Color(0xFF111418),
                   ),
                 ),
@@ -59,7 +60,7 @@ class BloodInformationSection extends StatelessWidget {
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
                       color: isDark
-                          ? const Color(0xFFE5E7EB)
+                          ? AppColors.borderLight
                           : const Color(0xFF111418),
                     ),
                   ),
@@ -71,7 +72,7 @@ class BloodInformationSection extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
                         color: isDark
-                            ? const Color(0xFF374151)
+                            ? AppColors.borderDark
                             : const Color(0xFFdbe0e6),
                       ),
                     ),
@@ -87,7 +88,7 @@ class BloodInformationSection extends StatelessWidget {
                       style: GoogleFonts.lexend(
                         fontSize: 16,
                         color: isDark
-                            ? const Color(0xFFE5E7EB)
+                            ? AppColors.borderLight
                             : const Color(0xFF111418),
                       ),
                       dropdownColor: isDark
@@ -96,7 +97,7 @@ class BloodInformationSection extends StatelessWidget {
                       icon: Icon(
                         Icons.arrow_drop_down,
                         color: isDark
-                            ? const Color(0xFF9CA3AF)
+                            ? AppColors.textTertiaryDark
                             : const Color(0xFF617589),
                       ),
                       items: const [
@@ -130,7 +131,7 @@ class BloodInformationSection extends StatelessWidget {
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
                       color: isDark
-                          ? const Color(0xFFE5E7EB)
+                          ? AppColors.borderLight
                           : const Color(0xFF111418),
                     ),
                   ),
@@ -148,7 +149,7 @@ class BloodInformationSection extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
                           color: isDark
-                              ? const Color(0xFF374151)
+                              ? AppColors.borderDark
                               : const Color(0xFFdbe0e6),
                         ),
                       ),
@@ -167,10 +168,10 @@ class BloodInformationSection extends StatelessWidget {
                                   color:
                                       donorFormProvider.lastDonationDate == null
                                       ? (isDark
-                                            ? const Color(0xFF9CA3AF)
+                                            ? AppColors.textTertiaryDark
                                             : const Color(0xFF617589))
                                       : (isDark
-                                            ? const Color(0xFFE5E7EB)
+                                            ? AppColors.borderLight
                                             : const Color(0xFF111418)),
                                 ),
                               ),
@@ -186,7 +187,7 @@ class BloodInformationSection extends StatelessWidget {
                               border: Border(
                                 left: BorderSide(
                                   color: isDark
-                                      ? const Color(0xFF374151)
+                                      ? AppColors.borderDark
                                       : const Color(0xFFdbe0e6),
                                 ),
                               ),
@@ -194,7 +195,7 @@ class BloodInformationSection extends StatelessWidget {
                             child: Icon(
                               Icons.calendar_today,
                               color: isDark
-                                  ? const Color(0xFF9CA3AF)
+                                  ? AppColors.textTertiaryDark
                                   : const Color(0xFF617589),
                             ),
                           ),

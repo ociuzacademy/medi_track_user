@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/modules/prescription_details_module/models/prescription_details_model.dart';
 import 'package:medi_track/modules/prescription_details_module/widgets/medicine_card.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class MedicinesSection extends StatelessWidget {
   final List<Medicine> medicines;
@@ -22,7 +23,7 @@ class MedicinesSection extends StatelessWidget {
             style: GoogleFonts.lexend(
               fontSize: 16,
               fontWeight: FontWeight.bold,
-              color: isDark ? Colors.white : const Color(0xFF111827),
+              color: isDark ? Colors.white : AppColors.textPrimaryLight,
             ),
           ),
         ),

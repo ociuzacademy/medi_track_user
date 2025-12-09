@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class DonorDashboardActionItem extends StatelessWidget {
   const DonorDashboardActionItem({
@@ -65,8 +66,8 @@ class DonorDashboardActionItem extends StatelessWidget {
               Icon(
                 Icons.chevron_right,
                 color: isDark
-                    ? const Color(0xFF9CA3AF)
-                    : const Color(0xFF6B7280),
+                    ? AppColors.textTertiaryDark
+                    : AppColors.textTertiaryLight,
               ),
             ],
           ),

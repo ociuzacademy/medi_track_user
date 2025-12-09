@@ -1,6 +1,7 @@
 // feedback_submit_success_dialog.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class FeedbackSubmitSuccessDialog extends StatelessWidget {
   final String message;
@@ -73,8 +74,8 @@ class FeedbackSubmitSuccessDialog extends StatelessWidget {
                 style: GoogleFonts.lexend(
                   fontSize: 16,
                   color: isDark
-                      ? const Color(0xFF9CA3AF)
-                      : const Color(0xFF6B7280),
+                      ? AppColors.textTertiaryDark
+                      : AppColors.textTertiaryLight,
                 ),
               ),
 

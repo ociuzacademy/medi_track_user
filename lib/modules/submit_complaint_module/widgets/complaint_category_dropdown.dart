@@ -1,6 +1,7 @@
 // complaint_category_dropdown.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class ComplaintCategoryDropdown extends StatelessWidget {
   final String? selectedCategory;
@@ -27,7 +28,7 @@ class ComplaintCategoryDropdown extends StatelessWidget {
           style: GoogleFonts.lexend(
             fontSize: 16,
             fontWeight: FontWeight.w500,
-            color: isDark ? const Color(0xFFE0E0E0) : const Color(0xFF333333),
+            color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight,
           ),
         ),
         const SizedBox(height: 8),
@@ -41,7 +42,7 @@ class ComplaintCategoryDropdown extends StatelessWidget {
                   ? Colors.red
                   : isDark
                   ? const Color(0xFF443333)
-                  : const Color(0xFFE0E0E0),
+                  : AppColors.textSecondaryDark,
             ),
             boxShadow: [
               BoxShadow(
@@ -81,8 +82,8 @@ class ComplaintCategoryDropdown extends StatelessWidget {
                   style: GoogleFonts.lexend(
                     fontSize: 16,
                     color: isDark
-                        ? const Color(0xFFE0E0E0)
-                        : const Color(0xFF333333),
+                        ? AppColors.textSecondaryDark
+                        : AppColors.textSecondaryLight,
                   ),
                   dropdownColor: isDark
                       ? const Color(0xFF1A2A2A)
@@ -90,8 +91,8 @@ class ComplaintCategoryDropdown extends StatelessWidget {
                   icon: Icon(
                     Icons.arrow_drop_down,
                     color: isDark
-                        ? const Color(0xFFE0E0E0)
-                        : const Color(0xFF333333),
+                        ? AppColors.textSecondaryDark
+                        : AppColors.textSecondaryLight,
                   ),
                   items: const [
                     DropdownMenuItem(

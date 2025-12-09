@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class FeedbackStarRatingWidget extends StatelessWidget {
   const FeedbackStarRatingWidget({
@@ -20,7 +21,7 @@ class FeedbackStarRatingWidget extends StatelessWidget {
           child: Icon(
             isFilled ? Icons.star : Icons.star_border,
             color: isFilled
-                ? const Color(0xFF13C8EC) // New primary color
+                ? AppColors.primaryAlt // New primary color
                 : (isDark ? const Color(0xFF4B5563) : const Color(0xFFD1D5DB)),
             size: 20,
           ),

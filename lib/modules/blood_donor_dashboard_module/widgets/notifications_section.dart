@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/modules/blood_requests_notifications_module/view/blood_request_notifications_page.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class NotificationsSection extends StatelessWidget {
   const NotificationsSection({super.key});
@@ -108,8 +109,8 @@ class NotificationsSection extends StatelessWidget {
                         style: GoogleFonts.lexend(
                           fontSize: 14,
                           color: isDark
-                              ? const Color(0xFF9CA3AF)
-                              : const Color(0xFF6B7280),
+                              ? AppColors.textTertiaryDark
+                              : AppColors.textTertiaryLight,
                         ),
                       ),
                       const SizedBox(height: 4),
@@ -118,8 +119,8 @@ class NotificationsSection extends StatelessWidget {
                         style: GoogleFonts.lexend(
                           fontSize: 12,
                           color: isDark
-                              ? const Color(0xFF6B7280)
-                              : const Color(0xFF9CA3AF),
+                              ? AppColors.textTertiaryLight
+                              : AppColors.textTertiaryDark,
                         ),
                       ),
                     ],

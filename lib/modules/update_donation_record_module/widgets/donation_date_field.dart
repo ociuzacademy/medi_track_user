@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:medi_track/modules/update_donation_record_module/utils/update_donation_record_helper.dart';
 import 'package:provider/provider.dart';
 import 'package:medi_track/modules/update_donation_record_module/providers/donation_form_provider.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class DonationDateField extends StatelessWidget {
   const DonationDateField({super.key});
@@ -21,7 +22,7 @@ class DonationDateField extends StatelessWidget {
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w500,
-            color: isDark ? Colors.white : const Color(0xFF181111),
+            color: isDark ? Colors.white : AppColors.textPrimaryLight,
           ),
         ),
         const SizedBox(height: 8),
@@ -50,9 +51,9 @@ class DonationDateField extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 16,
                         color: formData.donationDate != null
-                            ? (isDark ? Colors.white : const Color(0xFF181111))
+                            ? (isDark ? Colors.white : AppColors.textPrimaryLight)
                             : (isDark
-                                  ? const Color(0xFF9CA3AF)
+                                  ? AppColors.textTertiaryDark
                                   : const Color(0xFF896161)),
                       ),
                     ),
@@ -61,7 +62,7 @@ class DonationDateField extends StatelessWidget {
                     Icons.calendar_today,
                     size: 20,
                     color: isDark
-                        ? const Color(0xFF9CA3AF)
+                        ? AppColors.textTertiaryDark
                         : const Color(0xFF896161),
                   ),
                 ],

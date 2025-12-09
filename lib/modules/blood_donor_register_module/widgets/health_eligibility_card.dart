@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/modules/blood_donor_register_module/providers/donor_form_provider.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class HealthEligibilitySection extends StatelessWidget {
   const HealthEligibilitySection({super.key});
@@ -38,7 +39,7 @@ class HealthEligibilitySection extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 letterSpacing: -0.015,
                 color: isDark
-                    ? const Color(0xFFE5E7EB)
+                    ? AppColors.borderLight
                     : const Color(0xFF111418),
               ),
             ),
@@ -56,7 +57,7 @@ class HealthEligibilitySection extends StatelessWidget {
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
                   color: isDark
-                      ? const Color(0xFFE5E7EB)
+                      ? AppColors.borderLight
                       : const Color(0xFF111418),
                 ),
               ),
@@ -68,7 +69,7 @@ class HealthEligibilitySection extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
                     color: isDark
-                        ? const Color(0xFF374151)
+                        ? AppColors.borderDark
                         : const Color(0xFFdbe0e6),
                   ),
                 ),
@@ -80,7 +81,7 @@ class HealthEligibilitySection extends StatelessWidget {
                     hintStyle: GoogleFonts.lexend(
                       fontSize: 16,
                       color: isDark
-                          ? const Color(0xFF9CA3AF)
+                          ? AppColors.textTertiaryDark
                           : const Color(0xFF617589),
                     ),
                     border: InputBorder.none,
@@ -89,7 +90,7 @@ class HealthEligibilitySection extends StatelessWidget {
                   style: GoogleFonts.lexend(
                     fontSize: 16,
                     color: isDark
-                        ? const Color(0xFFE5E7EB)
+                        ? AppColors.borderLight
                         : const Color(0xFF111418),
                   ),
                   validator: (value) {
@@ -122,7 +123,7 @@ class HealthEligibilitySection extends StatelessWidget {
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
                       color: isDark
-                          ? const Color(0xFFE5E7EB)
+                          ? AppColors.borderLight
                           : const Color(0xFF111418),
                     ),
                   ),
@@ -158,7 +159,7 @@ class HealthEligibilitySection extends StatelessWidget {
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
                           color: isDark
-                              ? const Color(0xFFE5E7EB)
+                              ? AppColors.borderLight
                               : const Color(0xFF111418),
                         ),
                       ),
@@ -201,7 +202,7 @@ class HealthEligibilitySection extends StatelessWidget {
           style: GoogleFonts.lexend(
             fontSize: 16,
             fontWeight: FontWeight.w500,
-            color: isDark ? const Color(0xFFE5E7EB) : const Color(0xFF111418),
+            color: isDark ? AppColors.borderLight : const Color(0xFF111418),
           ),
         ),
         const SizedBox(height: 8),
@@ -210,7 +211,7 @@ class HealthEligibilitySection extends StatelessWidget {
             color: isDark ? const Color(0xFF101922) : Colors.white,
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
-              color: isDark ? const Color(0xFF374151) : const Color(0xFFdbe0e6),
+              color: isDark ? AppColors.borderDark : const Color(0xFFdbe0e6),
             ),
           ),
           child: TextFormField(
@@ -221,7 +222,7 @@ class HealthEligibilitySection extends StatelessWidget {
               hintStyle: GoogleFonts.lexend(
                 fontSize: 16,
                 color: isDark
-                    ? const Color(0xFF9CA3AF)
+                    ? AppColors.textTertiaryDark
                     : const Color(0xFF617589),
               ),
               border: InputBorder.none,
@@ -229,7 +230,7 @@ class HealthEligibilitySection extends StatelessWidget {
             ),
             style: GoogleFonts.lexend(
               fontSize: 16,
-              color: isDark ? const Color(0xFFE5E7EB) : const Color(0xFF111418),
+              color: isDark ? AppColors.borderLight : const Color(0xFF111418),
             ),
             validator: (value) {
               if (donorFormProvider.recentIllness &&

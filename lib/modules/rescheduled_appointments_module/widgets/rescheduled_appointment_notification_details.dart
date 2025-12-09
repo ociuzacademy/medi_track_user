@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:medi_track/modules/rescheduled_appointments_module/models/rescheduled_appointment.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class RescheduledAppointmentNotificationDetails extends StatelessWidget {
   const RescheduledAppointmentNotificationDetails({
@@ -20,7 +21,7 @@ class RescheduledAppointmentNotificationDetails extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border(
           left: BorderSide(
-            color: isDark ? const Color(0xFF374151) : const Color(0xFFE5E7EB),
+            color: isDark ? AppColors.borderDark : AppColors.borderLight,
             width: 2,
           ),
         ),
@@ -34,8 +35,8 @@ class RescheduledAppointmentNotificationDetails extends StatelessWidget {
                 Icons.calendar_today,
                 size: 16,
                 color: isDark
-                    ? const Color(0xFF9CA3AF)
-                    : const Color(0xFF6B7280),
+                    ? AppColors.textTertiaryDark
+                    : AppColors.textTertiaryLight,
               ),
               const SizedBox(width: 8),
               Expanded(
@@ -44,7 +45,7 @@ class RescheduledAppointmentNotificationDetails extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 14,
                     color: isDark
-                        ? const Color(0xFF9CA3AF)
+                        ? AppColors.textTertiaryDark
                         : const Color(0xFF617589),
                   ),
                 ),

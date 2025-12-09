@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class SymptomItem extends StatelessWidget {
   const SymptomItem({
@@ -26,7 +27,7 @@ class SymptomItem extends StatelessWidget {
       case 'severe':
         return const Color(0xFFEF4444);
       default:
-        return const Color(0xFF6B7280);
+        return AppColors.textTertiaryLight;
     }
   }
 
@@ -46,7 +47,7 @@ class SymptomItem extends StatelessWidget {
               style: GoogleFonts.lexend(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
-                color: isDark ? Colors.white : const Color(0xFF111827),
+                color: isDark ? Colors.white : AppColors.textPrimaryLight,
               ),
             ),
           ),

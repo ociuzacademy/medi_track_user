@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/modules/prescription_details_module/models/prescription_details_model.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class MedicineCard extends StatelessWidget {
   final Medicine medicine;
@@ -62,7 +63,7 @@ class MedicineCard extends StatelessWidget {
         color: isDark ? const Color(0xFF1A2F2C) : Colors.white,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: isDark ? const Color(0xFF374151) : const Color(0xFFE5E7EB),
+          color: isDark ? AppColors.borderDark : AppColors.borderLight,
         ),
       ),
       padding: const EdgeInsets.all(16),
@@ -92,7 +93,7 @@ class MedicineCard extends StatelessWidget {
                   style: GoogleFonts.lexend(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: isDark ? Colors.white : const Color(0xFF111827),
+                    color: isDark ? Colors.white : AppColors.textPrimaryLight,
                   ),
                 ),
                 const SizedBox(height: 2),
@@ -102,7 +103,7 @@ class MedicineCard extends StatelessWidget {
                     fontSize: 14,
                     color: isDark
                         ? const Color(0xFFD1D5DB)
-                        : const Color(0xFF6B7280),
+                        : AppColors.textTertiaryLight,
                   ),
                 ),
                 const SizedBox(height: 4),
@@ -111,8 +112,8 @@ class MedicineCard extends StatelessWidget {
                   style: GoogleFonts.lexend(
                     fontSize: 14,
                     color: isDark
-                        ? const Color(0xFF9CA3AF)
-                        : const Color(0xFF6B7280),
+                        ? AppColors.textTertiaryDark
+                        : AppColors.textTertiaryLight,
                   ),
                 ),
               ],

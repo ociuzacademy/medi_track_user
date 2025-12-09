@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class SuccessDialog extends StatelessWidget {
   final VoidCallback onClose;
@@ -51,7 +52,7 @@ class SuccessDialog extends StatelessWidget {
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                   color: isDark
-                      ? const Color(0xFFE5E7EB)
+                      ? AppColors.borderLight
                       : const Color(0xFF111418),
                 ),
                 textAlign: TextAlign.center,
@@ -64,7 +65,7 @@ class SuccessDialog extends StatelessWidget {
                 style: GoogleFonts.lexend(
                   fontSize: 16,
                   color: isDark
-                      ? const Color(0xFF9CA3AF)
+                      ? AppColors.textTertiaryDark
                       : const Color(0xFF617589),
                   height: 1.5,
                 ),

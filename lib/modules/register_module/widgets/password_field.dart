@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class PasswordField extends StatelessWidget {
   const PasswordField({
@@ -32,7 +33,7 @@ class PasswordField extends StatelessWidget {
           style: GoogleFonts.inter(
             fontSize: 16,
             fontWeight: FontWeight.w500,
-            color: isDark ? Colors.white : const Color(0xFF333333),
+            color: isDark ? Colors.white : AppColors.textSecondaryLight,
           ),
         ),
         const SizedBox(height: 8),
@@ -51,12 +52,12 @@ class PasswordField extends StatelessWidget {
                   validator: validator,
                   style: GoogleFonts.inter(
                     fontSize: 16,
-                    color: isDark ? Colors.white : const Color(0xFF333333),
+                    color: isDark ? Colors.white : AppColors.textSecondaryLight,
                   ),
                   decoration: InputDecoration(
                     hintText: label,
                     hintStyle: GoogleFonts.inter(
-                      color: const Color(0xFF6B7280),
+                      color: AppColors.textTertiaryLight,
                     ),
                     border: InputBorder.none,
                     focusedBorder: InputBorder.none,

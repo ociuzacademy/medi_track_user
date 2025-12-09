@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/modules/appointment_details_module/view/rescheduled_appointments_details_page.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class RescheduledAppointmentCard extends StatelessWidget {
   final int appointmentId;
@@ -26,8 +27,6 @@ class RescheduledAppointmentCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -37,11 +36,9 @@ class RescheduledAppointmentCard extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-          color: isDark ? const Color(0xFF101a22) : Colors.white,
+          color: AppColors.card(context),
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: isDark ? const Color(0xFF374151) : const Color(0xFFE5E7EB),
-          ),
+          border: Border.all(color: AppColors.border(context)),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withValues(alpha: 0.05),
@@ -55,7 +52,7 @@ class RescheduledAppointmentCard extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Icon(icon, color: const Color(0xFF007AFF), size: 32),
+            Icon(icon, color: AppColors.primary, size: 32),
             const SizedBox(width: 16),
             Expanded(
               child: Column(
@@ -73,9 +70,7 @@ class RescheduledAppointmentCard extends StatelessWidget {
                               style: GoogleFonts.inter(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
-                                color: isDark
-                                    ? Colors.white
-                                    : const Color(0xFF111518),
+                                color: AppColors.textPrimary(context),
                               ),
                             ),
                             const SizedBox(height: 2),
@@ -83,9 +78,7 @@ class RescheduledAppointmentCard extends StatelessWidget {
                               department,
                               style: GoogleFonts.inter(
                                 fontSize: 14,
-                                color: isDark
-                                    ? const Color(0xFF9CA3AF)
-                                    : const Color(0xFF6B7280),
+                                color: AppColors.textTertiary(context),
                               ),
                             ),
                           ],
@@ -97,9 +90,7 @@ class RescheduledAppointmentCard extends StatelessWidget {
                             'Token No.',
                             style: GoogleFonts.inter(
                               fontSize: 12,
-                              color: isDark
-                                  ? const Color(0xFF9CA3AF)
-                                  : const Color(0xFF6B7280),
+                              color: AppColors.textTertiary(context),
                             ),
                           ),
                           Text(
@@ -107,7 +98,7 @@ class RescheduledAppointmentCard extends StatelessWidget {
                             style: GoogleFonts.inter(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
-                              color: const Color(0xFF007AFF),
+                              color: AppColors.primary,
                             ),
                           ),
                         ],
@@ -115,30 +106,21 @@ class RescheduledAppointmentCard extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 12),
-                  Container(
-                    height: 1,
-                    color: isDark
-                        ? const Color(0xFF374151)
-                        : const Color(0xFFE5E7EB),
-                  ),
+                  Container(height: 1, color: AppColors.border(context)),
                   const SizedBox(height: 12),
                   Text(
                     'Original Date & Time',
                     style: GoogleFonts.inter(
                       fontSize: 12,
                       fontWeight: FontWeight.w500,
-                      color: isDark
-                          ? const Color(0xFF9CA3AF)
-                          : const Color(0xFF6B7280),
+                      color: AppColors.textTertiary(context),
                     ),
                   ),
                   Text(
                     originalDateTime,
                     style: GoogleFonts.inter(
                       fontSize: 14,
-                      color: isDark
-                          ? const Color(0xFF9CA3AF)
-                          : const Color(0xFF6B7280),
+                      color: AppColors.textTertiary(context),
                       decoration: TextDecoration.lineThrough,
                     ),
                   ),
@@ -148,9 +130,7 @@ class RescheduledAppointmentCard extends StatelessWidget {
                     style: GoogleFonts.inter(
                       fontSize: 12,
                       fontWeight: FontWeight.w500,
-                      color: isDark
-                          ? const Color(0xFF9CA3AF)
-                          : const Color(0xFF6B7280),
+                      color: AppColors.textTertiary(context),
                     ),
                   ),
                   Text(
@@ -158,7 +138,7 @@ class RescheduledAppointmentCard extends StatelessWidget {
                     style: GoogleFonts.inter(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
-                      color: isDark ? Colors.white : const Color(0xFF111518),
+                      color: AppColors.textPrimary(context),
                     ),
                   ),
                 ],

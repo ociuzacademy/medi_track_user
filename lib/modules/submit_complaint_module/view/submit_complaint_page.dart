@@ -12,6 +12,7 @@ import 'package:medi_track/modules/submit_complaint_module/widgets/complaint_cat
 import 'package:medi_track/modules/submit_complaint_module/widgets/complaint_description_field.dart';
 import 'package:medi_track/modules/submit_complaint_module/widgets/complaint_subject_field.dart';
 import 'package:medi_track/modules/submit_complaint_module/widgets/read_only_field.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class SubmitComplaintPage extends StatefulWidget {
   const SubmitComplaintPage({super.key});
@@ -50,7 +51,7 @@ class _SubmitComplaintPageState extends State<SubmitComplaintPage> {
               fontSize: 18,
               fontWeight: FontWeight.bold,
               letterSpacing: -0.015,
-              color: isDark ? const Color(0xFFE0E0E0) : const Color(0xFF333333),
+              color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight,
             ),
           ),
           centerTitle: true,
@@ -59,8 +60,8 @@ class _SubmitComplaintPageState extends State<SubmitComplaintPage> {
               : const Color(0xFFF5F8F8),
           elevation: 1,
           foregroundColor: isDark
-              ? const Color(0xFFE0E0E0)
-              : const Color(0xFF333333),
+              ? AppColors.textSecondaryDark
+              : AppColors.textSecondaryLight,
         ),
         backgroundColor: isDark
             ? const Color(0xFF0F2023)

@@ -1,6 +1,7 @@
 // read_only_field.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class ReadOnlyField extends StatelessWidget {
   final String label;
@@ -20,7 +21,7 @@ class ReadOnlyField extends StatelessWidget {
           style: GoogleFonts.lexend(
             fontSize: 16,
             fontWeight: FontWeight.w500,
-            color: isDark ? const Color(0xFFE0E0E0) : const Color(0xFF333333),
+            color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight,
           ),
         ),
         const SizedBox(height: 8),
@@ -30,7 +31,7 @@ class ReadOnlyField extends StatelessWidget {
             color: isDark ? const Color(0x0DFFFFFF) : const Color(0x0D000000),
             borderRadius: BorderRadius.circular(8),
             border: Border.all(
-              color: isDark ? const Color(0xFF443333) : const Color(0xFFE0E0E0),
+              color: isDark ? const Color(0xFF443333) : AppColors.textSecondaryDark,
             ),
             boxShadow: [
               BoxShadow(
@@ -49,8 +50,8 @@ class ReadOnlyField extends StatelessWidget {
                 style: GoogleFonts.lexend(
                   fontSize: 16,
                   color: isDark
-                      ? const Color(0xFFE0E0E0)
-                      : const Color(0xFF333333),
+                      ? AppColors.textSecondaryDark
+                      : AppColors.textSecondaryLight,
                 ),
               ),
             ),

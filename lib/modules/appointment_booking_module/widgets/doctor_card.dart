@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/core/constants/app_urls.dart';
 
 import 'package:medi_track/modules/appointment_booking_module/models/available_doctors_model.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class DoctorCard extends StatelessWidget {
   final AvailableDoctor doctor;
@@ -29,12 +30,12 @@ class DoctorCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: isSelected
             ? const Color(0xFFBBDEFB).withValues(alpha: isDark ? 0.1 : 0.2)
-            : (isDark ? const Color(0xFF101a22) : Colors.white),
+            : (isDark ? AppColors.backgroundDark : Colors.white),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
           color: isSelected
               ? theme.colorScheme.primary
-              : (isDark ? const Color(0xFF374151) : const Color(0xFFdbe1e6)),
+              : (isDark ? AppColors.borderDark : const Color(0xFFdbe1e6)),
         ),
       ),
       child: Padding(
@@ -66,7 +67,7 @@ class DoctorCard extends StatelessWidget {
                     style: GoogleFonts.inter(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
-                      color: isDark ? Colors.white : const Color(0xFF111518),
+                      color: isDark ? Colors.white : AppColors.textPrimaryLight,
                     ),
                   ),
                   const SizedBox(height: 4),
@@ -74,7 +75,7 @@ class DoctorCard extends StatelessWidget {
                     doctor.qualification,
                     style: GoogleFonts.inter(
                       fontSize: 14,
-                      color: (isDark ? Colors.white : const Color(0xFF111518))
+                      color: (isDark ? Colors.white : AppColors.textPrimaryLight)
                           .withValues(alpha: 0.7),
                     ),
                   ),

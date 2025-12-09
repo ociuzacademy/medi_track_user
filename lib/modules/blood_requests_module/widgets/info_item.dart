@@ -1,5 +1,6 @@
 // widgets/info_item.dart
 import 'package:flutter/material.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class InfoItem extends StatelessWidget {
   final IconData icon;
@@ -34,8 +35,8 @@ class InfoItem extends StatelessWidget {
               style: TextStyle(
                 fontSize: 12,
                 color: isDark
-                    ? const Color(0xFF9CA3AF)
-                    : const Color(0xFF6B7280),
+                    ? AppColors.textTertiaryDark
+                    : AppColors.textTertiaryLight,
               ),
             ),
             Text(

@@ -2,6 +2,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class AttachedImagePreview extends StatelessWidget {
   final File imageFile;
@@ -22,7 +23,7 @@ class AttachedImagePreview extends StatelessWidget {
         color: isDark ? const Color(0xFF2A1A1A) : Colors.white,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: isDark ? const Color(0xFF443333) : const Color(0xFFE0E0E0),
+          color: isDark ? const Color(0xFF443333) : AppColors.textSecondaryDark,
         ),
         boxShadow: [
           BoxShadow(
@@ -45,8 +46,8 @@ class AttachedImagePreview extends StatelessWidget {
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
                   color: isDark
-                      ? const Color(0xFFE0E0E0)
-                      : const Color(0xFF333333),
+                      ? AppColors.textSecondaryDark
+                      : AppColors.textSecondaryLight,
                 ),
               ),
               IconButton(
@@ -83,7 +84,7 @@ class AttachedImagePreview extends StatelessWidget {
                         Icons.error_outline,
                         color: isDark
                             ? const Color(0xFFA08F8F)
-                            : const Color(0xFF886364),
+                            : AppColors.textTertiaryLight,
                         size: 48,
                       ),
                       const SizedBox(height: 8),
@@ -93,7 +94,7 @@ class AttachedImagePreview extends StatelessWidget {
                           fontSize: 14,
                           color: isDark
                               ? const Color(0xFFA08F8F)
-                              : const Color(0xFF886364),
+                              : AppColors.textTertiaryLight,
                         ),
                       ),
                     ],
@@ -107,7 +108,7 @@ class AttachedImagePreview extends StatelessWidget {
             'File: ${imageFile.path.split('/').last}',
             style: GoogleFonts.lexend(
               fontSize: 12,
-              color: isDark ? const Color(0xFFA08F8F) : const Color(0xFF886364),
+              color: isDark ? const Color(0xFFA08F8F) : AppColors.textTertiaryLight,
             ),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,

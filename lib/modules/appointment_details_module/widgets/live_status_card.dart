@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medi_track/core/export/bloc_export.dart';
 import 'package:medi_track/modules/appointment_details_module/utils/live_status_card_helper.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class LiveStatusCard extends StatefulWidget {
   const LiveStatusCard({
@@ -65,7 +66,7 @@ class _LiveStatusCardState extends State<LiveStatusCard> {
                     bottom: BorderSide(
                       color: isDark
                           ? const Color(0xFF37474F)
-                          : const Color(0xFFE0E0E0),
+                          : AppColors.textSecondaryDark,
                     ),
                   ),
                 ),
@@ -184,7 +185,7 @@ class _LiveStatusCardState extends State<LiveStatusCard> {
                         height: 40,
                         color: isDark
                             ? const Color(0xFF37474F)
-                            : const Color(0xFFE0E0E0),
+                            : AppColors.textSecondaryDark,
                       ),
 
                       // Waiting Time
@@ -233,7 +234,7 @@ class _LiveStatusCardState extends State<LiveStatusCard> {
                         height: 40,
                         color: isDark
                             ? const Color(0xFF37474F)
-                            : const Color(0xFFE0E0E0),
+                            : AppColors.textSecondaryDark,
                       ),
 
                       // Delay

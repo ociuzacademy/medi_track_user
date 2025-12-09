@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class BaseInputField extends StatefulWidget {
   final String label;
@@ -75,7 +76,7 @@ class _BaseInputFieldState extends State<BaseInputField> {
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
               color: widget.isDark
-                  ? const Color(0xFF374151)
+                  ? AppColors.borderDark
                   : const Color(0xFFe5e7eb),
             ),
           ),

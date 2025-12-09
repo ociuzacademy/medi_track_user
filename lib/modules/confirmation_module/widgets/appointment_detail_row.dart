@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class AppointmentDetailRow extends StatelessWidget {
   final String label;
@@ -24,7 +25,7 @@ class AppointmentDetailRow extends StatelessWidget {
           label,
           style: GoogleFonts.inter(
             fontSize: 16,
-            color: isDark ? const Color(0xFF9CA3AF) : const Color(0xFF6B7280),
+            color: isDark ? AppColors.textTertiaryDark : AppColors.textTertiaryLight,
           ),
         ),
         Text(
@@ -34,7 +35,7 @@ class AppointmentDetailRow extends StatelessWidget {
             fontWeight: isStatus ? FontWeight.bold : FontWeight.normal,
             color: isStatus
                 ? const Color(0xFF4CAF50)
-                : (isDark ? Colors.white : const Color(0xFF111518)),
+                : (isDark ? Colors.white : AppColors.textPrimaryLight),
           ),
         ),
       ],

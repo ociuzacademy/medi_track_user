@@ -1,5 +1,6 @@
 // widgets/no_requests_empty_state.dart
 import 'package:flutter/material.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class NoRequestsEmptyState extends StatelessWidget {
   const NoRequestsEmptyState({super.key});
@@ -58,7 +59,7 @@ class NoRequestsEmptyState extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 14,
                   color: isDark
-                      ? const Color(0xFF9CA3AF)
+                      ? AppColors.textTertiaryDark
                       : const Color(0xFF49454F),
                 ),
               ),

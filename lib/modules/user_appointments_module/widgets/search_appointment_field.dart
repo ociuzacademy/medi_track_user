@@ -1,6 +1,7 @@
 // search_appointment_field.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class SearchAppointmentField extends StatelessWidget {
   final TextEditingController controller;
@@ -21,16 +22,16 @@ class SearchAppointmentField extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(999),
         border: Border.all(
-          color: isDark ? const Color(0xFF374151) : const Color(0xFFD1D5DB),
+          color: isDark ? AppColors.borderDark : const Color(0xFFD1D5DB),
         ),
-        color: isDark ? const Color(0xFF1F2937) : Colors.white,
+        color: isDark ? AppColors.cardDark : Colors.white,
       ),
       child: Row(
         children: [
           const SizedBox(width: 12),
           Icon(
             Icons.search,
-            color: isDark ? const Color(0xFF9CA3AF) : const Color(0xFF6B7280),
+            color: isDark ? AppColors.textTertiaryDark : AppColors.textTertiaryLight,
             size: 20,
           ),
           const SizedBox(width: 8),
@@ -42,8 +43,8 @@ class SearchAppointmentField extends StatelessWidget {
                 hintText: 'Search by doctor, department...',
                 hintStyle: GoogleFonts.inter(
                   color: isDark
-                      ? const Color(0xFF9CA3AF)
-                      : const Color(0xFF6B7280),
+                      ? AppColors.textTertiaryDark
+                      : AppColors.textTertiaryLight,
                   fontSize: 14,
                 ),
                 border: InputBorder.none,
@@ -51,7 +52,7 @@ class SearchAppointmentField extends StatelessWidget {
               ),
               style: GoogleFonts.inter(
                 fontSize: 14,
-                color: isDark ? Colors.white : const Color(0xFF111827),
+                color: isDark ? Colors.white : AppColors.textPrimaryLight,
               ),
             ),
           ),

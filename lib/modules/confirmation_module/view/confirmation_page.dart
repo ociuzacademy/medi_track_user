@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:medi_track/modules/confirmation_module/utils/confirmation_helper.dart';
 
 import 'package:medi_track/modules/confirmation_module/widgets/confirmation_body.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class ConfirmationPage extends StatefulWidget {
   final int appointmentId;
@@ -48,7 +49,7 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
         elevation: 0,
       ),
       backgroundColor: Theme.of(context).brightness == Brightness.dark
-          ? const Color(0xFF101a22)
+          ? AppColors.backgroundDark
           : const Color(0xFFF9FAFB),
       body: const ConfirmationBody(),
     );

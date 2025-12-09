@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class PatientInfoRow extends StatelessWidget {
   const PatientInfoRow({
@@ -25,14 +26,14 @@ class PatientInfoRow extends StatelessWidget {
           style: GoogleFonts.inter(
             fontSize: 16,
             fontWeight: FontWeight.w500,
-            color: isDark ? Colors.white : const Color(0xFF111518),
+            color: isDark ? Colors.white : AppColors.textPrimaryLight,
           ),
         ),
         Text(
           value,
           style: GoogleFonts.inter(
             fontSize: 16,
-            color: (isDark ? Colors.white : const Color(0xFF111518)).withValues(
+            color: (isDark ? Colors.white : AppColors.textPrimaryLight).withValues(
               alpha: 0.8,
             ),
           ),

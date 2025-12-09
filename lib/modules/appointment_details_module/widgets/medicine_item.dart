@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/modules/appointment_details_module/widgets/medicine_detail_chip.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class MedicineItem extends StatelessWidget {
   const MedicineItem({
@@ -29,7 +30,7 @@ class MedicineItem extends StatelessWidget {
         color: isDark ? const Color(0xFF1A2527) : const Color(0xFFF8F9FA),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: isDark ? const Color(0xFF37474F) : const Color(0xFFE0E0E0),
+          color: isDark ? const Color(0xFF37474F) : AppColors.textSecondaryDark,
         ),
       ),
       child: Column(

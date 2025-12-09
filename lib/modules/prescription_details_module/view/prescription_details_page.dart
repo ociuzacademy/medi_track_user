@@ -12,7 +12,8 @@ import 'package:medi_track/modules/prescription_details_module/widgets/doctor_de
 import 'package:medi_track/modules/prescription_details_module/widgets/doctors_notes_card.dart';
 import 'package:medi_track/modules/prescription_details_module/widgets/medicines_section.dart';
 import 'package:medi_track/modules/prescription_details_module/widgets/patient_details_card.dart';
-import 'package:medi_track/modules/prescription_details_module/widgets/symptoms_card.dart'; // Add this import
+import 'package:medi_track/modules/prescription_details_module/widgets/symptoms_card.dart';
+import 'package:medi_track/core/constants/app_colors.dart'; // Add this import
 
 class PrescriptionDetailsPage extends StatefulWidget {
   final int prescriptionId;
@@ -56,7 +57,7 @@ class _PrescriptionDetailsPageState extends State<PrescriptionDetailsPage> {
           style: GoogleFonts.lexend(
             fontSize: 18,
             fontWeight: FontWeight.bold,
-            color: isDark ? Colors.white : const Color(0xFF111827),
+            color: isDark ? Colors.white : AppColors.textPrimaryLight,
           ),
         ),
         centerTitle: true,
@@ -64,7 +65,7 @@ class _PrescriptionDetailsPageState extends State<PrescriptionDetailsPage> {
             ? const Color(0xFF0f2320)
             : const Color(0xFFf5f8f8),
         elevation: 0,
-        foregroundColor: isDark ? Colors.white : const Color(0xFF111827),
+        foregroundColor: isDark ? Colors.white : AppColors.textPrimaryLight,
       ),
       backgroundColor: isDark
           ? const Color(0xFF0f2320)

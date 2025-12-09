@@ -16,6 +16,7 @@ import 'package:medi_track/modules/register_module/widgets/login_section.dart';
 import 'package:medi_track/modules/register_module/widgets/register_button.dart';
 import 'package:medi_track/modules/register_module/widgets/register_form_section.dart';
 import 'package:medi_track/modules/register_module/widgets/terms_section.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -37,7 +38,7 @@ class _RegisterPageState extends State<RegisterPage> {
       create: (context) => RegisterProvider(),
       child: Scaffold(
         backgroundColor: Theme.of(context).brightness == Brightness.dark
-            ? const Color(0xFF101a22)
+            ? AppColors.backgroundDark
             : const Color(0xFFF8F9FA),
         body: BlocListener<UserRegisterBloc, UserRegisterState>(
           listener: (context, state) {

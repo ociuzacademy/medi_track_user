@@ -6,6 +6,7 @@ import 'package:medi_track/modules/appointment_booking_module/widgets/patient_in
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/modules/appointment_booking_module/providers/appointment_booking_provider.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class PatientInfoSection extends StatelessWidget {
   const PatientInfoSection({super.key});
@@ -27,7 +28,7 @@ class PatientInfoSection extends StatelessWidget {
             style: GoogleFonts.inter(
               fontSize: 22,
               fontWeight: FontWeight.bold,
-              color: isDark ? Colors.white : const Color(0xFF111518),
+              color: isDark ? Colors.white : AppColors.textPrimaryLight,
             ),
           ),
         ),
@@ -98,7 +99,7 @@ class PatientInfoSection extends StatelessWidget {
                   style: GoogleFonts.inter(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
-                    color: isDark ? Colors.white : const Color(0xFF111518),
+                    color: isDark ? Colors.white : AppColors.textPrimaryLight,
                   ),
                 ),
                 const SizedBox(width: 4),
@@ -106,7 +107,7 @@ class PatientInfoSection extends StatelessWidget {
                   '(Optional)',
                   style: GoogleFonts.inter(
                     fontSize: 14,
-                    color: (isDark ? Colors.white : const Color(0xFF111518))
+                    color: (isDark ? Colors.white : AppColors.textPrimaryLight)
                         .withValues(alpha: 0.6),
                   ),
                 ),
@@ -116,11 +117,11 @@ class PatientInfoSection extends StatelessWidget {
             Container(
               height: 112,
               decoration: BoxDecoration(
-                color: isDark ? const Color(0xFF101a22) : Colors.white,
+                color: isDark ? AppColors.backgroundDark : Colors.white,
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
                   color: isDark
-                      ? const Color(0xFF374151)
+                      ? AppColors.borderDark
                       : const Color(0xFFdbe1e6),
                 ),
               ),
@@ -130,7 +131,7 @@ class PatientInfoSection extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: 'e.g. Chest pain, annual check-up... (Optional)',
                   hintStyle: GoogleFonts.inter(
-                    color: (isDark ? Colors.white : const Color(0xFF111518))
+                    color: (isDark ? Colors.white : AppColors.textPrimaryLight)
                         .withValues(alpha: 0.5),
                   ),
                   border: InputBorder.none,
@@ -138,7 +139,7 @@ class PatientInfoSection extends StatelessWidget {
                 ),
                 style: GoogleFonts.inter(
                   fontSize: 16,
-                  color: isDark ? Colors.white : const Color(0xFF111518),
+                  color: isDark ? Colors.white : AppColors.textPrimaryLight,
                 ),
               ),
             ),

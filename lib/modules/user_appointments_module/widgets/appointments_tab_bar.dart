@@ -1,6 +1,7 @@
 // appointments_tab_bar.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class AppointmentsTabBar extends StatelessWidget
     implements PreferredSizeWidget {
@@ -19,16 +20,16 @@ class AppointmentsTabBar extends StatelessWidget
       decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(
-            color: isDark ? const Color(0xFF374151) : const Color(0xFFdbe1e6),
+            color: isDark ? AppColors.borderDark : const Color(0xFFdbe1e6),
           ),
         ),
       ),
       child: TabBar(
         controller: tabController,
-        labelColor: const Color(0xFF007AFF),
+        labelColor: AppColors.primary,
         unselectedLabelColor: isDark
-            ? const Color(0xFF9CA3AF)
-            : const Color(0xFF6B7280),
+            ? AppColors.textTertiaryDark
+            : AppColors.textTertiaryLight,
         indicator: const UnderlineTabIndicator(
           borderSide: BorderSide(width: 3, color: Color(0xFF007AFF)),
           insets: EdgeInsets.symmetric(horizontal: 0),

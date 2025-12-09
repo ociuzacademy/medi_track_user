@@ -6,6 +6,7 @@ import 'package:medi_track/modules/rescheduled_appointments_module/widgets/resch
 import 'package:medi_track/modules/rescheduled_appointments_module/widgets/rescheduled_appointment_notification_details.dart';
 import 'package:medi_track/modules/rescheduled_appointments_module/widgets/rescheduling_reason.dart';
 import 'package:medi_track/modules/rescheduled_appointments_module/widgets/rescheduling_received_time.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class AppointmentCard extends StatelessWidget {
   final RescheduledAppointment appointment;
@@ -29,7 +30,7 @@ class AppointmentCard extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF1F2937).withAlpha(128) : Colors.white,
+        color: isDark ? AppColors.cardDark.withAlpha(128) : Colors.white,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(

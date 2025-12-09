@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:medi_track/modules/update_donation_record_module/models/donation_form_data.dart';
 import 'package:medi_track/modules/update_donation_record_module/providers/donation_form_provider.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class DonationTypeDropdown extends StatelessWidget {
   const DonationTypeDropdown({super.key});
@@ -21,7 +22,7 @@ class DonationTypeDropdown extends StatelessWidget {
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w500,
-            color: isDark ? Colors.white : const Color(0xFF181111),
+            color: isDark ? Colors.white : AppColors.textPrimaryLight,
           ),
         ),
         const SizedBox(height: 8),
@@ -43,12 +44,12 @@ class DonationTypeDropdown extends StatelessWidget {
                 icon: Icon(
                   Icons.arrow_drop_down,
                   color: isDark
-                      ? const Color(0xFF9CA3AF)
+                      ? AppColors.textTertiaryDark
                       : const Color(0xFF896161),
                 ),
                 style: TextStyle(
                   fontSize: 16,
-                  color: isDark ? Colors.white : const Color(0xFF181111),
+                  color: isDark ? Colors.white : AppColors.textPrimaryLight,
                 ),
                 dropdownColor: isDark ? const Color(0xFF1A1F2A) : Colors.white,
                 onChanged: (DonationType? newValue) {

@@ -1,5 +1,6 @@
 // widgets/no_donations_empty_state.dart
 import 'package:flutter/material.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class NoDonationsEmptyState extends StatelessWidget {
   const NoDonationsEmptyState({super.key});
@@ -30,7 +31,7 @@ class NoDonationsEmptyState extends StatelessWidget {
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
                 color: isDark
-                    ? const Color(0xFFF3F4F6)
+                    ? AppColors.surfaceLight
                     : const Color(0xFF1A1A1A),
               ),
             ),
@@ -43,7 +44,7 @@ class NoDonationsEmptyState extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 14,
                   color: isDark
-                      ? const Color(0xFF9CA3AF)
+                      ? AppColors.textTertiaryDark
                       : const Color(0xFF6B6B6B),
                 ),
               ),

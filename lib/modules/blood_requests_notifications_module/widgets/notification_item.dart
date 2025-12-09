@@ -1,5 +1,6 @@
 // widgets/notification_item.dart
 import 'package:flutter/material.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class NotificationItem extends StatelessWidget {
   final IconData icon;
@@ -20,7 +21,7 @@ class NotificationItem extends StatelessWidget {
         Icon(
           icon,
           size: 16,
-          color: isDark ? const Color(0xFF9CA3AF) : const Color(0xFF49454F),
+          color: isDark ? AppColors.textTertiaryDark : const Color(0xFF49454F),
         ),
         const SizedBox(width: 8),
         Expanded(
@@ -29,7 +30,7 @@ class NotificationItem extends StatelessWidget {
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.normal,
-              color: isDark ? const Color(0xFF9CA3AF) : const Color(0xFF49454F),
+              color: isDark ? AppColors.textTertiaryDark : const Color(0xFF49454F),
             ),
           ),
         ),

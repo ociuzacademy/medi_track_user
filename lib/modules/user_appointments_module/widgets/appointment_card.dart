@@ -1,5 +1,6 @@
 // appointment_card.dart
 import 'package:flutter/material.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 import 'package:medi_track/core/enums/appointment_status.dart';
 import 'package:medi_track/modules/appointment_details_module/view/upcoming_appointment_details_page.dart';
 import 'package:medi_track/modules/user_appointments_module/models/appointments_model.dart';
@@ -25,11 +26,9 @@ class AppointmentCard extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-          color: isDark ? const Color(0xFF101a22) : Colors.white,
+          color: AppColors.card(context),
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: isDark ? const Color(0xFF374151) : const Color(0xFFE5E7EB),
-          ),
+          border: Border.all(color: AppColors.border(context)),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withValues(alpha: 0.05),

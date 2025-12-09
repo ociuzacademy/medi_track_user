@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/modules/blood_donor_register_module/providers/donor_form_provider.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class ConfirmationCheckbox extends StatelessWidget {
   const ConfirmationCheckbox({super.key});
@@ -45,7 +46,7 @@ class ConfirmationCheckbox extends StatelessWidget {
                   style: GoogleFonts.lexend(
                     fontSize: 14,
                     color: isDark
-                        ? const Color(0xFF9CA3AF)
+                        ? AppColors.textTertiaryDark
                         : const Color(0xFF617589),
                     height: 1.5,
                   ),

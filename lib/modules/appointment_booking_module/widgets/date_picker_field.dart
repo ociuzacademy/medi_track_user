@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class DatePickerField extends StatelessWidget {
   final ThemeData theme;
@@ -27,7 +28,7 @@ class DatePickerField extends StatelessWidget {
           style: GoogleFonts.inter(
             fontSize: 16,
             fontWeight: FontWeight.w500,
-            color: isDark ? Colors.white : const Color(0xFF111518),
+            color: isDark ? Colors.white : AppColors.textPrimaryLight,
           ),
         ),
         const SizedBox(height: 8),
@@ -36,11 +37,11 @@ class DatePickerField extends StatelessWidget {
           child: Container(
             height: 56,
             decoration: BoxDecoration(
-              color: isDark ? const Color(0xFF101a22) : Colors.white,
+              color: isDark ? AppColors.backgroundDark : Colors.white,
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
                 color: isDark
-                    ? const Color(0xFF374151)
+                    ? AppColors.borderDark
                     : const Color(0xFFdbe1e6),
               ),
             ),
@@ -61,7 +62,7 @@ class DatePickerField extends StatelessWidget {
                                   : const Color(
                                       0xFF111518,
                                     ).withValues(alpha: 0.5))
-                            : (isDark ? Colors.white : const Color(0xFF111518)),
+                            : (isDark ? Colors.white : AppColors.textPrimaryLight),
                       ),
                     ),
                   ),
@@ -70,7 +71,7 @@ class DatePickerField extends StatelessWidget {
                   width: 56,
                   height: 56,
                   decoration: BoxDecoration(
-                    color: isDark ? const Color(0xFF101a22) : Colors.white,
+                    color: isDark ? AppColors.backgroundDark : Colors.white,
                     borderRadius: const BorderRadius.only(
                       topRight: Radius.circular(12),
                       bottomRight: Radius.circular(12),

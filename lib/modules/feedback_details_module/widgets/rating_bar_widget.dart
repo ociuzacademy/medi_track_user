@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class RatingBarWidget extends StatelessWidget {
   final String label;
@@ -27,7 +28,9 @@ class RatingBarWidget extends StatelessWidget {
           style: GoogleFonts.lexend(
             fontSize: 14,
             fontWeight: FontWeight.w500,
-            color: isDark ? const Color(0xFFE0E0E0) : const Color(0xFF333333),
+            color: isDark
+                ? AppColors.textSecondaryDark
+                : AppColors.textSecondaryLight,
           ),
         ),
         const SizedBox(height: 8),
@@ -38,9 +41,7 @@ class RatingBarWidget extends StatelessWidget {
               width: double.infinity,
               height: 8,
               decoration: BoxDecoration(
-                color: isDark
-                    ? const Color(0xFF374151)
-                    : const Color(0xFFE5E7EB),
+                color: isDark ? AppColors.borderDark : AppColors.borderLight,
                 borderRadius: BorderRadius.circular(4),
               ),
             ),
@@ -73,7 +74,7 @@ class RatingBarWidget extends StatelessWidget {
                   color: const Color(0xFF4A90E2),
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: isDark ? const Color(0xFF1A2A2D) : Colors.white,
+                    color: isDark ? AppColors.cardDarkAlt : AppColors.cardLight,
                     width: 2,
                   ),
                 ),
@@ -88,7 +89,9 @@ class RatingBarWidget extends StatelessWidget {
           style: GoogleFonts.lexend(
             fontSize: 12,
             fontWeight: FontWeight.w500,
-            color: isDark ? const Color(0xFF9CA3AF) : const Color(0xFF6B7280),
+            color: isDark
+                ? AppColors.textTertiaryDark
+                : AppColors.textTertiaryLight,
           ),
         ),
       ],

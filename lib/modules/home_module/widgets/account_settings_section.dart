@@ -6,6 +6,7 @@ import 'package:medi_track/modules/home_module/widgets/profile_logout_item.dart'
 import 'package:medi_track/modules/home_module/widgets/profile_setting_item.dart';
 import 'package:medi_track/modules/rescheduled_appointments_module/view/rescheduled_appointments_page.dart';
 import 'package:medi_track/modules/submit_complaint_module/view/submit_complaint_page.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class AccountSettingsSection extends StatelessWidget {
   const AccountSettingsSection({super.key});
@@ -16,7 +17,7 @@ class AccountSettingsSection extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF1A2A2D) : Colors.white,
+        color: isDark ? AppColors.cardDarkAlt : Colors.white,
         borderRadius: BorderRadius.circular(8),
         boxShadow: [
           BoxShadow(
@@ -39,8 +40,8 @@ class AccountSettingsSection extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 letterSpacing: -0.015,
                 color: isDark
-                    ? const Color(0xFFE0E0E0)
-                    : const Color(0xFF333333),
+                    ? AppColors.textSecondaryDark
+                    : AppColors.textSecondaryLight,
               ),
             ),
           ),

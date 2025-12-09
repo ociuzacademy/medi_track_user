@@ -8,6 +8,7 @@ import 'package:medi_track/modules/update_donation_record_module/widgets/custom_
 import 'package:medi_track/modules/update_donation_record_module/widgets/donation_date_field.dart';
 import 'package:medi_track/modules/update_donation_record_module/widgets/donation_type_dropdown.dart';
 import 'package:medi_track/modules/update_donation_record_module/widgets/success_snackbar.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class UpdateDonationRecordPage extends StatefulWidget {
   const UpdateDonationRecordPage({super.key});
@@ -72,8 +73,8 @@ class _UpdateDonationRecordPageState extends State<UpdateDonationRecordPage> {
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: isDark
-                                      ? const Color(0xFF9CA3AF)
-                                      : const Color(0xFF757575),
+                                      ? AppColors.textTertiaryDark
+                                      : AppColors.textMutedLight,
                                 ),
                               ),
                               const SizedBox(height: 24),

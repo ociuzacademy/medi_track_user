@@ -1,6 +1,7 @@
 // doctors_notes_card.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class DoctorsNotesCard extends StatelessWidget {
   const DoctorsNotesCard({super.key, required this.notes});
@@ -32,7 +33,7 @@ class DoctorsNotesCard extends StatelessWidget {
             style: GoogleFonts.lexend(
               fontSize: 16,
               fontWeight: FontWeight.bold,
-              color: isDark ? Colors.white : const Color(0xFF111827),
+              color: isDark ? Colors.white : AppColors.textPrimaryLight,
             ),
           ),
           const SizedBox(height: 12),
@@ -40,7 +41,7 @@ class DoctorsNotesCard extends StatelessWidget {
             notes,
             style: GoogleFonts.lexend(
               fontSize: 14,
-              color: isDark ? const Color(0xFFD1D5DB) : const Color(0xFF6B7280),
+              color: isDark ? const Color(0xFFD1D5DB) : AppColors.textTertiaryLight,
               height: 1.5,
             ),
           ),

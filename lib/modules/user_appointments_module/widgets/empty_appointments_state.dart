@@ -1,6 +1,7 @@
 // empty_appointments_state.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class EmptyAppointmentsState extends StatelessWidget {
   final String title;
@@ -28,13 +29,13 @@ class EmptyAppointmentsState extends StatelessWidget {
             width: 192,
             height: 192,
             decoration: BoxDecoration(
-              color: isDark ? const Color(0xFF1F2937) : const Color(0xFFF3F4F6),
+              color: isDark ? AppColors.cardDark : AppColors.surfaceLight,
               shape: BoxShape.circle,
             ),
             child: Icon(
               Icons.calendar_today_outlined,
               size: 64,
-              color: isDark ? const Color(0xFF9CA3AF) : const Color(0xFF6B7280),
+              color: AppColors.textTertiary(context),
             ),
           ),
 
@@ -47,7 +48,7 @@ class EmptyAppointmentsState extends StatelessWidget {
             style: GoogleFonts.inter(
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: isDark ? Colors.white : const Color(0xFF111518),
+              color: AppColors.textPrimary(context),
             ),
           ),
 
@@ -59,7 +60,7 @@ class EmptyAppointmentsState extends StatelessWidget {
             textAlign: TextAlign.center,
             style: GoogleFonts.inter(
               fontSize: 14,
-              color: isDark ? const Color(0xFF9CA3AF) : const Color(0xFF6B7280),
+              color: AppColors.textTertiary(context),
             ),
           ),
 
@@ -74,7 +75,7 @@ class EmptyAppointmentsState extends StatelessWidget {
                   // Navigate to book appointment page
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF007AFF),
+                  backgroundColor: AppColors.primary,
                   foregroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),

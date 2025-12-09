@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/core/constants/app_urls.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class DoctorCard extends StatelessWidget {
   final String doctorName;
@@ -24,7 +25,7 @@ class DoctorCard extends StatelessWidget {
         color: isDark ? const Color(0xFF2A3B3E) : Colors.white,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: isDark ? const Color(0xFF37474F) : const Color(0xFFE5E7EB),
+          color: isDark ? const Color(0xFF37474F) : AppColors.borderLight,
         ),
       ),
       padding: const EdgeInsets.all(16),

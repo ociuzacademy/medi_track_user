@@ -1,6 +1,7 @@
 // appointment_summary_section.dart
 
 import 'package:flutter/material.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class DashedDividerWidget extends StatelessWidget {
   const DashedDividerWidget({super.key, required this.isDark});
@@ -26,7 +27,7 @@ class DashedDividerWidget extends StatelessWidget {
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   color: isDark
-                      ? const Color(0xFF374151)
+                      ? AppColors.borderDark
                       : const Color(0xFFdbe1e6),
                 ),
               ),

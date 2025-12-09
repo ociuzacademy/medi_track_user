@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/modules/home_module/widgets/personal_info_row.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class PersonalInfoSection extends StatelessWidget {
   const PersonalInfoSection({super.key});
@@ -14,7 +15,7 @@ class PersonalInfoSection extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF1A2A2D) : Colors.white,
+        color: isDark ? AppColors.cardDarkAlt : Colors.white,
         borderRadius: BorderRadius.circular(8),
         boxShadow: [
           BoxShadow(
@@ -37,8 +38,8 @@ class PersonalInfoSection extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 letterSpacing: -0.015,
                 color: isDark
-                    ? const Color(0xFFE0E0E0)
-                    : const Color(0xFF333333),
+                    ? AppColors.textSecondaryDark
+                    : AppColors.textSecondaryLight,
               ),
             ),
           ),

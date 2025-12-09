@@ -6,6 +6,7 @@ import 'package:medi_track/modules/blood_requests_notifications_module/utils/blo
 import 'package:medi_track/modules/blood_requests_notifications_module/widgets/confirmation_dialog.dart';
 import 'package:medi_track/modules/blood_requests_notifications_module/widgets/no_requests_empty_state.dart';
 import 'package:medi_track/modules/blood_requests_notifications_module/widgets/notification_card.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class BloodRequestNotificationsPage extends StatefulWidget {
   const BloodRequestNotificationsPage({super.key});
@@ -115,7 +116,7 @@ class _BloodRequestNotificationsPageState
                       fontSize: 16,
                       fontWeight: FontWeight.normal,
                       color: isDark
-                          ? const Color(0xFF9CA3AF)
+                          ? AppColors.textTertiaryDark
                           : const Color(0xFF49454F),
                     ),
                   ),

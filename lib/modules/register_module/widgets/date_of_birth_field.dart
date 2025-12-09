@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class DateOfBirthField extends StatelessWidget {
   final ThemeData theme;
@@ -25,7 +26,7 @@ class DateOfBirthField extends StatelessWidget {
           style: GoogleFonts.inter(
             fontSize: 16,
             fontWeight: FontWeight.w500,
-            color: isDark ? Colors.white : const Color(0xFF333333),
+            color: isDark ? Colors.white : AppColors.textSecondaryLight,
           ),
         ),
         const SizedBox(height: 8),
@@ -47,8 +48,8 @@ class DateOfBirthField extends StatelessWidget {
                   ),
                   style: GoogleFonts.inter(
                     color: birthDate == null
-                        ? const Color(0xFF6B7280)
-                        : (isDark ? Colors.white : const Color(0xFF333333)),
+                        ? AppColors.textTertiaryLight
+                        : (isDark ? Colors.white : AppColors.textSecondaryLight),
                     fontSize: 16,
                   ),
                   onTap: onSelectingBirthdate,

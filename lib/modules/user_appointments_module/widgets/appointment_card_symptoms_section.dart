@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 import 'package:medi_track/modules/user_appointments_module/models/appointments_model.dart';
 
 class AppointmentCardSymptomsSection extends StatelessWidget {
@@ -19,11 +20,7 @@ class AppointmentCardSymptomsSection extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.only(top: 12),
       decoration: BoxDecoration(
-        border: Border(
-          top: BorderSide(
-            color: isDark ? const Color(0xFF374151) : const Color(0xFFE5E7EB),
-          ),
-        ),
+        border: Border(top: BorderSide(color: AppColors.border(context))),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,7 +30,7 @@ class AppointmentCardSymptomsSection extends StatelessWidget {
             style: GoogleFonts.inter(
               fontSize: 12,
               fontWeight: FontWeight.w500,
-              color: isDark ? const Color(0xFF9CA3AF) : const Color(0xFF6B7280),
+              color: AppColors.textTertiary(context),
             ),
           ),
           const SizedBox(height: 4),
@@ -41,7 +38,7 @@ class AppointmentCardSymptomsSection extends StatelessWidget {
             appointment.symptoms,
             style: GoogleFonts.inter(
               fontSize: 14,
-              color: isDark ? Colors.white : const Color(0xFF111518),
+              color: AppColors.textPrimary(context),
             ),
           ),
         ],

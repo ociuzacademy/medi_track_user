@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class DoctorDetailRow extends StatelessWidget {
   const DoctorDetailRow({
@@ -40,8 +41,8 @@ class DoctorDetailRow extends StatelessWidget {
                 style: GoogleFonts.lexend(
                   fontSize: 14,
                   color: isDark
-                      ? const Color(0xFF9CA3AF)
-                      : const Color(0xFF6B7280),
+                      ? AppColors.textTertiaryDark
+                      : AppColors.textTertiaryLight,
                 ),
               ),
               const SizedBox(height: 2),
@@ -50,7 +51,7 @@ class DoctorDetailRow extends StatelessWidget {
                 style: GoogleFonts.lexend(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
-                  color: isDark ? Colors.white : const Color(0xFF111827),
+                  color: isDark ? Colors.white : AppColors.textPrimaryLight,
                 ),
               ),
             ],

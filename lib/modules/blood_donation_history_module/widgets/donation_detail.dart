@@ -1,6 +1,7 @@
 // widgets/donation_history_card.dart
 
 import 'package:flutter/material.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class DonationDetail extends StatelessWidget {
   final String label;
@@ -23,7 +24,7 @@ class DonationDetail extends StatelessWidget {
             text: label,
             style: TextStyle(
               fontSize: 16,
-              color: isDark ? const Color(0xFF9CA3AF) : const Color(0xFF6B6B6B),
+              color: isDark ? AppColors.textTertiaryDark : const Color(0xFF6B6B6B),
             ),
           ),
           TextSpan(
@@ -31,7 +32,7 @@ class DonationDetail extends StatelessWidget {
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.normal,
-              color: isDark ? const Color(0xFF9CA3AF) : const Color(0xFF6B6B6B),
+              color: isDark ? AppColors.textTertiaryDark : const Color(0xFF6B6B6B),
             ),
           ),
         ],

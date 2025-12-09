@@ -11,6 +11,7 @@ import 'package:medi_track/modules/appointment_details_module/widgets/footer_act
 import 'package:medi_track/modules/appointment_details_module/widgets/medical_sections.dart';
 import 'package:medi_track/modules/appointment_details_module/widgets/status_chips.dart';
 import 'package:medi_track/modules/appointment_details_module/widgets/doctor_profile_header.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class CompletedAppointmentDetailsPage extends StatefulWidget {
   final int appointmentId;
@@ -149,7 +150,7 @@ class _CompletedAppointmentDetailsPageState
                                   height: 1,
                                   color: isDark
                                       ? const Color(0xFF37474F)
-                                      : const Color(0xFFE0E0E0),
+                                      : AppColors.textSecondaryDark,
                                 ),
 
                                 // Medical Sections

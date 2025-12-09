@@ -1,6 +1,7 @@
 // footer_button.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 
 class FooterButton extends StatelessWidget {
   const FooterButton({super.key});
@@ -16,7 +17,7 @@ class FooterButton extends StatelessWidget {
         color: isDark ? const Color(0xFF0f2023) : const Color(0xFFf5f8f8),
         border: Border(
           top: BorderSide(
-            color: isDark ? const Color(0xFF37474F) : const Color(0xFFE5E7EB),
+            color: isDark ? const Color(0xFF37474F) : AppColors.borderLight,
           ),
         ),
       ),
