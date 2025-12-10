@@ -14,12 +14,14 @@ class LoginResponseModel {
   final String status;
   final String message;
   final String userId;
+  final int? donorId;
   final Data data;
 
-  LoginResponseModel({
+  const LoginResponseModel({
     required this.status,
     required this.message,
     required this.userId,
+    this.donorId,
     required this.data,
   });
 
@@ -27,11 +29,13 @@ class LoginResponseModel {
     String? status,
     String? message,
     String? userId,
+    int? donorId,
     Data? data,
   }) => LoginResponseModel(
     status: status ?? this.status,
     message: message ?? this.message,
     userId: userId ?? this.userId,
+    donorId: donorId ?? this.donorId,
     data: data ?? this.data,
   );
 
@@ -40,6 +44,7 @@ class LoginResponseModel {
         status: json['status'],
         message: json['message'],
         userId: json['user_id'],
+        donorId: json['donor_id'],
         data: Data.fromJson(json['data']),
       );
 
@@ -47,6 +52,7 @@ class LoginResponseModel {
     'status': status,
     'message': message,
     'user_id': userId,
+    'donor_id': donorId,
     'data': data.toJson(),
   };
 }
@@ -55,7 +61,7 @@ class Data {
   final String email;
   final String password;
 
-  Data({required this.email, required this.password});
+  const Data({required this.email, required this.password});
 
   Data copyWith({String? email, String? password}) =>
       Data(email: email ?? this.email, password: password ?? this.password);

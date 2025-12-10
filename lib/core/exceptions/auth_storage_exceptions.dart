@@ -28,3 +28,8 @@ class GetLoginStatusStorageException extends AuthStorageException {
   GetLoginStatusStorageException(String message, [dynamic originalError])
     : super('Failed to get login status: $message', originalError);
 }
+
+class GetDonorIdStorageException extends AuthStorageException {
+  GetDonorIdStorageException(String message, [dynamic originalError])
+    : super('Failed to get donor ID: $message', originalError);
+}

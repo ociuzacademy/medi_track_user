@@ -11,6 +11,7 @@ class RegisterHelper {
     );
 
     if (formKey.currentState!.validate() && registerProvider.agreeToTerms) {
+      FocusScope.of(context).unfocus();
       registerProvider.register(context);
     } else if (!registerProvider.agreeToTerms) {
       CustomSnackbar.showError(

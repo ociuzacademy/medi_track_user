@@ -22,7 +22,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         password: event.password,
       );
 
-      await AuthStorageFunctions.login(response.userId);
+      await AuthStorageFunctions.login(response.userId, response.donorId ?? 0);
 
       emit(AuthState.loginSuccess(response));
     } catch (e) {

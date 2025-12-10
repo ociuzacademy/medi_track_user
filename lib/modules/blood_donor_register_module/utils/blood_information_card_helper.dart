@@ -16,9 +16,7 @@ class BloodInformationCardHelper {
       lastDate: DateTime.now(),
     ).then((selectedDate) {
       if (selectedDate != null) {
-        final formattedDate =
-            '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}';
-        donorFormProvider.setLastDonationDate(formattedDate);
+        donorFormProvider.setLastDonationDate(selectedDate);
       }
     });
   }

@@ -1,10 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/export/bloc_export.dart';
+import 'package:medi_track/modules/blood_donor_dashboard_module/view/blood_donor_dashboard_page.dart';
 import 'package:medi_track/modules/blood_donor_register_module/view/blood_donor_register_page.dart';
 import 'package:medi_track/modules/home_module/utils/blood_donation_banner_helper.dart';
 
-class BloodDonationBanner extends StatelessWidget {
+class BloodDonationBanner extends StatefulWidget {
   const BloodDonationBanner({super.key});
+
+  @override
+  State<BloodDonationBanner> createState() => _BloodDonationBannerState();
+}
+
+class _BloodDonationBannerState extends State<BloodDonationBanner> {
+  late final BloodDonationBannerHelper _bloodDonationBannerHelper;
+  @override
+  void initState() {
+    super.initState();
+    _bloodDonationBannerHelper = BloodDonationBannerHelper(context);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _bloodDonationBannerHelper.isDonorInit();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,10 +63,7 @@ class BloodDonationBanner extends StatelessWidget {
                 Text(
                   'Be a Hero, Donate Blood',
                   style: GoogleFonts.inter(
-                    fontSize: BloodDonationBannerHelper.responsiveFontSize(
-                      context,
-                      16,
-                    ),
+                    fontSize: _bloodDonationBannerHelper.responsiveFontSize(16),
                     fontWeight: FontWeight.w700,
                     color: colorScheme.onSurface,
                   ),
@@ -56,41 +72,59 @@ class BloodDonationBanner extends StatelessWidget {
                 Text(
                   'Your donation can save up to three lives.',
                   style: GoogleFonts.inter(
-                    fontSize: BloodDonationBannerHelper.responsiveFontSize(
-                      context,
-                      14,
-                    ),
+                    fontSize: _bloodDonationBannerHelper.responsiveFontSize(14),
                     color: colorScheme.onSurface.withValues(alpha: 0.7),
                   ),
                 ),
                 SizedBox(height: screenSize.height * 0.01),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(context, BloodDonorRegisterPage.route());
+                BlocBuilder<IsDonorCubit, IsDonorState>(
+                  builder: (context, state) {
+                    switch (state) {
+                      case IsDonorLoading _:
+                        return const Center(child: CircularProgressIndicator());
+                      case IsDonorError(:final message):
+                        return Center(child: Text(message));
+                      case IsDonorSuccess(:final isDonor):
+                        return GestureDetector(
+                          onTap: () {
+                            if (isDonor) {
+                              Navigator.push(
+                                context,
+                                BloodDonorDashboardPage.route(),
+                              );
+                            } else {
+                              Navigator.push(
+                                context,
+                                BloodDonorRegisterPage.route(),
+                              );
+                            }
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: screenSize.width * 0.04,
+                              vertical: screenSize.height * 0.01,
+                            ),
+                            decoration: BoxDecoration(
+                              color: colorScheme.primary,
+                              borderRadius: BorderRadius.circular(
+                                screenSize.width * 0.05,
+                              ),
+                            ),
+                            child: Text(
+                              isDonor ? 'Go to Dashboard' : 'Register Now',
+                              style: GoogleFonts.inter(
+                                fontSize: _bloodDonationBannerHelper
+                                    .responsiveFontSize(14),
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        );
+                      default:
+                        return const SizedBox.shrink();
+                    }
                   },
-                  child: Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: screenSize.width * 0.04,
-                      vertical: screenSize.height * 0.01,
-                    ),
-                    decoration: BoxDecoration(
-                      color: colorScheme.primary,
-                      borderRadius: BorderRadius.circular(
-                        screenSize.width * 0.05,
-                      ),
-                    ),
-                    child: Text(
-                      'Register Now',
-                      style: GoogleFonts.inter(
-                        fontSize: BloodDonationBannerHelper.responsiveFontSize(
-                          context,
-                          14,
-                        ),
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
                 ),
               ],
             ),

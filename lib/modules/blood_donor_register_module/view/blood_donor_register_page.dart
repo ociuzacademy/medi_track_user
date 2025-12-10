@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/export/bloc_export.dart';
+import 'package:medi_track/core/widgets/loaders/overlay_loader.dart';
+import 'package:medi_track/core/widgets/snackbars/custom_snackbar.dart';
+import 'package:medi_track/modules/home_module/view/home_page.dart';
 import 'package:provider/provider.dart';
 
 import 'package:medi_track/modules/blood_donor_register_module/providers/donor_form_provider.dart';
@@ -38,7 +43,32 @@ class BloodDonorRegisterPage extends StatelessWidget {
           : const Color(0xFFf6f7f8),
       body: ChangeNotifierProvider(
         create: (context) => DonorFormProvider(),
-        child: const BloodDonorRegisterPageBody(),
+        child: BlocListener<RegisterDonorBloc, RegisterDonorState>(
+          listener: (context, state) {
+            switch (state) {
+              case RegisterDonorLoading _:
+                OverlayLoader.show(context, message: 'Registering Donor...');
+                break;
+              case RegisterDonorSuccess(:final response):
+                OverlayLoader.hide();
+                CustomSnackbar.showSuccess(context, message: response.message);
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  HomePage.route(),
+                  (route) => false,
+                );
+                break;
+              case RegisterDonorError(:final message):
+                OverlayLoader.hide();
+                CustomSnackbar.showError(context, message: message);
+                break;
+              default:
+                OverlayLoader.hide();
+                break;
+            }
+          },
+          child: const BloodDonorRegisterPageBody(),
+        ),
       ),
     );
   }

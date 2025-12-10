@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:medi_track/core/constants/app_colors.dart';
+import 'package:medi_track/modules/blood_donor_register_module/widgets/header_card_content.dart';
+import 'package:medi_track/modules/blood_donor_register_module/widgets/header_card_icon.dart';
 
 class HeaderCard extends StatelessWidget {
   const HeaderCard({super.key});
@@ -29,56 +29,18 @@ class HeaderCard extends StatelessWidget {
           ? Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildIcon(),
+                const HeaderCardIcon(),
                 const SizedBox(width: 16),
-                Expanded(child: _buildContent(isDark)),
+                Expanded(child: HeaderCardContent(isDark: isDark)),
               ],
             )
           : Column(
               children: [
-                _buildIcon(),
+                const HeaderCardIcon(),
                 const SizedBox(height: 16),
-                _buildContent(isDark),
+                HeaderCardContent(isDark: isDark),
               ],
             ),
-    );
-  }
-
-  Widget _buildIcon() {
-    return Container(
-      width: 64,
-      height: 64,
-      decoration: BoxDecoration(
-        color: const Color(0xFFD9534F).withValues(alpha: 0.1),
-        shape: BoxShape.circle,
-      ),
-      child: const Icon(Icons.bloodtype, color: Color(0xFFD9534F), size: 32),
-    );
-  }
-
-  Widget _buildContent(bool isDark) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Your donation can save lives.',
-          style: GoogleFonts.lexend(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            letterSpacing: -0.015,
-            color: isDark ? AppColors.borderLight : const Color(0xFF111418),
-          ),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          'Thank you for considering becoming a donor. Please provide the following details.',
-          style: GoogleFonts.lexend(
-            fontSize: 16,
-            color: isDark ? AppColors.textTertiaryDark : const Color(0xFF617589),
-            height: 1.5,
-          ),
-        ),
-      ],
     );
   }
 }

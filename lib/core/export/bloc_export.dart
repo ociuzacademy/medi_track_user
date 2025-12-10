@@ -17,3 +17,5 @@ export 'package:medi_track/modules/prescriptions_module/cubit/prescription_list_
 export 'package:medi_track/modules/prescription_details_module/cubit/prescription_details_cubit.dart';
 export 'package:medi_track/modules/feedback_list_module/cubit/feedback_list_cubit.dart';
 export 'package:medi_track/modules/feedback_details_module/cubit/feedback_details_cubit.dart';
+export 'package:medi_track/modules/blood_donor_register_module/bloc/register_donor_bloc.dart';
+export 'package:medi_track/core/cubit/is_donor/is_donor_cubit.dart';

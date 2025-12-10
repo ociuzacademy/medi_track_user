@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/modules/blood_donor_dashboard_module/widgets/donor_dashboard_action_item.dart';
-import 'package:medi_track/modules/blood_donor_register_module/view/blood_donor_register_page.dart';
 import 'package:medi_track/modules/update_donation_record_module/view/update_donation_record_page.dart';
 
 class QuickActions extends StatelessWidget {
@@ -41,15 +40,6 @@ class QuickActions extends StatelessWidget {
                 isDark: isDark,
                 onTap: () {
                   Navigator.push(context, UpdateDonationRecordPage.route());
-                },
-              ),
-              const SizedBox(height: 8),
-              DonorDashboardActionItem(
-                icon: Icons.person_add,
-                title: 'Register Donor',
-                isDark: isDark,
-                onTap: () {
-                  Navigator.push(context, BloodDonorRegisterPage.route());
                 },
               ),
             ],

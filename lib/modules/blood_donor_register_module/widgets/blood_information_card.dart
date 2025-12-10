@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:medi_track/modules/blood_donor_register_module/utils/blood_information_card_helper.dart';
 import 'package:provider/provider.dart';
 
@@ -11,6 +12,7 @@ class BloodInformationSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final DateFormat dateFormat = DateFormat('dd/MM/yyyy');
     return Consumer<DonorFormProvider>(
       builder: (context, donorFormProvider, child) {
         final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -161,8 +163,11 @@ class BloodInformationSection extends StatelessWidget {
                                 horizontal: 16,
                               ),
                               child: Text(
-                                donorFormProvider.lastDonationDate ??
-                                    'Select a date',
+                                donorFormProvider.lastDonationDate == null
+                                    ? 'Select a date'
+                                    : dateFormat.format(
+                                        donorFormProvider.lastDonationDate!,
+                                      ),
                                 style: GoogleFonts.lexend(
                                   fontSize: 16,
                                   color:
@@ -204,6 +209,67 @@ class BloodInformationSection extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 16),
+                ],
+              ),
+
+              // Location Dropdown
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Location',
+                    style: GoogleFonts.lexend(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: isDark
+                          ? AppColors.borderLight
+                          : const Color(0xFF111418),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Container(
+                    height: 56,
+                    decoration: BoxDecoration(
+                      color: isDark ? const Color(0xFF101922) : Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                        color: isDark
+                            ? AppColors.borderDark
+                            : const Color(0xFFdbe0e6),
+                      ),
+                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: DropdownButtonFormField<String>(
+                      value: donorFormProvider.location,
+                      onChanged: donorFormProvider.setLocation,
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        enabledBorder: InputBorder.none,
+                        focusedBorder: InputBorder.none,
+                      ),
+                      style: GoogleFonts.lexend(
+                        fontSize: 16,
+                        color: isDark
+                            ? AppColors.borderLight
+                            : const Color(0xFF111418),
+                      ),
+                      dropdownColor: isDark
+                          ? const Color(0xFF182431)
+                          : Colors.white,
+                      icon: Icon(
+                        Icons.arrow_drop_down,
+                        color: isDark
+                            ? AppColors.textTertiaryDark
+                            : const Color(0xFF617589),
+                      ),
+                      items: DonorFormProvider.locations.map((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value == 'Select your location' ? null : value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
+                  ),
                 ],
               ),
             ],

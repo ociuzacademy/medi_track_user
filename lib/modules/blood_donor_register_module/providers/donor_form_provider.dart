@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:medi_track/modules/blood_donor_register_module/classes/blood_donor_register_data.dart';
 
 class DonorFormProvider with ChangeNotifier {
   // Form state
   String? _selectedBloodGroup;
-  String? _lastDonationDate;
+  DateTime? _lastDonationDate;
   bool _underMedication = false;
   bool _recentIllness = true;
   bool _confirmationChecked = false;
-  bool _showSuccessDialog = false;
+  String? _location;
+
+  static const List<String> locations = [
+    'Select your location',
+    'Palakkad',
+    'Thrissur',
+    'Ernakulam',
+  ];
 
   // Form controllers
   final TextEditingController _weightController = TextEditingController();
@@ -16,11 +24,11 @@ class DonorFormProvider with ChangeNotifier {
 
   // Getters
   String? get selectedBloodGroup => _selectedBloodGroup;
-  String? get lastDonationDate => _lastDonationDate;
+  DateTime? get lastDonationDate => _lastDonationDate;
   bool get underMedication => _underMedication;
   bool get recentIllness => _recentIllness;
   bool get confirmationChecked => _confirmationChecked;
-  bool get showSuccessDialog => _showSuccessDialog;
+  String? get location => _location;
   TextEditingController get weightController => _weightController;
   TextEditingController get illnessDetailsController =>
       _illnessDetailsController;
@@ -31,7 +39,7 @@ class DonorFormProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void setLastDonationDate(String? value) {
+  void setLastDonationDate(DateTime? value) {
     _lastDonationDate = value;
     notifyListeners();
   }
@@ -51,8 +59,8 @@ class DonorFormProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void setShowSuccessDialog(bool value) {
-    _showSuccessDialog = value;
+  void setLocation(String? value) {
+    _location = value;
     notifyListeners();
   }
 
@@ -69,17 +77,40 @@ class DonorFormProvider with ChangeNotifier {
     return true;
   }
 
-  void submitForm(GlobalKey<FormState> formKey) {
-    if (validateForm(formKey)) {
-      _showSuccessDialog = true;
-      notifyListeners();
+  BloodDonorRegisterData? submitForm(GlobalKey<FormState> formKey) {
+    if (!validateForm(formKey)) {
+      return null;
     }
-  }
 
-  void closeSuccessDialog(BuildContext context) {
-    _showSuccessDialog = false;
-    Navigator.pop(context);
-    notifyListeners();
+    if (_selectedBloodGroup == null) {
+      return null;
+    }
+
+    if (_lastDonationDate == null) {
+      return null;
+    }
+
+    if (_weightController.text.trim().isEmpty) {
+      return null;
+    }
+
+    if (_recentIllness && _illnessDetailsController.text.trim().isEmpty) {
+      return null;
+    }
+
+    if (_location == null) {
+      return null;
+    }
+
+    return BloodDonorRegisterData(
+      bloodGroup: _selectedBloodGroup!,
+      lastDonationDate: _lastDonationDate!,
+      underMedication: _underMedication,
+      hadRecentIllness: _recentIllness,
+      location: _location!,
+      weight: double.parse(_weightController.text.trim()),
+      illnessDetails: _illnessDetailsController.text.trim(),
+    );
   }
 
   // Reset form
@@ -89,7 +120,6 @@ class DonorFormProvider with ChangeNotifier {
     _underMedication = false;
     _recentIllness = true;
     _confirmationChecked = false;
-    _showSuccessDialog = false;
     _weightController.clear();
     _illnessDetailsController.clear();
     notifyListeners();

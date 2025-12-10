@@ -1,17 +1,32 @@
+// [file name]: blood_donor_dashboard_page.dart
+// [file content begin]
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/export/bloc_export.dart';
+import 'package:medi_track/modules/blood_donor_dashboard_module/widgets/non_donor_dashboard.dart';
+import 'package:medi_track/modules/blood_donor_dashboard_module/widgets/donor_dashboard.dart';
 
-import 'package:medi_track/modules/blood_donor_dashboard_module/widgets/active_blood_requests.dart';
-import 'package:medi_track/modules/blood_donor_dashboard_module/widgets/donation_history.dart';
-import 'package:medi_track/modules/blood_donor_dashboard_module/widgets/donor_profile_card.dart';
-import 'package:medi_track/modules/blood_donor_dashboard_module/widgets/notifications_section.dart';
-import 'package:medi_track/modules/blood_donor_dashboard_module/widgets/quick_actions.dart';
-
-class BloodDonorDashboardPage extends StatelessWidget {
+class BloodDonorDashboardPage extends StatefulWidget {
   const BloodDonorDashboardPage({super.key});
 
   static MaterialPageRoute route() =>
       MaterialPageRoute(builder: (_) => const BloodDonorDashboardPage());
+
+  @override
+  State<BloodDonorDashboardPage> createState() =>
+      _BloodDonorDashboardPageState();
+}
+
+class _BloodDonorDashboardPageState extends State<BloodDonorDashboardPage> {
+  @override
+  void initState() {
+    super.initState();
+    // Check if user is a donor when the page loads
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<IsDonorCubit>().checkIsDonor();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,33 +60,61 @@ class BloodDonorDashboardPage extends StatelessWidget {
         ],
       ),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      body: const SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(height: 16),
-
-            // Donor Profile Card
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: DonorProfileCard(),
+      body: BlocBuilder<IsDonorCubit, IsDonorState>(
+        builder: (context, state) {
+          return state.when(
+            initial: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const Center(child: CircularProgressIndicator()),
+            success: (isDonor) {
+              if (isDonor) {
+                return const DonorDashboard();
+              } else {
+                return const NonDonorDashboard();
+              }
+            },
+            error: (message) => Center(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Error loading dashboard',
+                      style: GoogleFonts.lexend(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        color: Theme.of(context).colorScheme.error,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      message,
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.lexend(
+                        fontSize: 14,
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.error.withValues(alpha: 0.8),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    ElevatedButton(
+                      onPressed: () {
+                        context.read<IsDonorCubit>().checkIsDonor();
+                      },
+                      child: Text(
+                        'Retry',
+                        style: GoogleFonts.lexend(fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
-
-            // Active Blood Requests
-            ActiveBloodRequests(),
-
-            // Notifications
-            NotificationsSection(),
-
-            // Donation History
-            DonationHistory(),
-
-            // Quick Actions
-            QuickActions(),
-
-            SizedBox(height: 24),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
 }
+// [file content end]

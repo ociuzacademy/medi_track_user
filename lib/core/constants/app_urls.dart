@@ -27,4 +27,5 @@ class AppUrls {
   static const String prescriptionDetailsUrl = '$userUrl/prescription_details/';
   static const String feedbackListUrl = '$userUrl/feedback_list/';
   static const String feedbackDetailsUrl = '$userUrl/feedback_details/';
+  static const String bloodDonorsUrl = '$userUrl/blood_donors/';
 }
