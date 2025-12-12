@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:medi_track/core/bloc/cancel_appointment/cancel_appointment_bloc.dart';
 import 'package:medi_track/core/classes/cancel_data.dart';
+import 'package:medi_track/core/export/bloc_export.dart';
 import 'package:medi_track/core/widgets/snackbars/custom_snackbar.dart';
-import 'package:medi_track/modules/user_appointments_module/cubit/appointment_list_cubit.dart';
 
 class CancellationBottomSheet extends StatefulWidget {
   final int appointmentId;
   final bool isAppointmentDetails;
+  final bool isDirectlyFromHome;
 
   const CancellationBottomSheet({
     super.key,
     required this.appointmentId,
     required this.isAppointmentDetails,
+    required this.isDirectlyFromHome,
   });
 
   @override
@@ -44,7 +45,11 @@ class _CancellationBottomSheetState extends State<CancellationBottomSheet> {
           }
           CustomSnackbar.showSuccess(context, message: state.response.message);
           // Refresh the appointment list
-          context.read<AppointmentListCubit>().getUserAppointments();
+          if (!widget.isDirectlyFromHome) {
+            context.read<AppointmentListCubit>().getUserAppointments();
+          } else {
+            context.read<UpcomingAppointmentsCubit>().getUpcomingAppointments();
+          }
         } else if (state is CancelAppointmentError) {
           Navigator.pop(context);
           CustomSnackbar.showError(context, message: state.error);

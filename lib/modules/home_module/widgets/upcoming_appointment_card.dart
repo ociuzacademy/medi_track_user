@@ -1,14 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+import 'package:medi_track/modules/appointment_details_module/view/upcoming_appointment_details_page.dart';
 import 'package:medi_track/modules/home_module/utils/upcoming_appointment_card_helper.dart';
 
 class UpcomingAppointmentCard extends StatelessWidget {
-  const UpcomingAppointmentCard({super.key});
+  const UpcomingAppointmentCard({
+    super.key,
+    required this.bookingId,
+    required this.doctorName,
+    required this.departmentName,
+    required this.appointmentDate,
+  });
+  final int bookingId;
+  final String doctorName;
+  final String departmentName;
+  final DateTime appointmentDate;
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final screenSize = MediaQuery.of(context).size;
+    final DateFormat dateFormat = DateFormat('dd MMM yyyy');
 
     return Container(
       width: double.infinity,
@@ -45,7 +58,7 @@ class UpcomingAppointmentCard extends StatelessWidget {
                 ),
                 SizedBox(height: screenSize.height * 0.005),
                 Text(
-                  'Dr. Emily Carter',
+                  doctorName,
                   style: GoogleFonts.inter(
                     fontSize: UpcomingAppointmentCardHelper.responsiveFontSize(
                       context,
@@ -57,7 +70,7 @@ class UpcomingAppointmentCard extends StatelessWidget {
                 ),
                 SizedBox(height: screenSize.height * 0.002),
                 Text(
-                  'General Practitioner | 2:00 PM',
+                  '$departmentName | ${dateFormat.format(appointmentDate)}',
                   style: GoogleFonts.inter(
                     fontSize: UpcomingAppointmentCardHelper.responsiveFontSize(
                       context,
@@ -73,7 +86,13 @@ class UpcomingAppointmentCard extends StatelessWidget {
           // Chevron Button
           GestureDetector(
             onTap: () {
-              // Handle appointment details
+              Navigator.push(
+                context,
+                UpcomingAppointmentDetailsPage.route(
+                  appointmentId: bookingId,
+                  isDirectlyFromHome: true,
+                ),
+              );
             },
             child: Container(
               width: screenSize.width * 0.1,

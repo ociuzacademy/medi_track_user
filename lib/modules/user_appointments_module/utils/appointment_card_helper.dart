@@ -12,6 +12,7 @@ class AppointmentCardHelper {
       builder: (context) => CancellationBottomSheet(
         appointmentId: appointmentId,
         isAppointmentDetails: false,
+        isDirectlyFromHome: false,
       ),
     );
   }

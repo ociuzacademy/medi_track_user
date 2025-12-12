@@ -6,10 +6,12 @@ import 'package:medi_track/core/widgets/cancellation_bottom_sheet.dart';
 class UpcomingAppointmentDetailsHelper {
   final BuildContext context;
   final int appointmentId;
+  final bool isDirectlyFromHome;
 
   const UpcomingAppointmentDetailsHelper({
     required this.context,
     required this.appointmentId,
+    required this.isDirectlyFromHome,
   });
 
   void upcomingAppintmentDetailsInit() {
@@ -27,6 +29,7 @@ class UpcomingAppointmentDetailsHelper {
       builder: (context) => CancellationBottomSheet(
         appointmentId: appointmentId,
         isAppointmentDetails: true,
+        isDirectlyFromHome: isDirectlyFromHome,
       ),
     );
   }

@@ -21,7 +21,10 @@ class AppointmentCard extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          UpcomingAppointmentDetailsPage.route(appointmentId: appointment.id),
+          UpcomingAppointmentDetailsPage.route(
+            appointmentId: appointment.id,
+            isDirectlyFromHome: false,
+          ),
         );
       },
       child: Container(

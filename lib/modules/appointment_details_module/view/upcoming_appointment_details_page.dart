@@ -12,14 +12,21 @@ import 'package:medi_track/modules/appointment_details_module/widgets/live_statu
 
 class UpcomingAppointmentDetailsPage extends StatefulWidget {
   final int appointmentId;
+  final bool isDirectlyFromHome;
   const UpcomingAppointmentDetailsPage({
     super.key,
     required this.appointmentId,
+    required this.isDirectlyFromHome,
   });
 
-  static Route route({required int appointmentId}) => MaterialPageRoute(
-    builder: (_) =>
-        UpcomingAppointmentDetailsPage(appointmentId: appointmentId),
+  static Route route({
+    required int appointmentId,
+    required bool isDirectlyFromHome,
+  }) => MaterialPageRoute(
+    builder: (_) => UpcomingAppointmentDetailsPage(
+      appointmentId: appointmentId,
+      isDirectlyFromHome: isDirectlyFromHome,
+    ),
   );
 
   @override
@@ -37,6 +44,7 @@ class _UpcomingAppointmentDetailsPageState
     _upcomingAppointmentDetailsHelper = UpcomingAppointmentDetailsHelper(
       context: context,
       appointmentId: widget.appointmentId,
+      isDirectlyFromHome: widget.isDirectlyFromHome,
     );
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _upcomingAppointmentDetailsHelper.upcomingAppintmentDetailsInit();
