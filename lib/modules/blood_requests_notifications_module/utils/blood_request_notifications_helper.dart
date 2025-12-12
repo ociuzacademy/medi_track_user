@@ -1,41 +1,16 @@
 // utils/blood_request_notifications_helper.dart
 import 'package:flutter/material.dart';
-import 'package:medi_track/modules/blood_requests_notifications_module/models/blood_request_notification.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medi_track/modules/blood_requests_notifications_module/cubit/user_blood_requests_cubit.dart';
 
 class BloodRequestNotificationsHelper {
-  final ValueNotifier<List<BloodRequestNotification>> notifications;
-  final ValueNotifier<BloodRequestNotification?> selectedNotification;
-  final ValueNotifier<bool> showConfirmationDialog;
+  final BuildContext context;
 
-  const BloodRequestNotificationsHelper({
-    required this.notifications,
-    required this.selectedNotification,
-    required this.showConfirmationDialog,
-  });
+  const BloodRequestNotificationsHelper({required this.context});
 
-  void showDialog(BloodRequestNotification notification) {
-    selectedNotification.value = notification;
-    showConfirmationDialog.value = true;
-  }
-
-  void hideDialog() {
-    showConfirmationDialog.value = false;
-    selectedNotification.value = null;
-  }
-
-  void acceptRequest() {
-    final selected = selectedNotification.value;
-    if (selected != null) {
-      // Handle acceptance logic here
-      // e.g., call API or service
-      // print('Accepted request: ${selected.id}');
-
-      // Remove the accepted notification
-      final updated = List<BloodRequestNotification>.from(notifications.value)
-        ..removeWhere((n) => n.id == selected.id);
-      notifications.value = updated;
-
-      hideDialog();
-    }
+  void userBloodRequestsInit() {
+    final UserBloodRequestsCubit userBloodRequestsCubit = context
+        .read<UserBloodRequestsCubit>();
+    userBloodRequestsCubit.getBloodRequests();
   }
 }

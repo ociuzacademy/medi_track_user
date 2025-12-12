@@ -1,6 +1,6 @@
 // widgets/blood_request_card.dart
 import 'package:flutter/material.dart';
-import 'package:medi_track/modules/blood_requests_module/models/common_blood_request_model.dart';
+import 'package:medi_track/core/models/common_blood_request_model.dart';
 import 'package:medi_track/modules/blood_requests_module/widgets/info_item.dart';
 
 class BloodRequestCard extends StatelessWidget {

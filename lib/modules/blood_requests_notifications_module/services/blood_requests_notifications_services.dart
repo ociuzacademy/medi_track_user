@@ -9,12 +9,17 @@ import 'package:medi_track/core/constants/app_constants.dart';
 import 'package:medi_track/core/constants/app_urls.dart';
 import 'package:medi_track/core/models/common_blood_request_model.dart';
 
-class BloodRequestServices {
-  static Future<List<CommonBloodRequestModel>> getAllBloodRequests() async {
+class BloodRequestsNotificationsServices {
+  static Future<List<CommonBloodRequestModel>> getBloodRequests({
+    required int donorId,
+  }) async {
+    final Map<String, dynamic> params = {'donor_id': donorId.toString()};
     try {
       final resp = await http
           .get(
-            Uri.parse(AppUrls.allBloodRequestsUrl),
+            Uri.parse(
+              AppUrls.bloodRequestsUrl,
+            ).replace(queryParameters: params),
             headers: <String, String>{
               'Content-Type': 'application/x-www-form-urlencoded',
             },
@@ -37,11 +42,11 @@ class BloodRequestServices {
       } else {
         final Map<String, dynamic> errorResponse = jsonDecode(resp.body);
         throw Exception(
-          'Failed to get all blood requests: ${errorResponse['message'] ?? 'Unknown error'}',
+          'Failed to get blood requests: ${errorResponse['message'] ?? 'Unknown error'}',
         );
       }
     } on TimeoutException catch (e) {
-      debugPrint('BloodRequestServices: Request timeout - $e');
+      debugPrint('BloodRequestsNotificationsServices: Request timeout - $e');
       throw Exception(
         'Request timeout. Please check your internet connection and try again.',
       );

@@ -1,7 +1,10 @@
 // pages/blood_request_notifications_page.dart
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:medi_track/modules/blood_requests_notifications_module/models/blood_request_notification.dart';
+import 'package:medi_track/core/export/bloc_export.dart';
+import 'package:medi_track/core/widgets/custom_error_widget.dart';
+
 import 'package:medi_track/modules/blood_requests_notifications_module/utils/blood_request_notifications_helper.dart';
 import 'package:medi_track/modules/blood_requests_notifications_module/widgets/confirmation_dialog.dart';
 import 'package:medi_track/modules/blood_requests_notifications_module/widgets/no_requests_empty_state.dart';
@@ -22,51 +25,28 @@ class BloodRequestNotificationsPage extends StatefulWidget {
 class _BloodRequestNotificationsPageState
     extends State<BloodRequestNotificationsPage> {
   // Initialize ValueNotifiers first
-  late final ValueNotifier<List<BloodRequestNotification>> _notifications;
-  late final ValueNotifier<BloodRequestNotification?> _selectedNotification;
-  late final ValueNotifier<bool> _showConfirmationDialog;
+  final ValueNotifier<bool> _showConfirmationDialog = ValueNotifier(false);
+
   late final BloodRequestNotificationsHelper _bloodRequestNotificationsHelper;
 
   @override
   void initState() {
     // Initialize ValueNotifiers before the helper
-    _notifications = ValueNotifier<List<BloodRequestNotification>>([
-      BloodRequestNotification(
-        id: '1',
-        unitsNeeded: 3,
-        postedDate: DateTime(2023, 10, 26, 10, 15),
-        urgency: Urgency.high,
-      ),
-      BloodRequestNotification(
-        id: '2',
-        unitsNeeded: 1,
-        postedDate: DateTime(2023, 10, 26, 8, 30),
-        urgency: Urgency.medium,
-      ),
-      BloodRequestNotification(
-        id: '3',
-        unitsNeeded: 2,
-        postedDate: DateTime(2023, 10, 25, 17, 45),
-        urgency: Urgency.low,
-      ),
-    ]);
-    _selectedNotification = ValueNotifier<BloodRequestNotification?>(null);
-    _showConfirmationDialog = ValueNotifier<bool>(false);
 
     // Now initialize the helper with the already initialized ValueNotifiers
     _bloodRequestNotificationsHelper = BloodRequestNotificationsHelper(
-      notifications: _notifications,
-      selectedNotification: _selectedNotification,
-      showConfirmationDialog: _showConfirmationDialog,
+      context: context,
     );
 
     super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _bloodRequestNotificationsHelper.userBloodRequestsInit();
+    });
   }
 
   @override
   void dispose() {
-    _notifications.dispose();
-    _selectedNotification.dispose();
     _showConfirmationDialog.dispose();
     super.dispose();
   }
@@ -123,25 +103,43 @@ class _BloodRequestNotificationsPageState
                 ),
                 // Notifications list or empty state
                 Expanded(
-                  child: ValueListenableBuilder<List<BloodRequestNotification>>(
-                    valueListenable: _notifications,
-                    builder: (context, notifications, _) {
-                      if (notifications.isEmpty) {
-                        return const NoRequestsEmptyState();
-                      }
-                      return ListView.builder(
-                        itemCount: notifications.length,
-                        itemBuilder: (context, index) {
-                          final notification = notifications[index];
-                          return NotificationCard(
-                            notification: notification,
-                            onAccept: () => _bloodRequestNotificationsHelper
-                                .showDialog(notification),
-                          );
+                  child:
+                      BlocBuilder<
+                        UserBloodRequestsCubit,
+                        UserBloodRequestsState
+                      >(
+                        builder: (context, state) {
+                          return switch (state) {
+                            UserBloodRequestsInitial() =>
+                              const SizedBox.shrink(),
+                            UserBloodRequestsLoading() => const Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                            UserBloodRequestsSuccess(:final bloodRequests) =>
+                              ListView.builder(
+                                itemCount: bloodRequests.length,
+                                itemBuilder: (context, index) {
+                                  final notification = bloodRequests[index];
+                                  return NotificationCard(
+                                    notification: notification,
+                                    onAccept: () {
+                                      _showConfirmationDialog.value = true;
+                                    },
+                                  );
+                                },
+                              ),
+                            UserBloodRequestsEmpty() =>
+                              const NoRequestsEmptyState(),
+                            UserBloodRequestsError(message: final message) =>
+                              CustomErrorWidget(
+                                errorMessage: message,
+                                onRetry: _bloodRequestNotificationsHelper
+                                    .userBloodRequestsInit,
+                                isDark: isDark,
+                              ),
+                          };
                         },
-                      );
-                    },
-                  ),
+                      ),
                 ),
               ],
             ),
@@ -156,8 +154,12 @@ class _BloodRequestNotificationsPageState
                 color: Colors.black.withValues(alpha: 0.5),
                 alignment: Alignment.center,
                 child: ConfirmationDialog(
-                  onYes: _bloodRequestNotificationsHelper.acceptRequest,
-                  onNo: _bloodRequestNotificationsHelper.hideDialog,
+                  onYes: () {
+                    _showConfirmationDialog.value = false;
+                  },
+                  onNo: () {
+                    _showConfirmationDialog.value = false;
+                  },
                 ),
               );
             },

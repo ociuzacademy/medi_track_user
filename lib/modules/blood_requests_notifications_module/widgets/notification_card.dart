@@ -1,10 +1,11 @@
 // widgets/notification_card.dart
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:medi_track/core/models/common_blood_request_model.dart';
 import 'package:medi_track/modules/blood_requests_notifications_module/widgets/notification_item.dart';
-import '../models/blood_request_notification.dart';
 
 class NotificationCard extends StatelessWidget {
-  final BloodRequestNotification notification;
+  final CommonBloodRequestModel notification;
   final VoidCallback onAccept;
 
   const NotificationCard({
@@ -16,6 +17,7 @@ class NotificationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final DateFormat dateFormat = DateFormat('dd MMM yyyy');
 
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
@@ -46,36 +48,16 @@ class NotificationCard extends StatelessWidget {
                     children: [
                       NotificationItem(
                         icon: Icons.bloodtype,
-                        text: 'Units Needed: ${notification.unitsNeeded}',
+                        text: 'Units Needed: ${notification.unitsRequired}',
                         isDark: isDark,
                       ),
                       const SizedBox(height: 8),
                       NotificationItem(
                         icon: Icons.calendar_today,
-                        text: notification.formattedDate,
+                        text: dateFormat.format(notification.donationDate),
                         isDark: isDark,
                       ),
                     ],
-                  ),
-                ),
-                const SizedBox(width: 12),
-                // Urgency badge
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 6,
-                  ),
-                  decoration: BoxDecoration(
-                    color: notification.urgency.backgroundColor,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Text(
-                    notification.urgency.displayName,
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                      color: notification.urgency.color,
-                    ),
                   ),
                 ),
               ],
