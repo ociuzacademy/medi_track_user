@@ -21,3 +21,4 @@ export 'package:medi_track/modules/blood_donor_register_module/bloc/register_don
 export 'package:medi_track/core/cubit/is_donor/is_donor_cubit.dart';
 export 'package:medi_track/modules/blood_requests_module/cubit/all_blood_requests_cubit.dart';
 export 'package:medi_track/modules/blood_requests_notifications_module/cubit/user_blood_requests_cubit.dart';
+export 'package:medi_track/modules/blood_requests_notifications_module/bloc/accept_blood_request_bloc.dart';

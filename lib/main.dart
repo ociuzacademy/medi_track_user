@@ -51,6 +51,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => IsDonorCubit()),
         BlocProvider(create: (context) => AllBloodRequestsCubit()),
         BlocProvider(create: (context) => UserBloodRequestsCubit()),
+        BlocProvider(create: (context) => AcceptBloodRequestBloc()),
       ],
       child: MaterialApp(
         title: 'MediTrack',
