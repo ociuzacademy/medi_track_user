@@ -62,17 +62,16 @@ class _BloodDonorDashboardPageState extends State<BloodDonorDashboardPage> {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: BlocBuilder<IsDonorCubit, IsDonorState>(
         builder: (context, state) {
-          return state.when(
-            initial: () => const Center(child: CircularProgressIndicator()),
-            loading: () => const Center(child: CircularProgressIndicator()),
-            success: (isDonor) {
-              if (isDonor) {
-                return const DonorDashboard();
-              } else {
-                return const NonDonorDashboard();
-              }
-            },
-            error: (message) => Center(
+          return switch (state) {
+            IsDonorInitial() => const Center(
+              child: CircularProgressIndicator(),
+            ),
+            IsDonorLoading() => const Center(
+              child: CircularProgressIndicator(),
+            ),
+            IsDonorSuccess(:final isDonor) =>
+              isDonor ? const DonorDashboard() : const NonDonorDashboard(),
+            IsDonorError(:final message) => Center(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
@@ -111,10 +110,9 @@ class _BloodDonorDashboardPageState extends State<BloodDonorDashboardPage> {
                 ),
               ),
             ),
-          );
+          };
         },
       ),
     );
   }
 }
-// [file content end]
