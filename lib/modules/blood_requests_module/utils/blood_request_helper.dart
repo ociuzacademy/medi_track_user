@@ -1,16 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medi_track/core/export/bloc_export.dart';
 
 class BloodRequestHelper {
-  final ValueNotifier<bool> isLoading;
-  const BloodRequestHelper({required this.isLoading});
+  final BuildContext context;
+  const BloodRequestHelper({required this.context});
 
-  Future<void> refreshData() async {
-    isLoading.value = true;
-
-    // Simulate API call
-    await Future.delayed(const Duration(seconds: 2));
-
-    isLoading.value = false;
+  void getAllBloodRequests() {
+    final AllBloodRequestsCubit cubit = context.read<AllBloodRequestsCubit>();
+    cubit.getAllBloodRequests();
   }
 }

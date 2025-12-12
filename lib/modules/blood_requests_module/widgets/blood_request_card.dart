@@ -1,12 +1,30 @@
 // widgets/blood_request_card.dart
 import 'package:flutter/material.dart';
+import 'package:medi_track/modules/blood_requests_module/models/common_blood_request_model.dart';
 import 'package:medi_track/modules/blood_requests_module/widgets/info_item.dart';
-import '../models/blood_request.dart';
 
 class BloodRequestCard extends StatelessWidget {
-  final BloodRequest request;
+  final CommonBloodRequestModel request;
 
   const BloodRequestCard({super.key, required this.request});
+
+  String _formatDate(DateTime date) {
+    const months = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
+    return '${date.day} ${months[date.month - 1]} ${date.year}';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,41 +49,58 @@ class BloodRequestCard extends StatelessWidget {
           ),
         ],
       ),
-      child: Stack(
+      child: Column(
         children: [
-          // Urgency indicator strip
-          Positioned(
-            left: 0,
-            top: 0,
-            bottom: 0,
-            child: Container(
-              width: 6,
-              decoration: BoxDecoration(
-                color: request.urgency.color,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(16),
-                  bottomLeft: Radius.circular(16),
-                ),
-              ),
-            ),
-          ),
           Padding(
             padding: const EdgeInsets.all(16).copyWith(left: 22),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Patient name
+                // Header: Location and Date
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.location_on,
+                          size: 16,
+                          color: isDark ? Colors.grey[400] : Colors.grey[600],
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          request.location,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: isDark ? Colors.grey[300] : Colors.grey[700],
+                          ),
+                        ),
+                      ],
+                    ),
+                    Text(
+                      _formatDate(request.donationDate),
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: isDark ? Colors.grey[500] : Colors.grey[500],
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+
+                // Doctor Name (Patient-like prominence)
                 Text(
-                  request.patientName,
+                  'Dr. ${request.doctor}',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
                     color: isDark ? Colors.white : Colors.black,
                   ),
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 16),
 
-                // Blood group and units required in a row
+                // Info Rows
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -76,33 +111,38 @@ class BloodRequestCard extends StatelessWidget {
                       isDark: isDark,
                     ),
                     InfoItem(
-                      icon: Icons.monitor_heart,
-                      label: 'Units Required',
-                      value:
-                          '${request.unitsRequired} Unit${request.unitsRequired > 1 ? 's' : ''}',
+                      icon: Icons.water_drop,
+                      label: 'Units',
+                      value: '${request.unitsRequired}',
+                      isDark: isDark,
+                    ),
+                    InfoItem(
+                      icon: Icons.category,
+                      label: 'Type',
+                      value: request.donationType,
                       isDark: isDark,
                     ),
                   ],
                 ),
+
                 const SizedBox(height: 16),
-                // Urgency badge aligned to the left
+
+                // Reason Badge
                 Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 12,
                     vertical: 4,
                   ),
                   decoration: BoxDecoration(
-                    color: isDark
-                        ? request.urgency.darkBackgroundColor
-                        : request.urgency.backgroundColor,
+                    color: isDark ? Colors.black : Colors.white,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Text(
-                    request.urgency.displayName,
+                    request.reason,
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
-                      color: request.urgency.color,
+                      color: isDark ? Colors.white : Colors.black,
                     ),
                   ),
                 ),

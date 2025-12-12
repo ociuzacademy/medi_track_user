@@ -1,13 +1,13 @@
 // pages/blood_requests_page.dart
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:medi_track/modules/blood_requests_module/helper/blood_request_data.dart';
-import 'package:medi_track/modules/blood_requests_module/models/blood_request.dart';
+import 'package:medi_track/core/export/bloc_export.dart';
+import 'package:medi_track/core/widgets/custom_error_widget.dart';
 import 'package:medi_track/modules/blood_requests_module/utils/blood_request_helper.dart';
 import 'package:medi_track/modules/blood_requests_module/widgets/blood_request_card.dart';
 import 'package:medi_track/modules/blood_requests_module/widgets/date_header.dart';
 import 'package:medi_track/modules/blood_requests_module/widgets/empty_state.dart';
-import 'package:medi_track/modules/blood_requests_module/widgets/pull_to_refresh_indicator.dart';
 
 class BloodRequestsPage extends StatefulWidget {
   const BloodRequestsPage({super.key});
@@ -22,25 +22,31 @@ class BloodRequestsPage extends StatefulWidget {
 class _BloodRequestsPageState extends State<BloodRequestsPage> {
   late final BloodRequestHelper _bloodRequestHelper;
 
-  late final ValueNotifier<List<BloodRequest>> _bloodRequests;
-  late final ValueNotifier<bool> _isLoading;
-
   @override
   void initState() {
     super.initState();
-    _bloodRequests = ValueNotifier<List<BloodRequest>>(
-      BloodRequestData.bloodRequests,
-    );
-
-    _isLoading = ValueNotifier<bool>(false);
-    _bloodRequestHelper = BloodRequestHelper(isLoading: _isLoading);
+    _bloodRequestHelper = BloodRequestHelper(context: context);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _bloodRequestHelper.getAllBloodRequests();
+    });
   }
 
-  @override
-  void dispose() {
-    _bloodRequests.dispose();
-    _isLoading.dispose();
-    super.dispose();
+  String _formatDate(DateTime date) {
+    const months = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
+    return '${date.day} ${months[date.month - 1]} ${date.year}';
   }
 
   @override
@@ -65,50 +71,46 @@ class _BloodRequestsPageState extends State<BloodRequestsPage> {
         elevation: 0,
         actions: [
           IconButton(
-            icon: const Icon(Icons.notifications),
-            onPressed: () {
-              // Handle notifications button press
-            },
+            icon: const Icon(Icons.refresh),
+            onPressed: _bloodRequestHelper.getAllBloodRequests,
           ),
         ],
       ),
       backgroundColor: isDark
           ? const Color(0xFF0F1A2A)
           : const Color(0xFFF0F4F8),
-      body: RefreshIndicator(
-        onRefresh: _bloodRequestHelper.refreshData,
-        child: CustomScrollView(
-          slivers: [
-            // Pull to refresh indicator
-            SliverToBoxAdapter(
-              child: ValueListenableBuilder<bool>(
-                valueListenable: _isLoading,
-                builder: (context, isLoading, _) {
-                  return isLoading
-                      ? const LinearProgressIndicator()
-                      : const PullToRefreshIndicator();
-                },
-              ),
+      body: BlocBuilder<AllBloodRequestsCubit, AllBloodRequestsState>(
+        builder: (context, state) {
+          return switch (state) {
+            AllBloodRequestsInitial() => const CustomScrollView(
+              slivers: [
+                SliverFillRemaining(
+                  child: Center(child: CircularProgressIndicator()),
+                ),
+              ],
             ),
-
-            // Blood requests list or empty state
-            ValueListenableBuilder<List<BloodRequest>>(
-              valueListenable: _bloodRequests,
-              builder: (context, requests, _) {
-                if (requests.isEmpty) {
-                  return const SliverFillRemaining(child: EmptyState());
-                }
-                return SliverList(
+            AllBloodRequestsLoading() => const CustomScrollView(
+              slivers: [
+                SliverFillRemaining(
+                  child: Center(child: CircularProgressIndicator()),
+                ),
+              ],
+            ),
+            AllBloodRequestsSuccess(:final data) => CustomScrollView(
+              slivers: [
+                SliverList(
                   delegate: SliverChildBuilderDelegate((context, index) {
-                    final request = requests[index];
+                    final request = data[index];
+                    final formattedDate = _formatDate(request.donationDate);
 
-                    // Group by date (simplified)
+                    // Group by date
                     bool showDateHeader = index == 0;
                     if (index > 0) {
-                      final previousRequest = requests[index - 1];
-                      showDateHeader =
-                          request.formattedTime !=
-                          previousRequest.formattedTime;
+                      final previousRequest = data[index - 1];
+                      final previousFormattedDate = _formatDate(
+                        previousRequest.donationDate,
+                      );
+                      showDateHeader = formattedDate != previousFormattedDate;
                     }
 
                     return Column(
@@ -120,7 +122,7 @@ class _BloodRequestsPageState extends State<BloodRequestsPage> {
                               left: mediaQuery.size.width * 0.04,
                               right: mediaQuery.size.width * 0.04,
                             ),
-                            child: DateHeader(text: request.formattedTime),
+                            child: DateHeader(text: formattedDate),
                           ),
                         Padding(
                           padding: EdgeInsets.symmetric(
@@ -130,12 +132,20 @@ class _BloodRequestsPageState extends State<BloodRequestsPage> {
                         ),
                       ],
                     );
-                  }, childCount: requests.length),
-                );
-              },
+                  }, childCount: data.length),
+                ),
+              ],
             ),
-          ],
-        ),
+            AllBloodRequestsError(:final message) => CustomErrorWidget(
+              errorMessage: message,
+              isDark: isDark,
+              onRetry: _bloodRequestHelper.getAllBloodRequests,
+            ),
+            AllBloodRequestsEmpty() => const CustomScrollView(
+              slivers: [SliverFillRemaining(child: EmptyState())],
+            ),
+          };
+        },
       ),
     );
   }
