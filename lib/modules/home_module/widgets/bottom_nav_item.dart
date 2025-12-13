@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 import 'package:medi_track/modules/home_module/utils/bottom_navigation_helper.dart';
 
 class BottomNavItem extends StatelessWidget {
@@ -7,7 +8,6 @@ class BottomNavItem extends StatelessWidget {
   final String label;
   final bool isSelected;
   final VoidCallback onTap;
-  final ColorScheme colorScheme;
 
   const BottomNavItem({
     super.key,
@@ -15,7 +15,6 @@ class BottomNavItem extends StatelessWidget {
     required this.label,
     required this.isSelected,
     required this.onTap,
-    required this.colorScheme,
   });
 
   @override
@@ -30,8 +29,8 @@ class BottomNavItem extends StatelessWidget {
           Icon(
             icon,
             color: isSelected
-                ? colorScheme.primary
-                : colorScheme.onSurface.withValues(alpha: 0.5),
+                ? AppColors.primary
+                : AppColors.textPrimary(context).withValues(alpha: 0.5),
             size: screenSize.width * 0.06,
           ),
           SizedBox(height: screenSize.height * 0.005),
@@ -41,8 +40,8 @@ class BottomNavItem extends StatelessWidget {
               fontSize: BottomNavigationHelper.responsiveFontSize(context, 12),
               fontWeight: FontWeight.w500,
               color: isSelected
-                  ? colorScheme.primary
-                  : colorScheme.onSurface.withValues(alpha: 0.5),
+                  ? AppColors.primary
+                  : AppColors.textPrimary(context).withValues(alpha: 0.5),
             ),
           ),
         ],

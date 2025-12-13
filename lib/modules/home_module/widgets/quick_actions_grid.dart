@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 import 'package:medi_track/modules/home_module/helper/quick_actions_grid_data.dart';
 import 'package:medi_track/modules/home_module/utils/quick_actions_grid_helper.dart';
 import 'package:medi_track/modules/home_module/widgets/quick_action_item.dart';
@@ -22,7 +23,7 @@ class QuickActionsGrid extends StatelessWidget {
           style: GoogleFonts.inter(
             fontSize: QuickActionsGridHelper.responsiveFontSize(context, 18),
             fontWeight: FontWeight.w700,
-            color: colorScheme.onSurface,
+            color: AppColors.textPrimary(context),
           ),
         ),
         SizedBox(height: screenSize.height * 0.015),

@@ -16,7 +16,6 @@ class PersonalInfoRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
     final screenWidth = MediaQuery.of(context).size.width;
 
     return Container(
@@ -25,11 +24,7 @@ class PersonalInfoRow extends StatelessWidget {
         border: Border(
           top: isFirst
               ? BorderSide.none
-              : BorderSide(
-                  color: isDark
-                      ? const Color(0xFF334155)
-                      : const Color(0xFFdbe4e6),
-                ),
+              : BorderSide(color: AppColors.border(context)),
         ),
       ),
       child: Row(
@@ -41,9 +36,7 @@ class PersonalInfoRow extends StatelessWidget {
               label,
               style: GoogleFonts.lexend(
                 fontSize: 14,
-                color: isDark
-                    ? const Color(0xFF94A3B8)
-                    : const Color(0xFF64748B),
+                color: AppColors.textTertiary(context),
               ),
             ),
           ),
@@ -52,9 +45,7 @@ class PersonalInfoRow extends StatelessWidget {
               value,
               style: GoogleFonts.lexend(
                 fontSize: 14,
-                color: isDark
-                    ? AppColors.textSecondaryDark
-                    : AppColors.textSecondaryLight,
+                color: AppColors.textSecondary(context),
               ),
             ),
           ),

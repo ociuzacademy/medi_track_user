@@ -1,18 +1,19 @@
 // profile_header.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:medi_track/core/constants/app_colors.dart';
 
 class ProfileHeader extends StatelessWidget {
-  const ProfileHeader({super.key});
+  const ProfileHeader({super.key, required this.name, required this.imageUrl});
+  final String name;
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
     return Container(
       decoration: BoxDecoration(
-        color: isDark ? AppColors.cardDarkAlt : Colors.white,
+        color: AppColors.card(context),
         borderRadius: BorderRadius.circular(8),
         boxShadow: [
           BoxShadow(
@@ -31,12 +32,10 @@ class ProfileHeader extends StatelessWidget {
               Container(
                 width: 128,
                 height: 128,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   image: DecorationImage(
-                    image: NetworkImage(
-                      'https://lh3.googleusercontent.com/aida-public/AB6AXuBYSRmPxc4bDK4Xi9IXHBJJA_F6lRaSdHa-i6vZQ7T4p1QqvdnIzppojMXZkNJrGzE7mRs1lWJdnWJavrH7f8WBAwmx69nBFyXD_DZEWOl5oV7psfedP6eHvjRtissrB6Lhl-tZhVHoLqG7K_rmRoi2oX8bML_dmt3ext2xE8aAVP0H_NKK2XrVaqqDG1ot7Rq3RKvdIzHDnirJswtw13HXs58QKGtmeX57UMeDmPLq7MBE2fd6hPgw9w5Xi73fJ9-45bh7joGdtRVF',
-                    ),
+                    image: CachedNetworkImageProvider(imageUrl),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -48,7 +47,7 @@ class ProfileHeader extends StatelessWidget {
                   width: 32,
                   height: 32,
                   decoration: BoxDecoration(
-                    color: const Color(0xFF4A90E2),
+                    color: AppColors.primary,
                     shape: BoxShape.circle,
                     boxShadow: [
                       BoxShadow(
@@ -72,33 +71,16 @@ class ProfileHeader extends StatelessWidget {
 
           const SizedBox(height: 16),
 
-          // Name and Patient ID
-          Column(
-            children: [
-              Text(
-                'Jane Doe',
-                style: GoogleFonts.lexend(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: -0.015,
-                  color: isDark
-                      ? AppColors.textSecondaryDark
-                      : AppColors.textSecondaryLight,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 4),
-              Text(
-                'Patient ID: MT-123456',
-                style: GoogleFonts.lexend(
-                  fontSize: 16,
-                  color: isDark
-                      ? const Color(0xFF94A3B8)
-                      : const Color(0xFF64748B),
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ],
+          // Name
+          Text(
+            name,
+            style: GoogleFonts.lexend(
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+              letterSpacing: -0.015,
+              color: AppColors.textPrimary(context),
+            ),
+            textAlign: TextAlign.center,
           ),
         ],
       ),

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 import 'package:medi_track/core/export/bloc_export.dart';
 import 'package:medi_track/modules/home_module/utils/home_content_helper.dart';
 import 'package:medi_track/modules/home_module/widgets/blood_donation_banner.dart';
@@ -35,7 +36,6 @@ class _HomeContentState extends State<HomeContent> {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return SingleChildScrollView(
       padding: EdgeInsets.all(screenSize.width * 0.04),
@@ -53,13 +53,13 @@ class _HomeContentState extends State<HomeContent> {
                   style: GoogleFonts.inter(
                     fontSize: 18,
                     fontWeight: FontWeight.w700,
-                    color: isDark ? Colors.white : const Color(0xFF111418),
+                    color: AppColors.textPrimary(context),
                   ),
                 ),
                 IconButton(
                   icon: Icon(
                     Icons.refresh,
-                    color: isDark ? Colors.white70 : Colors.grey[600],
+                    color: AppColors.textTertiary(context),
                   ),
                   onPressed: () {
                     _helper.upcomingAppointmentsInit();

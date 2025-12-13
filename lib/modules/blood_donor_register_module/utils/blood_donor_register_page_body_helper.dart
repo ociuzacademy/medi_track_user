@@ -9,6 +9,11 @@ class BloodDonorRegisterPageBodyHelper {
 
   const BloodDonorRegisterPageBodyHelper({required this.context});
 
+  void getUserProfile() {
+    final UserProfileCubit userProfileCubit = context.read<UserProfileCubit>();
+    userProfileCubit.getUserProfile();
+  }
+
   void registerDonor(GlobalKey<FormState> formKey) {
     final donorFormProvider = Provider.of<DonorFormProvider>(
       context,

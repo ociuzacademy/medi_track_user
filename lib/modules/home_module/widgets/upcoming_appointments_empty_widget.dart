@@ -3,6 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 import 'package:medi_track/modules/appointment_booking_module/view/appointment_booking_page.dart';
 
 class UpcomingAppointmentsEmptyWidget extends StatelessWidget {
@@ -16,7 +17,7 @@ class UpcomingAppointmentsEmptyWidget extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(32),
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF1E293B) : Colors.white,
+        color: AppColors.card(context),
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
@@ -25,9 +26,7 @@ class UpcomingAppointmentsEmptyWidget extends StatelessWidget {
             offset: const Offset(0, 4),
           ),
         ],
-        border: Border.all(
-          color: isDark ? const Color(0xFF374151) : const Color(0xFFE5E7EB),
-        ),
+        border: Border.all(color: AppColors.border(context)),
       ),
       child: Column(
         children: [
@@ -64,7 +63,7 @@ class UpcomingAppointmentsEmptyWidget extends StatelessWidget {
             style: GoogleFonts.inter(
               fontSize: 20,
               fontWeight: FontWeight.w700,
-              color: isDark ? Colors.white : const Color(0xFF111418),
+              color: AppColors.textPrimary(context),
             ),
             textAlign: TextAlign.center,
           ),
@@ -73,7 +72,7 @@ class UpcomingAppointmentsEmptyWidget extends StatelessWidget {
             "You don't have any scheduled appointments. Book an appointment to see it here.",
             style: GoogleFonts.inter(
               fontSize: 15,
-              color: isDark ? Colors.white70 : const Color(0xFF6B7280),
+              color: AppColors.textTertiary(context),
               height: 1.5,
             ),
             textAlign: TextAlign.center,
@@ -84,7 +83,7 @@ class UpcomingAppointmentsEmptyWidget extends StatelessWidget {
               Navigator.push(context, AppointmentBookingPage.route());
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF137fec),
+              backgroundColor: AppColors.primaryAlt,
               foregroundColor: Colors.white,
               minimumSize: const Size(200, 50),
               shape: RoundedRectangleBorder(
@@ -117,7 +116,7 @@ class UpcomingAppointmentsEmptyWidget extends StatelessWidget {
               'View Past Appointments',
               style: GoogleFonts.inter(
                 fontSize: 14,
-                color: const Color(0xFF137fec),
+                color: AppColors.primaryAlt,
                 fontWeight: FontWeight.w500,
               ),
             ),

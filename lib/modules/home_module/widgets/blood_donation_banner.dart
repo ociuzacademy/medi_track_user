@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 import 'package:medi_track/core/export/bloc_export.dart';
 import 'package:medi_track/modules/blood_donor_dashboard_module/view/blood_donor_dashboard_page.dart';
 import 'package:medi_track/modules/blood_donor_register_module/view/blood_donor_register_page.dart';
@@ -27,14 +28,13 @@ class _BloodDonationBannerState extends State<BloodDonationBanner> {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
     final screenSize = MediaQuery.of(context).size;
 
     return Container(
       width: double.infinity,
       padding: EdgeInsets.all(screenSize.width * 0.04),
       decoration: BoxDecoration(
-        color: colorScheme.primary.withValues(alpha: 0.1),
+        color: AppColors.primary.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(screenSize.width * 0.03),
       ),
       child: Row(
@@ -65,7 +65,7 @@ class _BloodDonationBannerState extends State<BloodDonationBanner> {
                   style: GoogleFonts.inter(
                     fontSize: _bloodDonationBannerHelper.responsiveFontSize(16),
                     fontWeight: FontWeight.w700,
-                    color: colorScheme.onSurface,
+                    color: AppColors.textPrimary(context),
                   ),
                 ),
                 SizedBox(height: screenSize.height * 0.005),
@@ -73,7 +73,9 @@ class _BloodDonationBannerState extends State<BloodDonationBanner> {
                   'Your donation can save up to three lives.',
                   style: GoogleFonts.inter(
                     fontSize: _bloodDonationBannerHelper.responsiveFontSize(14),
-                    color: colorScheme.onSurface.withValues(alpha: 0.7),
+                    color: AppColors.textPrimary(
+                      context,
+                    ).withValues(alpha: 0.7),
                   ),
                 ),
                 SizedBox(height: screenSize.height * 0.01),
@@ -105,7 +107,7 @@ class _BloodDonationBannerState extends State<BloodDonationBanner> {
                               vertical: screenSize.height * 0.01,
                             ),
                             decoration: BoxDecoration(
-                              color: colorScheme.primary,
+                              color: AppColors.primary,
                               borderRadius: BorderRadius.circular(
                                 screenSize.width * 0.05,
                               ),

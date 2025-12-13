@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 import 'package:medi_track/modules/home_module/widgets/bottom_nav_item.dart';
 
 class BottomNavigation extends StatelessWidget {
@@ -13,14 +14,15 @@ class BottomNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
     final screenSize = MediaQuery.of(context).size;
 
     return Container(
       decoration: BoxDecoration(
-        color: colorScheme.surface,
+        color: AppColors.surface(context),
         border: Border(
-          top: BorderSide(color: colorScheme.outline.withValues(alpha: 0.2)),
+          top: BorderSide(
+            color: AppColors.border(context).withValues(alpha: 0.2),
+          ),
         ),
       ),
       child: SafeArea(
@@ -34,14 +36,12 @@ class BottomNavigation extends StatelessWidget {
                 label: 'Home',
                 isSelected: currentIndex == 0,
                 onTap: () => onItemTapped(0),
-                colorScheme: colorScheme,
               ),
               BottomNavItem(
                 icon: Icons.person,
                 label: 'Profile',
                 isSelected: currentIndex == 1,
                 onTap: () => onItemTapped(1),
-                colorScheme: colorScheme,
               ),
             ],
           ),

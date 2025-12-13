@@ -18,33 +18,27 @@ class ProfileSettingItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
     return Container(
       decoration: BoxDecoration(
         border: Border(
           top: isFirst
               ? BorderSide.none
-              : BorderSide(
-                  color: isDark
-                      ? const Color(0xFF334155)
-                      : const Color(0xFFdbe4e6),
-                ),
+              : BorderSide(color: AppColors.border(context)),
         ),
       ),
       child: ListTile(
         onTap: onTap,
-        leading: Icon(icon, color: const Color(0xFF4A90E2), size: 24),
+        leading: Icon(icon, color: AppColors.primary, size: 24),
         title: Text(
           title,
           style: GoogleFonts.lexend(
             fontSize: 16,
-            color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight,
+            color: AppColors.textSecondary(context),
           ),
         ),
         trailing: Icon(
           Icons.chevron_right,
-          color: isDark ? const Color(0xFF94A3B8) : const Color(0xFF64748B),
+          color: AppColors.textTertiary(context),
         ),
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         shape: const RoundedRectangleBorder(),

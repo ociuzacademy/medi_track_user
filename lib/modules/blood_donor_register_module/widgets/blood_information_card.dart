@@ -8,7 +8,8 @@ import 'package:medi_track/modules/blood_donor_register_module/providers/donor_f
 import 'package:medi_track/core/constants/app_colors.dart';
 
 class BloodInformationSection extends StatelessWidget {
-  const BloodInformationSection({super.key});
+  const BloodInformationSection({super.key, required this.bloodGroup});
+  final String bloodGroup;
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +69,7 @@ class BloodInformationSection extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   Container(
+                    width: double.infinity,
                     height: 56,
                     decoration: BoxDecoration(
                       color: isDark ? const Color(0xFF101922) : Colors.white,
@@ -79,43 +81,15 @@ class BloodInformationSection extends StatelessWidget {
                       ),
                     ),
                     padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: DropdownButtonFormField<String>(
-                      value: donorFormProvider.selectedBloodGroup,
-                      onChanged: donorFormProvider.setSelectedBloodGroup,
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        enabledBorder: InputBorder.none,
-                        focusedBorder: InputBorder.none,
-                      ),
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      bloodGroup,
                       style: GoogleFonts.lexend(
                         fontSize: 16,
                         color: isDark
                             ? AppColors.borderLight
                             : const Color(0xFF111418),
                       ),
-                      dropdownColor: isDark
-                          ? const Color(0xFF182431)
-                          : Colors.white,
-                      icon: Icon(
-                        Icons.arrow_drop_down,
-                        color: isDark
-                            ? AppColors.textTertiaryDark
-                            : const Color(0xFF617589),
-                      ),
-                      items: const [
-                        DropdownMenuItem(
-                          value: null,
-                          child: Text('Select your blood group'),
-                        ),
-                        DropdownMenuItem(value: 'A+', child: Text('A+')),
-                        DropdownMenuItem(value: 'A-', child: Text('A-')),
-                        DropdownMenuItem(value: 'B+', child: Text('B+')),
-                        DropdownMenuItem(value: 'B-', child: Text('B-')),
-                        DropdownMenuItem(value: 'AB+', child: Text('AB+')),
-                        DropdownMenuItem(value: 'AB-', child: Text('AB-')),
-                        DropdownMenuItem(value: 'O+', child: Text('O+')),
-                        DropdownMenuItem(value: 'O-', child: Text('O-')),
-                      ],
                     ),
                   ),
                 ],

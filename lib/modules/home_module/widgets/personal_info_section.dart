@@ -1,21 +1,38 @@
 // personal_info_section.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:medi_track/modules/home_module/widgets/personal_info_row.dart';
 import 'package:medi_track/core/constants/app_colors.dart';
 
 class PersonalInfoSection extends StatelessWidget {
-  const PersonalInfoSection({super.key});
+  const PersonalInfoSection({
+    super.key,
+    required this.name,
+    required this.dob,
+    required this.gender,
+    required this.phoneNumber,
+    required this.email,
+    required this.bloodGroup,
+    required this.address,
+  });
+  final String name;
+  final DateTime dob;
+  final String gender;
+  final String phoneNumber;
+  final String email;
+  final String bloodGroup;
+  final String address;
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
     final screenWidth = MediaQuery.of(context).size.width;
     final _ = screenWidth < 400 ? 0.4 : 0.35;
+    final DateFormat dateFormat = DateFormat('dd-MM-yyyy');
 
     return Container(
       decoration: BoxDecoration(
-        color: isDark ? AppColors.cardDarkAlt : Colors.white,
+        color: AppColors.card(context),
         borderRadius: BorderRadius.circular(8),
         boxShadow: [
           BoxShadow(
@@ -37,27 +54,22 @@ class PersonalInfoSection extends StatelessWidget {
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 letterSpacing: -0.015,
-                color: isDark
-                    ? AppColors.textSecondaryDark
-                    : AppColors.textSecondaryLight,
+                color: AppColors.textSecondary(context),
               ),
             ),
           ),
 
           // Personal Info Items
-          const PersonalInfoRow(label: 'Full Name', value: 'Jane Doe', isFirst: true),
-          const PersonalInfoRow(label: 'Date of Birth', value: '01-Jan-1990'),
-          const PersonalInfoRow(label: 'Gender', value: 'Female'),
-          const PersonalInfoRow(label: 'Phone Number', value: '+1 (123) 456-7890'),
-          const PersonalInfoRow(
-            label: 'Email Address',
-            value: 'jane.doe@example.com',
+          PersonalInfoRow(label: 'Full Name', value: name, isFirst: true),
+          PersonalInfoRow(
+            label: 'Date of Birth',
+            value: dateFormat.format(dob),
           ),
-          const PersonalInfoRow(label: 'Blood Group', value: 'O+'),
-          const PersonalInfoRow(
-            label: 'Address',
-            value: '123 Wellness Ave, Health City',
-          ),
+          PersonalInfoRow(label: 'Gender', value: gender),
+          PersonalInfoRow(label: 'Phone Number', value: phoneNumber),
+          PersonalInfoRow(label: 'Email Address', value: email),
+          PersonalInfoRow(label: 'Blood Group', value: bloodGroup),
+          PersonalInfoRow(label: 'Address', value: address),
         ],
       ),
     );

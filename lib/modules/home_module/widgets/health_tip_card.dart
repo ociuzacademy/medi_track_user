@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 import 'package:medi_track/modules/home_module/utils/health_tip_card_helper.dart';
 
 class HealthTipCard extends StatelessWidget {
@@ -44,7 +45,7 @@ class HealthTipCard extends StatelessWidget {
             style: GoogleFonts.inter(
               fontSize: HealthTipCardHelper.responsiveFontSize(context, 14),
               fontWeight: FontWeight.w500,
-              color: colorScheme.onSurface,
+              color: AppColors.textPrimary(context),
             ),
           ),
         ],

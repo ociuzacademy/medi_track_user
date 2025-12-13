@@ -13,11 +13,9 @@ class AccountSettingsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
     return Container(
       decoration: BoxDecoration(
-        color: isDark ? AppColors.cardDarkAlt : Colors.white,
+        color: AppColors.card(context),
         borderRadius: BorderRadius.circular(8),
         boxShadow: [
           BoxShadow(
@@ -39,9 +37,7 @@ class AccountSettingsSection extends StatelessWidget {
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 letterSpacing: -0.015,
-                color: isDark
-                    ? AppColors.textSecondaryDark
-                    : AppColors.textSecondaryLight,
+                color: AppColors.textSecondary(context),
               ),
             ),
           ),

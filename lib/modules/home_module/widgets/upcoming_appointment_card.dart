@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 import 'package:medi_track/modules/appointment_details_module/view/upcoming_appointment_details_page.dart';
 import 'package:medi_track/modules/home_module/utils/upcoming_appointment_card_helper.dart';
 
@@ -19,7 +20,6 @@ class UpcomingAppointmentCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
     final screenSize = MediaQuery.of(context).size;
     final DateFormat dateFormat = DateFormat('dd MMM yyyy');
 
@@ -27,7 +27,7 @@ class UpcomingAppointmentCard extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.all(screenSize.width * 0.04),
       decoration: BoxDecoration(
-        color: colorScheme.surface,
+        color: AppColors.card(context),
         borderRadius: BorderRadius.circular(screenSize.width * 0.03),
         boxShadow: [
           BoxShadow(
@@ -53,7 +53,7 @@ class UpcomingAppointmentCard extends StatelessWidget {
                       14,
                     ),
                     fontWeight: FontWeight.w500,
-                    color: colorScheme.primary,
+                    color: AppColors.primary,
                   ),
                 ),
                 SizedBox(height: screenSize.height * 0.005),
@@ -65,7 +65,7 @@ class UpcomingAppointmentCard extends StatelessWidget {
                       16,
                     ),
                     fontWeight: FontWeight.w700,
-                    color: colorScheme.onSurface,
+                    color: AppColors.textPrimary(context),
                   ),
                 ),
                 SizedBox(height: screenSize.height * 0.002),
@@ -76,7 +76,9 @@ class UpcomingAppointmentCard extends StatelessWidget {
                       context,
                       14,
                     ),
-                    color: colorScheme.onSurface.withValues(alpha: 0.6),
+                    color: AppColors.textPrimary(
+                      context,
+                    ).withValues(alpha: 0.6),
                   ),
                 ),
               ],
@@ -98,12 +100,12 @@ class UpcomingAppointmentCard extends StatelessWidget {
               width: screenSize.width * 0.1,
               height: screenSize.width * 0.1,
               decoration: BoxDecoration(
-                color: colorScheme.primary.withValues(alpha: 0.1),
+                color: AppColors.primary.withValues(alpha: 0.1),
                 shape: BoxShape.circle,
               ),
               child: Icon(
                 Icons.chevron_right,
-                color: colorScheme.primary,
+                color: AppColors.primary,
                 size: screenSize.width * 0.06,
               ),
             ),

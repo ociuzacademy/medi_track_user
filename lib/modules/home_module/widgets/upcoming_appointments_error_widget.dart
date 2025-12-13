@@ -4,6 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 import 'package:medi_track/core/export/bloc_export.dart';
 
 class UpcomingAppointmentsErrorWidget extends StatelessWidget {
@@ -19,7 +20,7 @@ class UpcomingAppointmentsErrorWidget extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF1E293B) : Colors.white,
+        color: AppColors.card(context),
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
@@ -30,7 +31,7 @@ class UpcomingAppointmentsErrorWidget extends StatelessWidget {
         ],
         border: Border.all(
           color: isDark
-              ? const Color(0xFFDC2626).withValues(alpha: 0.3)
+              ? AppColors.error.withValues(alpha: 0.3)
               : const Color(0xFFFEE2E2),
         ),
       ),
@@ -60,7 +61,7 @@ class UpcomingAppointmentsErrorWidget extends StatelessWidget {
             child: Icon(
               Icons.error_outline,
               size: 40,
-              color: isDark ? const Color(0xFFF87171) : const Color(0xFFDC2626),
+              color: isDark ? const Color(0xFFF87171) : AppColors.error,
             ),
           ),
           const SizedBox(height: 20),
@@ -69,7 +70,7 @@ class UpcomingAppointmentsErrorWidget extends StatelessWidget {
             style: GoogleFonts.inter(
               fontSize: 18,
               fontWeight: FontWeight.w700,
-              color: isDark ? Colors.white : const Color(0xFF111418),
+              color: AppColors.textPrimary(context),
             ),
             textAlign: TextAlign.center,
           ),
@@ -78,7 +79,7 @@ class UpcomingAppointmentsErrorWidget extends StatelessWidget {
             message.length > 100 ? '${message.substring(0, 100)}...' : message,
             style: GoogleFonts.inter(
               fontSize: 14,
-              color: isDark ? Colors.white70 : const Color(0xFF6B7280),
+              color: AppColors.textTertiary(context),
             ),
             textAlign: TextAlign.center,
           ),
@@ -93,8 +94,8 @@ class UpcomingAppointmentsErrorWidget extends StatelessWidget {
                       .getUpcomingAppointments();
                 },
                 style: OutlinedButton.styleFrom(
-                  foregroundColor: const Color(0xFF137fec),
-                  side: const BorderSide(color: Color(0xFF137fec)),
+                  foregroundColor: AppColors.primaryAlt,
+                  side: const BorderSide(color: AppColors.primaryAlt),
                   padding: const EdgeInsets.symmetric(
                     horizontal: 24,
                     vertical: 12,
@@ -111,7 +112,7 @@ class UpcomingAppointmentsErrorWidget extends StatelessWidget {
                   // Navigate to book appointment or contact support
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF137fec),
+                  backgroundColor: AppColors.primaryAlt,
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(
                     horizontal: 24,

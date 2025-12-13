@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 import 'package:medi_track/modules/home_module/helper/health_tip_carousel_data.dart';
 import 'package:medi_track/modules/home_module/utils/health_tip_carousel_helper.dart';
 import 'package:medi_track/modules/home_module/widgets/health_tip_card.dart';
@@ -21,7 +22,7 @@ class HealthTipsCarousel extends StatelessWidget {
           style: GoogleFonts.inter(
             fontSize: HealthTipCarouselHelper.responsiveFontSize(context, 18),
             fontWeight: FontWeight.w700,
-            color: colorScheme.onSurface,
+            color: AppColors.textPrimary(context),
           ),
         ),
         SizedBox(height: screenSize.height * 0.015),

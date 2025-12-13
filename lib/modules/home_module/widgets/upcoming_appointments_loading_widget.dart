@@ -3,6 +3,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:medi_track/core/constants/app_colors.dart';
+
 class UpcomingAppointmentsLoadingWidget extends StatelessWidget {
   const UpcomingAppointmentsLoadingWidget({super.key});
 
@@ -12,7 +14,7 @@ class UpcomingAppointmentsLoadingWidget extends StatelessWidget {
       width: double.infinity,
       height: 150,
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface,
+        color: AppColors.card(context),
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
@@ -22,18 +24,21 @@ class UpcomingAppointmentsLoadingWidget extends StatelessWidget {
           ),
         ],
       ),
-      child: const Center(
+      child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircularProgressIndicator(
+            const CircularProgressIndicator(
               strokeWidth: 2,
-              valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF137fec)),
+              valueColor: AlwaysStoppedAnimation<Color>(AppColors.primaryAlt),
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             Text(
               'Loading appointments...',
-              style: TextStyle(fontSize: 14, color: Colors.grey),
+              style: TextStyle(
+                fontSize: 14,
+                color: AppColors.textTertiary(context),
+              ),
             ),
           ],
         ),

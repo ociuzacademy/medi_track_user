@@ -3,6 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/constants/app_colors.dart';
 import 'package:medi_track/modules/home_module/models/upcoming_appointments_model.dart';
 import 'package:medi_track/modules/home_module/widgets/upcoming_appointment_card.dart';
 import 'package:medi_track/modules/user_appointments_module/view/user_appointments_page.dart';
@@ -54,7 +55,7 @@ class UpcomingAppointmentsListWidget extends StatelessWidget {
                   'View all ${data.count} appointments',
                   style: GoogleFonts.inter(
                     fontSize: 14,
-                    color: const Color(0xFF137fec),
+                    color: AppColors.primaryAlt,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
