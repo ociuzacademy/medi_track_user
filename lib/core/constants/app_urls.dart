@@ -33,4 +33,5 @@ class AppUrls {
   static const String donorAcceptBloodUrl = '$userUrl/donor_accept_blood/';
   static const String upcomingAppointmentsUrl =
       '$userUrl/upcoming_appointments/';
+  static const String addDonationRecordUrl = '$userUrl/add_donation_record/';
 }

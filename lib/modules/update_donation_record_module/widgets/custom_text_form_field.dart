@@ -10,6 +10,7 @@ class CustomTextFormField extends StatelessWidget {
   final String? value;
   final String? Function(String?)? validator;
   final bool autovalidateMode;
+  final TextEditingController? controller;
 
   const CustomTextFormField({
     super.key,
@@ -20,15 +21,22 @@ class CustomTextFormField extends StatelessWidget {
     this.value,
     this.validator,
     this.autovalidateMode = false,
+    this.controller,
   });
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final controller = TextEditingController(text: value);
-    controller.selection = TextSelection.collapsed(
-      offset: controller.text.length,
-    );
+
+    TextEditingController? localController;
+    if (controller == null) {
+      localController = TextEditingController(text: value);
+      localController.selection = TextSelection.collapsed(
+        offset: localController.text.length,
+      );
+    }
+
+    final effectiveController = controller ?? localController;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,7 +51,7 @@ class CustomTextFormField extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         TextFormField(
-          controller: controller,
+          controller: effectiveController,
           keyboardType: keyboardType,
           onChanged: onChanged,
           validator: validator,
@@ -53,7 +61,9 @@ class CustomTextFormField extends StatelessWidget {
           decoration: InputDecoration(
             hintText: hintText,
             hintStyle: TextStyle(
-              color: isDark ? AppColors.textTertiaryDark : const Color(0xFF896161),
+              color: isDark
+                  ? AppColors.textTertiaryDark
+                  : const Color(0xFF896161),
             ),
             filled: true,
             fillColor: isDark ? const Color(0xFF1A1F2A) : Colors.white,

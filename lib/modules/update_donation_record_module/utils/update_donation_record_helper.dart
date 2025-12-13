@@ -1,45 +1,20 @@
 // utils/update_donation_record_helper.dart
 import 'package:flutter/material.dart';
+import 'package:medi_track/core/export/bloc_export.dart';
+import 'package:medi_track/core/widgets/snackbars/custom_snackbar.dart';
+import 'package:medi_track/modules/update_donation_record_module/classes/update_donation_record_data.dart';
 import 'package:provider/provider.dart';
 
 import 'package:medi_track/modules/update_donation_record_module/providers/donation_form_provider.dart';
 import 'package:medi_track/core/constants/app_colors.dart';
 
 class UpdateDonationRecordHelper {
-  static String? validateLocationName(String? value) {
-    if (value == null || value.trim().isEmpty) {
-      return 'Please enter a location name';
-    }
-    if (value.trim().length < 2) {
-      return 'Location name must be at least 2 characters';
-    }
-    return null;
-  }
+  const UpdateDonationRecordHelper();
 
-  static String? validateUnitsDonated(String? value) {
-    if (value == null || value.trim().isEmpty) {
-      return 'Please enter units donated';
-    }
-
-    final units = int.tryParse(value.trim());
-    if (units == null) {
-      return 'Please enter a valid number';
-    }
-
-    if (units <= 0) {
-      return 'Units must be greater than 0';
-    }
-
-    if (units > 10) {
-      return 'Units cannot exceed 10';
-    }
-
-    return null;
-  }
-
-  static Future<void> selectDate(BuildContext context) async {
+  // Remove context from constructor and pass it as parameter
+  Future<void> selectDate(BuildContext context) async {
     final provider = Provider.of<DonationFormProvider>(context, listen: false);
-    final initialDate = provider.formData.donationDate ?? DateTime.now();
+    final initialDate = provider.donationDate ?? DateTime.now();
     final firstDate = DateTime(2000);
     final lastDate = DateTime.now();
 
@@ -52,7 +27,7 @@ class UpdateDonationRecordHelper {
         return Theme(
           data: Theme.of(context).copyWith(
             colorScheme: ColorScheme.light(
-              primary: const Color(0xFF2196F3), // Updated to blue
+              primary: const Color(0xFF2196F3),
               onPrimary: Colors.white,
               onSurface: Theme.of(context).brightness == Brightness.dark
                   ? Colors.black
@@ -60,7 +35,7 @@ class UpdateDonationRecordHelper {
             ),
             textButtonTheme: TextButtonThemeData(
               style: TextButton.styleFrom(
-                foregroundColor: const Color(0xFF2196F3), // Updated to blue
+                foregroundColor: const Color(0xFF2196F3),
               ),
             ),
           ),
@@ -72,5 +47,18 @@ class UpdateDonationRecordHelper {
     if (pickedDate != null) {
       provider.updateDonationDate(pickedDate);
     }
+  }
+
+  // Also pass context as parameter here
+  void updateDonationRecord(
+    BuildContext context,
+    UpdateDonationRecordData? data,
+  ) {
+    if (data == null) {
+      CustomSnackbar.showError(context, message: 'Please fill all the fields');
+      return;
+    }
+    final AddDonationRecordBloc bloc = context.read<AddDonationRecordBloc>();
+    bloc.add(AddDonationRecordEvent.addDonationRecord(data));
   }
 }

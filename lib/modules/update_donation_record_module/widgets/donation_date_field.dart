@@ -1,18 +1,17 @@
 // widgets/donation_date_field.dart
 import 'package:flutter/material.dart';
-import 'package:medi_track/modules/update_donation_record_module/utils/update_donation_record_helper.dart';
 import 'package:provider/provider.dart';
 import 'package:medi_track/modules/update_donation_record_module/providers/donation_form_provider.dart';
 import 'package:medi_track/core/constants/app_colors.dart';
 
 class DonationDateField extends StatelessWidget {
-  const DonationDateField({super.key});
+  const DonationDateField({super.key, required this.onSelectDate});
+  final Future<void> Function() onSelectDate;
 
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<DonationFormProvider>(context);
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final formData = provider.formData;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,7 +26,7 @@ class DonationDateField extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         GestureDetector(
-          onTap: () => UpdateDonationRecordHelper.selectDate(context),
+          onTap: onSelectDate,
           child: Container(
             height: 56,
             decoration: BoxDecoration(
@@ -45,13 +44,15 @@ class DonationDateField extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      formData.donationDate != null
-                          ? _formatDate(formData.donationDate!)
+                      provider.donationDate != null
+                          ? _formatDate(provider.donationDate!)
                           : 'Select the date of your donation',
                       style: TextStyle(
                         fontSize: 16,
-                        color: formData.donationDate != null
-                            ? (isDark ? Colors.white : AppColors.textPrimaryLight)
+                        color: provider.donationDate != null
+                            ? (isDark
+                                  ? Colors.white
+                                  : AppColors.textPrimaryLight)
                             : (isDark
                                   ? AppColors.textTertiaryDark
                                   : const Color(0xFF896161)),

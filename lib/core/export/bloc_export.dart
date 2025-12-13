@@ -23,3 +23,4 @@ export 'package:medi_track/modules/blood_requests_module/cubit/all_blood_request
 export 'package:medi_track/modules/blood_requests_notifications_module/cubit/user_blood_requests_cubit.dart';
 export 'package:medi_track/modules/blood_requests_notifications_module/bloc/accept_blood_request_bloc.dart';
 export 'package:medi_track/modules/home_module/cubit/upcoming_appointments_cubit.dart';
+export 'package:medi_track/modules/update_donation_record_module/bloc/add_donation_record_bloc.dart';
