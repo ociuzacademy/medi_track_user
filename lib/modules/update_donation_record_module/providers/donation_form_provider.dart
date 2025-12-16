@@ -1,7 +1,7 @@
 // providers/donation_form_provider.dart
 import 'package:flutter/material.dart';
 import 'package:medi_track/modules/update_donation_record_module/classes/update_donation_record_data.dart';
-import 'package:medi_track/modules/update_donation_record_module/enum/donation_type.dart';
+import 'package:medi_track/core/enums/donation_type.dart';
 
 class DonationFormProvider with ChangeNotifier {
   DateTime? _donationDate;
@@ -74,7 +74,7 @@ class DonationFormProvider with ChangeNotifier {
   UpdateDonationRecordData? toUpdateDonationRecordData() {
     final locationName = locationController.text.trim();
     final unitsString = unitsController.text.trim();
-    final unitsDonated = double.tryParse(unitsString) ?? 0;
+    final unitsDonated = int.tryParse(unitsString) ?? 0;
 
     if (donationDate == null || locationName.isEmpty || unitsDonated <= 0) {
       return null;

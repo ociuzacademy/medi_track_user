@@ -1,6 +1,6 @@
 // widgets/donation_type_dropdown.dart
 import 'package:flutter/material.dart';
-import 'package:medi_track/modules/update_donation_record_module/enum/donation_type.dart';
+import 'package:medi_track/core/enums/donation_type.dart';
 import 'package:provider/provider.dart';
 import 'package:medi_track/modules/update_donation_record_module/providers/donation_form_provider.dart';
 import 'package:medi_track/core/constants/app_colors.dart';

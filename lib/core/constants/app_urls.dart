@@ -34,4 +34,6 @@ class AppUrls {
   static const String upcomingAppointmentsUrl =
       '$userUrl/upcoming_appointments/';
   static const String addDonationRecordUrl = '$userUrl/add_donation_record/';
+  static const String donorHistoryUrl = '$userUrl/donor_history/';
+  static const String nextDonationDateUrl = '$userUrl/next-donation-date/';
 }

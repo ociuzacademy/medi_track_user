@@ -222,12 +222,12 @@ _$AddDonationRecordCopyWith<_AddDonationRecord> get copyWith => __$AddDonationRe
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AddDonationRecord&&const DeepCollectionEquality().equals(other.data, data));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AddDonationRecord&&(identical(other.data, data) || other.data == data));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(data));
+int get hashCode => Object.hash(runtimeType,data);
 
 @override
 String toString() {
@@ -259,9 +259,9 @@ class __$AddDonationRecordCopyWithImpl<$Res>
 
 /// Create a copy of AddDonationRecordEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? data = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? data = null,}) {
   return _then(_AddDonationRecord(
-freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+null == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
 as UpdateDonationRecordData,
   ));
 }

@@ -2,22 +2,25 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:medi_track/core/constants/app_colors.dart';
+import 'package:medi_track/core/enums/donation_type.dart';
 
 class BloodDonationHistoryItem extends StatelessWidget {
   const BloodDonationHistoryItem({
     super.key,
     required this.date,
-    required this.location,
+    required this.donationType,
     required this.isDark,
   });
 
-  final String date;
-  final String location;
+  final DateTime date;
+  final DonationType donationType;
   final bool isDark;
 
   @override
   Widget build(BuildContext context) {
+    final formattedDate = DateFormat('MMM d, yyyy').format(date);
     return Container(
       decoration: BoxDecoration(
         color: isDark ? const Color(0xFF1E293B) : Colors.white,
@@ -59,7 +62,7 @@ class BloodDonationHistoryItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    date,
+                    formattedDate,
                     style: GoogleFonts.lexend(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
@@ -67,7 +70,7 @@ class BloodDonationHistoryItem extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    location,
+                    donationType.displayName,
                     style: GoogleFonts.lexend(
                       fontSize: 14,
                       color: isDark

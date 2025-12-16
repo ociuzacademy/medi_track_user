@@ -1,17 +1,19 @@
 // widgets/donation_history_card.dart
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:medi_track/core/models/blood_donation_history_model.dart';
 import 'package:medi_track/modules/blood_donation_history_module/widgets/donation_detail.dart';
-import 'package:medi_track/modules/blood_donation_history_module/models/blood_donation_history.dart';
 import 'package:medi_track/core/constants/app_colors.dart';
 
 class DonationHistoryCard extends StatelessWidget {
-  final BloodDonationHistory donation;
+  final BloodDonationHistoryModel donation;
 
   const DonationHistoryCard({super.key, required this.donation});
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final DateFormat dateFormat = DateFormat('dd MMM yyyy');
 
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
@@ -33,41 +35,16 @@ class DonationHistoryCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Header with date and status
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  donation.formattedDate,
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: isDark
-                        ? AppColors.surfaceLight
-                        : const Color(0xFF1A1A1A),
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 4,
-                  ),
-                  decoration: BoxDecoration(
-                    color: isDark
-                        ? donation.status.darkBackgroundColor
-                        : donation.status.backgroundColor,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Text(
-                    donation.status.displayName,
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                      color: donation.status.color,
-                    ),
-                  ),
-                ),
-              ],
+            // Header with date
+            Text(
+              dateFormat.format(donation.donationDate),
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: isDark
+                    ? AppColors.surfaceLight
+                    : const Color(0xFF1A1A1A),
+              ),
             ),
             const SizedBox(height: 8),
             // Donation details
@@ -76,13 +53,13 @@ class DonationHistoryCard extends StatelessWidget {
               children: [
                 DonationDetail(
                   label: 'Donation Type:',
-                  value: donation.donationType,
+                  value: donation.donationType.displayName,
                   isDark: isDark,
                 ),
                 const SizedBox(height: 4),
                 DonationDetail(
                   label: 'Units Donated:',
-                  value: donation.unitsDonated,
+                  value: donation.units.toString(),
                   isDark: isDark,
                 ),
               ],

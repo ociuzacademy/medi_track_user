@@ -1,10 +1,10 @@
-import 'package:medi_track/modules/update_donation_record_module/enum/donation_type.dart';
+import 'package:medi_track/core/enums/donation_type.dart';
 
 class UpdateDonationRecordData {
   final DateTime date;
   final String location;
   final DonationType donationType;
-  final double units;
+  final int units;
 
   const UpdateDonationRecordData({
     required this.date,

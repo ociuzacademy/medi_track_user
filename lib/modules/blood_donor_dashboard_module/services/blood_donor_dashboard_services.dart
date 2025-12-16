@@ -7,14 +7,19 @@ import 'package:http/http.dart' as http;
 import 'package:medi_track/core/constants/app_constants.dart';
 
 import 'package:medi_track/core/constants/app_urls.dart';
-import 'package:medi_track/core/models/common_blood_request_model.dart';
+import 'package:medi_track/modules/blood_donor_dashboard_module/models/next_donation_date_model.dart';
 
-class BloodRequestServices {
-  static Future<List<CommonBloodRequestModel>> getAllBloodRequests() async {
+class BloodDonorDashboardServices {
+  static Future<NextDonationDateModel> getNextDonationDate({
+    required int donorId,
+  }) async {
     try {
+      final Map<String, dynamic> params = {'donor_id': donorId.toString()};
       final resp = await http
           .get(
-            Uri.parse(AppUrls.allBloodRequestsUrl),
+            Uri.parse(
+              AppUrls.nextDonationDateUrl,
+            ).replace(queryParameters: params),
             headers: <String, String>{
               'Content-Type': 'application/x-www-form-urlencoded',
             },
@@ -29,19 +34,19 @@ class BloodRequestServices {
           );
 
       if (resp.statusCode == 200) {
-        final List<dynamic> decoded = jsonDecode(resp.body);
-        final List<CommonBloodRequestModel> response = decoded
-            .map((x) => CommonBloodRequestModel.fromJson(x))
-            .toList();
+        final dynamic decoded = jsonDecode(resp.body);
+        final NextDonationDateModel response = NextDonationDateModel.fromJson(
+          decoded,
+        );
         return response;
       } else {
         final Map<String, dynamic> errorResponse = jsonDecode(resp.body);
         throw Exception(
-          'Failed to get all blood requests: ${errorResponse['message'] ?? 'Unknown error'}',
+          'Failed to get next donation date: ${errorResponse['message'] ?? 'Unknown error'}',
         );
       }
     } on TimeoutException catch (e) {
-      debugPrint('BloodRequestServices: Request timeout - $e');
+      debugPrint('BloodDonorDashboardServices: Request timeout - $e');
       throw Exception(
         'Request timeout. Please check your internet connection and try again.',
       );

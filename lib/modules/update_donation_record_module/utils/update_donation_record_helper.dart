@@ -54,6 +54,7 @@ class UpdateDonationRecordHelper {
     BuildContext context,
     UpdateDonationRecordData? data,
   ) {
+    FocusScope.of(context).unfocus();
     if (data == null) {
       CustomSnackbar.showError(context, message: 'Please fill all the fields');
       return;

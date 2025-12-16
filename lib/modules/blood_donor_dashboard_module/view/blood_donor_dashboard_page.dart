@@ -1,5 +1,6 @@
 // [file name]: blood_donor_dashboard_page.dart
 // [file content begin]
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -51,7 +52,7 @@ class _BloodDonorDashboardPageState extends State<BloodDonorDashboardPage> {
             margin: const EdgeInsets.only(right: 16),
             child: CircleAvatar(
               radius: 18,
-              backgroundImage: const NetworkImage(
+              backgroundImage: const CachedNetworkImageProvider(
                 'https://lh3.googleusercontent.com/aida-public/AB6AXuCofWcqgg7gKVOVBEhIF-zqj2E0bEqTYN4lcpHfXeBKdlvYS0qNYDHBw9y4J265ZIqe77wk49cStcqOy7OmwvTKsoyLEwu9Gdz6RtMBQtXDBqRVSlRsuUuK0bNOgzAbkQMFiML3vcdHRYLElwLqWdj49QIsPC_R4Wvrs0NRiAXBoMPGrsFMnTKk1-nTJV58jZJRZH2NAnSKvWQ5kwQalNQFxW_WNa_q_tvg6WaeLg35TvAzJybyXwkmiHa7SLOIqlZcLrZjwS7QOSvl',
               ),
               backgroundColor: Colors.grey[300],

@@ -1,9 +1,10 @@
 // pages/blood_donation_history_page.dart
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:medi_track/modules/blood_donation_history_module/helper/blood_donation_history_data.dart';
+import 'package:medi_track/core/cubit/donor_history/donor_history_cubit.dart';
+import 'package:medi_track/core/widgets/custom_error_widget.dart';
 
-import 'package:medi_track/modules/blood_donation_history_module/models/blood_donation_history.dart';
 import 'package:medi_track/modules/blood_donation_history_module/utils/blood_donation_history_helper.dart';
 import 'package:medi_track/modules/blood_donation_history_module/widgets/donation_history_card.dart';
 import 'package:medi_track/modules/blood_donation_history_module/widgets/no_donations_empty_state.dart';
@@ -22,13 +23,14 @@ class BloodDonationHistoryPage extends StatefulWidget {
 
 class _BloodDonationHistoryPageState extends State<BloodDonationHistoryPage> {
   late final BloodDonationHistoryHelper _bloodDonationHistoryHelper;
-  final List<BloodDonationHistory> _donations =
-      BloodDonationHistoryData.donations;
 
   @override
   void initState() {
     super.initState();
-    _bloodDonationHistoryHelper = const BloodDonationHistoryHelper();
+    _bloodDonationHistoryHelper = BloodDonationHistoryHelper(context: context);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _bloodDonationHistoryHelper.bloodDonationHistoryInitial();
+    });
   }
 
   @override
@@ -75,27 +77,43 @@ class _BloodDonationHistoryPageState extends State<BloodDonationHistoryPage> {
             ),
           ),
           // Donations list
-          Expanded(
-            child: _donations.isEmpty
-                ? const NoDonationsEmptyState()
-                : ListView(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: mediaQuery.size.width * 0.04,
-                      vertical: 16,
+          BlocBuilder<DonorHistoryCubit, DonorHistoryState>(
+            builder: (context, state) {
+              return switch (state) {
+                DonorHistoryInitial() => const SizedBox.shrink(),
+                DonorHistoryLoading() => const Center(
+                  child: CircularProgressIndicator(),
+                ),
+                DonorHistoryEmpty() => const NoDonationsEmptyState(),
+                DonorHistorySuccess(:final bloodDonationHistoryList) =>
+                  Expanded(
+                    child: ListView(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: mediaQuery.size.width * 0.04,
+                        vertical: 16,
+                      ),
+                      children: bloodDonationHistoryList
+                          .map(
+                            (donation) =>
+                                DonationHistoryCard(donation: donation),
+                          )
+                          .toList(),
                     ),
-                    children: _donations
-                        .map(
-                          (donation) => DonationHistoryCard(donation: donation),
-                        )
-                        .toList(),
                   ),
+                DonorHistoryError(:final message) => CustomErrorWidget(
+                  errorMessage: message,
+                  isDark: isDark,
+                  onRetry:
+                      _bloodDonationHistoryHelper.bloodDonationHistoryInitial,
+                ),
+              };
+            },
           ),
         ],
       ),
       // Floating Action Button
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () =>
-            _bloodDonationHistoryHelper.addExternalDonation(context),
+        onPressed: _bloodDonationHistoryHelper.addExternalDonation,
         backgroundColor: const Color(0xFF1565C0),
         foregroundColor: Colors.white,
         elevation: 4,

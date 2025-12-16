@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medi_track/core/export/bloc_export.dart';
 import 'package:medi_track/modules/update_donation_record_module/view/update_donation_record_page.dart';
 
 class BloodDonationHistoryHelper {
-  const BloodDonationHistoryHelper();
-  void addExternalDonation(BuildContext context) {
+  final BuildContext context;
+  const BloodDonationHistoryHelper({required this.context});
+
+  void bloodDonationHistoryInitial() {
+    final DonorHistoryCubit donorHistoryCubit = context
+        .read<DonorHistoryCubit>();
+    donorHistoryCubit.getDonorHistory();
+  }
+
+  void addExternalDonation() {
     // Show dialog or navigate to add donation page
     showDialog(
       context: context,

@@ -19,8 +19,10 @@ export 'package:medi_track/modules/feedback_list_module/cubit/feedback_list_cubi
 export 'package:medi_track/modules/feedback_details_module/cubit/feedback_details_cubit.dart';
 export 'package:medi_track/modules/blood_donor_register_module/bloc/register_donor_bloc.dart';
 export 'package:medi_track/core/cubit/is_donor/is_donor_cubit.dart';
-export 'package:medi_track/modules/blood_requests_module/cubit/all_blood_requests_cubit.dart';
-export 'package:medi_track/modules/blood_requests_notifications_module/cubit/user_blood_requests_cubit.dart';
+export 'package:medi_track/core/cubit/all_blood_requests/all_blood_requests_cubit.dart';
+export 'package:medi_track/core/cubit/user_blood_requests/user_blood_requests_cubit.dart';
 export 'package:medi_track/modules/blood_requests_notifications_module/bloc/accept_blood_request_bloc.dart';
 export 'package:medi_track/modules/home_module/cubit/upcoming_appointments_cubit.dart';
 export 'package:medi_track/modules/update_donation_record_module/bloc/add_donation_record_bloc.dart';
+export 'package:medi_track/core/cubit/donor_history/donor_history_cubit.dart';
+export 'package:medi_track/modules/blood_donor_dashboard_module/cubit/next_donation_date_cubit.dart';
