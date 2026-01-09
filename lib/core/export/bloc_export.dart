@@ -12,7 +12,7 @@ export 'package:medi_track/core/bloc/cancel_appointment/cancel_appointment_bloc.
 export 'package:medi_track/modules/appointment_details_module/cubit/token_status/token_status_cubit.dart';
 export 'package:medi_track/modules/appointment_details_module/cubit/appointment_prescription/appointment_prescription_cubit.dart';
 export 'package:medi_track/modules/appointment_feedback_module/bloc/submit_feedback_bloc.dart';
-export 'package:medi_track/modules/appointment_details_module/bloc/reschedule_task_bloc.dart';
+export 'package:medi_track/modules/appointment_details_module/bloc/reschedule_task/reschedule_task_bloc.dart';
 export 'package:medi_track/modules/prescriptions_module/cubit/prescription_list_cubit.dart';
 export 'package:medi_track/modules/prescription_details_module/cubit/prescription_details_cubit.dart';
 export 'package:medi_track/modules/feedback_list_module/cubit/feedback_list_cubit.dart';
@@ -26,3 +26,5 @@ export 'package:medi_track/modules/home_module/cubit/upcoming_appointments_cubit
 export 'package:medi_track/modules/update_donation_record_module/bloc/add_donation_record_bloc.dart';
 export 'package:medi_track/core/cubit/donor_history/donor_history_cubit.dart';
 export 'package:medi_track/modules/blood_donor_dashboard_module/cubit/next_donation_date_cubit.dart';
+export 'package:medi_track/modules/prescription_details_module/bloc/send_prescription_bloc.dart';
+export 'package:medi_track/modules/appointment_details_module/bloc/appointment_pdf/appointment_pdf_bloc.dart';

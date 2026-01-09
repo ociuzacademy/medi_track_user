@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/core/constants/app_colors.dart';
 import 'package:medi_track/core/export/bloc_export.dart';
 import 'package:medi_track/core/export/storage_export.dart';
+import 'package:medi_track/core/services/prescription_pdf_service.dart';
 import 'package:medi_track/modules/splash_screen_module/view/splash_screen.dart';
 
 void main() async {
@@ -26,61 +27,75 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => AuthBloc()),
-        BlocProvider(create: (context) => UserRegisterBloc()),
-        BlocProvider(create: (context) => DepartmentsCubit()),
-        BlocProvider(create: (context) => AvailableDoctorsCubit()),
-        BlocProvider(create: (context) => ExpectedTokenCubit()),
-        BlocProvider(create: (context) => UserProfileCubit()),
-        BlocProvider(create: (context) => AppointmentBookingBloc()),
-        BlocProvider(create: (context) => AppointmentDetailsCubit()),
-        BlocProvider(create: (context) => PaymentBloc()),
-        BlocProvider(create: (context) => AppointmentListCubit()),
-        BlocProvider(create: (context) => CancelAppointmentBloc()),
-        BlocProvider(create: (context) => TokenStatusCubit()),
-        BlocProvider(create: (context) => AppointmentPrescriptionCubit()),
-        BlocProvider(create: (context) => SubmitFeedbackBloc()),
-        BlocProvider(create: (context) => RescheduleTaskBloc()),
-        BlocProvider(create: (context) => PrescriptionListCubit()),
-        BlocProvider(create: (context) => PrescriptionDetailsCubit()),
-        BlocProvider(create: (context) => FeedbackListCubit()),
-        BlocProvider(create: (context) => FeedbackDetailsCubit()),
-        BlocProvider(create: (context) => RegisterDonorBloc()),
-        BlocProvider(create: (context) => IsDonorCubit()),
-        BlocProvider(create: (context) => AllBloodRequestsCubit()),
-        BlocProvider(create: (context) => UserBloodRequestsCubit()),
-        BlocProvider(create: (context) => AcceptBloodRequestBloc()),
-        BlocProvider(create: (context) => UpcomingAppointmentsCubit()),
-        BlocProvider(create: (context) => AddDonationRecordBloc()),
-        BlocProvider(create: (context) => DonorHistoryCubit()),
-        BlocProvider(create: (context) => NextDonationDateCubit()),
-      ],
-      child: MaterialApp(
-        title: 'MediTrack',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: AppColors.primaryAlt,
-            brightness: Brightness.light,
+    final prescriptionPdfService = PrescriptionPdfService();
+    return MultiRepositoryProvider(
+      providers: [RepositoryProvider.value(value: prescriptionPdfService)],
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => AuthBloc()),
+          BlocProvider(create: (context) => UserRegisterBloc()),
+          BlocProvider(create: (context) => DepartmentsCubit()),
+          BlocProvider(create: (context) => AvailableDoctorsCubit()),
+          BlocProvider(create: (context) => ExpectedTokenCubit()),
+          BlocProvider(create: (context) => UserProfileCubit()),
+          BlocProvider(create: (context) => AppointmentBookingBloc()),
+          BlocProvider(create: (context) => AppointmentDetailsCubit()),
+          BlocProvider(create: (context) => PaymentBloc()),
+          BlocProvider(create: (context) => AppointmentListCubit()),
+          BlocProvider(create: (context) => CancelAppointmentBloc()),
+          BlocProvider(create: (context) => TokenStatusCubit()),
+          BlocProvider(create: (context) => AppointmentPrescriptionCubit()),
+          BlocProvider(create: (context) => SubmitFeedbackBloc()),
+          BlocProvider(create: (context) => RescheduleTaskBloc()),
+          BlocProvider(create: (context) => PrescriptionListCubit()),
+          BlocProvider(create: (context) => PrescriptionDetailsCubit()),
+          BlocProvider(create: (context) => FeedbackListCubit()),
+          BlocProvider(create: (context) => FeedbackDetailsCubit()),
+          BlocProvider(create: (context) => RegisterDonorBloc()),
+          BlocProvider(create: (context) => IsDonorCubit()),
+          BlocProvider(create: (context) => AllBloodRequestsCubit()),
+          BlocProvider(create: (context) => UserBloodRequestsCubit()),
+          BlocProvider(create: (context) => AcceptBloodRequestBloc()),
+          BlocProvider(create: (context) => UpcomingAppointmentsCubit()),
+          BlocProvider(create: (context) => AddDonationRecordBloc()),
+          BlocProvider(create: (context) => DonorHistoryCubit()),
+          BlocProvider(create: (context) => NextDonationDateCubit()),
+          BlocProvider(
+            create: (context) => SendPrescriptionBloc(
+              prescriptionPdfService: prescriptionPdfService,
+            ),
           ),
-          // Using Google Fonts for default text theme
-          textTheme: GoogleFonts.interTextTheme(),
-        ),
-        darkTheme: ThemeData(
-          useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: AppColors.primaryAlt,
-            brightness: Brightness.dark,
+          BlocProvider(
+            create: (context) => AppointmentPdfBloc(
+              prescriptionPdfService: prescriptionPdfService,
+            ),
           ),
-          textTheme: GoogleFonts.interTextTheme(ThemeData.dark().textTheme),
-        ),
-        themeMode: ThemeMode.system,
-        home: SplashScreen(
-          isFirstLaunch: isFirstLaunch,
-          isLoggedIn: isLoggedIn,
+        ],
+        child: MaterialApp(
+          title: 'MediTrack',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            useMaterial3: true,
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: AppColors.primaryAlt,
+              brightness: Brightness.light,
+            ),
+            // Using Google Fonts for default text theme
+            textTheme: GoogleFonts.interTextTheme(),
+          ),
+          darkTheme: ThemeData(
+            useMaterial3: true,
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: AppColors.primaryAlt,
+              brightness: Brightness.dark,
+            ),
+            textTheme: GoogleFonts.interTextTheme(ThemeData.dark().textTheme),
+          ),
+          themeMode: ThemeMode.system,
+          home: SplashScreen(
+            isFirstLaunch: isFirstLaunch,
+            isLoggedIn: isLoggedIn,
+          ),
         ),
       ),
     );
