@@ -16,8 +16,8 @@ class NextDonationDateModel {
   final String donor;
   final String bloodGroup;
   final int totalDonations;
-  final DateTime lastDonationDate;
-  final DonationType lastDonationType;
+  final DateTime? lastDonationDate;
+  final DonationType? lastDonationType;
   final DateTime nextDonationDate;
   final bool eligible;
 
@@ -25,8 +25,8 @@ class NextDonationDateModel {
     required this.donor,
     required this.bloodGroup,
     required this.totalDonations,
-    required this.lastDonationDate,
-    required this.lastDonationType,
+    this.lastDonationDate,
+    this.lastDonationType,
     required this.nextDonationDate,
     required this.eligible,
   });
@@ -54,8 +54,12 @@ class NextDonationDateModel {
         donor: json['donor'],
         bloodGroup: json['blood_group'],
         totalDonations: json['total_donations'],
-        lastDonationDate: DateTime.parse(json['last_donation_date']),
-        lastDonationType: DonationType.fromJson(json['last_donation_type']),
+        lastDonationDate: json['last_donation_date'] != null
+            ? DateTime.parse(json['last_donation_date'])
+            : null,
+        lastDonationType: json['last_donation_type'] != null
+            ? DonationType.fromJson(json['last_donation_type'])
+            : null,
         nextDonationDate: DateTime.parse(json['next_donation_date']),
         eligible: json['eligible'],
       );
@@ -64,9 +68,10 @@ class NextDonationDateModel {
     'donor': donor,
     'blood_group': bloodGroup,
     'total_donations': totalDonations,
-    'last_donation_date':
-        "${lastDonationDate.year.toString().padLeft(4, '0')}-${lastDonationDate.month.toString().padLeft(2, '0')}-${lastDonationDate.day.toString().padLeft(2, '0')}",
-    'last_donation_type': lastDonationType.displayName,
+    'last_donation_date': lastDonationDate != null
+        ? "${lastDonationDate!.year.toString().padLeft(4, '0')}-${lastDonationDate!.month.toString().padLeft(2, '0')}-${lastDonationDate!.day.toString().padLeft(2, '0')}"
+        : null,
+    'last_donation_type': lastDonationType?.displayName,
     'next_donation_date':
         "${nextDonationDate.year.toString().padLeft(4, '0')}-${nextDonationDate.month.toString().padLeft(2, '0')}-${nextDonationDate.day.toString().padLeft(2, '0')}",
     'eligible': eligible,

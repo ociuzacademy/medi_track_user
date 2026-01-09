@@ -89,9 +89,10 @@ class _BloodDonorRegisterPageBodyState
                       const SizedBox(height: 16),
 
                       // Blood Information Card
-                      BloodInformationSection(
-                        bloodGroup: donorFormProvider.selectedBloodGroup!,
-                      ),
+                      if (donorFormProvider.selectedBloodGroup != null)
+                        BloodInformationSection(
+                          bloodGroup: donorFormProvider.selectedBloodGroup!,
+                        ),
 
                       const SizedBox(height: 16),
 

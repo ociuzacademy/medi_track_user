@@ -156,18 +156,19 @@ class _DonorProfileCardState extends State<DonorProfileCard> {
                                 ),
                               ),
                               const SizedBox(height: 4),
-                              Text(
-                                dateFormat.format(
-                                  nextDonationDate.lastDonationDate,
+                              if (nextDonationDate.lastDonationDate != null)
+                                Text(
+                                  dateFormat.format(
+                                    nextDonationDate.lastDonationDate!,
+                                  ),
+                                  style: GoogleFonts.lexend(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: isDark
+                                        ? AppColors.textPrimaryDark
+                                        : AppColors.textPrimaryLight,
+                                  ),
                                 ),
-                                style: GoogleFonts.lexend(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: isDark
-                                      ? AppColors.textPrimaryDark
-                                      : AppColors.textPrimaryLight,
-                                ),
-                              ),
                             ],
                           ),
                         ),
@@ -255,12 +256,22 @@ class _DonorProfileCardState extends State<DonorProfileCard> {
                       const SizedBox(height: 8),
                       Builder(
                         builder: (context) {
-                          final totalDays = nextDonationDate.nextDonationDate
-                              .difference(nextDonationDate.lastDonationDate)
-                              .inDays;
-                          final daysCompleted = DateTime.now()
-                              .difference(nextDonationDate.lastDonationDate)
-                              .inDays;
+                          final totalDays =
+                              nextDonationDate.lastDonationDate != null
+                              ? nextDonationDate.nextDonationDate
+                                    .difference(
+                                      nextDonationDate.lastDonationDate!,
+                                    )
+                                    .inDays
+                              : 0;
+                          final daysCompleted =
+                              nextDonationDate.lastDonationDate != null
+                              ? DateTime.now()
+                                    .difference(
+                                      nextDonationDate.lastDonationDate!,
+                                    )
+                                    .inDays
+                              : 0;
 
                           double progress = 0.0;
                           if (totalDays > 0) {
