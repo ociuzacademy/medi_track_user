@@ -173,10 +173,13 @@ class _RescheduledAppointmentDetailsPageState
                                   appointmentDetails.appointment.date,
                               newAppointmentDate: appointmentDetails
                                   .appointment
-                                  .rescheduledDate!,
+                                  .rescheduledDate,
                               appointmentToken:
                                   appointmentDetails.appointment.tokenNumber,
                               symptoms: appointmentDetails.appointment.symptoms,
+                              cancellationReason: appointmentDetails
+                                  .appointment
+                                  .cancellationReason,
                             ),
                           ],
                         ),

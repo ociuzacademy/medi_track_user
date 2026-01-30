@@ -7,15 +7,17 @@ import 'package:medi_track/modules/appointment_details_module/widgets/status_row
 
 class AppointmentDetails extends StatelessWidget {
   final DateTime oldAppointmentDate;
-  final DateTime newAppointmentDate;
+  final DateTime? newAppointmentDate;
   final int appointmentToken;
   final String symptoms;
+  final String? cancellationReason;
   const AppointmentDetails({
     super.key,
     required this.oldAppointmentDate,
     required this.newAppointmentDate,
     required this.appointmentToken,
     required this.symptoms,
+    required this.cancellationReason,
   });
 
   @override
@@ -46,7 +48,7 @@ class AppointmentDetails extends StatelessWidget {
           ),
           RescheduledAppointmentDetailRow(
             label: 'New Appointment',
-            value: dateFormat.format(newAppointmentDate),
+            value: dateFormat.format(newAppointmentDate ?? oldAppointmentDate),
             isHighlighted: true,
           ),
           RescheduledAppointmentDetailRow(
@@ -57,6 +59,10 @@ class AppointmentDetails extends StatelessWidget {
           RescheduledAppointmentDetailRow(
             label: 'Symptoms Provided',
             value: symptoms,
+          ),
+          RescheduledAppointmentDetailRow(
+            label: 'Cancellation Reason',
+            value: cancellationReason ?? 'Cancellation Reason Not Provided',
           ),
           PaymentRow(context: context),
         ],
