@@ -7,6 +7,7 @@ sealed class FeedbackListState with _$FeedbackListState {
   const factory FeedbackListState.success({
     required UserFeedbackListModel userFeedbackList,
   }) = FeedbackListSuccess;
+  const factory FeedbackListState.empty() = FeedbackListEmpty;
   const factory FeedbackListState.error({required String message}) =
       FeedbackListError;
       const factory FeedbackListState.empty() = FeedbackListEmpty;

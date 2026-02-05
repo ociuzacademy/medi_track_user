@@ -1,7 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:medi_track/core/export/storage_export.dart';
+<<<<<<< Updated upstream
 import 'package:medi_track/modules/feedback_list_module/exception/feedback_list_empty_exception.dart';
+=======
+import 'package:medi_track/modules/feedback_list_module/exceptions/empty_feedback_list_exception.dart';
+>>>>>>> Stashed changes
 import 'package:medi_track/modules/feedback_list_module/models/user_feedback_list_model.dart';
 import 'package:medi_track/modules/feedback_list_module/services/feedback_list_services.dart';
 
@@ -20,7 +24,11 @@ class FeedbackListCubit extends Cubit<FeedbackListState> {
       );
       emit(FeedbackListState.success(userFeedbackList: response));
     } catch (e) {
+<<<<<<< Updated upstream
       if (e is FeedbackListEmptyException) {
+=======
+      if (e is EmptyFeedbackListException) {
+>>>>>>> Stashed changes
         emit(const FeedbackListState.empty());
       } else {
         emit(FeedbackListState.error(message: e.toString()));

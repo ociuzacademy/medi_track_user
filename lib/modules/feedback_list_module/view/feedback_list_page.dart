@@ -67,6 +67,7 @@ class _FeedbackListPageState extends State<FeedbackListPage> {
                 onRetry: _feedbackListHelper.feedbakListInitial,
               );
             case FeedbackListEmpty():
+<<<<<<< Updated upstream
               return Center(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -102,13 +103,48 @@ class _FeedbackListPageState extends State<FeedbackListPage> {
                           color: isDark
                               ? AppColors.textTertiaryDark
                               : AppColors.textTertiaryLight,
+=======
+              return Card(
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'No feedback available',
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.lexend(
+                          fontSize: Theme.of(
+                            context,
+                          ).textTheme.titleLarge?.fontSize,
+                          fontWeight: Theme.of(
+                            context,
+                          ).textTheme.titleLarge?.fontWeight,
+                          color: isDark ? Colors.white : const Color(0xFF212121),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        'Please submit feedbacks after completing an appointment',
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.lexend(
+                          fontSize: Theme.of(
+                            context,
+                          ).textTheme.titleMedium?.fontSize,
+                          fontWeight: Theme.of(
+                            context,
+                          ).textTheme.titleMedium?.fontWeight,
+                          color: isDark ? Colors.white : const Color(0xFF212121),
+>>>>>>> Stashed changes
                         ),
                       ),
                     ],
                   ),
                 ),
               );
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
             case FeedbackListSuccess(userFeedbackList: final userFeedbackList):
               return SingleChildScrollView(
                 padding: const EdgeInsets.all(16),

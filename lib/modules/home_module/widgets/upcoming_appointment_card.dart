@@ -25,7 +25,7 @@ class UpcomingAppointmentCard extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.all(screenSize.width * 0.04),
+      padding: EdgeInsets.all(screenSize.width * 0.03),
       decoration: BoxDecoration(
         color: AppColors.card(context),
         borderRadius: BorderRadius.circular(screenSize.width * 0.03),

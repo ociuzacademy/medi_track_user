@@ -55,15 +55,25 @@ extension FeedbackListStatePatterns on FeedbackListState {
 /// }
 /// ```
 
+<<<<<<< Updated upstream
 @optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( FeedbackListInitial value)?  initial,TResult Function( FeedbackListLoading value)?  loading,TResult Function( FeedbackListSuccess value)?  success,TResult Function( FeedbackListError value)?  error,TResult Function( FeedbackListEmpty value)?  empty,required TResult orElse(),}){
+=======
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( FeedbackListInitial value)?  initial,TResult Function( FeedbackListLoading value)?  loading,TResult Function( FeedbackListSuccess value)?  success,TResult Function( FeedbackListEmpty value)?  empty,TResult Function( FeedbackListError value)?  error,required TResult orElse(),}){
+>>>>>>> Stashed changes
 final _that = this;
 switch (_that) {
 case FeedbackListInitial() when initial != null:
 return initial(_that);case FeedbackListLoading() when loading != null:
 return loading(_that);case FeedbackListSuccess() when success != null:
+<<<<<<< Updated upstream
 return success(_that);case FeedbackListError() when error != null:
 return error(_that);case FeedbackListEmpty() when empty != null:
 return empty(_that);case _:
+=======
+return success(_that);case FeedbackListEmpty() when empty != null:
+return empty(_that);case FeedbackListError() when error != null:
+return error(_that);case _:
+>>>>>>> Stashed changes
   return orElse();
 
 }
@@ -81,15 +91,25 @@ return empty(_that);case _:
 /// }
 /// ```
 
+<<<<<<< Updated upstream
 @optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( FeedbackListInitial value)  initial,required TResult Function( FeedbackListLoading value)  loading,required TResult Function( FeedbackListSuccess value)  success,required TResult Function( FeedbackListError value)  error,required TResult Function( FeedbackListEmpty value)  empty,}){
+=======
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( FeedbackListInitial value)  initial,required TResult Function( FeedbackListLoading value)  loading,required TResult Function( FeedbackListSuccess value)  success,required TResult Function( FeedbackListEmpty value)  empty,required TResult Function( FeedbackListError value)  error,}){
+>>>>>>> Stashed changes
 final _that = this;
 switch (_that) {
 case FeedbackListInitial():
 return initial(_that);case FeedbackListLoading():
 return loading(_that);case FeedbackListSuccess():
+<<<<<<< Updated upstream
 return success(_that);case FeedbackListError():
 return error(_that);case FeedbackListEmpty():
 return empty(_that);}
+=======
+return success(_that);case FeedbackListEmpty():
+return empty(_that);case FeedbackListError():
+return error(_that);}
+>>>>>>> Stashed changes
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -103,15 +123,25 @@ return empty(_that);}
 /// }
 /// ```
 
+<<<<<<< Updated upstream
 @optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( FeedbackListInitial value)?  initial,TResult? Function( FeedbackListLoading value)?  loading,TResult? Function( FeedbackListSuccess value)?  success,TResult? Function( FeedbackListError value)?  error,TResult? Function( FeedbackListEmpty value)?  empty,}){
+=======
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( FeedbackListInitial value)?  initial,TResult? Function( FeedbackListLoading value)?  loading,TResult? Function( FeedbackListSuccess value)?  success,TResult? Function( FeedbackListEmpty value)?  empty,TResult? Function( FeedbackListError value)?  error,}){
+>>>>>>> Stashed changes
 final _that = this;
 switch (_that) {
 case FeedbackListInitial() when initial != null:
 return initial(_that);case FeedbackListLoading() when loading != null:
 return loading(_that);case FeedbackListSuccess() when success != null:
+<<<<<<< Updated upstream
 return success(_that);case FeedbackListError() when error != null:
 return error(_that);case FeedbackListEmpty() when empty != null:
 return empty(_that);case _:
+=======
+return success(_that);case FeedbackListEmpty() when empty != null:
+return empty(_that);case FeedbackListError() when error != null:
+return error(_that);case _:
+>>>>>>> Stashed changes
   return null;
 
 }
@@ -128,14 +158,24 @@ return empty(_that);case _:
 /// }
 /// ```
 
+<<<<<<< Updated upstream
 @optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( UserFeedbackListModel userFeedbackList)?  success,TResult Function( String message)?  error,TResult Function()?  empty,required TResult orElse(),}) {final _that = this;
+=======
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( UserFeedbackListModel userFeedbackList)?  success,TResult Function()?  empty,TResult Function( String message)?  error,required TResult orElse(),}) {final _that = this;
+>>>>>>> Stashed changes
 switch (_that) {
 case FeedbackListInitial() when initial != null:
 return initial();case FeedbackListLoading() when loading != null:
 return loading();case FeedbackListSuccess() when success != null:
+<<<<<<< Updated upstream
 return success(_that.userFeedbackList);case FeedbackListError() when error != null:
 return error(_that.message);case FeedbackListEmpty() when empty != null:
 return empty();case _:
+=======
+return success(_that.userFeedbackList);case FeedbackListEmpty() when empty != null:
+return empty();case FeedbackListError() when error != null:
+return error(_that.message);case _:
+>>>>>>> Stashed changes
   return orElse();
 
 }
@@ -153,14 +193,24 @@ return empty();case _:
 /// }
 /// ```
 
+<<<<<<< Updated upstream
 @optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( UserFeedbackListModel userFeedbackList)  success,required TResult Function( String message)  error,required TResult Function()  empty,}) {final _that = this;
+=======
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( UserFeedbackListModel userFeedbackList)  success,required TResult Function()  empty,required TResult Function( String message)  error,}) {final _that = this;
+>>>>>>> Stashed changes
 switch (_that) {
 case FeedbackListInitial():
 return initial();case FeedbackListLoading():
 return loading();case FeedbackListSuccess():
+<<<<<<< Updated upstream
 return success(_that.userFeedbackList);case FeedbackListError():
 return error(_that.message);case FeedbackListEmpty():
 return empty();}
+=======
+return success(_that.userFeedbackList);case FeedbackListEmpty():
+return empty();case FeedbackListError():
+return error(_that.message);}
+>>>>>>> Stashed changes
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -174,14 +224,24 @@ return empty();}
 /// }
 /// ```
 
+<<<<<<< Updated upstream
 @optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( UserFeedbackListModel userFeedbackList)?  success,TResult? Function( String message)?  error,TResult? Function()?  empty,}) {final _that = this;
+=======
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( UserFeedbackListModel userFeedbackList)?  success,TResult? Function()?  empty,TResult? Function( String message)?  error,}) {final _that = this;
+>>>>>>> Stashed changes
 switch (_that) {
 case FeedbackListInitial() when initial != null:
 return initial();case FeedbackListLoading() when loading != null:
 return loading();case FeedbackListSuccess() when success != null:
+<<<<<<< Updated upstream
 return success(_that.userFeedbackList);case FeedbackListError() when error != null:
 return error(_that.message);case FeedbackListEmpty() when empty != null:
 return empty();case _:
+=======
+return success(_that.userFeedbackList);case FeedbackListEmpty() when empty != null:
+return empty();case FeedbackListError() when error != null:
+return error(_that.message);case _:
+>>>>>>> Stashed changes
   return null;
 
 }
@@ -318,6 +378,38 @@ as UserFeedbackListModel,
 
 
 }
+
+/// @nodoc
+
+
+class FeedbackListEmpty implements FeedbackListState {
+  const FeedbackListEmpty();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FeedbackListEmpty);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'FeedbackListState.empty()';
+}
+
+
+}
+
+
+
 
 /// @nodoc
 

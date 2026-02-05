@@ -46,6 +46,7 @@ class _BloodDonorRegisterPageBodyState
         return BlocConsumer<UserProfileCubit, UserProfileState>(
           listener: (context, state) {
             if (state is UserProfileSuccess) {
+              debugPrint(state.userProfile.toString());
               donorFormProvider.setSelectedBloodGroup(
                 state.userProfile.bloodGroup,
               );
@@ -89,10 +90,16 @@ class _BloodDonorRegisterPageBodyState
                       const SizedBox(height: 16),
 
                       // Blood Information Card
+<<<<<<< Updated upstream
                       if (donorFormProvider.selectedBloodGroup != null)
                         BloodInformationSection(
                           bloodGroup: donorFormProvider.selectedBloodGroup!,
                         ),
+=======
+                      if(donorFormProvider.selectedBloodGroup != null) BloodInformationSection(
+                        bloodGroup: donorFormProvider.selectedBloodGroup!,
+                      ),
+>>>>>>> Stashed changes
 
                       const SizedBox(height: 16),
 
