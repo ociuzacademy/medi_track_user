@@ -92,11 +92,14 @@ class _BloodDonorRegisterPageBodyState
                       // Blood Information Card
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                       if (donorFormProvider.selectedBloodGroup != null)
                         BloodInformationSection(
                           bloodGroup: donorFormProvider.selectedBloodGroup!,
                         ),
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
                       if(donorFormProvider.selectedBloodGroup != null) BloodInformationSection(

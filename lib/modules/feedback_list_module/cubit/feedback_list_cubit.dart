@@ -3,7 +3,11 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:medi_track/core/export/storage_export.dart';
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import 'package:medi_track/modules/feedback_list_module/exception/feedback_list_empty_exception.dart';
+=======
+import 'package:medi_track/modules/feedback_list_module/exceptions/empty_feedback_list_exception.dart';
+>>>>>>> Stashed changes
 =======
 import 'package:medi_track/modules/feedback_list_module/exceptions/empty_feedback_list_exception.dart';
 >>>>>>> Stashed changes
@@ -30,7 +34,11 @@ class FeedbackListCubit extends Cubit<FeedbackListState> {
     } catch (e) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       if (e is FeedbackListEmptyException) {
+=======
+      if (e is EmptyFeedbackListException) {
+>>>>>>> Stashed changes
 =======
       if (e is EmptyFeedbackListException) {
 >>>>>>> Stashed changes
