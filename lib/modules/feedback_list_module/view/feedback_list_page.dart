@@ -68,6 +68,7 @@ class _FeedbackListPageState extends State<FeedbackListPage> {
               );
             case FeedbackListEmpty():
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
               return Center(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -104,6 +105,8 @@ class _FeedbackListPageState extends State<FeedbackListPage> {
                               ? AppColors.textTertiaryDark
                               : AppColors.textTertiaryLight,
 =======
+=======
+>>>>>>> Stashed changes
               return Card(
                 child: Center(
                   child: Column(
@@ -134,6 +137,9 @@ class _FeedbackListPageState extends State<FeedbackListPage> {
                             context,
                           ).textTheme.titleMedium?.fontWeight,
                           color: isDark ? Colors.white : const Color(0xFF212121),
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                         ),
                       ),
@@ -142,7 +148,10 @@ class _FeedbackListPageState extends State<FeedbackListPage> {
                 ),
               );
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
             case FeedbackListSuccess(userFeedbackList: final userFeedbackList):
