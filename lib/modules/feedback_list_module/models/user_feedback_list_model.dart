@@ -55,7 +55,7 @@ class Feedback {
   final int starRating;
   final double doctorInteractionRating;
   final double hospitalServiceRating;
-  final String comments;
+  final String? comments;
   final DateTime submittedOn;
 
   const Feedback({
@@ -66,7 +66,7 @@ class Feedback {
     required this.starRating,
     required this.doctorInteractionRating,
     required this.hospitalServiceRating,
-    required this.comments,
+     this.comments,
     required this.submittedOn,
   });
 

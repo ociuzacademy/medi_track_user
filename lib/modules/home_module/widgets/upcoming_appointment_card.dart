@@ -98,7 +98,7 @@ class UpcomingAppointmentCard extends StatelessWidget {
             },
             child: Container(
               width: screenSize.width * 0.1,
-              height: screenSize.width * 0.1,
+              height: screenSize.height * 0.1,
               decoration: BoxDecoration(
                 color: AppColors.primary.withValues(alpha: 0.1),
                 shape: BoxShape.circle,

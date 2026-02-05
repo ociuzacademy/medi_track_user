@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:medi_track/core/constants/app_constants.dart';
 
 import 'package:medi_track/core/constants/app_urls.dart';
+import 'package:medi_track/modules/feedback_list_module/exception/feedback_list_empty_exception.dart';
 import 'package:medi_track/modules/feedback_list_module/models/user_feedback_list_model.dart';
 
 class FeedbackListServices {
@@ -38,16 +39,22 @@ class FeedbackListServices {
         );
         return response;
       } else {
-        final Map<String, dynamic> errorResponse = jsonDecode(resp.body);
-        throw Exception(
-          'Failed to get user feedback list: ${errorResponse['message'] ?? 'Unknown error'}',
-        );
+        if (resp.statusCode == 404) {
+          throw FeedbackListEmptyException();
+        } else {
+          final Map<String, dynamic> errorResponse = jsonDecode(resp.body);
+          throw Exception(
+            'Failed to get user feedback list: ${errorResponse['message'] ?? 'Unknown error'}',
+          );
+        }
       }
     } on TimeoutException catch (e) {
       debugPrint('FeedbackListServices: Request timeout - $e');
       throw Exception(
         'Request timeout. Please check your internet connection and try again.',
       );
+    } on FeedbackListEmptyException {
+      rethrow;
     } on SocketException {
       throw Exception('No Internet connection');
     } on HttpException {

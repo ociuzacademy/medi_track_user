@@ -92,8 +92,8 @@ class FeedbackCard extends StatelessWidget {
             const SizedBox(height: 12),
 
             // Review Text
-            Text(
-              feedback.comments,
+            if(feedback.comments != null) Text(
+              feedback.comments??'',
               style: GoogleFonts.lexend(
                 fontSize: 16,
                 fontWeight: FontWeight.normal,

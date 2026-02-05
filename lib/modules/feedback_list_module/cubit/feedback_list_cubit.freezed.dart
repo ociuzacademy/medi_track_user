@@ -55,14 +55,15 @@ extension FeedbackListStatePatterns on FeedbackListState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( FeedbackListInitial value)?  initial,TResult Function( FeedbackListLoading value)?  loading,TResult Function( FeedbackListSuccess value)?  success,TResult Function( FeedbackListError value)?  error,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( FeedbackListInitial value)?  initial,TResult Function( FeedbackListLoading value)?  loading,TResult Function( FeedbackListSuccess value)?  success,TResult Function( FeedbackListError value)?  error,TResult Function( FeedbackListEmpty value)?  empty,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case FeedbackListInitial() when initial != null:
 return initial(_that);case FeedbackListLoading() when loading != null:
 return loading(_that);case FeedbackListSuccess() when success != null:
 return success(_that);case FeedbackListError() when error != null:
-return error(_that);case _:
+return error(_that);case FeedbackListEmpty() when empty != null:
+return empty(_that);case _:
   return orElse();
 
 }
@@ -80,14 +81,15 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( FeedbackListInitial value)  initial,required TResult Function( FeedbackListLoading value)  loading,required TResult Function( FeedbackListSuccess value)  success,required TResult Function( FeedbackListError value)  error,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( FeedbackListInitial value)  initial,required TResult Function( FeedbackListLoading value)  loading,required TResult Function( FeedbackListSuccess value)  success,required TResult Function( FeedbackListError value)  error,required TResult Function( FeedbackListEmpty value)  empty,}){
 final _that = this;
 switch (_that) {
 case FeedbackListInitial():
 return initial(_that);case FeedbackListLoading():
 return loading(_that);case FeedbackListSuccess():
 return success(_that);case FeedbackListError():
-return error(_that);}
+return error(_that);case FeedbackListEmpty():
+return empty(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -101,14 +103,15 @@ return error(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( FeedbackListInitial value)?  initial,TResult? Function( FeedbackListLoading value)?  loading,TResult? Function( FeedbackListSuccess value)?  success,TResult? Function( FeedbackListError value)?  error,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( FeedbackListInitial value)?  initial,TResult? Function( FeedbackListLoading value)?  loading,TResult? Function( FeedbackListSuccess value)?  success,TResult? Function( FeedbackListError value)?  error,TResult? Function( FeedbackListEmpty value)?  empty,}){
 final _that = this;
 switch (_that) {
 case FeedbackListInitial() when initial != null:
 return initial(_that);case FeedbackListLoading() when loading != null:
 return loading(_that);case FeedbackListSuccess() when success != null:
 return success(_that);case FeedbackListError() when error != null:
-return error(_that);case _:
+return error(_that);case FeedbackListEmpty() when empty != null:
+return empty(_that);case _:
   return null;
 
 }
@@ -125,13 +128,14 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( UserFeedbackListModel userFeedbackList)?  success,TResult Function( String message)?  error,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( UserFeedbackListModel userFeedbackList)?  success,TResult Function( String message)?  error,TResult Function()?  empty,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case FeedbackListInitial() when initial != null:
 return initial();case FeedbackListLoading() when loading != null:
 return loading();case FeedbackListSuccess() when success != null:
 return success(_that.userFeedbackList);case FeedbackListError() when error != null:
-return error(_that.message);case _:
+return error(_that.message);case FeedbackListEmpty() when empty != null:
+return empty();case _:
   return orElse();
 
 }
@@ -149,13 +153,14 @@ return error(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( UserFeedbackListModel userFeedbackList)  success,required TResult Function( String message)  error,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( UserFeedbackListModel userFeedbackList)  success,required TResult Function( String message)  error,required TResult Function()  empty,}) {final _that = this;
 switch (_that) {
 case FeedbackListInitial():
 return initial();case FeedbackListLoading():
 return loading();case FeedbackListSuccess():
 return success(_that.userFeedbackList);case FeedbackListError():
-return error(_that.message);}
+return error(_that.message);case FeedbackListEmpty():
+return empty();}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -169,13 +174,14 @@ return error(_that.message);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( UserFeedbackListModel userFeedbackList)?  success,TResult? Function( String message)?  error,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( UserFeedbackListModel userFeedbackList)?  success,TResult? Function( String message)?  error,TResult? Function()?  empty,}) {final _that = this;
 switch (_that) {
 case FeedbackListInitial() when initial != null:
 return initial();case FeedbackListLoading() when loading != null:
 return loading();case FeedbackListSuccess() when success != null:
 return success(_that.userFeedbackList);case FeedbackListError() when error != null:
-return error(_that.message);case _:
+return error(_that.message);case FeedbackListEmpty() when empty != null:
+return empty();case _:
   return null;
 
 }
@@ -378,5 +384,37 @@ as String,
 
 
 }
+
+/// @nodoc
+
+
+class FeedbackListEmpty implements FeedbackListState {
+  const FeedbackListEmpty();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FeedbackListEmpty);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'FeedbackListState.empty()';
+}
+
+
+}
+
+
+
 
 // dart format on
