@@ -214,7 +214,7 @@ class BloodInformationSection extends StatelessWidget {
                     ),
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: DropdownButtonFormField<String>(
-                      value: donorFormProvider.location,
+                      initialValue: donorFormProvider.location,
                       onChanged: donorFormProvider.setLocation,
                       decoration: const InputDecoration(
                         border: InputBorder.none,

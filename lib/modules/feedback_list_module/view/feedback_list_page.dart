@@ -67,49 +67,6 @@ class _FeedbackListPageState extends State<FeedbackListPage> {
                 onRetry: _feedbackListHelper.feedbakListInitial,
               );
             case FeedbackListEmpty():
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-              return Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.feedback_outlined,
-                        size: 64,
-                        color: isDark
-                            ? AppColors.textTertiaryDark
-                            : AppColors.textTertiaryLight,
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                        'No Feedback Yet',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.lexend(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          color: isDark
-                              ? Colors.white
-                              : AppColors.textPrimaryLight,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'You haven’t submitted any feedback for your appointments yet. Once you do, it will appear here.',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.lexend(
-                          fontSize: 16,
-                          fontWeight: FontWeight.normal,
-                          color: isDark
-                              ? AppColors.textTertiaryDark
-                              : AppColors.textTertiaryLight,
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
               return Card(
                 child: Center(
                   child: Column(
@@ -140,29 +97,12 @@ class _FeedbackListPageState extends State<FeedbackListPage> {
                             context,
                           ).textTheme.titleMedium?.fontWeight,
                           color: isDark ? Colors.white : const Color(0xFF212121),
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
                         ),
                       ),
                     ],
                   ),
                 ),
               );
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
             case FeedbackListSuccess(userFeedbackList: final userFeedbackList):
               return SingleChildScrollView(
                 padding: const EdgeInsets.all(16),

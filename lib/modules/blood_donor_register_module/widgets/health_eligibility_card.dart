@@ -134,7 +134,7 @@ class HealthEligibilitySection extends StatelessWidget {
                         listen: false,
                       ).setUnderMedication(value);
                     },
-                    activeColor: const Color(0xFF2A75C1),
+                    activeThumbColor: const Color(0xFF2A75C1),
                   ),
                 ],
               );
@@ -170,7 +170,7 @@ class HealthEligibilitySection extends StatelessWidget {
                             listen: false,
                           ).setRecentIllness(value);
                         },
-                        activeColor: const Color(0xFF2A75C1),
+                        activeThumbColor: const Color(0xFF2A75C1),
                       ),
                     ],
                   ),

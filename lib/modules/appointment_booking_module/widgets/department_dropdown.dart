@@ -60,7 +60,7 @@ class DepartmentDropdown extends StatelessWidget {
                     children: [
                       DropdownButtonFormField<Department>(
                         isExpanded: true,
-                        value: selectedDepartment,
+                        initialValue: selectedDepartment,
                         items: departments.departments.map((department) {
                           return DropdownMenuItem<Department>(
                             value: department,

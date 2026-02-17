@@ -69,7 +69,7 @@ class ComplaintCategoryDropdown extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 48, right: 16),
                 child: DropdownButtonFormField<String>(
-                  value: selectedCategory,
+                  initialValue: selectedCategory,
                   onChanged: onCategoryChanged,
                   decoration: const InputDecoration(
                     border: InputBorder.none,

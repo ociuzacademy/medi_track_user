@@ -90,22 +90,9 @@ class _BloodDonorRegisterPageBodyState
                       const SizedBox(height: 16),
 
                       // Blood Information Card
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-                      if (donorFormProvider.selectedBloodGroup != null)
-                        BloodInformationSection(
-                          bloodGroup: donorFormProvider.selectedBloodGroup!,
-                        ),
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
                       if(donorFormProvider.selectedBloodGroup != null) BloodInformationSection(
                         bloodGroup: donorFormProvider.selectedBloodGroup!,
                       ),
->>>>>>> Stashed changes
 
                       const SizedBox(height: 16),
 

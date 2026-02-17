@@ -7,19 +7,8 @@ import 'package:http/http.dart' as http;
 import 'package:medi_track/core/constants/app_constants.dart';
 
 import 'package:medi_track/core/constants/app_urls.dart';
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 import 'package:medi_track/modules/feedback_list_module/exception/feedback_list_empty_exception.dart';
-=======
 import 'package:medi_track/modules/feedback_list_module/exceptions/empty_feedback_list_exception.dart';
->>>>>>> Stashed changes
-=======
-import 'package:medi_track/modules/feedback_list_module/exceptions/empty_feedback_list_exception.dart';
->>>>>>> Stashed changes
-=======
-import 'package:medi_track/modules/feedback_list_module/exceptions/empty_feedback_list_exception.dart';
->>>>>>> Stashed changes
 import 'package:medi_track/modules/feedback_list_module/models/user_feedback_list_model.dart';
 
 class FeedbackListServices {

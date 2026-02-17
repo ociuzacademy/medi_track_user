@@ -53,7 +53,7 @@ class BloodGroupDropdown extends StatelessWidget {
           child: Stack(
             children: [
               DropdownButtonFormField<String>(
-                value: bloodGroup,
+                initialValue: bloodGroup,
                 items: _bloodGroups.map((String bloodGroup) {
                   return DropdownMenuItem<String>(
                     value: bloodGroup == 'Select' ? null : bloodGroup,

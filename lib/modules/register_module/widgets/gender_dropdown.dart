@@ -46,7 +46,7 @@ class GenderDropdown extends StatelessWidget {
           child: Stack(
             children: [
               DropdownButtonFormField<String>(
-                value: gender,
+                initialValue: gender,
                 items: _genders.map((String gender) {
                   return DropdownMenuItem<String>(
                     value: gender == 'Select Gender' ? null : gender,
