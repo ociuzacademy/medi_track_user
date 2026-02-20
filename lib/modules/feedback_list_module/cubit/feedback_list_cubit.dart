@@ -18,7 +18,11 @@ class FeedbackListCubit extends Cubit<FeedbackListState> {
       final response = await FeedbackListServices.getUserFeedbackList(
         userId: userId,
       );
-      emit(FeedbackListState.success(userFeedbackList: response));
+      if(response.feedback.isEmpty) {
+        emit(const FeedbackListState.empty);
+      } else {
+        emit(FeedbackListState.success(userFeedbackList: response));
+      }
     } catch (e) {
       if (e is EmptyFeedbackListException) {
         emit(const FeedbackListState.empty());
