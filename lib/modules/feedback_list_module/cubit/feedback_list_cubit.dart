@@ -19,7 +19,7 @@ class FeedbackListCubit extends Cubit<FeedbackListState> {
         userId: userId,
       );
       if(response.feedback.isEmpty) {
-        emit(const FeedbackListState.empty);
+        emit(const FeedbackListState.empty());
       } else {
         emit(FeedbackListState.success(userFeedbackList: response));
       }
