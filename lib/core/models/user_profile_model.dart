@@ -17,9 +17,9 @@ class UserProfileModel {
   final String address;
   final String password;
   final String phone;
-  final String image;
+  final String? image;
   final String gender;
-  final DateTime birthDate;
+  final DateTime? birthDate;
   final String bloodGroup;
 
   const UserProfileModel({
@@ -29,9 +29,9 @@ class UserProfileModel {
     required this.address,
     required this.password,
     required this.phone,
-    required this.image,
+    this.image,
     required this.gender,
-    required this.birthDate,
+    this.birthDate,
     required this.bloodGroup,
   });
 
@@ -69,7 +69,9 @@ class UserProfileModel {
         phone: json['phone'],
         image: json['image'],
         gender: json['gender'],
-        birthDate: DateTime.parse(json['birth_date']),
+        birthDate: json['birth_date'] != null
+            ? DateTime.parse(json['birth_date'])
+            : null,
         bloodGroup: json['blood_group'],
       );
 
@@ -83,7 +85,7 @@ class UserProfileModel {
     'image': image,
     'gender': gender,
     'birth_date':
-        "${birthDate.year.toString().padLeft(4, '0')}-${birthDate.month.toString().padLeft(2, '0')}-${birthDate.day.toString().padLeft(2, '0')}",
+        "${birthDate?.year.toString().padLeft(4, '0')}-${birthDate?.month.toString().padLeft(2, '0')}-${birthDate?.day.toString().padLeft(2, '0')}",
     'blood_group': bloodGroup,
   };
 }

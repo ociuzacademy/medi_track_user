@@ -1,5 +1,5 @@
 class AppUrls {
-  static const String baseUrl = 'https://9p5vlh1t-8000.inc1.devtunnels.ms';
+  static const String baseUrl = 'https://4vwmk0fb-3307.inc1.devtunnels.ms';
   static const String userUrl = '$baseUrl/user';
 
   static const String loginUrl = '$userUrl/login/';
@@ -36,4 +36,5 @@ class AppUrls {
   static const String addDonationRecordUrl = '$userUrl/add_donation_record/';
   static const String donorHistoryUrl = '$userUrl/donor_history/';
   static const String nextDonationDateUrl = '$userUrl/next-donation-date/';
+  static const String submitComplaintsUrl = '$userUrl/submit_complaints/';
 }

@@ -1,8 +1,9 @@
 // widgets/appointment_card.dart
 
 import 'package:flutter/material.dart';
-import 'package:medi_track/modules/rescheduled_appointments_module/models/rescheduled_appointment.dart';
+import 'package:intl/intl.dart';
 import 'package:medi_track/core/constants/app_colors.dart';
+import 'package:medi_track/modules/user_appointments_module/models/appointments_model.dart';
 
 class ReschedulingReceivedTime extends StatelessWidget {
   const ReschedulingReceivedTime({
@@ -11,15 +12,19 @@ class ReschedulingReceivedTime extends StatelessWidget {
     required this.isDark,
   });
 
-  final RescheduledAppointment appointment;
+  final Appointment appointment;
   final bool isDark;
 
   @override
   Widget build(BuildContext context) {
+    final DateFormat dateFormat = DateFormat('yyyy-MM-dd');
+    final String rescheduledDate = dateFormat.format(
+      appointment.rescheduledDate ?? DateTime.now(),
+    );
     return Align(
       alignment: Alignment.centerRight,
       child: Text(
-        appointment.receivedTime,
+        rescheduledDate,
         style: TextStyle(
           fontSize: 12,
           color: isDark ? AppColors.textTertiaryLight : const Color(0xFF617589),

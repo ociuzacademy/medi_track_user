@@ -70,6 +70,7 @@ class MyApp extends StatelessWidget {
               prescriptionPdfService: prescriptionPdfService,
             ),
           ),
+          BlocProvider(create: (context) => SubmitComplaintBloc()),
         ],
         child: MaterialApp(
           title: 'MediTrack',

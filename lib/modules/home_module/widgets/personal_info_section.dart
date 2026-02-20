@@ -9,7 +9,7 @@ class PersonalInfoSection extends StatelessWidget {
   const PersonalInfoSection({
     super.key,
     required this.name,
-    required this.dob,
+    this.dob,
     required this.gender,
     required this.phoneNumber,
     required this.email,
@@ -17,7 +17,7 @@ class PersonalInfoSection extends StatelessWidget {
     required this.address,
   });
   final String name;
-  final DateTime dob;
+  final DateTime? dob;
   final String gender;
   final String phoneNumber;
   final String email;
@@ -63,7 +63,7 @@ class PersonalInfoSection extends StatelessWidget {
           PersonalInfoRow(label: 'Full Name', value: name, isFirst: true),
           PersonalInfoRow(
             label: 'Date of Birth',
-            value: dateFormat.format(dob),
+            value: dob != null ? dateFormat.format(dob!) : 'N/A',
           ),
           PersonalInfoRow(label: 'Gender', value: gender),
           PersonalInfoRow(label: 'Phone Number', value: phoneNumber),

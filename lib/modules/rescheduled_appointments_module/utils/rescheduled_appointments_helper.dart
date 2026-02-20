@@ -1,60 +1,76 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-
-import 'package:medi_track/core/widgets/snackbars/custom_snackbar.dart';
-import 'package:medi_track/modules/rescheduled_appointments_module/models/rescheduled_appointment.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medi_track/core/export/bloc_export.dart';
 
 class RescheduledAppointmentsHelper {
   final BuildContext context;
-  final ValueNotifier<List<RescheduledAppointment>> appointments;
 
-  const RescheduledAppointmentsHelper({
-    required this.context,
-    required this.appointments,
-  });
+  const RescheduledAppointmentsHelper({required this.context});
 
-  void markAllAsRead() {
-    // In a real app, you would update the backend and then refresh
-    CustomSnackbar.show(context, message: 'All notifications marked as read');
+  void appointmentListInit() {
+    final AppointmentListCubit appointmentListCubit = context
+        .read<AppointmentListCubit>();
+    appointmentListCubit.getUserAppointments();
   }
 
-  void refreshData() {
-    // In a real app, you would fetch fresh data from the backend
-    appointments.value = List.of(appointments.value);
-  }
-
-  void acceptAppointment(String appointmentId) {
-    final list = List<RescheduledAppointment>.from(appointments.value);
-    final index = list.indexWhere((appt) => appt.id == appointmentId);
-    if (index != -1) {
-      list[index] = RescheduledAppointment(
-        id: list[index].id,
-        doctorName: list[index].doctorName,
-        specialty: list[index].specialty,
-        doctorImageUrl: list[index].doctorImageUrl,
-        originalDate: list[index].originalDate,
-        originalToken: list[index].originalToken,
-        rescheduledDate: list[index].rescheduledDate,
-        rescheduledToken: list[index].rescheduledToken,
-        reason: list[index].reason,
-        receivedTime: list[index].receivedTime,
-        status: AppointmentStatus.accepted,
-      );
-      appointments.value = list;
-    }
-    CustomSnackbar.showSuccess(
-      context,
-      message: 'Appointment reschedule accepted',
+  void showAcceptRescheduleDialog(int appointmentId) {
+    showDialog(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Text('Accept Reschedule'),
+        content: const Text('Are you sure you want to accept this reschedule?'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () => _acceptReschedule(appointmentId),
+            child: const Text('OK'),
+          ),
+        ],
+      ),
     );
   }
 
-  void rejectAppointment(String appointmentId) {
-    final list = List<RescheduledAppointment>.from(appointments.value);
-    list.removeWhere((appt) => appt.id == appointmentId);
-    appointments.value = list;
-    CustomSnackbar.showError(
-      context,
-      message: 'Appointment reschedule rejected',
+  void showRejectRescheduleDialog(int appointmentId) {
+    showDialog(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Text('Reject Reschedule'),
+        content: const Text('Are you sure you want to reject this reschedule?'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () => _rejectReschedule(appointmentId),
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _acceptReschedule(int appointmentId) {
+    final RescheduleTaskBloc rescheduleTaskBloc = context
+        .read<RescheduleTaskBloc>();
+    rescheduleTaskBloc.add(
+      RescheduleTaskEvent.acceptingReschedule(appointmentId: appointmentId),
+    );
+  }
+
+  void _rejectReschedule(int appointmentId) {
+    final RescheduleTaskBloc rescheduleTaskBloc = context
+        .read<RescheduleTaskBloc>();
+    rescheduleTaskBloc.add(
+      RescheduleTaskEvent.rejectingReschedule(appointmentId: appointmentId),
     );
   }
 }

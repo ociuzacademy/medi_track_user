@@ -2,6 +2,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:medi_track/modules/submit_complaint_module/data/complaint_data.dart';
 
 class ComplaintFormProvider with ChangeNotifier {
   // Form controllers
@@ -11,8 +12,6 @@ class ComplaintFormProvider with ChangeNotifier {
   // Form state
   String? _selectedCategory;
   File? _attachedImage;
-  bool _isSubmitting = false;
-  bool _shouldValidate = false;
 
   // Validation keys
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -22,7 +21,6 @@ class ComplaintFormProvider with ChangeNotifier {
   TextEditingController get descriptionController => _descriptionController;
   String? get selectedCategory => _selectedCategory;
   File? get attachedImage => _attachedImage;
-  bool get isSubmitting => _isSubmitting;
   GlobalKey<FormState> get formKey => _formKey;
 
   // Setters
@@ -36,14 +34,8 @@ class ComplaintFormProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  set isSubmitting(bool value) {
-    _isSubmitting = value;
-    notifyListeners();
-  }
-
   // Validation methods
   String? validateSubject(String? value) {
-    if (!_shouldValidate) return null;
     if (value == null || value.isEmpty) {
       return 'Please enter a subject for your complaint';
     }
@@ -54,7 +46,6 @@ class ComplaintFormProvider with ChangeNotifier {
   }
 
   String? validateDescription(String? value) {
-    if (!_shouldValidate) return null;
     if (value == null || value.isEmpty) {
       return 'Please describe your complaint in detail';
     }
@@ -65,16 +56,10 @@ class ComplaintFormProvider with ChangeNotifier {
   }
 
   String? validateCategory(String? value) {
-    if (!_shouldValidate) return null; // Don't validate until form is submitted
     if (value == null || value.isEmpty) {
       return 'Please select a complaint category';
     }
     return null;
-  }
-
-  void setShouldValidate(bool shouldValidate) {
-    _shouldValidate = shouldValidate;
-    notifyListeners();
   }
 
   // Image handling
@@ -106,8 +91,6 @@ class ComplaintFormProvider with ChangeNotifier {
     _descriptionController.clear();
     _selectedCategory = null;
     _attachedImage = null;
-    _isSubmitting = false;
-    _shouldValidate = false; // Reset validation state
     notifyListeners();
   }
 
@@ -119,6 +102,23 @@ class ComplaintFormProvider with ChangeNotifier {
     final isCategoryValid = validateCategory(_selectedCategory) == null;
 
     return isSubjectValid && isDescriptionValid && isCategoryValid;
+  }
+
+  ComplaintData? getComplaintData() {
+    if (!validateForm()) {
+      return null;
+    }
+
+    if (_attachedImage == null) {
+      return null;
+    }
+
+    return ComplaintData(
+      subject: _subjectController.text,
+      description: _descriptionController.text,
+      category: _selectedCategory!,
+      image: _attachedImage!,
+    );
   }
 
   @override

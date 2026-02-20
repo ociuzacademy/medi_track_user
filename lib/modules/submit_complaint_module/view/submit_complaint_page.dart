@@ -1,6 +1,12 @@
 // submit_complaint_page.dart
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medi_track/core/export/bloc_export.dart';
+import 'package:medi_track/core/widgets/custom_error_widget.dart';
+import 'package:medi_track/core/widgets/snackbars/custom_snackbar.dart';
+import 'package:medi_track/modules/home_module/view/home_page.dart';
+import 'package:medi_track/modules/submit_complaint_module/data/complaint_data.dart';
 import 'package:provider/provider.dart';
 
 import 'package:medi_track/modules/submit_complaint_module/providers/complaint_form_provider.dart';
@@ -26,11 +32,22 @@ class SubmitComplaintPage extends StatefulWidget {
 
 class _SubmitComplaintPageState extends State<SubmitComplaintPage> {
   late final SubmitComplaintHelper _submitComplaintHelper;
+  final ValueNotifier<bool> _isSubmitting = ValueNotifier<bool>(false);
 
   @override
   void initState() {
     super.initState();
-    _submitComplaintHelper = const SubmitComplaintHelper();
+    _submitComplaintHelper = SubmitComplaintHelper(context);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _submitComplaintHelper.userDataInit();
+    });
+  }
+
+  @override
+  void dispose() {
+    _isSubmitting.dispose();
+    super.dispose();
   }
 
   @override
@@ -51,7 +68,9 @@ class _SubmitComplaintPageState extends State<SubmitComplaintPage> {
               fontSize: 18,
               fontWeight: FontWeight.bold,
               letterSpacing: -0.015,
-              color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight,
+              color: isDark
+                  ? AppColors.textSecondaryDark
+                  : AppColors.textSecondaryLight,
             ),
           ),
           centerTitle: true,
@@ -66,114 +85,188 @@ class _SubmitComplaintPageState extends State<SubmitComplaintPage> {
         backgroundColor: isDark
             ? const Color(0xFF0F2023)
             : const Color(0xFFF5F8F8),
-        body: Consumer<ComplaintFormProvider>(
-          builder: (context, provider, _) {
-            return Stack(
-              children: [
-                // Main Content
-                SingleChildScrollView(
-                  padding: const EdgeInsets.all(16),
-                  child: Form(
-                    key: provider.formKey,
-                    child: Column(
-                      children: [
-                        // Form Container
-                        Container(
-                          constraints: const BoxConstraints(maxWidth: 400),
-                          child: Column(
-                            children: [
-                              // Full Name Field (Read-only)
-                              const ReadOnlyField(
-                                label: 'Full Name',
-                                value: 'Jane Doe',
-                              ),
-
-                              const SizedBox(height: 16),
-
-                              // Email or Phone Number Field (Read-only)
-                              const ReadOnlyField(
-                                label: 'Email or Phone Number',
-                                value: 'jane.doe@email.com',
-                              ),
-
-                              const SizedBox(height: 16),
-
-                              // Complaint Category Dropdown
-                              ComplaintCategoryDropdown(
-                                selectedCategory: provider.selectedCategory,
-                                onCategoryChanged: (category) {
-                                  provider.selectedCategory = category;
-                                },
-                                validator: provider.validateCategory,
-                              ),
-
-                              const SizedBox(height: 16),
-
-                              // Subject/Title Field
-                              ComplaintSubjectField(
-                                controller: provider.subjectController,
-                                validator: provider.validateSubject,
-                              ),
-
-                              const SizedBox(height: 16),
-
-                              // Complaint Description Text Area
-                              ComplaintDescriptionField(
-                                controller: provider.descriptionController,
-                                validator: provider.validateDescription,
-                              ),
-
-                              const SizedBox(height: 16),
-
-                              // Attach File Button
-                              AttachFileButton(
-                                onPressed: () => _submitComplaintHelper
-                                    .pickImage(provider, context),
-                              ),
-
-                              // Attached Image Preview
-                              provider.attachedImage != null
-                                  ? Padding(
-                                      padding: const EdgeInsets.only(top: 16),
-                                      child: AttachedImagePreview(
-                                        imageFile: provider.attachedImage!,
-                                        onRemove: () => provider.removeImage(),
-                                      ),
-                                    )
-                                  : const SizedBox.shrink(),
-
-                              const SizedBox(height: 24),
-
-                              // Action Buttons
-                              ActionButtons(
-                                onReset: () => provider.resetForm(),
-                                onSubmit: () => _submitComplaintHelper
-                                    .submitComplaint(provider, context),
-                                isSubmitting: provider.isSubmitting,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-
-                // Loading Overlay
-                if (provider.isSubmitting)
-                  Container(
-                    color: Colors.black.withValues(alpha: 0.5),
-                    child: const Center(
-                      child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                          Color(0xFF04798B),
-                        ),
-                      ),
-                    ),
-                  ),
-              ],
-            );
+        body: BlocListener<SubmitComplaintBloc, SubmitComplaintState>(
+          listener: (context, state) {
+            switch (state) {
+              case SubmitComplaintLoading():
+                _isSubmitting.value = true;
+              case SubmitComplaintSuccess():
+                _isSubmitting.value = false;
+                CustomSnackbar.showSuccess(
+                  context,
+                  message: 'Complaint submitted successfully',
+                );
+                Navigator.of(
+                  context,
+                ).pushAndRemoveUntil(HomePage.route(), (route) => false);
+              case SubmitComplaintError(:final error):
+                _isSubmitting.value = false;
+                CustomSnackbar.showError(context, message: error);
+              default:
+                _isSubmitting.value = false;
+            }
           },
+          child: BlocBuilder<UserProfileCubit, UserProfileState>(
+            builder: (context, state) {
+              return switch (state) {
+                UserProfileLoading() => const Center(
+                  child: CircularProgressIndicator(),
+                ),
+                UserProfileError(:final message) => CustomErrorWidget(
+                  errorMessage: message,
+                  isDark: isDark,
+                  onRetry: _submitComplaintHelper.userDataInit,
+                ),
+                UserProfileSuccess(:final userProfile) =>
+                  Consumer<ComplaintFormProvider>(
+                    builder: (context, provider, _) {
+                      return ValueListenableBuilder(
+                        valueListenable: _isSubmitting,
+                        builder: (context, value, child) {
+                          return Stack(
+                            children: [
+                              // Main Content
+                              SingleChildScrollView(
+                                padding: const EdgeInsets.all(16),
+                                child: Form(
+                                  key: provider.formKey,
+                                  child: Column(
+                                    children: [
+                                      // Form Container
+                                      Container(
+                                        constraints: const BoxConstraints(
+                                          maxWidth: 400,
+                                        ),
+                                        child: Column(
+                                          children: [
+                                            // Username Field (Read-only)
+                                            ReadOnlyField(
+                                              label: 'Username',
+                                              value: userProfile.username,
+                                            ),
+
+                                            const SizedBox(height: 16),
+
+                                            // Email or Phone Number Field (Read-only)
+                                            ReadOnlyField(
+                                              label: 'Email or Phone Number',
+                                              value: userProfile.email,
+                                            ),
+
+                                            const SizedBox(height: 16),
+
+                                            // Complaint Category Dropdown
+                                            ComplaintCategoryDropdown(
+                                              selectedCategory:
+                                                  provider.selectedCategory,
+                                              onCategoryChanged: (category) {
+                                                provider.selectedCategory =
+                                                    category;
+                                              },
+                                              validator:
+                                                  provider.validateCategory,
+                                            ),
+
+                                            const SizedBox(height: 16),
+
+                                            // Subject/Title Field
+                                            ComplaintSubjectField(
+                                              controller:
+                                                  provider.subjectController,
+                                              validator:
+                                                  provider.validateSubject,
+                                            ),
+
+                                            const SizedBox(height: 16),
+
+                                            // Complaint Description Text Area
+                                            ComplaintDescriptionField(
+                                              controller: provider
+                                                  .descriptionController,
+                                              validator:
+                                                  provider.validateDescription,
+                                            ),
+
+                                            const SizedBox(height: 16),
+
+                                            // Attach File Button
+                                            AttachFileButton(
+                                              onPressed: () =>
+                                                  _submitComplaintHelper
+                                                      .pickImage(provider),
+                                            ),
+
+                                            // Attached Image Preview
+                                            provider.attachedImage != null
+                                                ? Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                          top: 16,
+                                                        ),
+                                                    child: AttachedImagePreview(
+                                                      imageFile: provider
+                                                          .attachedImage!,
+                                                      onRemove: () => provider
+                                                          .removeImage(),
+                                                    ),
+                                                  )
+                                                : const SizedBox.shrink(),
+
+                                            const SizedBox(height: 24),
+
+                                            // Action Buttons
+                                            ActionButtons(
+                                              onReset: () =>
+                                                  provider.resetForm(),
+                                              onSubmit: () {
+                                                final ComplaintData?
+                                                complaintData = provider
+                                                    .getComplaintData();
+                                                if (complaintData != null) {
+                                                  _submitComplaintHelper
+                                                      .submitComplaint(
+                                                        complaintData,
+                                                      );
+                                                } else {
+                                                  CustomSnackbar.showError(
+                                                    context,
+                                                    message:
+                                                        'Please fill all the required fields and provide image',
+                                                  );
+                                                }
+                                              },
+                                              isSubmitting: value,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+
+                              // Loading Overlay
+                              if (value)
+                                Container(
+                                  color: Colors.black.withValues(alpha: 0.5),
+                                  child: const Center(
+                                    child: CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                        Color(0xFF04798B),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          );
+                        },
+                      );
+                    },
+                  ),
+                _ => const SizedBox.shrink(),
+              };
+            },
+          ),
         ),
       ),
     );

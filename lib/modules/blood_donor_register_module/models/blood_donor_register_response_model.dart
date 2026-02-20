@@ -51,22 +51,22 @@ class Data {
   final int id;
   final String bloodGroup;
   final String location;
-  final DateTime lastDonationDate;
+  final DateTime? lastDonationDate;
   final String weight;
   final bool underMedication;
   final bool hadRecentIllness;
-  final String illnessDetails;
+  final String? illnessDetails;
   final DateTime createdAt;
 
   const Data({
     required this.id,
     required this.bloodGroup,
     required this.location,
-    required this.lastDonationDate,
+    this.lastDonationDate,
     required this.weight,
     required this.underMedication,
     required this.hadRecentIllness,
-    required this.illnessDetails,
+    this.illnessDetails,
     required this.createdAt,
   });
 
@@ -96,7 +96,9 @@ class Data {
     id: json['id'],
     bloodGroup: json['blood_group'],
     location: json['location'],
-    lastDonationDate: DateTime.parse(json['last_donation_date']),
+    lastDonationDate: json['last_donation_date'] != null
+        ? DateTime.parse(json['last_donation_date'])
+        : null,
     weight: json['weight'],
     underMedication: json['under_medication'],
     hadRecentIllness: json['had_recent_illness'],
@@ -109,7 +111,7 @@ class Data {
     'blood_group': bloodGroup,
     'location': location,
     'last_donation_date':
-        "${lastDonationDate.year.toString().padLeft(4, '0')}-${lastDonationDate.month.toString().padLeft(2, '0')}-${lastDonationDate.day.toString().padLeft(2, '0')}",
+        "${lastDonationDate?.year.toString().padLeft(4, '0')}-${lastDonationDate?.month.toString().padLeft(2, '0')}-${lastDonationDate?.day.toString().padLeft(2, '0')}",
     'weight': weight,
     'under_medication': underMedication,
     'had_recent_illness': hadRecentIllness,

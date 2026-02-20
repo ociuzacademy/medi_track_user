@@ -1,15 +1,15 @@
 // widgets/appointment_card.dart
 import 'package:flutter/material.dart';
-import 'package:medi_track/modules/rescheduled_appointments_module/models/rescheduled_appointment.dart';
 import 'package:medi_track/modules/rescheduled_appointments_module/widgets/reschedule_action_buttons.dart';
 import 'package:medi_track/modules/rescheduled_appointments_module/widgets/rescheduled_appointment_card_header.dart';
 import 'package:medi_track/modules/rescheduled_appointments_module/widgets/rescheduled_appointment_notification_details.dart';
 import 'package:medi_track/modules/rescheduled_appointments_module/widgets/rescheduling_reason.dart';
 import 'package:medi_track/modules/rescheduled_appointments_module/widgets/rescheduling_received_time.dart';
 import 'package:medi_track/core/constants/app_colors.dart';
+import 'package:medi_track/modules/user_appointments_module/models/appointments_model.dart';
 
 class AppointmentCard extends StatelessWidget {
-  final RescheduledAppointment appointment;
+  final Appointment appointment;
   final VoidCallback? onAccept;
   final VoidCallback? onReject;
   final bool isRead;
@@ -84,12 +84,7 @@ class AppointmentCard extends StatelessWidget {
                   appointment: appointment,
                   isDark: isDark,
                 ),
-                // Action buttons (only for pending status)
-                if (appointment.status == AppointmentStatus.pending)
-                  RescheduleActionButtons(
-                    onReject: onReject,
-                    onAccept: onAccept,
-                  ),
+                RescheduleActionButtons(onReject: onReject, onAccept: onAccept),
               ],
             ),
           ),

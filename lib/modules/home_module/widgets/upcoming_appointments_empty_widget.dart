@@ -108,19 +108,19 @@ class UpcomingAppointmentsEmptyWidget extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          TextButton(
-            onPressed: () {
-              // Show past appointments
-            },
-            child: Text(
-              'View Past Appointments',
-              style: GoogleFonts.inter(
-                fontSize: 14,
-                color: AppColors.primaryAlt,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
+          // TextButton(
+          //   onPressed: () {
+          //     // Show past appointments
+          //   },
+          //   child: Text(
+          //     'View Past Appointments',
+          //     style: GoogleFonts.inter(
+          //       fontSize: 14,
+          //       color: AppColors.primaryAlt,
+          //       fontWeight: FontWeight.w500,
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );

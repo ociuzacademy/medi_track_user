@@ -45,7 +45,7 @@ class BloodRequestsNotificationsServices {
       } else {
         final Map<String, dynamic> errorResponse = jsonDecode(resp.body);
         throw Exception(
-          'Failed to accept blood request: ${errorResponse['message'] ?? 'Unknown error'}',
+          'Failed to accept blood request: ${errorResponse['error'] ?? 'Unknown error'}',
         );
       }
     } on TimeoutException catch (e) {
