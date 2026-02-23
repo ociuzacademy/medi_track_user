@@ -1,7 +1,6 @@
 // submit_complaint_page.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/core/export/bloc_export.dart';
 import 'package:medi_track/core/widgets/custom_error_widget.dart';
@@ -69,9 +68,6 @@ class _SubmitComplaintPageState extends State<SubmitComplaintPage> {
               fontSize: 18,
               fontWeight: FontWeight.bold,
               letterSpacing: -0.015,
-              color: isDark
-                  ? AppColors.textSecondaryDark
-                  : AppColors.textSecondaryLight,
               color: isDark
                   ? AppColors.textSecondaryDark
                   : AppColors.textSecondaryLight,

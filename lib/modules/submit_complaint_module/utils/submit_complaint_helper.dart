@@ -3,8 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medi_track/core/cubit/user_profile/user_profile_cubit.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:medi_track/core/cubit/user_profile/user_profile_cubit.dart';
 
 import 'package:medi_track/core/widgets/snackbars/custom_snackbar.dart';
 import 'package:medi_track/modules/submit_complaint_module/bloc/submit_complaint_bloc.dart';

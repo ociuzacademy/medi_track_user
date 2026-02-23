@@ -52,11 +52,9 @@ class Data {
   final String bloodGroup;
   final String location;
   final DateTime? lastDonationDate;
-  final DateTime? lastDonationDate;
   final String weight;
   final bool underMedication;
   final bool hadRecentIllness;
-  final String? illnessDetails;
   final String? illnessDetails;
   final DateTime createdAt;
 
@@ -113,7 +111,6 @@ class Data {
     'blood_group': bloodGroup,
     'location': location,
     'last_donation_date':
-        "${lastDonationDate?.year.toString().padLeft(4, '0')}-${lastDonationDate?.month.toString().padLeft(2, '0')}-${lastDonationDate?.day.toString().padLeft(2, '0')}",
         "${lastDonationDate?.year.toString().padLeft(4, '0')}-${lastDonationDate?.month.toString().padLeft(2, '0')}-${lastDonationDate?.day.toString().padLeft(2, '0')}",
     'weight': weight,
     'under_medication': underMedication,
