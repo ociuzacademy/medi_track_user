@@ -86,9 +86,9 @@ class DonorFormProvider with ChangeNotifier {
       return null;
     }
 
-    if (_lastDonationDate == null) {
-      return null;
-    }
+    // if (_lastDonationDate == null) {
+    //   return null;
+    // }
 
     if (_weightController.text.trim().isEmpty) {
       return null;
@@ -104,7 +104,7 @@ class DonorFormProvider with ChangeNotifier {
 
     return BloodDonorRegisterData(
       bloodGroup: _selectedBloodGroup!,
-      lastDonationDate: _lastDonationDate!,
+      lastDonationDate: _lastDonationDate,
       underMedication: _underMedication,
       hadRecentIllness: _recentIllness,
       location: _location!,

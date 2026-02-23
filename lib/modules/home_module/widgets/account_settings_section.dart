@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_track/modules/home_module/utils/account_settings_section_helper.dart';
 import 'package:medi_track/modules/home_module/widgets/profile_logout_item.dart';
 import 'package:medi_track/modules/home_module/widgets/profile_setting_item.dart';
-import 'package:medi_track/modules/rescheduled_appointments_module/view/rescheduled_appointments_page.dart';
 import 'package:medi_track/modules/submit_complaint_module/view/submit_complaint_page.dart';
 import 'package:medi_track/core/constants/app_colors.dart';
 
@@ -42,14 +41,14 @@ class AccountSettingsSection extends StatelessWidget {
             ),
           ),
 
-          ProfileSettingItem(
-            icon: Icons.notifications,
-            title: 'Manage Notifications',
-            onTap: () {
-              Navigator.push(context, RescheduledAppointmentsPage.route());
-            },
-            isFirst: true,
-          ),
+          // ProfileSettingItem(
+          //   icon: Icons.notifications,
+          //   title: 'Manage Notifications',
+          //   onTap: () {
+          //     Navigator.push(context, RescheduledAppointmentsPage.route());
+          //   },
+          //   isFirst: true,
+          // ),
           ProfileSettingItem(
             icon: Icons.report,
             title: 'Register Complaint',
