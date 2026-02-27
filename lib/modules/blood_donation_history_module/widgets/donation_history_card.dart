@@ -48,21 +48,10 @@ class DonationHistoryCard extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             // Donation details
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                DonationDetail(
-                  label: 'Donation Type:',
-                  value: donation.donationType.displayName,
-                  isDark: isDark,
-                ),
-                const SizedBox(height: 4),
-                DonationDetail(
-                  label: 'Units Donated:',
-                  value: donation.units.toString(),
-                  isDark: isDark,
-                ),
-              ],
+            DonationDetail(
+              label: 'Units Donated:',
+              value: donation.units.toString(),
+              isDark: isDark,
             ),
           ],
         ),

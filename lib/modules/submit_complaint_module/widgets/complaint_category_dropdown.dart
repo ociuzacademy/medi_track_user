@@ -18,114 +18,124 @@ class ComplaintCategoryDropdown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final errorText = validator?.call(selectedCategory);
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Complaint Category',
-          style: GoogleFonts.lexend(
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-            color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight,
-          ),
-        ),
-        const SizedBox(height: 8),
-        Container(
-          height: 56,
-          decoration: BoxDecoration(
-            color: isDark ? const Color(0x0DFFFFFF) : const Color(0x0D000000),
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(
-              color: errorText != null
-                  ? Colors.red
-                  : isDark
-                  ? const Color(0xFF443333)
-                  : AppColors.textSecondaryDark,
+    return FormField<String>(
+      initialValue: selectedCategory,
+      validator: validator,
+      builder: (FormFieldState<String> state) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Complaint Category',
+              style: GoogleFonts.lexend(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                color: isDark
+                    ? AppColors.textSecondaryDark
+                    : AppColors.textSecondaryLight,
+              ),
             ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.05),
-                blurRadius: 4,
-                offset: const Offset(0, 2),
+            const SizedBox(height: 8),
+            Container(
+              height: 56,
+              decoration: BoxDecoration(
+                color: isDark
+                    ? const Color(0x0DFFFFFF)
+                    : const Color(0x0D000000),
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(
+                  color: state.hasError
+                      ? Colors.red
+                      : isDark
+                      ? const Color(0xFF443333)
+                      : AppColors.textSecondaryDark,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.05),
+                    blurRadius: 4,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Stack(
+                children: [
+                  // Icon
+                  const Positioned(
+                    left: 16,
+                    top: 0,
+                    bottom: 0,
+                    child: Icon(
+                      Icons.report_problem,
+                      color: Color(0xFF00796B),
+                      size: 24,
+                    ),
+                  ),
+                  // Dropdown
+                  Padding(
+                    padding: const EdgeInsets.only(left: 48, right: 16),
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton<String>(
+                        isExpanded: true,
+                        value: state.value,
+                        onChanged: (value) {
+                          state.didChange(value);
+                          onCategoryChanged(value);
+                        },
+                        style: GoogleFonts.lexend(
+                          fontSize: 16,
+                          color: isDark
+                              ? AppColors.textSecondaryDark
+                              : AppColors.textSecondaryLight,
+                        ),
+                        dropdownColor: isDark
+                            ? const Color(0xFF1A2A2A)
+                            : const Color(0xFFF8F8F8),
+                        icon: Icon(
+                          Icons.arrow_drop_down,
+                          color: isDark
+                              ? AppColors.textSecondaryDark
+                              : AppColors.textSecondaryLight,
+                        ),
+                        items: const [
+                          DropdownMenuItem(
+                            value: null,
+                            child: Text('Select a category'),
+                          ),
+                          DropdownMenuItem(
+                            value: 'billing',
+                            child: Text('Billing Issue'),
+                          ),
+                          DropdownMenuItem(
+                            value: 'facility',
+                            child: Text('Facility Cleanliness'),
+                          ),
+                          DropdownMenuItem(
+                            value: 'staff',
+                            child: Text('Staff Behavior'),
+                          ),
+                          DropdownMenuItem(
+                            value: 'other',
+                            child: Text('Other'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            if (state.hasError) ...[
+              const SizedBox(height: 4),
+              Text(
+                state.errorText ?? '',
+                style: GoogleFonts.lexend(fontSize: 12, color: Colors.red),
               ),
             ],
-          ),
-          child: Stack(
-            children: [
-              // Icon
-              const Positioned(
-                left: 16,
-                top: 0,
-                bottom: 0,
-                child: Icon(
-                  Icons.report_problem,
-                  color: Color(0xFF00796B),
-                  size: 24,
-                ),
-              ),
-              // Dropdown
-              Padding(
-                padding: const EdgeInsets.only(left: 48, right: 16),
-                child: DropdownButtonFormField<String>(
-                  initialValue: selectedCategory,
-                  onChanged: onCategoryChanged,
-                  decoration: const InputDecoration(
-                    border: InputBorder.none,
-                    enabledBorder: InputBorder.none,
-                    focusedBorder: InputBorder.none,
-                    errorBorder: InputBorder.none,
-                    disabledBorder: InputBorder.none,
-                    errorStyle: TextStyle(height: 0, fontSize: 0),
-                  ),
-                  style: GoogleFonts.lexend(
-                    fontSize: 16,
-                    color: isDark
-                        ? AppColors.textSecondaryDark
-                        : AppColors.textSecondaryLight,
-                  ),
-                  dropdownColor: isDark
-                      ? const Color(0xFF1A2A2A)
-                      : const Color(0xFFF8F8F8),
-                  icon: Icon(
-                    Icons.arrow_drop_down,
-                    color: isDark
-                        ? AppColors.textSecondaryDark
-                        : AppColors.textSecondaryLight,
-                  ),
-                  items: const [
-                    DropdownMenuItem(
-                      value: null,
-                      child: Text('Select a category'),
-                    ),
-                    DropdownMenuItem(
-                      value: 'billing',
-                      child: Text('Billing Issue'),
-                    ),
-                    DropdownMenuItem(
-                      value: 'facility',
-                      child: Text('Facility Cleanliness'),
-                    ),
-                    DropdownMenuItem(
-                      value: 'staff',
-                      child: Text('Staff Behavior'),
-                    ),
-                    DropdownMenuItem(value: 'other', child: Text('Other')),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-        if (errorText != null) ...[
-          const SizedBox(height: 4),
-          Text(
-            errorText,
-            style: GoogleFonts.lexend(fontSize: 12, color: Colors.red),
-          ),
-        ],
-      ],
+          ],
+        );
+      },
     );
   }
 }

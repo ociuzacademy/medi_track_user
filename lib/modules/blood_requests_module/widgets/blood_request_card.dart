@@ -116,12 +116,6 @@ class BloodRequestCard extends StatelessWidget {
                       value: '${request.unitsRequired}',
                       isDark: isDark,
                     ),
-                    InfoItem(
-                      icon: Icons.category,
-                      label: 'Type',
-                      value: request.donationType,
-                      isDark: isDark,
-                    ),
                   ],
                 ),
 

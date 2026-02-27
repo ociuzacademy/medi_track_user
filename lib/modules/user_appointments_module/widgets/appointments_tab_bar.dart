@@ -67,7 +67,7 @@ class AppointmentsTabBar extends StatelessWidget
           ),
           Tab(
             child: Text(
-              'Modified',
+              'Rescheduled',
               style: GoogleFonts.inter(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,

@@ -20,7 +20,6 @@ class UpdateDonationRecordServices {
       final DateFormat dateFormat = DateFormat('yyyy-MM-dd');
       Map<String, dynamic> params = {
         'donor_id': donorId,
-        'donation_type': data.donationType.displayName,
         'date': dateFormat.format(data.date),
         'location': data.location,
         'units': data.units,

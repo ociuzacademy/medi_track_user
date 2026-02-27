@@ -146,126 +146,148 @@ class _LiveStatusCardState extends State<LiveStatusCard> {
                 ),
                 TokenStatusSuccess(data: final tokenStatus) => Container(
                   padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: Row(
-                    children: [
-                      // Current Token
-                      Expanded(
-                        child: Container(
-                          padding: const EdgeInsets.all(16),
-                          child: Column(
+                  child: Builder(
+                    builder: (context) {
+                      final currentToken =
+                          tokenStatus.currentToken.tokenNumber ?? 0;
+                      final diff = widget.tokenNumber - currentToken;
+                      final waitingTime = diff > 0 ? diff * 10 : 0;
+                      final isLate = currentToken > widget.tokenNumber;
+
+                      return Column(
+                        children: [
+                          Row(
                             children: [
-                              Text(
-                                'Current Token',
-                                style: GoogleFonts.lexend(
-                                  fontSize: 14,
-                                  color: isDark
-                                      ? const Color(0xFF9E9E9E)
-                                      : const Color(0xFF616161),
+                              // Current Token
+                              Expanded(
+                                child: Container(
+                                  padding: const EdgeInsets.all(16),
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        'Current Token',
+                                        style: GoogleFonts.lexend(
+                                          fontSize: 14,
+                                          color: isDark
+                                              ? const Color(0xFF9E9E9E)
+                                              : const Color(0xFF616161),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 4),
+                                      Text(
+                                        tokenStatus.currentToken.tokenNumber
+                                                ?.toString() ??
+                                            'N/A',
+                                        style: GoogleFonts.lexend(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                          color: const Color(0xFF04798b),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                              const SizedBox(height: 4),
-                              Text(
-                                tokenStatus.currentToken.tokenNumber
-                                        ?.toString() ??
-                                    'N/A',
-                                style: GoogleFonts.lexend(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: const Color(0xFF04798b),
+
+                              // Vertical Divider
+                              Container(
+                                width: 1,
+                                height: 40,
+                                color: isDark
+                                    ? const Color(0xFF37474F)
+                                    : AppColors.textSecondaryDark,
+                              ),
+
+                              // Waiting Time
+                              Expanded(
+                                child: Container(
+                                  padding: const EdgeInsets.all(16),
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        'Delay Time',
+                                        style: GoogleFonts.lexend(
+                                          fontSize: 14,
+                                          color: isDark
+                                              ? const Color(0xFF9E9E9E)
+                                              : const Color(0xFF616161),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 4),
+                                      Text(
+                                        '~$waitingTime min',
+                                        style: GoogleFonts.lexend(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                          color: isDark
+                                              ? Colors.white
+                                              : const Color(0xFF212121),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],
                           ),
-                        ),
-                      ),
-
-                      // Vertical Divider
-                      Container(
-                        width: 1,
-                        height: 40,
-                        color: isDark
-                            ? const Color(0xFF37474F)
-                            : AppColors.textSecondaryDark,
-                      ),
-
-                      // Waiting Time
-                      Expanded(
-                        child: Container(
-                          padding: const EdgeInsets.all(16),
-                          child: Column(
-                            children: [
-                              Text(
-                                'Waiting Time',
-                                style: GoogleFonts.lexend(
-                                  fontSize: 14,
-                                  color: isDark
-                                      ? const Color(0xFF9E9E9E)
-                                      : const Color(0xFF616161),
-                                ),
+                          if (isLate) ...[
+                            const SizedBox(height: 8),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
                               ),
-                              const SizedBox(height: 4),
-                              Builder(
-                                builder: (context) {
-                                  final currentToken =
-                                      tokenStatus.currentToken.tokenNumber ?? 0;
-                                  final diff =
-                                      widget.tokenNumber - currentToken;
-                                  final waitingTime = diff > 0 ? diff * 10 : 0;
-                                  return Text(
-                                    '~$waitingTime min',
-                                    style: GoogleFonts.lexend(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: isDark
-                                          ? Colors.white
-                                          : const Color(0xFF212121),
+                              child: Row(
+                                children: [
+                                  const Icon(
+                                    Icons.warning_amber_rounded,
+                                    color: Color(0xFFD32F2F),
+                                    size: 20,
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Expanded(
+                                    child: Text(
+                                      'Your token has passed. You are late for this appointment.',
+                                      style: GoogleFonts.lexend(
+                                        fontSize: 13,
+                                        color: isDark
+                                            ? const Color(0xFFFF8A80)
+                                            : const Color(0xFFD32F2F),
+                                      ),
                                     ),
-                                  );
-                                },
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                        ),
-                      ),
-
-                      // Vertical Divider
-                      Container(
-                        width: 1,
-                        height: 40,
-                        color: isDark
-                            ? const Color(0xFF37474F)
-                            : AppColors.textSecondaryDark,
-                      ),
-
-                      // Delay
-                      Expanded(
-                        child: Container(
-                          padding: const EdgeInsets.all(16),
-                          child: Column(
-                            children: [
-                              Text(
-                                'Delay',
-                                style: GoogleFonts.lexend(
-                                  fontSize: 14,
-                                  color: isDark
-                                      ? const Color(0xFF9E9E9E)
-                                      : const Color(0xFF616161),
+                            ),
+                            const SizedBox(height: 12),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                              ),
+                              child: SizedBox(
+                                width: double.infinity,
+                                child: ElevatedButton(
+                                  onPressed: () {},
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: const Color(0xFFD32F2F),
+                                    foregroundColor: Colors.white,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                  child: Text(
+                                    'Generate Late Pass',
+                                    style: GoogleFonts.lexend(
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
                                 ),
                               ),
-                              const SizedBox(height: 4),
-                              Text(
-                                '~5 min', // Placeholder
-                                style: GoogleFonts.lexend(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: const Color(0xFFE53935),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
+                            ),
+                            const SizedBox(height: 8),
+                          ],
+                        ],
+                      );
+                    },
                   ),
                 ),
               },

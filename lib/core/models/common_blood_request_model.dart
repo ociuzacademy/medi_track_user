@@ -17,7 +17,6 @@ class CommonBloodRequestModel {
   final String doctor;
   final String bloodGroup;
   final int unitsRequired;
-  final String donationType;
   final DateTime donationDate;
   final String location;
   final String reason;
@@ -28,7 +27,6 @@ class CommonBloodRequestModel {
     required this.doctor,
     required this.bloodGroup,
     required this.unitsRequired,
-    required this.donationType,
     required this.donationDate,
     required this.location,
     required this.reason,
@@ -40,7 +38,6 @@ class CommonBloodRequestModel {
     String? doctor,
     String? bloodGroup,
     int? unitsRequired,
-    String? donationType,
     DateTime? donationDate,
     String? location,
     String? reason,
@@ -50,7 +47,6 @@ class CommonBloodRequestModel {
     doctor: doctor ?? this.doctor,
     bloodGroup: bloodGroup ?? this.bloodGroup,
     unitsRequired: unitsRequired ?? this.unitsRequired,
-    donationType: donationType ?? this.donationType,
     donationDate: donationDate ?? this.donationDate,
     location: location ?? this.location,
     reason: reason ?? this.reason,
@@ -63,7 +59,6 @@ class CommonBloodRequestModel {
         doctor: json['doctor'],
         bloodGroup: json['blood_group'],
         unitsRequired: json['units_required'],
-        donationType: json['donation_type'],
         donationDate: DateTime.parse(json['donation_date']),
         location: json['location'],
         reason: json['reason'],
@@ -75,7 +70,6 @@ class CommonBloodRequestModel {
     'doctor': doctor,
     'blood_group': bloodGroup,
     'units_required': unitsRequired,
-    'donation_type': donationType,
     'donation_date':
         "${donationDate.year.toString().padLeft(4, '0')}-${donationDate.month.toString().padLeft(2, '0')}-${donationDate.day.toString().padLeft(2, '0')}",
     'location': location,

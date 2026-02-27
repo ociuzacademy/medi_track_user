@@ -4,14 +4,12 @@ import 'package:flutter/material.dart';
 class BloodDonationHistory {
   final String id;
   final DateTime donationDate;
-  final String donationType;
   final String unitsDonated;
   final DonationStatus status;
 
   const BloodDonationHistory({
     required this.id,
     required this.donationDate,
-    required this.donationType,
     required this.unitsDonated,
     required this.status,
   });

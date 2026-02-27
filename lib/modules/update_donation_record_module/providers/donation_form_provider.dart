@@ -1,16 +1,13 @@
 // providers/donation_form_provider.dart
 import 'package:flutter/material.dart';
 import 'package:medi_track/modules/update_donation_record_module/classes/update_donation_record_data.dart';
-import 'package:medi_track/core/enums/donation_type.dart';
 
 class DonationFormProvider with ChangeNotifier {
   DateTime? _donationDate;
   final TextEditingController locationController = TextEditingController();
   final TextEditingController unitsController = TextEditingController();
-  DonationType _donationType = DonationType.wholeBlood;
 
   DateTime? get donationDate => _donationDate;
-  DonationType get donationType => _donationType;
   // Location and Units are now accessed via controllers
 
   @override
@@ -22,13 +19,6 @@ class DonationFormProvider with ChangeNotifier {
 
   void updateDonationDate(DateTime? date) {
     _donationDate = date;
-    notifyListeners();
-  }
-
-  // updateLocationName and updateUnitsDonated are removed as controllers handle updates
-
-  void updateDonationType(DonationType type) {
-    _donationType = type;
     notifyListeners();
   }
 
@@ -71,6 +61,13 @@ class DonationFormProvider with ChangeNotifier {
     return null;
   }
 
+  String? validateDonationDate(DateTime? date) {
+    if (date == null) {
+      return 'Please select a donation date';
+    }
+    return null;
+  }
+
   UpdateDonationRecordData? toUpdateDonationRecordData() {
     final locationName = locationController.text.trim();
     final unitsString = unitsController.text.trim();
@@ -82,7 +79,6 @@ class DonationFormProvider with ChangeNotifier {
     return UpdateDonationRecordData(
       date: donationDate!,
       location: locationName,
-      donationType: donationType,
       units: unitsDonated,
     );
   }

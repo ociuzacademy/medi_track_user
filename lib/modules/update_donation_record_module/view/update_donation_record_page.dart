@@ -11,7 +11,6 @@ import 'package:provider/provider.dart';
 import 'package:medi_track/modules/update_donation_record_module/providers/donation_form_provider.dart';
 import 'package:medi_track/modules/update_donation_record_module/widgets/custom_text_form_field.dart';
 import 'package:medi_track/modules/update_donation_record_module/widgets/donation_date_field.dart';
-import 'package:medi_track/modules/update_donation_record_module/widgets/donation_type_dropdown.dart';
 import 'package:medi_track/core/constants/app_colors.dart';
 
 class UpdateDonationRecordPage extends StatefulWidget {
@@ -115,6 +114,8 @@ class _UpdateDonationRecordPageState extends State<UpdateDonationRecordPage> {
                                       _updateDonationRecordHelper.selectDate(
                                         context,
                                       ),
+                                  validator: provider.validateDonationDate,
+                                  autovalidateMode: true,
                                 ),
                                 const SizedBox(height: 20),
                                 CustomTextFormField(
@@ -124,8 +125,6 @@ class _UpdateDonationRecordPageState extends State<UpdateDonationRecordPage> {
                                   validator: provider.validateLocationName,
                                   autovalidateMode: true,
                                 ),
-                                const SizedBox(height: 20),
-                                const DonationTypeDropdown(),
                                 const SizedBox(height: 20),
                                 CustomTextFormField(
                                   label: 'Units Donated',

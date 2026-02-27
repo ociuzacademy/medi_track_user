@@ -7,7 +7,7 @@ class BloodDonorRegisterData {
   final bool hadRecentIllness;
   final String? illnessDetails;
 
-  BloodDonorRegisterData({
+  const BloodDonorRegisterData({
     required this.bloodGroup,
     required this.location,
     this.lastDonationDate,

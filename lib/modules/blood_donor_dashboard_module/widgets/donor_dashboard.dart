@@ -180,7 +180,6 @@ class _DonorDashboardState extends State<DonorDashboard> {
                             final donation = bloodDonationHistoryList[index];
                             return BloodDonationHistoryItem(
                               date: donation.donationDate,
-                              donationType: donation.donationType,
                               isDark: isDark,
                             );
                           },

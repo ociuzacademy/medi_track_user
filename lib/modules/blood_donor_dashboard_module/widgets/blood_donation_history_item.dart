@@ -3,19 +3,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:medi_track/core/constants/app_colors.dart';
-import 'package:medi_track/core/enums/donation_type.dart';
 
 class BloodDonationHistoryItem extends StatelessWidget {
   const BloodDonationHistoryItem({
     super.key,
     required this.date,
-    required this.donationType,
     required this.isDark,
   });
 
   final DateTime date;
-  final DonationType donationType;
   final bool isDark;
 
   @override
@@ -58,27 +54,13 @@ class BloodDonationHistoryItem extends StatelessWidget {
               ),
               const SizedBox(width: 16),
               // Text
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    formattedDate,
-                    style: GoogleFonts.lexend(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: isDark ? Colors.white : const Color(0xFF111418),
-                    ),
-                  ),
-                  Text(
-                    donationType.displayName,
-                    style: GoogleFonts.lexend(
-                      fontSize: 14,
-                      color: isDark
-                          ? AppColors.textTertiaryDark
-                          : AppColors.textTertiaryLight,
-                    ),
-                  ),
-                ],
+              Text(
+                formattedDate,
+                style: GoogleFonts.lexend(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: isDark ? Colors.white : const Color(0xFF111418),
+                ),
               ),
             ],
           ),

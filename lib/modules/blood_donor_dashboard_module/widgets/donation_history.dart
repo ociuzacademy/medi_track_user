@@ -56,7 +56,6 @@ class DonationHistory extends StatelessWidget {
               final donation = donationHistory[index];
               return BloodDonationHistoryItem(
                 date: donation.donationDate,
-                donationType: donation.donationType,
                 isDark: isDark,
               );
             },
