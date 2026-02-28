@@ -37,4 +37,5 @@ class AppUrls {
   static const String donorHistoryUrl = '$userUrl/donor_history/';
   static const String nextDonationDateUrl = '$userUrl/next-donation-date/';
   static const String submitComplaintsUrl = '$userUrl/submit_complaints/';
+  static const String markLateUrl = '$userUrl/mark_late/';
 }

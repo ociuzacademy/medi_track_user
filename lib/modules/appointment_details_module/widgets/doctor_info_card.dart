@@ -9,7 +9,7 @@ import 'package:medi_track/core/constants/app_colors.dart';
 class DoctorInfoCard extends StatelessWidget {
   final String doctorName;
   final String doctorSpecialization;
-  final int token;
+  final String token;
   final DateTime appointmentDate;
   final String symptoms;
   final PaymentStatus paymentStatus;
@@ -159,7 +159,7 @@ class DoctorInfoCard extends StatelessWidget {
                 DoctorInfoDetailRow(
                   icon: Icons.confirmation_number,
                   label: 'Your Token',
-                  value: token.toString(),
+                  value: token,
                   isBold: true,
                 ),
                 DoctorInfoDetailRow(
@@ -175,7 +175,9 @@ class DoctorInfoCard extends StatelessWidget {
           Container(
             margin: const EdgeInsets.symmetric(vertical: 16),
             height: 1,
-            color: isDark ? const Color(0xFF37474F) : AppColors.textSecondaryDark,
+            color: isDark
+                ? const Color(0xFF37474F)
+                : AppColors.textSecondaryDark,
           ),
 
           // Symptoms Section

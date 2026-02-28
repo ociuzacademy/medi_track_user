@@ -6,7 +6,7 @@ import 'package:medi_track/modules/appointment_details_module/widgets/cancelled_
 import 'package:medi_track/modules/appointment_details_module/widgets/refund_status_row.dart';
 
 class DetailsList extends StatelessWidget {
-  final int tokenNumber;
+  final String tokenNumber;
   final String originalDate;
   final String reasonForCancellation;
   const DetailsList({
@@ -24,7 +24,7 @@ class DetailsList extends StatelessWidget {
         children: [
           CancelledAppointmentDetailRow(
             label: 'Token Number',
-            value: tokenNumber.toString(),
+            value: tokenNumber,
           ),
           CancelledAppointmentDetailRow(
             label: 'Original Date',

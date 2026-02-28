@@ -8,7 +8,7 @@ import 'package:medi_track/modules/appointment_details_module/widgets/status_row
 class AppointmentDetails extends StatelessWidget {
   final DateTime oldAppointmentDate;
   final DateTime? newAppointmentDate;
-  final int appointmentToken;
+  final String appointmentToken;
   final String symptoms;
   final String? cancellationReason;
   const AppointmentDetails({

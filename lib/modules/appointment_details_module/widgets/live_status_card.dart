@@ -11,10 +11,12 @@ class LiveStatusCard extends StatefulWidget {
     super.key,
     required this.doctorId,
     required this.tokenNumber,
+    required this.appointmentId,
   });
 
   final int doctorId;
-  final int tokenNumber;
+  final String tokenNumber;
+  final int appointmentId;
 
   @override
   State<LiveStatusCard> createState() => _LiveStatusCardState();
@@ -29,6 +31,7 @@ class _LiveStatusCardState extends State<LiveStatusCard> {
     _liveStatusCardHelper = LiveStatusCardHelper(
       context: context,
       doctorId: widget.doctorId,
+      appointmentId: widget.appointmentId,
     );
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -150,9 +153,37 @@ class _LiveStatusCardState extends State<LiveStatusCard> {
                     builder: (context) {
                       final currentToken =
                           tokenStatus.currentToken.tokenNumber ?? 0;
-                      final diff = widget.tokenNumber - currentToken;
+                      final totalTokens = tokenStatus.totalTokens;
+
+                      // Check if the token is a late pass (e.g. '20A', '20B')
+                      final isLatePass = RegExp(
+                        r'[A-Za-z]$',
+                      ).hasMatch(widget.tokenNumber);
+
+                      // Extract the numeric part (e.g. '20' from '20A')
+                      final numericTokenString = widget.tokenNumber.replaceAll(
+                        RegExp(r'[^0-9]'),
+                        '',
+                      );
+                      final tokenNumber = int.tryParse(numericTokenString) ?? 0;
+
+                      int diff = 0;
+                      bool isLate = false;
+
+                      if (isLatePass) {
+                        // Placed at the end of the queue. People ahead = totalTokens - currentToken.
+                        diff = totalTokens - currentToken;
+                        // Already has a late pass, so no need to show the late pass warning.
+                        isLate = false;
+                      } else {
+                        // Regular token
+                        diff = tokenNumber != 0
+                            ? tokenNumber - currentToken
+                            : 0;
+                        isLate = tokenNumber != 0 && currentToken > tokenNumber;
+                      }
+
                       final waitingTime = diff > 0 ? diff * 10 : 0;
-                      final isLate = currentToken > widget.tokenNumber;
 
                       return Column(
                         children: [

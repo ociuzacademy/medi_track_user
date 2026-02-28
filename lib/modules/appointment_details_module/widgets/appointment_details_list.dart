@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 
 class AppointmentDetailsList extends StatelessWidget {
   final String department;
-  final int appointmentToken;
+  final String appointmentToken;
   final DateTime dateTime;
   const AppointmentDetailsList({
     super.key,
@@ -32,7 +32,7 @@ class AppointmentDetailsList extends StatelessWidget {
           // Appointment Token
           CompletedAppointmentDetailRow(
             label: 'Appointment Token',
-            value: appointmentToken.toString(),
+            value: appointmentToken,
           ),
 
           // Date & Time

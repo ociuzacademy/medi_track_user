@@ -17,7 +17,7 @@ class AppointmentDetailsCard extends StatelessWidget {
     required this.avatarUrl,
   });
 
-  final int tokenNumber;
+  final String tokenNumber;
   final DateTime date;
   final AppointmentStatus status;
   final String doctorName;

@@ -56,7 +56,7 @@ class Appointment {
   final String doctorImage;
   final String departmentName;
   final DateTime date;
-  final int tokenNumber;
+  final String tokenNumber;
   final String symptoms;
   final PaymentStatus paymentStatus;
   final AppointmentStatus status;
@@ -91,7 +91,7 @@ class Appointment {
     String? doctorImage,
     String? departmentName,
     DateTime? date,
-    int? tokenNumber,
+    String? tokenNumber,
     String? symptoms,
     PaymentStatus? paymentStatus,
     AppointmentStatus? status,

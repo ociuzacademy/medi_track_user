@@ -71,6 +71,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
           BlocProvider(create: (context) => SubmitComplaintBloc()),
+          BlocProvider(create: (context) => MarkLateBloc()),
         ],
         child: MaterialApp(
           title: 'MediTrack',

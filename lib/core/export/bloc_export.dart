@@ -27,5 +27,6 @@ export 'package:medi_track/modules/update_donation_record_module/bloc/add_donati
 export 'package:medi_track/core/cubit/donor_history/donor_history_cubit.dart';
 export 'package:medi_track/modules/blood_donor_dashboard_module/cubit/next_donation_date_cubit.dart';
 export 'package:medi_track/modules/prescription_details_module/bloc/send_prescription_bloc.dart';
-export 'package:medi_track/modules/appointment_details_module/bloc/appointment_pdf_bloc.dart';
+export 'package:medi_track/modules/appointment_details_module/bloc/appointment_pdf/appointment_pdf_bloc.dart';
 export 'package:medi_track/modules/submit_complaint_module/bloc/submit_complaint_bloc.dart';
+export 'package:medi_track/modules/appointment_details_module/bloc/mark_late/mark_late_bloc.dart';

@@ -33,7 +33,8 @@ class RescheduledAppointmentNotificationDetails extends StatelessWidget {
         ? 'Token ${appointment.tokenNumber}'
         : '';
 
-    final bool hasOriginalData = originalDate.isNotEmpty || originalToken.isNotEmpty;
+    final bool hasOriginalData =
+        originalDate.isNotEmpty || originalToken.isNotEmpty;
     final bool hasRescheduledData =
         (rescheduledDate?.isNotEmpty ?? false) || rescheduledToken.isNotEmpty;
 
@@ -60,9 +61,10 @@ class RescheduledAppointmentNotificationDetails extends StatelessWidget {
                   ? AppColors.textTertiaryDark
                   : AppColors.textTertiaryLight,
               label: 'Original appointment',
-              value: [originalDate, originalToken]
-                  .where((value) => value.isNotEmpty)
-                  .join('  •  '),
+              value: [
+                originalDate,
+                originalToken,
+              ].where((value) => value.isNotEmpty).join('  •  '),
               isDark: isDark,
             ),
           if (hasOriginalData && hasRescheduledData) const SizedBox(height: 10),
@@ -71,9 +73,10 @@ class RescheduledAppointmentNotificationDetails extends StatelessWidget {
               icon: Icons.event_repeat,
               iconColor: const Color(0xFF137FEC),
               label: 'Rescheduled to',
-              value: [if (rescheduledDate != null) rescheduledDate, rescheduledToken]
-                  .where((value) => value.isNotEmpty)
-                  .join('  •  '),
+              value: [
+                ?rescheduledDate,
+                rescheduledToken,
+              ].where((value) => value.isNotEmpty).join('  •  '),
               isDark: isDark,
               emphasize: true,
             ),
