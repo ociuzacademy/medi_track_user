@@ -100,7 +100,7 @@ class _HomeContentState extends State<HomeContent> {
           SizedBox(height: screenSize.height * 0.03),
 
           // Blood Donation Banner
-          // const BloodDonationBanner(),
+          const BloodDonationBanner(),
 
           // SizedBox(height: screenSize.height * 0.02),
         ],

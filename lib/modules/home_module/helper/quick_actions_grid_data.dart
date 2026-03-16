@@ -25,14 +25,14 @@ class QuickActionsGridData {
           Navigator.push(context, PrescriptionsPage.route());
         },
       ),
-      // QuickAction(
-      //   icon: Icons.bloodtype,
-      //   title: 'Blood Donate',
-      //   isPrimary: true,
-      //   onClick: () {
-      //     Navigator.push(context, BloodDonorDashboardPage.route());
-      //   },
-      // ),
+      QuickAction(
+        icon: Icons.bloodtype,
+        title: 'Blood Donate',
+        isPrimary: true,
+        onClick: () {
+          Navigator.push(context, BloodDonorDashboardPage.route());
+        },
+      ),
       QuickAction(
         icon: Icons.feedback,
         title: 'Feedbacks',
